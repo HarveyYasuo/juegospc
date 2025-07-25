@@ -1,0 +1,2723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plataforma de juegos y recursos digitales">
+    <meta name="keywords" content="juegos, emuladores, apps, comunidad gaming">
+    <title>GamesOG</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602"
+     crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-7408875684074602">
+    <!-- Meta Tags para Redes Sociales (Open Graph & Twitter) -->
+    <meta property="og:title" content="GamesOG: Tu Plataforma de Juegos y Recursos Digitales">
+    <meta property="og:description" content="Descubre, comparte y descarga juegos, emuladores, programas y más. Únete a una comunidad activa y encuentra todo en un solo lugar.">
+    <meta property="og:image" content="https://gamesog.netlify.app/gamesog-og-image.png"> <!-- Imagen de 1200x630px para compartir -->
+    <meta property="og:url" content="https://gamesog.netlify.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="GamesOG">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GamesOG: Tu Plataforma de Juegos y Recursos Digitales">
+    <meta name="twitter:description" content="Descubre, comparte y descarga juegos, emuladores, programas y más. Únete a una comunidad activa y encuentra todo en un solo lugar.">
+    <meta name="twitter:image" content="https://gamesog.netlify.app/gamesog-og-image.png"> <!-- Imagen para la tarjeta de Twitter -->
+
+    <meta name="4944953a256973d4c9684b6e4370318168697432" content="4944953a256973d4c9684b6e4370318168697432" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <!--<meta name="google-adsense-account" content="ca-pub-7408875684074602"-->
+    <meta name='admaven-placement' content=BqdU9pjYG>
+    <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602"
+     crossorigin="anonymous"></script>-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type='text/javascript' src='//temperweekly.com/ad/23/d9/ad23d91e8b4f17dcae3256ee737ee37f.js'></script>
+
+    <style>
+
+        /* --- Estilos para el Layout Principal y Sidebar de Artículos --- */
+        .page-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr; /* Por defecto, una sola columna para móviles */
+            gap: 1.5rem; /* Un poco menos de espacio entre columnas */
+            padding: 0 1rem 1rem 1rem; /* Padding superior a 0 para subirlo */
+            max-width: 1500px; /* Un poco más ancho */
+            margin: 0 auto;
+        }
+
+        /* En pantallas más grandes, creamos la columna para el sidebar SOLO si la clase .sidebar-visible está presente */
+        @media (min-width: 768px) { /* md breakpoint */
+            .page-content-wrapper.sidebar-visible {
+                grid-template-columns: 1fr 300px;
+            }
+        }
+
+        .sidebar-article {
+            background-color: #1a1a1a; /* Un fondo oscuro pero ligeramente diferente */
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: #ccc;
+            position: sticky;
+            top: 100px; /* Ajustar según la altura del header */
+            align-self: start;
+            height: fit-content;
+            /* NUEVO: Añadir una altura máxima y scroll para evitar que sea demasiado alto */
+            max-height: calc(100vh - 120px); /* 100vh - (offset superior + padding inferior) */
+            overflow-y: auto;
+        }
+
+        /* Estilo para el scrollbar del sidebar, para que sea consistente */
+        .sidebar-article::-webkit-scrollbar-thumb {
+            background-color: #444;
+            border-radius: 10px;
+            border: 2px solid #1a1a1a; /* Borde del color de fondo del sidebar */
+        }
+
+        .sidebar-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00e5ff; /* Un color cian llamativo */
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #00e5ff;
+            padding-bottom: 0.5rem;
+        }
+
+        .sidebar-intro, .sidebar-outro {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-intro strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .ai-tools-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ai-tools-list li {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .ai-tools-list li::before {
+            content: '⚡️'; /* Un ícono para cada item */
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .ai-tools-list li strong {
+            color: #fff;
+            font-weight: 600;
+            display: block; /* Para que la descripción quede abajo */
+        }
+
+        .sidebar-outro {
+            margin-top: 1.5rem;
+            margin-bottom: 0;
+            font-weight: 600;
+            text-align: center;
+            color: #00e5ff;
+        }
+
+        /* Ajuste para que el main container no necesite padding extra */
+        .page-content-wrapper > .container {
+            padding: 0; /* El wrapper ya tiene padding */
+            /* Solución: Evita que el contenedor principal se desborde de su celda en la grilla */
+            min-width: 0;
+        }
+
+        /* --- Estilos para el Contenedor de Tarjetas con Scroll --- */
+        #items-container.items-grid {
+            /* Calculamos la altura máxima disponible en la ventana.
+               100vh (altura total) - 80px (header) - 70px (título de categoría y espacios) - 80px (footer) */
+            max-height: calc(100vh - 250px);
+            overflow-y: auto; /* Habilita el scroll vertical solo para las tarjetas */
+            padding: 1rem; /* Espacio interior para que las tarjetas no toquen el borde */
+            border: 1px solid #333;
+            border-radius: 12px;
+        }
+
+        /* --- Estilos para el Loader --- */
+        .loader {
+            border: 5px solid #333; /* Un gris oscuro */
+            border-top: 5px solid #00e5ff; /* Cian */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 80px auto; /* Centrarlo vertical y horizontalmente */
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- Estilos para la Sección de Preguntas Frecuentes (FAQ) --- */
+        .faq {
+            background-color: #1a1a1a; /* Un fondo ligeramente distinto al principal */
+            padding: 4rem 2rem;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #EAEAEA;
+            margin-bottom: 3rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Una sola columna para el layout de acordeón */
+            max-width: 800px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .faq-item:hover {
+            background-color: #2a2a2a;
+            border-color: #00e5ff;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '▼';
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+            color: #00e5ff;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding-top 0.4s ease-out;
+            padding-top: 0;
+        }
+
+        .faq-question strong {
+            display: block;
+            font-size: 1.2rem;
+            color: #00e5ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer p {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* A value larger than any possible answer height */
+            padding-top: 1rem;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(180deg);
+        }
+
+        /* --- Estilos para la animación de imágenes en FAQ --- */
+        .faq-container {
+            display: grid;
+            grid-template-columns: 1fr; /* Por defecto para móviles */
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        @media (min-width: 1024px) { /* Se activa en pantallas grandes */
+            .faq-container {
+                grid-template-columns: minmax(0, 1fr) 400px; /* Columna de FAQ flexible y columna de imágenes de ancho fijo */
+            }
+        }
+
+        .animated-images-container {
+            display: none; /* Oculto en móviles para no sobrecargar */
+        }
+        @media (min-width: 1024px) {
+            .animated-images-container {
+                display: flex;
+                gap: 1rem;
+                height: 450px; /* Altura fija para el contenedor de la animación */
+                overflow: hidden;
+                /* Efecto de desvanecido en los bordes superior e inferior */
+                mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            }
+        }
+
+        .image-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .image-column img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-column.down { animation: scroll-down 40s linear infinite; }
+        .image-column.up { animation: scroll-up 35s linear infinite; } /* Ligeramente más rápida */
+
+        @keyframes scroll-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+        @keyframes scroll-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+
+
+        /* --- Estilos para el Footer --- */
+        footer {
+            background-color: #1a1a1a;
+            color: #aaa;
+            border-top: 1px solid #333;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Para que se ajuste en pantallas pequeñas */
+            gap: 1rem; /* Espacio entre elementos si se envuelven */
+        }
+
+        .footer-center {
+            text-align: center;
+            /* Ocupa el espacio disponible para centrarse entre los extremos */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-left p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            margin: 0 8px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .secondary-btn {
+            background-color: #4a5568; /* gray-700 */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .secondary-btn:hover { background-color: #2d3748; } /* gray-800 */
+
+        /* --- Estilos para Notificación de Chat --- */
+        #chat-toggle-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            background-color: #00bcd4; /* Color cian para el botón */
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px; /* Tamaño del emoji */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        #chat-toggle-button:hover {
+            transform: scale(1.1);
+        }
+        #chat-notification-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 12px;
+            height: 12px;
+            background-color: #ff3b30; /* Rojo de notificación */
+            border-radius: 50%;
+            border: 2px solid #fff; /* Borde blanco para contraste */
+        }
+
+        /* --- Estilos para Mensajes de Admin --- */
+        .chat-message.admin-message .message-content {
+            background-color: #000000; /* Fondo negro */
+            border: 1px solid #555;    /* Borde gris oscuro */
+        }
+
+        .chat-message.admin-message .chat-user-name,
+        .chat-message.admin-message .chat-text {
+            /* Creamos un gradiente con los colores solicitados */
+            background: linear-gradient(90deg, #ff4d4d, #c56cf0, #ff00ff, #ff4d4d);
+            background-size: 200% auto; /* El doble de ancho para la animación */
+            
+            /* Hacemos que el fondo sea visible solo a través del texto */
+            color: #fff; /* Color de fallback por si el navegador no es compatible */
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            /* Aplicamos la animación */
+            animation: rgb-text-animation 3s linear infinite;
+        }
+
+        .chat-message.admin-message .chat-user-name::before {
+            content: '👑'; /* Icono de corona */
+            margin-right: 6px;
+            font-size: 0.9em;
+            vertical-align: middle;
+        }
+
+        /* Definición de la animación que mueve el gradiente */
+        @keyframes rgb-text-animation {
+            to {
+                background-position: -200% center;
+            }
+        }
+
+        /* Estilos para el contenido de la guía renderizado con Markdown */
+        .guide-body h1, .guide-body h2, .guide-body h3 { color: #fff; margin-top: 1em; margin-bottom: 0.5em; }
+        .guide-body p { margin-bottom: 1em; }
+        .guide-body a { color: #00e5ff; text-decoration: underline; }
+        .guide-body ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1em; }
+        .guide-body ol { list-style-type: decimal; padding-left: 1.5em; margin-bottom: 1em; }
+        .guide-body blockquote { border-left: 4px solid #4a5568; padding-left: 1em; color: #ccc; font-style: italic; }
+        .guide-body code { background-color: #2d3748; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; }
+        .guide-body pre { background-color: #2d3748; padding: 1em; border-radius: 8px; overflow-x: auto; }
+
+        /* --- Estilos para el botón de Info en las tarjetas --- */
+        .item-card-actions {
+            /* Aseguramos que sea un flex container para alinear los elementos */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem 1rem; /* Ajusta el padding si es necesario */
+        }
+
+        .info-btn {
+            background-color: rgba(0, 229, 255, 0.15);
+            color: #00e5ff;
+            border: 1px solid rgba(0, 229, 255, 0.5);
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .info-btn:hover {
+            background-color: #00e5ff;
+            color: #111;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
+        }
+
+        /* --- Estilos para la Sección de Promoción de Afiliados --- */
+        .affiliate-promo-section {
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .affiliate-step-card {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .affiliate-step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 229, 255, 0.1);
+            border-color: #00e5ff;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            right: 10px;
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.05);
+            z-index: 0;
+            user-select: none;
+        }
+
+        .affiliate-step-card h3, .affiliate-step-card p {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Estilos para Tarjetas GanaPlus --- */
+        .item-card.ganaplus-card {
+            border: 2px solid transparent;
+            /* Un gradiente dorado para el borde */
+            border-image: linear-gradient(45deg, #FFD700, #FDB813, #FFA500);
+            border-image-slice: 1;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            position: relative; /* Necesario para posicionar el ícono */
+        }
+
+        .ganaplus-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px; /* Tamaño del emoji */
+            z-index: 2; /* Para que esté sobre la imagen */
+        }
+
+        /* --- Estilo para el enlace de GanaPlus en la navegación --- */
+        .ganaplus-nav-link {
+            font-weight: 700; /* Hacemos el texto más audaz */
+            /* Gradiente animado similar al del admin, pero con tonos dorados y púrpuras */
+            background: linear-gradient(90deg, #FFD700, #FDB813, #c56cf0, #ff00ff, #FFD700);
+            background-size: 250% auto; /* Hacemos el gradiente un poco más ancho para una animación más suave */
+            color: #fff;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rgb-text-animation 4s linear infinite; /* Reutilizamos la animación del chat */
+        }
+
+        /* --- Estilos para el botón de Autenticación Fijo --- */
+        #user-menu-btn {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            background-color: #3b82f6; /* Un color azul primario */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px; /* Para hacerlo tipo "píldora" */
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        #user-menu-btn:hover {
+            background-color: #2563eb;
+            transform: scale(1.05);
+        }
+
+        /* --- Estilos para el Contenedor del Anuncio Superior --- */
+        .top-ad-container {
+            width: 100%;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #101010; /* Fondo oscuro para integrar el anuncio */
+        }
+
+        /* --- Estilos para el Banner de Cookies --- */
+        .cookie-consent-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(26, 26, 26, 0.9); /* #1a1a1a con transparencia */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            color: #ccc;
+            padding: 1rem 1.5rem;
+            display: flex; /* Cambiado de 'none' a 'flex' para permitir la transición */
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            z-index: 2000; /* Muy alto para estar por encima de todo */
+            border-top: 1px solid #333;
+            flex-wrap: wrap; /* Para que se ajuste en pantallas pequeñas */
+
+            /* --- Propiedades para la animación --- */
+            transform: translateY(100%); /* Empieza fuera de la pantalla (abajo) */
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+
+        /* Clase para mostrar el banner con animación */
+        .cookie-consent-banner.show {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        .cookie-buttons { display: flex; gap: 0.75rem; align-items: center; flex-shrink: 0; }
+        .cookie-text { margin: 0; font-size: 0.9rem; flex-grow: 1; }
+        .cookie-link { color: #00e5ff; text-decoration: underline; font-weight: 600; }
+        
+        .cookie-accept-btn { background-color: #00e5ff; color: #111; border: none; border-radius: 8px; padding: 0.6rem 1.2rem; font-weight: 700; cursor: pointer; transition: background-color 0.2s, transform 0.2s; white-space: nowrap; }
+        .cookie-accept-btn:hover { background-color: #00c4dd; transform: scale(1.05); }
+
+        .cookie-reject-btn {
+            background-color: transparent;
+            color: #ccc;
+            border: 1px solid #555;
+            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+            white-space: nowrap;
+        }
+        .cookie-reject-btn:hover { background-color: rgba(255, 255, 255, 0.1); color: #fff; border-color: #777; }
+
+        @media (max-width: 768px) {
+            .cookie-consent-banner { flex-direction: column; text-align: center; }
+            .cookie-buttons { width: 100%; justify-content: center; margin-top: 0.5rem; }
+        }
+
+
+        /* --- Estilos para el Modal de Ad-Blocker --- */
+        #adblock-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: none; /* Inicialmente oculto */
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        #adblock-modal.visible {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content-adblock {
+            background-color: #1A1A1A;
+            padding: 3rem;
+            border-radius: 15px;
+            border: 2px solid #00B8D4;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 184, 212, 0.2);
+            color: #E0E0E0;
+        }
+
+        .modal-content-adblock h2 { color: #00B8D4; font-size: 2rem; margin-top: 0; }
+        .modal-content-adblock p { font-size: 1.1rem; line-height: 1.6; }
+        .modal-icon { font-size: 4rem; color: #D32F2F; margin-bottom: 1rem; }
+
+        /* --- Estilos para el Panel de Administrador --- */
+        .stat-card-admin {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card-admin:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.15);
+        }
+        .stat-list-admin {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .stat-list-admin li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #2a2a2a;
+            font-size: 0.95rem;
+        }
+        .stat-list-admin li:last-child {
+            border-bottom: none;
+        }
+        .stat-list-admin span {
+            font-weight: 700;
+            color: #00e5ff;
+            background-color: rgba(0, 229, 255, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+        }
+
+        /* --- Clase de Cebo (Honeypot) --- */
+        .ad-banner { height: 1px; width: 1px; position: absolute; top: -10px; left: -10px; opacity: 0.01; pointer-events: none; }
+
+    </style>
+
+</head>
+<body>
+
+    <!--<div class="top-ad-container">
+        <script type="text/javascript">
+	atOptions = {
+		'key' : '2aaafe504c098efbd0d96aa5d4a8514f',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/2aaafe504c098efbd0d96aa5d4a8514f/invoke.js"></script>
+         </div>-->
+    
+
+    <header>
+    <div class="nexo-header">
+        <!--<div class="nexo-logo">OG</div>-->
+        <button id="go-to-profile-btn" class="icon-btn" style="display: none;" title="Ver Perfil"><!-- Icono de usuario --></button>
+         <button class="nav-toggle" id="menu-toggle" aria-label="Menú">☰</button>
+            <nav class="nav-menu category-nav" id="nav-menu">
+              <a href="#" class="nav-link active" data-category="juegos">Juegos</a>
+              <a href="#" class="nav-link" data-category="emuladores">Emuladores</a>
+              <a href="#" class="nav-link" data-category="extras">Extras</a>
+              <a href="#" class="nav-link" data-category="celulares">Celulares</a>
+              <a href="#" class="nav-link" data-category="programas">Programas</a>
+              <a href="#" class="nav-link" data-category="comunidad">Comunidad</a>
+              <a href="#" class="nav-link ganaplus-nav-link" data-category="ganaplus">GanaPlus</a>
+            <input type="text" id="search-input" placeholder="Buscar..." class="nav-search">
+           </nav>
+        </nav>
+
+        <div class="nexo-user-menu">
+            <div id="user-dropdown-menu" class="dropdown-content">
+                <div id="user-info" class="dropdown-section">
+                    </div>
+                <div class="dropdown-section">
+                    <input type="search" id="user-dropdown-search" placeholder="Buscar...">
+                </div>
+                 <div class="dropdown-section">
+                     <button id="open-add-modal-btn-header" class="action-btn" style="display: none; width: 100%;">+ Agregar Elemento</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- =============================================================== -->
+<!-- ============   PANEL DE ADMINISTRADOR INICIO   ================ -->
+<!-- =============================================================== -->
+<section id="admin-stats-panel" class="bg-gray-900 py-8" style="display: none;">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center">Panel de Administrador</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card: Vistas Totales -->
+            <div class="stat-card-admin">
+                <h3 class="text-lg font-semibold text-gray-300">Vistas Totales</h3>
+                <p id="admin-total-views" class="text-4xl font-bold text-white">Cargando...</p>
+            </div>
+            <!-- Card: Visitantes Únicos -->
+            <div class="stat-card-admin">
+                <h3 class="text-lg font-semibold text-gray-300">Visitantes Únicos</h3>
+                <p id="admin-unique-visitors" class="text-4xl font-bold text-white">Cargando...</p>
+            </div>
+            <!-- Card: Promedio de Tiempo -->
+            <div class="stat-card-admin">
+                <h3 class="text-lg font-semibold text-gray-300">Tiempo Promedio (Seg.)</h3>
+                <p id="admin-avg-time" class="text-4xl font-bold text-white">Cargando...</p>
+            </div>
+            <!-- Card: Total de "Me Gusta" -->
+            <div class="stat-card-admin">
+                <h3 class="text-lg font-semibold text-gray-300">"Me Gusta" Totales</h3>
+                <p id="admin-total-likes" class="text-4xl font-bold text-white">Cargando...</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+            <!-- Columna: Desglose de Dispositivos -->
+            <div class="stat-card-admin">
+                <h3 class="text-xl font-bold text-white mb-4">Desglose por Dispositivo</h3>
+                <ul id="admin-device-stats" class="stat-list-admin"><li>Cargando...</li></ul>
+            </div>
+            <!-- Columna: Desglose de Navegadores -->
+            <div class="stat-card-admin">
+                <h3 class="text-xl font-bold text-white mb-4">Top Navegadores</h3>
+                <ul id="admin-browser-stats" class="stat-list-admin"><li>Cargando...</li></ul>
+            </div>
+            <!-- Columna: Desglose de Países -->
+            <div class="stat-card-admin">
+                <h3 class="text-xl font-bold text-white mb-4">Top Países</h3>
+                <ul id="admin-country-stats" class="stat-list-admin"><li>Cargando...</li></ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =============================================================== -->
+<!-- =============   PANEL DE ADMINISTRADOR FINAL   ================ -->
+<!-- =============================================================== -->
+
+ <div class="category-header">
+            <h2 id="category-title">Juegos</h2>
+            <button id="open-add-modal-btn-menu" class="menu-icon" style="display: none;" title="Agregar Elemento">Subir Elemento</button>
+            <div id="user-count" class="menu-icon" style="display: none;">Cargando...</div>
+            <a href="https://apkpure.com/gamesog/com.harvey.gamesog/download" class="menu-icon" title="Descargar APK">Descargar el App</a>
+        </div>
+
+    <div id="page-wrapper" class="page-content-wrapper">
+        <main class="container">
+            <div id="items-container" class="items-grid">
+                <div id="loader" class="loader" style="display: none;"></div>
+                <!-- El contenido de los juegos, programas, etc., se cargará aquí -->
+            </div>
+        </main>
+
+        <!-- Contenedor para el anuncio de banner (Profitableratecpm) -->
+    <!--<div id="container-67652e013479741bdf0d0c4b6cc91601"></div>
+    <script async="async" data-cfasync="false" src="//pl27221912.profitableratecpm.com/67652e013479741bdf0d0c4b6cc91601/invoke.js"></script>-->
+
+        <!-- Panel lateral con el artículo sobre herramientas de IA -->
+        <aside id="ai-tools-sidebar" class="sidebar-article hidden">
+            <h3 class="sidebar-title">Guía Esencial de Adobe Creative Cloud</h3>
+            <p class="sidebar-intro">
+                Explora el universo de <strong>Adobe</strong>, el estándar de la industria para la creatividad digital. Desde la edición de fotos y video hasta el diseño gráfico y los efectos visuales, estas herramientas te permiten crear cualquier cosa que imagines.
+            </p>
+            <ul class="ai-tools-list">
+                <li><strong>Adobe Photoshop:</strong> El rey de la edición de imágenes. Ideal para retocar fotografías, crear composiciones complejas, diseño web y pintura digital.</li>
+                <li><strong>Adobe Illustrator:</strong> La herramienta vectorial por excelencia. Perfecta para crear logotipos, iconos, ilustraciones y tipografías que se pueden escalar a cualquier tamaño sin perder calidad.</li>
+                <li><strong>Adobe Premiere Pro:</strong> El estándar profesional para la edición de video. Utilizado en cine, televisión y web para montar, corregir color y añadir audio a tus producciones.</li>
+                <li><strong>Adobe After Effects:</strong> El mago de los efectos visuales y motion graphics. Crea animaciones, intros, transiciones y añade efectos especiales a tus videos.</li>
+                <li><strong>Adobe Animate:</strong> La evolución del legendario Flash. Crea animaciones interactivas para juegos, aplicaciones y la web. <em>(Nota: Adobe Flash Player ya no tiene soporte oficial).</em></li>
+            </ul>
+            
+            <!-- Nueva sección de precios -->
+            <h4 style="font-size: 1.2rem; font-weight: 600; color: #fff; margin-top: 1.5rem; margin-bottom: 0.5rem;">Precios y Prueba Gratuita</h4>
+            <p class="sidebar-intro" style="margin-bottom: 1rem;">
+                Adobe funciona con un modelo de suscripción. Puedes optar por una <strong>suscripción a una sola aplicación</strong> (si solo necesitas una) o el plan <strong>Creative Cloud Todas las Aplicaciones</strong>, que te da acceso a más de 20 herramientas.
+            </p>
+            <ul class="ai-tools-list">
+                 <li><strong>Prueba Gratuita:</strong> ¡Puedes probar cualquier aplicación o el plan completo <strong>gratis durante 7 días</strong>! Es la mejor forma de ver si se adapta a tus necesidades.</li>
+                 <li><strong>Descuento para Estudiantes:</strong> Si eres estudiante o profesor, puedes obtener un descuento de más del 60% en el plan de Todas las Aplicaciones.</li>
+            </ul>
+
+            <p class="sidebar-outro">¡Explora, crea y lleva tus ideas al siguiente nivel con el poder de Adobe!</p>
+        </aside>
+    </div>
+    <div id="add-item-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <span id="close-modal-btn" class="close-btn">&times;</span>
+            <h2>Agregar Nuevo Elemento</h2>
+            <form id="add-item-form">
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" name="titulo" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="enlace_sitio">URL del Sitio</label>
+                    <input type="url" id="enlace_sitio" name="enlace_sitio" required>
+                </div>
+                <div class="form-group">
+                    <label for="enlace_imagen">URL de la Imagen</label>
+                    <input type="url" id="enlace_imagen" name="enlace_imagen" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Categoría</label>
+                    <select id="category" name="category" required>
+                        <option value="juegos">Juegos</option>
+                        <option value="emuladores">Emuladores</option>
+                        <option value="celulares">Celulares</option>
+                        <option value="extras">Extras</option>
+                        <option value="comunidad">Comunidad</option>
+                        <option value="ganaplus">GanaPlus</option>
+                    </select>
+                </div>
+                <button type="submit" class="action-btn">Agregar a la Biblioteca</button>
+                <div id="form-feedback" class="feedback-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Ventana del Chat -->
+    <div id="chat-window" style="display: none; flex-direction: column;">
+        <div class="chat-header">
+            <span>Chat General</span>
+            <button id="close-chat-button">&times;</button>
+        </div>
+        <div id="chat-messages">
+            <!-- Los mensajes se cargarán aquí -->
+        </div>
+        <form id="chat-form">
+            <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+            <button type="submit">➤</button>
+        </form>
+    </div>
+
+<div id="details-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content large">
+        <span id="close-details-modal-btn" class="close-btn">&times;</span>
+        <div id="modal-details-content"></div>
+    </div>
+</div>
+
+<!-- Guide Modal -->
+<div id="guide-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content large">
+        <span id="close-guide-modal-btn" class="close-btn">&times;</span>
+        <div id="guide-modal-content">
+            <!-- Guide content will be injected here -->
+        </div>
+    </div>
+</div>
+
+<!-- Popup para Incentivar el Registro -->
+<div id="signup-incentive-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <span id="close-incentive-modal-btn" class="close-btn">&times;</span>
+        <h2 class="text-2xl font-bold text-center text-white">¡Únete a la Comunidad!</h2>
+        <p id="incentive-main-text" class="text-center my-4 text-gray-300">Cargando mensaje...</p>
+        <p id="incentive-cta-text" class="text-center font-bold mb-6 text-cyan-400">...</p>
+        <div class="flex justify-center space-x-4">
+            <button id="incentive-login-btn" class="action-btn">Iniciar Sesión / Registrarse</button>
+            <button id="incentive-later-btn" class="secondary-btn">Quizás más tarde</button>
+        </div>
+    </div>
+</div>
+
+<!-- Popup de Bienvenida para Nuevos Visitantes -->
+<div id="welcome-popup" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <span id="close-welcome-popup-btn" class="close-btn">&times;</span>
+        <h2 class="text-2xl font-bold text-center text-white">👋 ¡Bienvenido a GamesOG!</h2>
+        <p class="text-center my-4 text-gray-300">Somos una comunidad nueva y nos encantaría que nos ayudaras a crecer. ¡Comparte la página con tus amigos!</p>
+        <div class="flex justify-center">
+            <button id="understand-welcome-btn" class="action-btn">¡Entendido!</button>
+        </div>
+    </div>
+</div>
+
+<!-- Affiliate Program Section -->
+<section class="affiliate-promo-section bg-[#111111] py-16">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold text-white mb-4">Gana Dinero por Compartir tus Apps Favoritas</h2>
+        <p class="text-lg text-gray-400 mb-10 max-w-3xl mx-auto">
+            Muchas aplicaciones y juegos te pagan por referir nuevos usuarios. Encuentra tus programas de afiliados, obtén tu enlace único y compártelo aquí para que toda la comunidad pueda usarlo. ¡Tú ganas, todos ganan!
+        </p>
+        <div class="grid md:grid-cols-3 gap-8 text-left">
+            <!-- Step 1 -->
+            <div class="affiliate-step-card">
+                <div class="step-number">01</div>
+                <h3 class="text-xl font-bold text-white mb-2">Encuentra un Programa</h3>
+                <p class="text-gray-400">Busca apps o servicios que ofrezcan programas de referidos o afiliados y que te gusten.</p>
+            </div>
+            <!-- Step 2 -->
+            <div class="affiliate-step-card">
+                <div class="step-number">02</div>
+                <h3 class="text-xl font-bold text-white mb-2">Obtén tu Enlace</h3>
+                <p class="text-gray-400">Regístrate en su programa y copia tu enlace de afiliado personal que te proporcionan.</p>
+            </div>
+            <!-- Step 3 -->
+            <div class="affiliate-step-card">
+                <div class="step-number">03</div>
+                <h3 class="text-xl font-bold text-white mb-2">Súbelo a GamesOG</h3>
+                <p class="text-gray-400">Usa el botón 'Subir Elemento', elige la categoría 'GanaPlus' y comparte tu enlace con la comunidad.</p>
+            </div>
+        </div>
+        <div class="mt-12">
+            <button id="open-add-affiliate-link-btn" class="inline-block bg-cyan-500 text-white font-bold text-lg py-3 px-8 rounded-lg hover:bg-cyan-600 transition-colors duration-300 shadow-lg shadow-cyan-500/20">
+                ¡Sube tu Primer Enlace!
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Visitor Stats Chart Section -->
+<section class="visitor-stats-section bg-[#1a1a1a] py-12">
+    <div class="visitor-stats-container max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <!-- Gráfico de Visitantes -->
+        <div class="flex justify-center items-center gap-6">
+            <div style="width: 120px; height: 120px;">
+                <canvas id="visitor-chart"></canvas>
+            </div>
+            <div class="text-white">
+                <h3 class="text-xl font-bold">Comunidad en Crecimiento</h3>
+                <p class="text-sm text-gray-400">Proporción de visitantes únicos vs. recurrentes.</p>
+                <p id="unique-visitors-count" class="text-2xl font-bold text-cyan-400 mt-2">--</p>
+            </div>
+        </div>
+        <!-- Gráfico de Categorías Populares -->
+        <div class="w-full">
+            <h3 class="text-xl font-bold text-white text-center mb-4">Categorías Más Populares</h3>
+            <div style="height: 250px;"><canvas id="category-chart"></canvas></div>
+        </div>
+    </div>
+</section>
+
+<section class="faq">
+    <h2>Preguntas frecuentes de la comunidad</h2>
+    <div class="faq-container">
+        <div class="faq-grid">
+             <div class="faq-item">
+                <div class="faq-question"><strong>¿Cómo subo mis archivos?</strong></div>
+                <div class="faq-answer"><p>Inicia sesión, clic en 'Subir', elige categoría y listo.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><strong>¿Necesito cuenta para descargar?</strong></div>
+                <div class="faq-answer"><p>No, no es necesario estar registrado para descargar.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><strong>¿Qué tipos de archivos puedo compartir?</strong></div>
+                <div class="faq-answer"><p>Juegos, emuladores, apps, programas y extras.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><strong>¿Hay contenido gratuito y de pago?</strong></div>
+                <div class="faq-answer"><p>Sí, cada publicación lo indica claramente.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><strong>¿Cómo funciona el chat global?</strong></div>
+                <div class="faq-answer"><p>Es para todos los usuarios registrados.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><strong>¿Puedo promocionar mis propios proyectos?</strong></div>
+                <div class="faq-answer"><p>Claro, hay una categoría especial para eso.</p></div>
+            </div>
+        </div>
+        <div class="animated-images-container">
+            <div class="image-column down">
+                <img src="https://cdn2.steamgriddb.com/thumb/3940304b536796dcc176aa83203a3955.jpg" alt="Imagen de juego 1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1K8fVrc7sdxI1x8Ap2nfBBQUTEsh7v5sf6A&s" alt="Imagen de juego 2">
+                <img src="https://sm.ign.com/t/ign_es/screenshot/default/horizontal-1465868678_34tg.1280.jpg" alt="Imagen de juego 3">
+                <img src="https://cdn2.steamgriddb.com/thumb/af0a25e27510f77d97634a6bbe653b13.jpg" alt="Imagen de juego 1">
+                <img src="https://i.3djuegos.com/juegos/17450/fotos/ficha/-5248944.jpg" alt="Imagen de juego 2">
+                <img src="https://cdn2.steamgriddb.com/thumb/daa4c479f8ca6bccf503a440032e72c2.jpg" alt="Imagen de juego 3">
+            </div>
+            <div class="image-column up">
+                <img src="https://cdn2.steamgriddb.com/thumb/f7e560ff0b4ff781bd6d3b2ec442daee.jpg" alt="Imagen de juego 4">
+                <img src="https://cdn2.steamgriddb.com/thumb/fbd783562a259f87d30f4a04df773221.jpg" alt="Imagen de juego 5">
+                <img src="https://cdn2.steamgriddb.com/thumb/248fc45afe6980b6b520b592ff9de696.jpg" alt="Imagen de juego 6">
+                <img src="https://cdn2.steamgriddb.com/thumb/9ecdee3218581e6382f23b7b0c57488e.jpg" alt="Imagen de juego 4">
+                <img src="https://cdn2.steamgriddb.com/thumb/e215d157b749aa5ba20dc7e096570ae1.jpg" alt="Imagen de juego 5">
+                <img src="https://cdn2.steamgriddb.com/thumb/e1113f40e20464469d860bef72793600.jpg" alt="Imagen de juego 6">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+        <div class="articles-grid">
+            <!-- Artículo de GTA -->
+            <article id="gta">
+                <h2>GTA: Guía de Riqueza y el Futuro en Vice City</h2>
+                <img src="https://cdn.wccftech.com/wp-content/uploads/2024/09/Grand-Theft-Auto-V-HD-scaled.jpg" alt="Imagen conceptual de GTA" class="article-img">
+                <div class="article-content">
+                    <h3>Guía Definitiva para Hacer Dinero en GTA Online (2025)</h3>
+                    <p>
+                        Olvídate de robar tiendas. En el mundo de <strong>GTA Online</strong>, la verdadera fortuna se construye a través de imperios criminales pasivos. Si acabas de empezar o quieres optimizar tus ingresos, esta es la ruta a seguir.
+                    </p>
+                    <p>
+                        <strong>Paso 1: El Búnker.</strong> Tu primera gran compra debe ser un búnker de "Tráfico de Armas". ¿Por qué? Porque una vez mejorado, genera hasta $210,000 por cada lote de suministros comprado ($75,000), dejándote un beneficio neto de $135,000 cada 2 horas y 20 minutos sin hacer prácticamente nada. La clave es comprar las mejoras de <strong>Equipo y Personal</strong> inmediatamente. No robes suministros, cómpralos; tu tiempo vale más.
+                    </p>
+                    <p>
+                        <strong>Paso 2: El Club Nocturno.</strong> Este negocio es el rey del ingreso pasivo. No produce nada por sí mismo, sino que acumula bienes de tus otros negocios (Búnker, Cocaína, Metanfetamina, Falsificación de Documentos, etc.). Asigna técnicos a cada producto y simplemente déjalo llenarse. Una venta de un club nocturno bien gestionado puede superar fácilmente el <strong>$1,500,000</strong>, y las misiones de venta son casi siempre con un único vehículo blindado, haciéndolas seguras y fáciles de completar en solitario.
+                    </p>
+                    <blockquote>
+                        Consejo Pro: Compra el almacén de cocaína de un club de moteros, pero no es necesario que lo mantengas con suministros. El Club Nocturno solo necesita que el negocio esté activo (no cerrado), no que esté produciendo. Esto te ahorra dinero y tiempo.
+                    </blockquote>
+                    <h3>Novedades y Rumores de GTA 6: ¿Qué Sabemos Realmente?</h3>
+                    <p>
+                        El primer tráiler de <strong>Grand Theft Auto VI</strong> rompió internet, y con razón. Aquí desglosamos los hechos confirmados y los rumores más sólidos.
+                    </p>
+                    <ul>
+                        <li><strong>Confirmado: Regreso a Vice City.</strong> El tráiler muestra claramente las playas, los pantanos (Grassrivers, el análogo de los Everglades) y la vibrante vida nocturna de Leonida, el estado ficticio basado en Florida, con Vice City como su joya de la corona.</li>
+                        <li><strong>Confirmado: Doble Protagonista.</strong> Por primera vez tendremos una protagonista femenina jugable, Lucía. Estará acompañada de su pareja, cuyo nombre (según filtraciones) es Jason. La dinámica parece inspirada en Bonnie y Clyde.</li>
+                        <li><strong>Confirmado: Lanzamiento en 2025.</strong> Rockstar Games ha confirmado que el juego llegará en 2025, inicialmente para PlayStation 5 y Xbox Series X|S. La versión de PC, como es tradición, llegará más tarde.</li>
+                        <li><strong>Rumor Sólido: Un Mapa Evolutivo.</strong> Se especula que el mapa de lanzamiento será enorme, pero que Rockstar planea expandirlo con el tiempo, añadiendo nuevas ciudades o islas, similar a cómo ha evolucionado GTA Online.</li>
+                    </ul>
+                </div>
+                <button class="read-more-btn">Leer más</button>
+            </article>
+
+            <!-- Artículo de Call of Duty -->
+            <article id="cod">
+                <h2>Call of Duty MW3: Domina el Meta con estas Clases</h2>
+                <img src="https://www.desconsolados.com/wp-content/uploads/2023/12/mw3-logo.jpg" alt="Soldado de Call of Duty" class="article-img">
+                <div class="article-content">
+                    <h3>Las Mejores "Loadouts" para la Temporada Actual</h3>
+                    <p>
+                        En el competitivo mundo de <strong>Modern Warfare 3</strong>, llevar el arma correcta con los accesorios adecuados es la diferencia entre la victoria y la derrota. Estas son las dos clases que dominan el meta actual.
+                    </p>
+                    <h3>Clase 1: MCW - El Rey del Alcance Cero Retroceso</h3>
+                    <p>
+                        El MCW es un láser. Este fusil de asalto es increíblemente preciso y versátil, ideal para controlar líneas de visión y ganar enfrentamientos a media y larga distancia.
+                    </p>
+                    <ul>
+                        <li><strong>Bocacha:</strong> Supresor de destello L4R.</li>
+                        <li><strong>Cañón:</strong> Cañón largo Second Line Mammoth.</li>
+                        <li><strong>Mira:</strong> Reflector MK. 3.</li>
+                        <li><strong>Acople:</strong> Empuñadura de apoyo pesado Bruen.</li>
+                        <li><strong>Cargador:</strong> Cargador de 40 balas.</li>
+                    </ul>
+                    <h3>Clase 2: Rival-9 - Agresividad Pura</h3>
+                    <p>
+                        Para los que prefieren un estilo de juego "rusher", el subfusil Rival-9 es la mejor opción. Su movilidad y cadencia de disparo son letales a corta distancia.
+                    </p>
+                    <ul>
+                        <li><strong>Cañón:</strong> Cañón Rival-C Clearshot.</li>
+                        <li><strong>Láser:</strong> Láser FSS OLE-V.</li>
+                        <li><strong>Culata:</strong> Culata MTZ Marauder.</li>
+                        <li><strong>Acople:</strong> Empuñadura vertical Xten Phantom-5.</li>
+                        <li><strong>Cargador:</strong> Tambor de 50 balas.</li>
+                    </ul>
+                </div>
+                <button class="read-more-btn">Leer más</button>
+            </article>
+
+            <!-- Artículo de Dragon Ball -->
+            <article id="dbz">
+                <h2>Dragon Ball: Sparking! Zero - El Regreso del Rey</h2>
+                <img src="https://i.ytimg.com/vi/AnJeGLHjuZE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA8afRuau65ICpRKW7NnIwiWY9DRw" alt="Goku en Dragon Ball Sparking! Zero" class="article-img">
+                <div class="article-content">
+                    <h3>Mecánicas Confirmadas y Roster de Personajes</h3>
+                    <p>
+                        La espera ha terminado. <strong>Dragon Ball: Sparking! Zero</strong> es la secuela espiritual directa de la legendaria saga Budokai Tenkaichi. No es solo un juego nuevo; es la evolución que los fans hemos esperado por más de una década.
+                    </p>
+                    <h3>Nuevas Mecánicas de Combate:</h3>
+                    <ul>
+                        <li><strong>Short Dash:</strong> Un nuevo movimiento de impulso rápido que no consume Ki.</li>
+                        <li><strong>Revenge Counter:</strong> Absorbe un ataque enemigo y devuelve un contraataque.</li>
+                        <li><strong>Skill Stocks:</strong> Acumula "acciones de habilidad" para movimientos especiales.</li>
+                        <li><strong>Vanishing Assaults:</strong> Teletranspórtate detrás de tu oponente durante un combo.</li>
+                    </ul>
+                    <h3>Roster de Personajes Confirmado (Parcial):</h3>
+                    <p>
+                        El roster promete ser gigantesco. Se han confirmado personajes como: Goku (SSG, SSB), Vegeta (Scouter, SSB), Broly (DBS), Trunks, Jiren, Dyspo, Maestro Roshi, y muchos más.
+                    </p>
+                </div>
+                <button class="read-more-btn">Leer más</button>
+            </article>
+
+            <!-- Artículo de FL Studio -->
+            <article id="flstudio">
+                <h2>Tutorial FL Studio: Crea tu Primer Beat</h2>
+                <img src="https://www.sweetwater.com/sweetcare/media/2018/10/FL-Studio-Hero.png" alt="Interfaz de FL Studio" class="article-img">
+                <div class="article-content">
+                    <p>
+                        <strong>FL Studio</strong> puede parecer intimidante, pero crear tu primera pista es más fácil de lo que crees. Sigue estos 4 pasos.
+                    </p>
+                    <h3>Paso 1: El Channel Rack - La Batería</h3>
+                    <p>Usa el Channel Rack para programar un ritmo simple con un Kick, un Snare y un HiHat.</p>
+                    <h3>Paso 2: El Piano Roll - La Melodía</h3>
+                    <p>Dibuja notas en el Piano Roll con un instrumento como un piano para crear una melodía.</p>
+                    <h3>Paso 3: La Playlist - El Arreglo</h3>
+                    <p>Organiza tus patrones de batería y melodía en la Playlist para estructurar tu canción.</p>
+                    <h3>Paso 4: El Mixer - El Toque Final</h3>
+                    <p>Ajusta los volúmenes de cada instrumento en el Mixer para que todo suene equilibrado.</p>
+                </div>
+                <button class="read-more-btn">Leer más</button>
+            </article>
+
+            <!-- Artículo de Android Studio -->
+            <article id="android">
+                <h2>Tu Primera App en Android Studio con Kotlin</h2>
+                <img src="https://9to5google.com/wp-content/uploads/sites/4/2024/07/Android-Studio-Project-IDX-.jpg?quality=82&strip=all" alt="Logo de Android Studio" class="article-img">
+                <div class="article-content">
+                    <p>Crear una app "Hola Mundo" es el rito de iniciación de todo desarrollador. Aquí te mostramos cómo hacerlo en <strong>Android Studio</strong> usando Kotlin.</p>
+                    <h3>Paso 1: Configuración del Proyecto</h3>
+                    <p>Crea un nuevo proyecto con la plantilla "Empty Views Activity" y selecciona Kotlin como lenguaje.</p>
+                    <h3>Paso 2: Diseñando la Interfaz (XML)</h3>
+                    <p>En `activity_main.xml`, arrastra un `Button` y un `TextView` y asígnales un ID.</p>
+                    <h3>Paso 3: Escribiendo el Código (Kotlin)</h3>
+                    <p>En `MainActivity.kt`, haz que el botón cambie el texto del `TextView` al ser presionado.</p>
+                    <h3>Paso 4: Ejecutar la App</h3>
+                    <p>Usa un emulador para correr tu aplicación y ver el resultado.</p>
+                </div>
+                <button class="read-more-btn">Leer más</button>
+            </article>
+
+            <!-- Artículo de Visual Studio -->
+            <article id="vs">
+                <h2>Visual Studio: 5 Extensiones Esenciales</h2>
+                <img src="https://www.330ohms.com/cdn/shop/articles/thumbnail_visualstudiocode_01_1200x675.png?v=1722326500" alt="Logo de Visual Studio" class="article-img">
+                <div class="article-content">
+                    <p><strong>Visual Studio</strong> es potente, pero con las extensiones correctas, se convierte en una máquina de productividad. Instala estas 5 para cambiar tu forma de trabajar.</p>
+                    <ol>
+                        <li><strong>GitLens — Git supercharged:</strong> Te permite ver quién modificó cada línea de código, cuándo lo hizo y por qué, directamente en el editor.</li>
+                        <li><strong>Prettier - Code formatter:</strong> Olvídate de formatear tu código manualmente. Prettier lo hace por ti cada vez que guardas.</li>
+                        <li><strong>Live Server:</strong> Lanza un servidor de desarrollo local con recarga en vivo para desarrollo web.</li>
+                        <li><strong>IntelliCode for C# Dev Kit:</strong> Una extensión de Microsoft que usa IA para ofrecerte autocompletado inteligente.</li>
+                        <li><strong>SonarLint:</strong> Un "corrector ortográfico" para tu código que detecta errores y vulnerabilidades.</li>
+                    </ol>
+                </div>
+                <button class="read-more-btn">Leer más</button>
+            </article>
+        </div>
+    </div>
+
+    <!-- Modal que se mostrará si se detecta un Ad-Blocker -->
+    <div id="adblock-modal">
+        <div class="modal-content-adblock">
+            <div class="modal-icon">!</div>
+            <h2>¡Oh, no! Bloqueador de anuncios detectado</h2>
+            <p>
+                Parece que estás utilizando un bloqueador de anuncios. Entendemos la importancia de una navegación limpia, pero los anuncios son nuestra principal fuente de ingresos y nos permiten seguir creando contenido de calidad para ti.
+            </p>
+            <p>
+                <strong>Por favor, considera desactivar tu bloqueador para este sitio.</strong> ¡Te lo agradecemos mucho!
+            </p>
+        </div>
+    </div>
+
+  <!-- Elemento de cebo para la detección por DOM -->
+    <div class="ad-banner text-ad ad-container" id="ad-bait-element"></div>
+
+
+<!-- Popup para Pedir Apoyo a Usuarios Recurrentes -->
+<div id="support-us-popup" class="modal-overlay" style="display: none;">
+    <div class="modal-content support-modal">
+        <span id="close-support-popup-btn" class="close-btn">&times;</span>
+        <div class="support-icon">❤️</div>
+        <h2 class="support-title">¡Gracias por volver!</h2>
+        <p class="support-text">
+            Tu apoyo es fundamental para mantener GamesOG funcionando. ¿Podrías ayudarnos viendo unos pocos anuncios? ¡No te tomará más de un minuto!
+        </p>
+        <div class="support-buttons">
+            <button id="go-to-support-btn" class="action-btn">Claro, ¡vamos a apoyar!</button>
+            <button id="later-support-btn" class="secondary-btn">Quizás más tarde</button>
+        </div>
+    </div>
+</div>
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-consent-banner" class="cookie-consent-banner">
+    <p class="cookie-text">
+        Utilizamos cookies para mejorar tu experiencia en nuestro sitio. Al continuar, aceptas nuestro uso de cookies.
+        <a href="/privacy.html" target="_blank" class="cookie-link">Leer más</a>.
+    </p>
+    <div class="cookie-buttons">
+        <button id="reject-cookies-btn" class="cookie-reject-btn">Rechazar</button>
+        <button id="accept-cookies-btn" class="cookie-accept-btn">Aceptar</button>
+    </div>
+</div>
+
+
+<footer>
+    <div class="footer-left">
+        <p>&copy; 2025 GamesOG. Todos los derechos reservados.</p>
+    </div>
+    <div class="footer-center">
+        <div class="footer-links">
+            <a href="/about.html">Acerca de Nosotros</a> |
+            <a href="/privacy.html">Política de Privacidad</a> |
+            <a href="/terms.html">Términos de Servicio</a>
+        </div>
+        <div class="footer-links" style="margin-top: 0.5rem;">
+            <a href="mailto:harveyrivas66@gmail.com" title="Correo Principal">Correo Principal</a> |
+            <a href="mailto:oficialmenteharvey@gmail.com" title="Correo Alternativo">Correo Alternativo</a> |
+            <a href="https://wa.me/573225695953" target="_blank" rel="noopener noreferrer" title="Contactar por WhatsApp">WhatsApp</a> |
+            <a href="https://www.instagram.com/carlosrivas8174/" target="_blank" rel="noopener noreferrer" title="Visitar Instagram">Instagram</a>
+        </div>
+    </div>
+    <div class="footer-right">
+    </div>
+</footer>
+
+<!-- Elemento de audio para el sonido de notificación -->
+<audio id="chat-notification-sound" src="https://cdn.freesound.org/previews/219/219244_4082823-lq.mp3" preload="auto"></audio>
+
+<!-- Botón de autenticación movido aquí -->
+<button id="user-menu-btn"></button>
+
+<!-- Botón flotante para abrir/cerrar el chat -->
+<button id="chat-toggle-button">
+    💬
+    <span id="chat-notification-badge" style="display: none;"></span>
+</button>
+
+<script type="module" nonce="{{ nonce }}">
+
+    // Politica de seguridad de contenido 
+    if (window.trustedTypes && trustedTypes.createPolicy) {
+        trustedTypes.createPolicy('default', {
+            createHTML: (input) => input,
+            createScript: (input) => input,
+            createScriptURL: (input) => input
+        });
+    }
+        // --- Firebase y Autenticación ---
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getDatabase, ref, set, onDisconnect, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const ADMIN_UID = "bdZOW2Pq89b8OvYceo6wbSQ5C762";
+const firebaseConfig = {
+  apiKey: "AIzaSyDXqLCRY6OgcXTXsAR-TvnC4bIICjDndsw",
+  authDomain: "todo-en-uno-e79c7.firebaseapp.com",
+  projectId: "todo-en-uno-e79c7",
+  storageBucket: "todo-en-uno-e79c7.appspot.com",
+  messagingSenderId: "122399269850",
+  appId: "1:122399269850:web:210049a35cc9abff9fd6e3",
+  databaseURL: "https://todo-en-uno-e79c7-default-rtdb.firebaseio.com/"
+};
+
+const API_BASE_URL = 'https://unbiased-tough-mayfly.ngrok-free.app/'; // Agrega la URL real
+
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+const db = getDatabase(app);
+
+let currentUser = null;
+
+  // --- UI Referencias ---
+  const userInfoDiv = document.getElementById('user-info');
+  const addBtnHeader = document.getElementById('open-add-modal-btn-header');
+  const userCountDiv = document.getElementById('user-count');
+  const itemsContainer = document.getElementById('items-container');
+  const categoryNav = document.querySelector('.category-nav');
+  const categoryTitle = document.getElementById('category-title');
+  const openAddModalBtnMenu = document.getElementById('open-add-modal-btn-menu');
+  const addModal = document.getElementById('add-item-modal');
+  const closeAddModalBtn = document.getElementById('close-modal-btn');
+  const addItemForm = document.getElementById('add-item-form');
+  const feedbackMessage = document.getElementById('form-feedback');
+  const detailsModal = document.getElementById('details-modal');
+  const closeDetailsModalBtn = document.getElementById('close-details-modal-btn');
+  const modalDetailsContent = document.getElementById('modal-details-content');
+  const guideModal = document.getElementById('guide-modal');
+  const closeGuideModalBtn = document.getElementById('close-guide-modal-btn');
+  const guideModalContent = document.getElementById('guide-modal-content');
+  const searchInput = document.getElementById('search-input');
+  const searchDropdown = document.getElementById('user-dropdown-search');
+  const menuBtn = document.getElementById('user-menu-btn');
+  const dropdown = document.getElementById('user-dropdown-menu');
+  const profileBtn = document.getElementById('go-to-profile-btn');
+  const incentiveModal = document.getElementById('signup-incentive-modal');
+  const closeIncentiveBtn = document.getElementById('close-incentive-modal-btn');
+  const incentiveLoginBtn = document.getElementById('incentive-login-btn');
+  const incentiveLaterBtn = document.getElementById('incentive-later-btn');
+  const welcomePopup = document.getElementById('welcome-popup');
+  const closeWelcomePopupBtn = document.getElementById('close-welcome-popup-btn');
+  const understandWelcomeBtn = document.getElementById('understand-welcome-btn');
+  const chatToggleButton = document.getElementById('chat-toggle-button');
+  const chatWindow = document.getElementById('chat-window');
+  const closeChatButton = document.getElementById('close-chat-button');
+  const messagesContainer = document.getElementById('chat-messages');
+  const pageWrapper = document.getElementById('page-wrapper');
+  const aiToolsSidebar = document.getElementById('ai-tools-sidebar');
+  const messageForm = document.getElementById('chat-form');
+  const messageInput = document.getElementById('chat-input');
+  const notificationBadge = document.getElementById('chat-notification-badge');
+  const notificationSound = document.getElementById('chat-notification-sound');
+  const chatSubmitButton = messageForm.querySelector('button');
+  const supportPopup = document.getElementById('support-us-popup');
+  const closeSupportBtn = document.getElementById('close-support-popup-btn');
+  const goToSupportBtn = document.getElementById('go-to-support-btn');
+  const laterSupportBtn = document.getElementById('later-support-btn');
+  const cookieBanner = document.getElementById('cookie-consent-banner');
+  const acceptCookiesBtn = document.getElementById('accept-cookies-btn');
+  const rejectCookiesBtn = document.getElementById('reject-cookies-btn');
+  const readMoreButtons = document.querySelectorAll('.read-more-btn');
+  
+  // --- Variables de estado para Scroll Infinito ---
+  let currentPage = 1;
+  let isLoading = false;
+  let currentCategory = '';
+  let hasMoreItems = true;
+  let lastActiveCategory = 'juegos'; // Guardar la última categoría seleccionada
+  let searchDebounceTimer; // Timer para el debouncing de la búsqueda
+  
+  let pollingInterval;
+  let currentItems = [];
+  let selectedRating = 0;
+  let lastMessageTimestamp = 0;
+  let originalTitle = document.title;
+  let visitorChart = null; // Variable para mantener la instancia del gráfico
+  let categoryChart = null; // Variable para mantener la instancia del gráfico de categorías
+  
+  const handleLogin = async () => {
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (err) {
+    console.error('Error al iniciar sesión:', err);
+    alert('No se pudo iniciar sesión.');
+  }
+};
+
+/**
+ * Recopila y envía la información del dispositivo del usuario al backend.
+ * @param {object|null} user - El objeto de usuario de Firebase, o null si es un invitado.
+ */
+async function saveDeviceInfo(user) {
+  const deviceInfo = {
+    userAgent: navigator.userAgent,
+    screenWidth: window.screen.width,
+    screenHeight: window.screen.height,
+    deviceType: window.screen.width < 768 ? 'mobile' : 'desktop',
+    userId: user ? user.uid : 'guest' // Usa 'guest' o un ID anónimo si el usuario no está logueado
+  };
+
+  try {
+    const response = await fetch(`${API_BASE_URL}save_device_info.php`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
+      },
+      body: JSON.stringify(deviceInfo)
+    });
+    const result = await response.json();
+    // Opcional: puedes registrar en la consola si fue exitoso o no
+    console.log('Save device info response:', result.message);
+  } catch (error) {
+    console.error('Error al enviar la información del dispositivo:', error);
+  }
+}
+
+const handleLogout = () => {
+  signOut(auth);
+};
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+
+   profileBtn.style.display = 'inline-block';
+   profileBtn.innerHTML = `<img src="${user.photoURL}" alt="Perfil" class="w-10 h-10 rounded-full border-2 border-cyan-400 object-cover">`;
+   profileBtn.title = user.displayName || "Ver Perfil";
+   profileBtn.onclick = () => {
+  window.location.href = 'perfil.html';
+};
+   saveDeviceInfo(user); // Guardar información del dispositivo del usuario logueado
+
+     menuBtn.innerHTML = `<text class="menu-icon">Cerrar Sesión</text>`;
+
+
+    renderUserUI(user);
+    guardarUsuarioEnPHP(user);
+    currentUser = user;
+
+    // --- MODO FANTASMA PARA ADMIN ---
+    // Si el usuario NO es el admin, actualiza su estado en Firebase.
+    // Si es el admin, no se registra su presencia online.
+    if (user.uid !== ADMIN_UID) {
+        const userStatusRef = ref(db, `online_users/${user.uid}`);
+        set(userStatusRef, {
+            nombre: user.displayName || 'Anónimo',
+            uid: user.uid,
+            foto: user.photoURL || '',
+            timestamp: Date.now()
+        });
+        onDisconnect(userStatusRef).remove();
+    }
+
+    // Mostrar el contador de usuarios solo si el usuario es el administrador
+    if (user.uid === ADMIN_UID) {
+        userCountDiv.style.display = 'inline-block';
+        // Si es admin, mostramos el panel y cargamos los datos
+        document.getElementById('admin-stats-panel').style.display = 'block';
+        loadAdminStats();
+    }
+
+    if (messageInput && chatSubmitButton) {
+        messageInput.disabled = false;
+        chatSubmitButton.disabled = false;
+        messageInput.placeholder = 'Escribe un mensaje...';
+    }
+
+    menuBtn.onclick = handleLogout;
+    startChatPolling();
+  } else {
+    renderLoggedOutUI();
+    saveDeviceInfo(null); // Guardar información del dispositivo del invitado
+    profileBtn.style.display = 'none';
+    currentUser = null;
+    userCountDiv.style.display = 'none'; // Asegurarse de que esté oculto para invitados y no-admins
+
+    if (messageInput && chatSubmitButton) {
+        messageInput.disabled = true;
+        chatSubmitButton.disabled = true;
+        messageInput.placeholder = 'Inicia sesión para chatear...';
+    }
+
+    const guestId = 'anon-' + Math.random().toString(36).substring(2, 10);
+    const anonRef = ref(db, `online_users/${guestId}`);
+    set(anonRef, {
+      nombre: 'Invitado',
+      uid: guestId,
+      timestamp: Date.now()
+    });
+
+    // Icono de "login" o hamburguesa
+    menuBtn.innerHTML = `<text class="menu-icon">Iniciar Sesión</text>`;
+    menuBtn.onclick = handleLogin;
+
+    // --- Lógica para el popup de incentivo ---
+    const popupShown = sessionStorage.getItem('signupPopupShown');
+    if (!popupShown) {
+        // Array de mensajes dinámicos
+        const incentiveMessages = [
+            { main: '¿Sabías que al registrarte puedes compartir tus propios juegos, programas y herramientas con miles de usuarios?', cta: '¡Crea tu cuenta gratis y empieza a contribuir!' },
+            { main: 'Desbloquea la capacidad de calificar y comentar en tus elementos favoritos. ¡Tu opinión cuenta!', cta: '¡Únete ahora y haz oír tu voz!' },
+            { main: 'Guarda tus elementos preferidos en tu perfil y accede a ellos fácilmente desde cualquier dispositivo.', cta: '¡Regístrate para crear tu biblioteca personal!' },
+            { main: 'Forma parte de una comunidad activa. Chatea, comparte ideas y descubre contenido exclusivo.', cta: '¡No te quedes fuera, únete a la conversación!' }
+        ];
+
+        // Seleccionar un mensaje al azar
+        const randomIndex = Math.floor(Math.random() * incentiveMessages.length);
+        const selectedMessage = incentiveMessages[randomIndex];
+
+        // Actualizar el contenido del popup
+        document.getElementById('incentive-main-text').textContent = selectedMessage.main;
+        document.getElementById('incentive-cta-text').textContent = selectedMessage.cta;
+
+        setTimeout(() => {
+            incentiveModal.style.display = 'flex';
+        }, 5000); // Retraso de 5 segundos
+    }
+    onDisconnect(anonRef).remove();
+    // Iniciar el polling del chat también para invitados
+    startChatPolling();
+  }
+});
+
+function renderUserUI(user) {
+  addBtnHeader.style.display = 'inline-block';
+  openAddModalBtnMenu.style.display = 'inline-block';
+}
+
+async function guardarUsuarioEnPHP(user) {
+  try {
+    await fetch('https://unbiased-tough-mayfly.ngrok-free.app/guardar_usuario.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        uid: user.uid,
+        nombre: user.displayName,
+        email: user.email,
+        foto: user.photoURL
+      })
+    });
+  } catch (err) {
+    console.error('Error al guardar usuario en PHP:', err);
+  }
+}
+
+function renderLoggedOutUI() {
+  addBtnHeader.style.display = 'none';
+  openAddModalBtnMenu.style.display = 'none';
+}
+
+
+const onlineUsersRef = ref(db, 'online_users');
+onValue(onlineUsersRef, (snapshot) => {
+  const total = snapshot.exists() ? Object.keys(snapshot.val()).length : 0;
+  userCountDiv.textContent = `👥 ${total} usuario${total !== 1 ? 's' : ''} en línea`;
+});
+
+
+  categoryNav.addEventListener('click', (event) => {
+    event.preventDefault();
+    const targetLink = event.target.closest('.nav-link');
+    if (!targetLink) return;
+
+    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+    searchInput.value = ''; // Limpiar la búsqueda al cambiar de categoría
+    targetLink.classList.add('active');
+
+    const category = targetLink.dataset.category;
+    currentCategory = category; // Guardar la categoría actual
+    currentPage = 1; // Resetear la página a 1
+    hasMoreItems = true; // Asumir que hay más items
+    itemsContainer.innerHTML = ''; // Limpiar contenedor para la nueva categoría
+    lastActiveCategory = category; // Actualizar la última categoría activa
+    categoryTitle.textContent = `Biblioteca de ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+    fetchAndRenderItems(category, currentPage);
+  });
+
+  async function fetchAndRenderItems(category, page, searchQuery = '') {
+    if (isLoading || !hasMoreItems) return; // Evitar cargas múltiples o si no hay más datos
+    isLoading = true;
+
+    // Mostrar el loader al final del contenedor si ya hay items, o en el centro si es la primera carga.
+    const loader = document.createElement('div');
+    loader.className = 'loader';
+    itemsContainer.appendChild(loader);
+
+    // Mostrar u ocultar el panel lateral de IA y ajustar el grid dinámicamente
+    const isDesktop = window.innerWidth >= 768; // md breakpoint
+    if (category === 'programas' && isDesktop) {
+        aiToolsSidebar.classList.remove('hidden');
+        pageWrapper.classList.add('sidebar-visible');
+    } else {
+        aiToolsSidebar.classList.add('hidden');
+        pageWrapper.classList.remove('sidebar-visible');
+    }
+
+    try {
+      // Construir la URL dinámicamente
+      let url = `${API_BASE_URL}/get_items.php?category=${category}&page=${page}&limit=20`;
+      if (searchQuery) {
+        url += `&search=${encodeURIComponent(searchQuery)}`;
+      }
+      const response = await fetch(url, {
+        cache: 'no-cache',
+        headers: { 'ngrok-skip-browser-warning': 'true' }
+      });
+      if (!response.ok) throw new Error(`Error: ${response.status}`);
+      const data = await response.json();
+
+      // Quitar el loader antes de añadir nuevos elementos
+      loader.remove();
+
+      if (data.length > 0) {
+        // Si es la primera página, reemplazamos los items actuales. Si no, los añadimos.
+        if (page === 1) { // La categoría ahora viene en cada item
+            currentItems = data.map(item => ({ ...item, category }));
+        } else {
+            currentItems.push(...data.map(item => ({ ...item, category })));
+        }
+
+        data.forEach(item => {
+            const cardElement = createItemCard(item, item.category); // Usar la categoría del item
+            itemsContainer.appendChild(cardElement);
+        });
+        currentPage++; // Incrementar para la siguiente petición
+      } else {
+        hasMoreItems = false; // No hay más datos que cargar
+        if (page === 1) {
+            itemsContainer.innerHTML = '<p class="text-center text-gray-400">No se encontraron elementos en esta categoría.</p>';
+        }
+      }
+    } catch (error) {
+      loader.remove();
+      itemsContainer.innerHTML += `<p class="text-center text-red-500">Error al conectar con el servidor.</p>`;
+    } finally {
+      isLoading = false;
+    }
+  }
+
+  // =================================================================
+  // === FUNCIÓN createItemCard MODIFICADA PARA EL ESTILO YOUTUBE ===
+  // =================================================================
+    function createItemCard(item, category) {
+      const rating = isNaN(parseFloat(item.rating_avg)) ? "N/A" : parseFloat(item.rating_avg).toFixed(1);
+      const ratingCount = isNaN(parseInt(item.rating_count)) ? 0 : parseInt(item.rating_count);
+  
+      // Contenedor principal de la tarjeta
+      const cardDiv = document.createElement('div');
+      cardDiv.className = 'item-card';
+      cardDiv.dataset.id = item.id;
+      cardDiv.dataset.category = category;
+  
+      // --- Miniatura ---
+      const thumbnailDiv = document.createElement('div');
+      thumbnailDiv.className = 'card-thumbnail';
+      const img = document.createElement('img');
+      img.src = item.enlace_imagen;
+      img.alt = item.titulo;
+      thumbnailDiv.appendChild(img);
+  
+      // --- Detalles (Avatar + Texto) ---
+      const detailsDiv = document.createElement('div');
+      detailsDiv.className = 'card-details';
+  
+      // Avatar
+      const avatarDiv = document.createElement('div');
+      avatarDiv.className = 'card-avatar';
+      const avatarImg = document.createElement('img');
+      // Usamos un placeholder para el avatar con la inicial del creador
+      const creatorInitial = item.nombre_creador ? item.nombre_creador.charAt(0).toUpperCase() : 'G';
+      avatarImg.src = `https://placehold.co/36x36/777/FFF?text=${creatorInitial}`;
+      avatarImg.alt = item.nombre_creador;
+      avatarDiv.appendChild(avatarImg);
+  
+      // Información de Texto
+      const textInfoDiv = document.createElement('div');
+      textInfoDiv.className = 'card-text-info';
+  
+      const titleH3 = document.createElement('h3');
+      titleH3.className = 'card-title';
+      titleH3.textContent = item.titulo; // Uso seguro
+  
+      const metadataDiv = document.createElement('div');
+      metadataDiv.className = 'card-metadata';
+  
+      const channelNameP = document.createElement('p');
+      channelNameP.className = 'channel-name';
+      channelNameP.textContent = item.nombre_creador || 'Comunidad GamesOG'; // Nombre del creador o fallback
+  
+      // Contenedor para estadísticas y botón de "Me Gusta"
+      const statsAndLikesDiv = document.createElement('div');
+      statsAndLikesDiv.className = 'card-stats-container';
+  
+      const statsP = document.createElement('p');
+      statsP.className = 'video-stats';
+      
+      let statsHTML = `⭐ ${rating} (${ratingCount} votos)`;
+      // Solo muestra las vistas si el usuario actual es el administrador
+      if (currentUser && currentUser.uid === ADMIN_UID) {
+          const views = item.views_count || 0;
+          const viewText = views === 1 ? 'vista' : 'vistas';
+          statsHTML += ` &bull; ${views} ${viewText}`;
+      }
+      statsP.innerHTML = statsHTML;
+  
+      const likeButton = document.createElement('button');
+      likeButton.className = 'like-btn';
+      likeButton.innerHTML = `
+          <svg class="like-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+          <span class="like-count">${item.likes_count || 0}</span>
+      `;
+  
+      statsAndLikesDiv.appendChild(statsP);
+      statsAndLikesDiv.appendChild(likeButton);
+  
+      metadataDiv.appendChild(channelNameP);
+      metadataDiv.appendChild(statsAndLikesDiv);
+  
+      textInfoDiv.appendChild(titleH3);
+      textInfoDiv.appendChild(metadataDiv);
+  
+      detailsDiv.appendChild(avatarDiv);
+      detailsDiv.appendChild(textInfoDiv);
+  
+      // Ensamblar la tarjeta
+      cardDiv.appendChild(thumbnailDiv);
+      cardDiv.appendChild(detailsDiv);
+  
+      // Si la categoría es 'GanaPlus', añade el ícono especial
+      if (category === 'ganaplus') {
+          cardDiv.classList.add('ganaplus-card');
+          const moneyIcon = document.createElement('div');
+          moneyIcon.className = 'ganaplus-icon';
+          moneyIcon.textContent = '💰';
+          // Lo añadimos dentro de la miniatura para que se superponga
+          thumbnailDiv.appendChild(moneyIcon);
+      }
+  
+      return cardDiv;
+  }
+  // =================================================================
+  // === FIN DE LA FUNCIÓN MODIFICADA ===============================
+  // =================================================================
+
+  async function trackView(itemId, category) {
+    // --- MODO FANTASMA PARA ADMIN ---
+    // Si el usuario es el admin, no registrar la vista al hacer clic.
+    if (currentUser && currentUser.uid === ADMIN_UID) {
+        console.log('Clic de admin ignorado (Modo Fantasma).');
+        return; // Salir de la función sin registrar la vista.
+    }
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/track_view.php`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
+            body: JSON.stringify({ item_id: itemId, item_category: category, user_id: currentUser?.uid || 'guest' })
+        });
+        const result = await response.json();
+        // Si la vista se registró y no es una vista repetida recientemente...
+        if (result.success && !result.message.includes('recientemente')) {
+            // ...actualizamos el gráfico de categorías inmediatamente.
+            console.log('Nueva vista registrada, actualizando gráfico de categorías.');
+            loadAndRenderCategoryChart();
+        }
+    } catch (error) {
+        console.error('Error al registrar la vista:', error);
+    }
+  }
+
+  async function handleLikeClick(button, itemId, category) {
+    if (!currentUser) {
+        alert('Debes iniciar sesión para dar "Me gusta".');
+        incentiveLoginBtn.click(); // Invita al usuario a loguearse
+        return;
+    }
+
+    const likeCountSpan = button.querySelector('.like-count');
+    const currentLikes = parseInt(likeCountSpan.textContent);
+
+    // Actualización optimista: cambia la UI inmediatamente
+    button.classList.add('liked');
+    button.disabled = true;
+    likeCountSpan.textContent = currentLikes + 1;
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/update_like.php`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
+            body: JSON.stringify({ item_id: itemId, item_category: category, user_id: currentUser.uid })
+        });
+        const result = await response.json();
+        if (!result.success && !result.message.includes('Ya has dado')) {
+            throw new Error(result.message); // Lanza error si falla por algo que no sea "ya le dio like"
+        }
+    } catch (error) {
+        // Revertir la UI si hay un error
+        button.classList.remove('liked');
+        button.disabled = false;
+        likeCountSpan.textContent = currentLikes;
+        alert(`Error: ${error.message || 'No se pudo registrar el "Me gusta".'}`);
+    }
+  }
+
+  // --- Lógica de Scroll Infinito ---
+  itemsContainer.addEventListener('scroll', () => {
+      // Si el usuario ha bajado hasta el 80% del contenedor
+      if (itemsContainer.scrollTop + itemsContainer.clientHeight >= itemsContainer.scrollHeight * 0.85) {
+          fetchAndRenderItems(currentCategory, currentPage, searchInput.value);
+      }
+  });
+   
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchDebounceTimer); // Cancelar el timer anterior
+    const query = searchInput.value.trim();
+
+    searchDebounceTimer = setTimeout(() => {
+        itemsContainer.innerHTML = '';
+        currentPage = 1;
+        hasMoreItems = true;
+
+        if (query) {
+            // Búsqueda Global
+            currentCategory = 'all';
+            categoryTitle.textContent = `Resultados para "${query}"`;
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            fetchAndRenderItems('all', currentPage, query);
+        } else {
+            // Si la búsqueda está vacía, volver a la última categoría activa
+            document.querySelector(`.nav-link[data-category="${lastActiveCategory}"]`)?.classList.add('active');
+            categoryTitle.textContent = `Biblioteca de ${lastActiveCategory.charAt(0).toUpperCase() + lastActiveCategory.slice(1)}`;
+            fetchAndRenderItems(lastActiveCategory, currentPage, '');
+        }
+    }, 400); // Esperar 400ms después de que el usuario deje de teclear
+  });
+
+  itemsContainer.addEventListener('click', (e) => {
+    const likeBtn = e.target.closest('.like-btn');
+    const card = e.target.closest('.item-card');
+
+    if (likeBtn && card) {
+        e.stopPropagation(); // Evita que se abra el modal de detalles
+        handleLikeClick(likeBtn, card.dataset.id, card.dataset.category);
+        return;
+    }
+
+    const infoBtn = e.target.closest('.info-btn');
+    if (infoBtn && card) {
+        e.stopPropagation(); // Evita que se abra el otro modal
+        const itemId = card.dataset.id;
+        const item = currentItems.find(i => i.id == itemId);
+        if (item && item.guideContent) {
+            openGuideModal(item.titulo, item.guideContent);
+        }
+    } else if (card) {
+      openDetailsModal(card.dataset.id, card.dataset.category);
+    }
+  });
+
+  async function openDetailsModal(itemId, category) {
+    modalDetailsContent.innerHTML = '<p>Cargando detalles...</p>';
+    detailsModal.style.display = 'flex';
+
+    // Rastrear la vista ANTES de cargar los detalles para actualizar el contador
+    trackView(itemId, category);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/get_item_details.php?id=${itemId}&category=${category}`, {
+        headers: { 'ngrok-skip-browser-warning': 'true' }
+      });
+      const data = await response.json();
+      if (!data.success) throw new Error(data.message);
+      data.item.category = category;
+      renderModalDetails(data.item, data.comments);
+    } catch (error) {
+      modalDetailsContent.innerHTML = `<p>${error.message}</p>`;
+    }
+  }
+
+  function openGuideModal(title, guideContent) {
+    guideModalContent.innerHTML = `
+        <h2 class="text-2xl font-bold text-white mb-4">${title}</h2>
+        <div class="guide-body text-gray-300">
+            ${marked.parse(guideContent)}
+        </div>
+    `;
+    guideModal.style.display = 'flex';
+  }
+
+  function closeGuideModal() {
+      guideModal.style.display = 'none';
+  }
+
+  function renderModalDetails(item, comments) {
+    modalDetailsContent.innerHTML = ''; // Limpiar contenido anterior
+
+    const avgRating = parseFloat(item.calificacion_prom).toFixed(2);
+    const totalRatings = item.total_calificaciones;
+
+    // --- CONSTRUCCIÓN SEGURA DEL DOM (ANTI-XSS) ---
+    const detailsContainer = document.createElement('div');
+    detailsContainer.className = 'details-container md:flex md:gap-6';
+
+    const imageDiv = document.createElement('div');
+    imageDiv.className = 'details-image flex-shrink-0 md:w-1/3';
+    const img = document.createElement('img');
+    img.src = item.enlace_imagen;
+    img.alt = item.titulo;
+    img.className = 'rounded-lg w-full object-cover';
+    imageDiv.appendChild(img);
+
+    const mainContentDiv = document.createElement('div');
+    mainContentDiv.className = 'details-main-content flex-grow';
+    
+    const titleH2 = document.createElement('h2');
+    titleH2.className = 'text-3xl font-bold text-white';
+    titleH2.textContent = item.titulo; // Uso seguro
+
+    const descriptionP = document.createElement('p');
+    descriptionP.className = 'mt-2 text-gray-300';
+    descriptionP.textContent = item.descripcion; // Uso seguro
+
+    mainContentDiv.append(titleH2, descriptionP);
+
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'details-info mt-4';
+    const siteLink = document.createElement('a');
+    siteLink.href = item.enlace_sitio;
+    siteLink.className = 'action-btn';
+    siteLink.target = '_blank';
+    siteLink.textContent = 'Visitar Sitio';
+    infoDiv.appendChild(siteLink);
+
+    const ratingSection = document.createElement('div');
+    ratingSection.className = 'rating-section mt-4';
+    const ratingTitle = document.createElement('h4');
+    ratingTitle.className = 'text-xl font-semibold text-white mb-2';
+    ratingTitle.textContent = 'Calificar este elemento:';
+    const starsDiv = document.createElement('div');
+    starsDiv.className = 'stars';
+    starsDiv.dataset.itemId = item.id;
+    starsDiv.dataset.category = item.category;
+    starsDiv.innerHTML = [1, 2, 3, 4, 5].map(i => `<span class="star" data-value="${i}">&#9733;</span>`).join(''); // Esto es seguro, no hay datos de usuario aquí
+    const ratingText = document.createElement('p');
+    ratingText.className = 'text-gray-400 mt-2';
+    ratingText.innerHTML = `Calificación actual: <strong id="current-rating" class="text-white">${avgRating}</strong> (${totalRatings} votos)`; // Seguro, son datos procesados
+    ratingSection.append(ratingTitle, starsDiv, ratingText);
+    mainContentDiv.appendChild(ratingSection);
+    mainContentDiv.appendChild(infoDiv);
+    detailsContainer.append(imageDiv, mainContentDiv);
+
+    const commentsSection = document.createElement('div');
+    commentsSection.className = 'comments-section mt-6';
+    const commentsTitle = document.createElement('h4');
+    commentsTitle.className = 'text-xl font-semibold text-white mb-4';
+    commentsTitle.textContent = 'Comentarios';
+    commentsSection.appendChild(commentsTitle);
+
+    if (comments.length > 0) {
+        comments.forEach(c => {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment';
+            const authorP = document.createElement('p');
+            const authorStrong = document.createElement('strong');
+            authorStrong.className = 'comment-author';
+            authorStrong.textContent = c.nombre_usuario; // Uso seguro
+            const dateSpan = document.createElement('span');
+            dateSpan.className = 'comment-date';
+            dateSpan.textContent = ` ${new Date(c.fecha_creacion).toLocaleString()}`;
+            authorP.append(authorStrong, dateSpan);
+            const commentTextP = document.createElement('p');
+            commentTextP.textContent = c.comment; // Uso seguro
+            commentDiv.append(authorP, commentTextP);
+            commentsSection.appendChild(commentDiv);
+        });
+    } else {
+        const noCommentsP = document.createElement('p');
+        noCommentsP.textContent = 'No hay comentarios todavía. ¡Sé el primero!';
+        commentsSection.appendChild(noCommentsP);
+    }
+
+    // Crear y añadir el formulario de comentarios (estructura estática)
+    const commentForm = document.createElement('form');
+    commentForm.id = 'comment-form';
+    commentForm.className = 'mt-4';
+    commentForm.innerHTML = `
+        <h4 class="text-lg font-semibold text-white mb-2">Deja un comentario:</h4>
+        <input type="hidden" name="item_id" value="${item.id}">
+        <input type="hidden" name="category" value="${item.category}">
+        <div class="form-group">
+            <textarea name="comment" rows="3" placeholder="Escribe tu comentario..." required class="w-full bg-gray-700 text-white p-2 rounded"></textarea>
+        </div>
+        <button type="submit" class="action-btn">Enviar</button>
+    `;
+    commentsSection.appendChild(commentForm);
+
+    modalDetailsContent.append(detailsContainer, commentsSection);
+
+    setupStarRating();
+    setupCommentForm();
+  }
+
+  function setupStarRating() {
+    const starsContainer = document.querySelector('.stars');
+    if (!starsContainer) return;
+
+    const stars = starsContainer.querySelectorAll('.star');
+
+    stars.forEach(star => {
+      const value = parseInt(star.dataset.value);
+
+      star.addEventListener('mouseenter', () => {
+        stars.forEach(s => s.classList.toggle('hovered', parseInt(s.dataset.value) <= value));
+      });
+
+      star.addEventListener('mouseleave', () => {
+        stars.forEach(s => {
+          s.classList.remove('hovered');
+          s.classList.toggle('selected', parseInt(s.dataset.value) <= selectedRating);
+        });
+      });
+
+      star.addEventListener('click', async () => {
+        selectedRating = value;
+        stars.forEach(s => s.classList.toggle('selected', parseInt(s.dataset.value) <= selectedRating));
+
+        const itemId = starsContainer.dataset.itemId;
+        const category = starsContainer.dataset.category;
+
+        try {
+          const response = await fetch(`${API_BASE_URL}/submit_rating.php`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'ngrok-skip-browser-warning': 'true'
+            },
+            body: JSON.stringify({ item_id: itemId, category, rating: selectedRating })
+          });
+          const result = await response.json();
+          if (result.success) {
+            document.getElementById('current-rating').textContent = `${result.new_avg} (${result.new_count} votos)`;
+          } else {
+            throw new Error(result.message);
+          }
+        } catch (error) {
+          console.error('Error al enviar calificación:', error);
+        }
+      });
+    });
+  }
+
+  function setupCommentForm() {
+    const form = document.getElementById('comment-form');
+    if (!form) return;
+    
+    const commentInput = form.querySelector('textarea[name="comment"]');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!currentUser) {
+          alert('Debes iniciar sesión para comentar.');
+          return;
+      }
+      const formData = new FormData(form);
+      const data = {
+        item_id: formData.get('item_id'),
+        category: formData.get('category'),
+        comment: formData.get('comment'),
+        author_uid: currentUser.uid,
+        author_name: currentUser.displayName,
+        author_photo: currentUser.photoURL,
+        rating: selectedRating // AÑADIDO: Incluir la calificación seleccionada
+      };
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/submit_comment.php`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'ngrok-skip-browser-warning': 'true'
+          },
+          body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        if (result.success) {
+          openDetailsModal(data.item_id, data.category);
+        } else {
+          throw new Error(result.message);
+        }
+      } catch (error) {
+        alert(`Error: ${error.message}`);
+      }
+    });
+  }
+
+  openAddModalBtnMenu.addEventListener('click', () => addModal.style.display = 'flex');
+  closeAddModalBtn.addEventListener('click', () => addModal.style.display = 'none');
+  closeDetailsModalBtn.addEventListener('click', () => detailsModal.style.display = 'none');
+  closeGuideModalBtn.addEventListener('click', closeGuideModal);
+  window.addEventListener('click', (event) => {
+    if (event.target === addModal) addModal.style.display = 'none';
+    if (event.target === detailsModal) detailsModal.style.display = 'none';
+    if (event.target === guideModal) closeGuideModal();
+  });
+
+  addItemForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const formData = new FormData(addItemForm);
+  const user = auth.currentUser;
+  if (!user) {
+    feedbackMessage.textContent = 'Debes iniciar sesión para agregar elementos.';
+    feedbackMessage.className = 'feedback-message error';
+    return;
+  }
+  const data = {
+    titulo: formData.get('titulo'),
+    descripcion: formData.get('descripcion'),
+    enlace_sitio: formData.get('enlace_sitio'),
+    enlace_imagen: formData.get('enlace_imagen'),
+    id_usuario_creador: user.uid,
+    nombre_creador: user.displayName,
+    category: formData.get('category')
+  };
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/add_item.php`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
+      },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    if (result.success) {
+      feedbackMessage.textContent = result.message;
+      feedbackMessage.className = 'feedback-message success';
+      addItemForm.reset();
+      setTimeout(() => {
+        addModal.style.display = 'none';
+        fetchAndRenderItems(data.category.toLowerCase());
+      }, 1500);
+    } else {
+      throw new Error(result.message);
+    }
+  } catch (error) {
+    feedbackMessage.textContent = `Error: ${error.message}`;
+    feedbackMessage.className = 'feedback-message error';
+  }
+});
+
+  const toggleBtn = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  toggleBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  // --- Lógica del Chat ---
+
+            function startChatPolling() {
+                // Obtiene la marca de tiempo del último mensaje para saber desde dónde notificar,
+                // y luego comienza a verificar periódicamente.
+                updateLastSeenTimestamp().then(() => {
+                    if (pollingInterval) clearInterval(pollingInterval);
+                    pollingInterval = setInterval(fetchMessages, 5000); // Revisa cada 5 segundos
+                });
+            }
+
+            // Abrir/Cerrar ventana de chat
+            chatToggleButton.addEventListener('click', () => {
+                chatWindow.style.display = 'flex';
+                chatToggleButton.style.display = 'none';
+                resetNewMessageNotification(); // Oculta notificaciones al abrir
+                fetchMessages(); // Carga los mensajes inmediatamente
+            });
+
+            closeChatButton.addEventListener('click', () => {
+                chatWindow.style.display = 'none';
+                chatToggleButton.style.display = 'flex';
+                updateLastSeenTimestamp(); // Guarda la hora del último mensaje visto
+            });
+
+            async function updateLastSeenTimestamp() {
+                try {
+                    const response = await fetch(`${API_BASE_URL}get_chat_messages.php?limit=1`, {
+                        headers: { 'ngrok-skip-browser-warning': 'true' }
+                    });
+                    const messages = await response.json();
+                    if (messages.length > 0) {
+                        lastMessageTimestamp = new Date(messages[0].fecha_creacion).getTime();
+                    }
+                } catch (error) { console.error('Error al actualizar la marca de tiempo:', error); }
+            }
+
+            // Enviar un mensaje
+            messageForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const text = messageInput.value.trim();
+                if (!text) return;
+
+                if (!currentUser) {
+                    alert('Debes iniciar sesión para enviar mensajes.');
+                    messageInput.value = '';
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`${API_BASE_URL}send_chat_message.php`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'ngrok-skip-browser-warning': 'true'
+                        },
+                        body: JSON.stringify({
+                            text: text,
+                            uid: currentUser.uid,
+                            // Si el usuario es admin, envía 'Admin', si no, su nombre real
+                            displayName: currentUser.uid === ADMIN_UID ? 'Admin' : currentUser.displayName,
+                            photoURL: currentUser.photoURL
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.success) {
+                        messageInput.value = '';
+                        fetchMessages(); // Actualizar mensajes inmediatamente
+                    } else {
+                        console.error('Error al enviar mensaje:', result.message);
+                    }
+                } catch (error) {
+                    console.error('Error de red:', error);
+                }
+            });
+
+            // Obtener y mostrar mensajes
+            async function fetchMessages() {
+                try {
+                    const response = await fetch(`${API_BASE_URL}get_chat_messages.php?limit=100`, {
+                        headers: { 'ngrok-skip-browser-warning': 'true' }
+                    });
+                    const messages = await response.json();
+
+                    if (chatWindow.style.display !== 'none') {
+                        // Si el chat está abierto, simplemente muestra los mensajes.
+                        renderMessages(messages);
+                    } else {
+                        // Si está cerrado, comprueba si hay mensajes nuevos.
+                        if (messages.length > 0) {
+                            const latestTimestamp = new Date(messages[messages.length - 1].fecha_creacion).getTime();
+                            if (latestTimestamp > lastMessageTimestamp && messages[messages.length - 1].id_usuario !== currentUser?.uid) {
+                                showNewMessageNotification();
+                            }
+                        }
+                    }
+                } catch (error) {
+                    // Si hay un error en el polling, lo registramos pero no lo detenemos.
+                    console.error('Error al obtener mensajes:', error);
+                }
+            }
+
+            function renderMessages(messages) {
+                messagesContainer.innerHTML = ''; // Limpiar mensajes antiguos
+                messages.forEach(msg => {
+                    const messageElement = document.createElement('div');
+                    messageElement.classList.add('chat-message');
+                    if (currentUser && msg.id_usuario === currentUser.uid) {
+                        messageElement.classList.add('current-user');
+                    }
+                    // Añadir clase si el mensaje es del administrador
+                    if (msg.id_usuario === ADMIN_UID) {
+                        messageElement.classList.add('admin-message');
+                    }
+
+                    // Usar una imagen por defecto si no hay foto de perfil
+                    const avatar = msg.foto_perfil || 'https://i.pravatar.cc/150?u=default';
+
+                    // --- CONSTRUCCIÓN SEGURA DEL DOM (ANTI-XSS) ---
+                    const avatarImg = document.createElement('img');
+                    avatarImg.src = avatar;
+                    avatarImg.alt = msg.nombre_usuario;
+                    avatarImg.className = 'chat-avatar';
+
+                    const contentDiv = document.createElement('div');
+                    contentDiv.className = 'message-content';
+
+                    const nameDiv = document.createElement('div');
+                    nameDiv.className = 'chat-user-name';
+                    nameDiv.textContent = msg.nombre_usuario; // Uso seguro de textContent
+
+                    const textP = document.createElement('p');
+                    textP.className = 'chat-text';
+                    textP.textContent = msg.mensaje_texto; // Uso seguro de textContent
+
+                    contentDiv.appendChild(nameDiv);
+                    contentDiv.appendChild(textP);
+
+                    messageElement.appendChild(avatarImg);
+                    messageElement.appendChild(contentDiv);
+                    // --- FIN DE CONSTRUCCIÓN SEGURA ---
+
+                    messagesContainer.appendChild(messageElement);
+                });
+                // Hacer scroll hasta el último mensaje
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+
+            function showNewMessageNotification() {
+                notificationBadge.style.display = 'block';
+                notificationSound.play().catch(e => console.log("La reproducción automática del sonido fue prevenida por el navegador."));
+                if (!document.hasFocus()) {
+                    document.title = '¡Nuevo Mensaje! | ' + originalTitle;
+                }
+            }
+
+            function resetNewMessageNotification() {
+                notificationBadge.style.display = 'none';
+                if (document.title !== originalTitle) {
+                    document.title = originalTitle;
+                }
+                // Al resetear, actualizamos la marca de tiempo
+                updateLastSeenTimestamp();
+            }
+
+            window.addEventListener('focus', () => {
+                if (document.title !== originalTitle) {
+                    document.title = originalTitle;
+                }
+            });
+
+    // --- Lógica de Popups ---
+    function closeIncentiveModal() {
+        incentiveModal.style.display = 'none';
+        sessionStorage.setItem('signupPopupShown', 'true');
+
+        // Después de cerrar el modal de incentivo, revisa si se debe mostrar el de bienvenida
+        const welcomePopupClosed = localStorage.getItem('welcomeBannerClosed');
+        if (!welcomePopupClosed) {
+            setTimeout(() => {
+                welcomePopup.style.display = 'flex';
+            }, 500); // Pequeño retraso para una transición suave
+        }
+    }
+
+    function closeWelcomePopup() {
+        welcomePopup.style.display = 'none';
+        localStorage.setItem('welcomeBannerClosed', 'true');
+    }
+
+    incentiveLoginBtn.addEventListener('click', () => {
+        closeIncentiveModal();
+        handleLogin();
+    });
+
+    closeIncentiveBtn.addEventListener('click', closeIncentiveModal);
+    incentiveLaterBtn.addEventListener('click', closeIncentiveModal);
+    incentiveModal.addEventListener('click', (event) => {
+        if (event.target === incentiveModal) closeIncentiveModal();
+    });
+
+    closeWelcomePopupBtn.addEventListener('click', closeWelcomePopup);
+    understandWelcomeBtn.addEventListener('click', closeWelcomePopup);
+    welcomePopup.addEventListener('click', (event) => {
+        if (event.target === welcomePopup) closeWelcomePopup();
+    });
+
+  // --- FAQ Accordion Logic ---
+  const faqGrid = document.querySelector('.faq-grid');
+  if (faqGrid) {
+      const faqItems = faqGrid.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+          item.addEventListener('click', () => {
+              const isActive = item.classList.contains('active');
+              // Close all other items
+              faqItems.forEach(otherItem => {
+                  otherItem.classList.remove('active');
+              });
+              // If the clicked item was not active, open it
+              if (!isActive) {
+                  item.classList.add('active');
+              }
+          });
+      });
+  }
+
+  readMoreButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    // Selecciona el contenedor del artículo más cercano al botón que se presionó
+                    const article = event.target.closest('article');
+                    // Dentro de ESE artículo, encuentra el contenido
+                    const articleContent = article.querySelector('.article-content');
+                    
+                    // Alterna la clase 'expanded' solo en ese contenido
+                    articleContent.classList.toggle('expanded');
+
+                    // Cambia el texto del botón específico que se presionó
+                    if (articleContent.classList.contains('expanded')) {
+                        event.target.textContent = 'Leer menos';
+                    } else {
+                        event.target.textContent = 'Leer más';
+                    }
+                });
+            });
+
+  // --- Lógica para el botón de la sección de afiliados ---
+  const openAffiliateBtn = document.getElementById('open-add-affiliate-link-btn');
+  const categorySelect = document.getElementById('category');
+  if (openAffiliateBtn) {
+      openAffiliateBtn.addEventListener('click', () => {
+          if (!currentUser) {
+              // Si no está logueado, pedir que inicie sesión. El popup de incentivo ya hace esto.
+              handleLogin();
+              return;
+          }
+          // Si está logueado, pre-seleccionar la categoría y abrir el modal.
+          categorySelect.value = 'ganaplus';
+          addModal.style.display = 'flex';
+      });
+  }
+
+  async function updateVisitorChartData() {
+      try {
+          const response = await fetch(`${API_BASE_URL}/get_visitor_stats.php`, {
+              headers: { 'ngrok-skip-browser-warning': 'true' }
+          });
+          const stats = await response.json();
+
+          if (!stats.success) return;
+
+          const chartData = [stats.unique_visitors, stats.total_visits - stats.unique_visitors];
+
+          if (!visitorChart) { // Si el gráfico no existe, lo creamos
+              const ctx = document.getElementById('visitor-chart').getContext('2d');
+              visitorChart = new Chart(ctx, {
+                  type: 'doughnut',
+                  data: {
+                      labels: ['Visitantes Únicos', 'Visitas de Regreso'],
+                      datasets: [{
+                          label: 'Visitantes',
+                          data: chartData,
+                          backgroundColor: ['#00e5ff', '#4a5568'],
+                          borderColor: '#1a1a1a',
+                          borderWidth: 3
+                      }]
+                  },
+                  options: {
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      animation: { duration: 800, easing: 'easeInOutQuart' },
+                      plugins: {
+                          legend: { display: false },
+                          tooltip: { bodyColor: '#fff', backgroundColor: '#000' }
+                      }
+                  }
+              });
+          } else { // Si ya existe, solo actualizamos los datos
+              visitorChart.data.datasets[0].data = chartData;
+              visitorChart.update();
+          }
+
+          // Actualizar el contador de texto
+          const uniqueVisitorsCountEl = document.getElementById('unique-visitors-count');
+          if (uniqueVisitorsCountEl) {
+              uniqueVisitorsCountEl.textContent = `${stats.unique_visitors} Visitantes Únicos`;
+          }
+      } catch (error) {
+          console.error('Error al actualizar el gráfico de visitantes:', error);
+      }
+  }
+
+  async function loadAndRenderCategoryChart() {
+      try {
+          const response = await fetch(`${API_BASE_URL}/get_category_stats.php`, {
+              headers: { 'ngrok-skip-browser-warning': 'true' }
+          });
+          const result = await response.json();
+
+          if (!result.success || Object.keys(result.data).length === 0) return;
+
+          const labels = Object.keys(result.data);
+          const data = Object.values(result.data);
+
+          if (!categoryChart) { // Si el gráfico no existe, lo creamos
+              const ctx = document.getElementById('category-chart').getContext('2d');
+              categoryChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                      labels: labels,
+                      datasets: [{
+                          label: 'Vistas por Categoría',
+                          data: data,
+                          backgroundColor: 'rgba(0, 229, 255, 0.6)',
+                          borderColor: 'rgba(0, 229, 255, 1)',
+                          borderWidth: 1
+                      }]
+                  },
+                  options: {
+                      indexAxis: 'y',
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      animation: { duration: 800 },
+                      scales: {
+                          x: { beginAtZero: true, ticks: { color: '#ccc' }, grid: { color: 'rgba(255, 255, 255, 0.1)' } },
+                          y: { ticks: { color: '#ccc' }, grid: { display: false } }
+                      },
+                      plugins: {
+                          legend: { display: false },
+                          tooltip: { bodyColor: '#fff', backgroundColor: '#000' }
+                      }
+                  }
+              });
+          } else { // Si ya existe, solo actualizamos los datos
+              categoryChart.data.labels = labels;
+              categoryChart.data.datasets[0].data = data;
+              categoryChart.update();
+          }
+      } catch (error) {
+          console.error('Error al cargar el gráfico de categorías:', error);
+      }
+  }
+
+  // Carga inicial
+  const initialCategory = document.querySelector('.nav-link.active')?.dataset.category || 'juegos';
+  currentCategory = initialCategory; // Establecer la categoría actual para el scroll infinito
+  fetchAndRenderItems(initialCategory, currentPage); // Pasar la página inicial (que por defecto es 1)
+  updateVisitorChartData(); // Carga inicial del gráfico
+  setInterval(updateVisitorChartData, 30000); // Actualizar cada 30 segundos
+  loadAndRenderCategoryChart();
+  setInterval(loadAndRenderCategoryChart, 60000); // Actualizar cada 60 segundos
+
+  // --- Lógica para el Popup de Apoyo a Usuarios Recurrentes ---
+  function handleSupportPopup() {
+      const today = new Date().toISOString().split('T')[0]; // Obtiene la fecha de hoy en formato YYYY-MM-DD
+      const lastShownDate = localStorage.getItem('supportPopupLastShown');
+
+      // Si el popup ya se mostró hoy, no hacemos nada.
+      if (lastShownDate === today) {
+          return;
+      }
+
+      // Contar las visitas totales
+      let visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
+      visitCount++;
+      localStorage.setItem('visitCount', visitCount);
+
+      // Mostrar el popup solo si el usuario ha visitado 5 o más veces Y no se ha mostrado hoy.
+      if (visitCount >= 5) {
+          supportPopup.style.display = 'flex';
+      }
+  }
+
+  function dismissSupportPopup() {
+      supportPopup.style.display = 'none';
+      const today = new Date().toISOString().split('T')[0];
+      // Guardamos la fecha de hoy para no volver a mostrarlo hasta mañana.
+      localStorage.setItem('supportPopupLastShown', today);
+  }
+
+  closeSupportBtn.addEventListener('click', dismissSupportPopup);
+  laterSupportBtn.addEventListener('click', dismissSupportPopup);
+  goToSupportBtn.addEventListener('click', () => {
+      window.open('https://cuty.io/MiPaginaWeb', '_blank');
+      dismissSupportPopup();
+  });
+
+  handleSupportPopup(); // Ejecutar la lógica al cargar la página
+
+  // --- Lógica del Banner de Cookies ---
+  if (cookieBanner && acceptCookiesBtn && rejectCookiesBtn) {
+      // Comprobar si el usuario ya ha tomado una decisión (aceptado o rechazado)
+      if (!localStorage.getItem('cookiesAccepted')) {
+          // Usamos un setTimeout para que no aparezca de inmediato y sea menos intrusivo
+          setTimeout(() => {
+              cookieBanner.classList.add('show'); // Añadimos la clase para animar la entrada
+          }, 2000); // Aparece después de 2 segundos
+      }
+
+      acceptCookiesBtn.addEventListener('click', () => {
+          cookieBanner.classList.remove('show'); // Quitamos la clase para animar la salida
+          localStorage.setItem('cookiesAccepted', 'true');
+      });
+      rejectCookiesBtn.addEventListener('click', () => {
+          cookieBanner.classList.remove('show'); // Quitamos la clase para animar la salida
+          localStorage.setItem('cookiesAccepted', 'false'); // Guardamos la decisión de rechazar
+      });
+  }
+
+  // Variable para asegurar que el modal se muestre solo una vez
+            let adBlockerDetected = false;
+            const modal = document.getElementById('adblock-modal');
+
+            function showAdBlockerModal() {
+                if (!adBlockerDetected) {
+                    adBlockerDetected = true;
+                    modal.classList.add('visible');
+                    console.error("Ad Blocker Detected. Showing modal.");
+                }
+            }
+
+            // --- TÉCNICA 1: Cebo de Red (Honeypot Script) ---
+            // Creamos un script que sabemos que será bloqueado.
+            const baitScript = document.createElement('script');
+            baitScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+            baitScript.async = true;
+            
+            // Si el script falla en cargar (es bloqueado), se dispara 'onerror'.
+            baitScript.onerror = function() {
+                console.log('Network bait failed. Ad blocker is active.');
+                showAdBlockerModal();
+            };
+            
+            // Si carga (muy improbable con un adblocker), no hacemos nada.
+            baitScript.onload = function() {
+                console.log('Network bait loaded successfully. No ad blocker detected via this method.');
+            };
+            
+            document.head.appendChild(baitScript);
+
+
+            // --- TÉCNICA 2: Trampa de DOM (Honeypot Element) ---
+            // Esta técnica es un respaldo y se ejecuta después de un breve momento.
+            setTimeout(function() {
+                const adBaitElement = document.getElementById('ad-bait-element');
+                
+                // Si el elemento no existe o su altura es 0, fue eliminado/ocultado por el ad-blocker.
+                if (!adBaitElement || adBaitElement.offsetHeight === 0 || window.getComputedStyle(adBaitElement).display === 'none') {
+                    console.log('DOM bait check failed. Ad blocker is active.');
+                    showAdBlockerModal();
+                } else {
+                    console.log('DOM bait check passed. Element is visible.');
+                }
+            }, 2000); // Esperamos 2 segundos para dar tiempo al ad-blocker a modificar el DOM.
+
+
+  // --- Lógica del Panel de Administrador ---
+  async function loadAdminStats() {
+      try {
+          const response = await fetch(`${API_BASE_URL}/get_visitor_stats.php`, {
+              headers: { 'ngrok-skip-browser-warning': 'true' }
+          });
+          if (!response.ok) {
+              throw new Error('Error al obtener las estadísticas del servidor.');
+          }
+          const data = await response.json();
+
+          // Rellenar las tarjetas principales
+          document.getElementById('admin-total-views').textContent = data.total_views || '0';
+          document.getElementById('admin-unique-visitors').textContent = data.unique_visitors || '0';
+          document.getElementById('admin-avg-time').textContent = data.avg_duration ? parseFloat(data.avg_duration).toFixed(2) : '0';
+          document.getElementById('admin-total-likes').textContent = data.total_likes || '0';
+
+          // Función para rellenar listas
+          const populateList = (elementId, items, keyName, valueName) => {
+              const listElement = document.getElementById(elementId);
+              listElement.innerHTML = '';
+              if (items && items.length > 0) {
+                  items.forEach(item => {
+                      const li = document.createElement('li');
+                      li.innerHTML = `${item[keyName]} <span>${item[valueName]}</span>`;
+                      listElement.appendChild(li);
+                  });
+              } else {
+                  listElement.innerHTML = '<li>No hay datos disponibles</li>';
+              }
+          };
+
+          // Rellenar las listas de desglose
+          populateList('admin-device-stats', data.devices, 'device', 'count');
+          populateList('admin-browser-stats', data.browsers, 'browser', 'count');
+          populateList('admin-country-stats', data.countries, 'country', 'count');
+
+      } catch (error) {
+          console.error("Error cargando las estadísticas de administrador:", error);
+          // Opcional: Mostrar un mensaje de error en el panel
+          document.getElementById('admin-stats-panel').innerHTML = '<p class="text-center text-red-500">No se pudieron cargar las estadísticas.</p>';
+      }
+  }
+
+  // --- Lógica para expandir/colapsar artículos ---
+  readMoreButtons.forEach(button => {
+      const article = button.closest('article');
+      const content = article.querySelector('.article-content');
+      
+      // Colapsar el contenido inicialmente
+      content.style.maxHeight = '150px'; // Muestra solo una parte del contenido
+      content.style.overflow = 'hidden';
+      content.style.position = 'relative'; // Para el efecto de desvanecido
+
+      // Añadir el efecto de desvanecido
+      const fadeOut = document.createElement('div');
+      fadeOut.style.position = 'absolute';
+      fadeOut.style.bottom = '0';
+      fadeOut.style.left = '0';
+      fadeOut.style.width = '100%';
+      fadeOut.style.height = '50px';
+      fadeOut.style.background = 'linear-gradient(to bottom, transparent, #111111)';
+      content.appendChild(fadeOut);
+
+      button.addEventListener('click', () => {
+          const isExpanded = content.style.maxHeight !== '150px';
+          if (isExpanded) {
+              content.style.maxHeight = '150px';
+              button.textContent = 'Leer más';
+              fadeOut.style.display = 'block';
+          } else {
+              content.style.maxHeight = content.scrollHeight + 'px';
+              button.textContent = 'Leer menos';
+              fadeOut.style.display = 'none';
+          }
+      });
+  });
+
+    </script>
+</body>
+</html>
