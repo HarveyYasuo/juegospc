@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexo - Perfil de Usuario</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602"
+     crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-7408875684074602">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Satoshi', sans-serif;
+            background-color: #111111;
+            overflow-x: hidden;
+        }
+        .glass-effect {
+            background: rgba(38, 38, 38, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+        }
+        .node-glow {
+             filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.9));
+             transition: filter 0.3s ease, transform 0.3s ease;
+        }
+        .node-glow:hover {
+            filter: drop-shadow(0 0 16px rgba(0, 255, 255, 1));
+            transform: scale(1.1);
+        }
+        #skill-map-container {
+           position: relative;
+           width: 100%;
+           min-height: 320px;
+           max-height: 720px;      /* Ajusta la altura máxima a tu gusto */
+           overflow-y: auto;       /* Habilita el scroll vertical */
+           padding-right: 1px;     /* Espacio para la barra de scroll */
+           height: auto;
+           padding: 1rem;
+        }
+        #skill-map-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        /* --- Estilos para Notificaciones (Toast) --- */
+        #notification-toast {
+            transform: translateX(120%);
+            position: fixed;
+            top: 1.25rem;
+            right: 1.25rem;
+            z-index: 100;
+            transition: transform 0.5s ease-in-out;
+        }
+        #notification-toast.show {
+            transform: translateX(0);
+        }
+        #notification-toast.success { background-color: #2f855a; }
+        #notification-toast.error { background-color: #c53030; }
+        .notification-content {
+            padding: 0.75rem 1.25rem;
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <div class="lg:col-span-1 flex flex-col space-y-6">
+                <div class="glass-effect p-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <img id="user-avatar" class="w-24 h-24 rounded-full border-2 border-cyan-400 object-cover" src="https://placehold.co/100x100/111111/FFFFFF?text=..." alt="Avatar de usuario">
+                    <h1 id="user-name" class="text-3xl font-bold text-white mt-4">Cargando...</h1>
+                    <p id="user-bio" class="text-gray-400 mt-2">Cargando biografía...</p>
+                    <button id="edit-profile-btn" class="hidden mt-6 w-full bg-cyan-500/80 hover:bg-cyan-500 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                        Editar Perfil
+                    </button>
+                </div>
+                
+                <div class="glass-effect p-6">
+                     <h2 class="text-xl font-bold text-white mb-4">Estadísticas</h2>
+                     <div class="space-y-3">
+                         <div class="flex justify-between items-center">
+                             <span class="text-gray-400"></span>
+                             <span id="stat-projects" class="font-bold text-white text-lg">0</span>
+                         </div>
+                         <div class="flex justify-between items-center">
+                             <span class="text-gray-400"></span>
+                             <span id="stat-validations" class="font-bold text-white text-lg">0</span>
+                         </div>
+                         <div class="flex justify-between items-center">
+                             <span class="text-gray-400"></span>
+                             <span id="stat-member-since" class="font-bold text-white text-lg">...</span>
+                         </div>
+                     </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 flex flex-col space-y-8">
+                <div class="glass-effect p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold text-white">Tus elementos subidos</h2>
+                        <input id="search-user-items" type="text" placeholder="Buscar elemento..." class="px-3 py-2 rounded bg-[#222] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 w-full sm:w-64"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <div id="skill-map-container">
+                        
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-white mb-4">Proyectos Destacados</h2>
+                    <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-item-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center">
+        <div class="glass-effect p-8 rounded-lg shadow-xl w-full max-w-md">
+            <h2 class="text-2xl font-bold text-white mb-6">Editar Elemento</h2>
+            <form id="edit-item-form">
+                <input type="hidden" id="edit-item-id">
+                <div class="mb-4">
+                    <label for="edit-item-title" class="block text-gray-400 text-sm font-bold mb-2">Título</label>
+                    <input type="text" id="edit-item-title" class="w-full px-3 py-2 rounded bg-[#222] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+                </div>
+                <div class="mb-4">
+                    <label for="edit-item-description" class="block text-gray-400 text-sm font-bold mb-2">Descripción</label>
+                    <textarea id="edit-item-description" rows="3" class="w-full px-3 py-2 rounded bg-[#222] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="edit-item-sitio" class="block text-gray-400 text-sm font-bold mb-2">Enlace de Sitio</label>
+                    <input type="url" id="edit-item-sitio" class="w-full px-3 py-2 rounded bg-[#222] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+                </div>
+                <div class="mb-4">
+                    <label for="edit-item-image" class="block text-gray-400 text-sm font-bold mb-2">Enlace de Imagen</label>
+                    <input type="url" id="edit-item-image" class="w-full px-3 py-2 rounded bg-[#222] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+                </div>
+                <div class="mb-6">
+                    <label for="edit-item-category" class="block text-gray-400 text-sm font-bold mb-2">Categoría</label>
+                    <input type="text" id="edit-item-category" class="w-full px-3 py-2 rounded bg-[#222] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" id="cancel-edit-btn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition">Cancelar</button>
+                    <button type="submit" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded transition">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contenedor para Notificaciones (Toast) -->
+    <div id="notification-toast" class="text-white rounded-lg shadow-xl">
+        <p id="notification-message" class="notification-content"></p>
+    </div>
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // Tu configuración de Firebase
+        const firebaseConfig = {
+          apiKey: "AIzaSyDXqLCRY6OgcXTXsAR-TvnC4bIICjDndsw",
+          authDomain: "todo-en-uno-e79c7.firebaseapp.com",
+          projectId: "todo-en-uno-e79c7",
+          storageBucket: "todo-en-uno-e79c7.appspot.com",
+          messagingSenderId: "122399269850",
+          appId: "1:122399269850:web:210049a35cc9abff9fd6e3",
+          databaseURL: "https://todo-en-uno-e79c7-default-rtdb.firebaseio.com/"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // --- Modal Elements ---
+        const editModal = document.getElementById('edit-item-modal');
+        const editForm = document.getElementById('edit-item-form');
+        const cancelEditBtn = document.getElementById('cancel-edit-btn');
+        const editItemId = document.getElementById('edit-item-id');
+        const editItemTitle = document.getElementById('edit-item-title');
+        const editItemDescription = document.getElementById('edit-item-description');
+        const editItemSitio = document.getElementById('edit-item-sitio');
+        const editItemImage = document.getElementById('edit-item-image');
+        const editItemCategory = document.getElementById('edit-item-category');
+        let allUserItems = [];
+
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            loadUserProfile(user.uid);
+            loadUserItems(user.uid);
+          } else {
+            window.location.href = "/login.html";
+          }
+        });
+
+      async function loadUserProfile(userId) {
+          try {
+            const response = await fetch(`https://unbiased-tough-mayfly.ngrok-free.app/get_user_profile.php?uid=${userId}`, {
+              headers: { 'ngrok-skip-browser-warning': 'true' }
+            });
+            const data = await response.json();
+            if (data.success) {
+              updateProfileUI(data.user);
+            } else {
+              document.body.innerHTML = '<div class="text-center py-20"><h1 class="text-3xl text-white">Error</h1><p class="text-gray-400">Usuario no encontrado.</p></div>';
+            }
+          } catch (err) {
+            console.error("Error al cargar el perfil:", err);
+          }
+        }
+
+    async function loadUserItems(userId) {
+      try {
+        const response = await fetch(`https://unbiased-tough-mayfly.ngrok-free.app/get_user_items.php?uid=${userId}`, {
+          headers: { 'ngrok-skip-browser-warning': 'true' }
+        });
+        const data = await response.json();
+        if (data.success && data.items.length > 0) {
+          allUserItems = data.items;
+          renderUserItems(allUserItems);
+          if (data.counts) {
+            renderStatsByCategory(data.counts);
+          }
+        } else {
+          document.getElementById('skill-map-container').innerHTML = '<p class="text-gray-400 text-center">Este usuario no ha subido ningún elemento aún.</p>';
+        }
+      } catch (err) {
+        console.error("Error al cargar los elementos del usuario:", err);
+      }
+    }
+
+    function renderStatsByCategory(counts) {
+      const statsContainer = document.querySelector('.glass-effect .space-y-3');
+      statsContainer.innerHTML = ''; // Limpiamos las estadísticas
+      Object.entries(counts).forEach(([categoria, total]) => {
+        const row = document.createElement('div');
+        row.className = 'flex justify-between items-center';
+        row.innerHTML = `
+          <span class="text-gray-400 capitalize">${categoria}</span>
+          <span class="font-bold text-white text-lg">${total}</span>
+        `;
+        statsContainer.appendChild(row);
+      });
+    }
+
+    function renderUserItems(items) {
+      const container = document.getElementById('skill-map-container');
+      container.innerHTML = '';
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4';
+
+      items.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'bg-[#1e1e1e] rounded-lg overflow-hidden shadow-md flex flex-col';
+
+          // --- CONSTRUCCIÓN SEGURA DEL DOM (ANTI-XSS) ---
+          const img = document.createElement('img');
+          img.src = item.enlace_imagen;
+          img.alt = item.titulo;
+          img.className = 'w-full h-40 object-cover';
+
+          const contentDiv = document.createElement('div');
+          contentDiv.className = 'p-4 flex flex-col flex-grow';
+
+          const titleH3 = document.createElement('h3');
+          titleH3.className = 'text-lg font-bold text-white';
+          titleH3.textContent = item.titulo; // Uso seguro
+
+          const descriptionP = document.createElement('p');
+          descriptionP.className = 'text-gray-400 text-sm mt-1 line-clamp-2 flex-grow';
+          descriptionP.textContent = item.descripcion || ''; // Uso seguro
+
+          const categoryP = document.createElement('p');
+          categoryP.className = 'text-xs text-cyan-400 mt-2';
+          categoryP.textContent = `Categoría: ${item.categoria}`; // Uso seguro
+
+          const buttonsDiv = document.createElement('div');
+          buttonsDiv.className = 'mt-4 flex justify-end';
+
+          const editBtn = document.createElement('button');
+          editBtn.className = 'edit-item-btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded transition mr-2';
+          editBtn.textContent = 'Editar';
+          editBtn.dataset.id = item.id;
+          editBtn.dataset.title = encodeURIComponent(item.titulo);
+          editBtn.dataset.description = encodeURIComponent(item.descripcion || '');
+          editBtn.dataset.sitio = encodeURIComponent(item.enlace_sitio);
+          editBtn.dataset.image = encodeURIComponent(item.enlace_imagen);
+          editBtn.dataset.category = encodeURIComponent(item.categoria);
+
+          const deleteBtn = document.createElement('button');
+          deleteBtn.className = 'delete-item-btn bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded transition';
+          deleteBtn.textContent = 'Eliminar';
+          deleteBtn.dataset.id = item.id;
+          deleteBtn.dataset.category = item.categoria;
+
+          buttonsDiv.appendChild(editBtn);
+          buttonsDiv.appendChild(deleteBtn);
+          contentDiv.appendChild(titleH3);
+          contentDiv.appendChild(descriptionP);
+          contentDiv.appendChild(categoryP);
+          contentDiv.appendChild(buttonsDiv);
+          card.appendChild(img);
+          card.appendChild(contentDiv);
+          grid.appendChild(card);
+      });
+
+      container.appendChild(grid);
+
+      // --- Assign event listeners ---
+      container.querySelectorAll('.delete-item-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const itemId = btn.getAttribute('data-id');
+          const category = btn.getAttribute('data-category');
+          if (confirm('¿Seguro que deseas eliminar este elemento?')) {
+            await deleteUserItem(itemId, category);
+            loadUserItems(auth.currentUser.uid);
+          }
+        });
+      });
+      
+      container.querySelectorAll('.edit-item-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          openEditModal({
+              id: btn.dataset.id,
+              title: btn.dataset.title,
+              description: btn.dataset.description,
+              sitio: btn.dataset.sitio,
+              image: btn.dataset.image,
+              category: btn.dataset.category,
+          });
+        });
+      });
+    }
+
+    async function deleteUserItem(itemId, category) {
+      try {
+        const response = await fetch('https://unbiased-tough-mayfly.ngrok-free.app/delete_item.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'ngrok-skip-browser-warning': 'true'
+          },
+          body: JSON.stringify({ id: itemId, category: category, user_uid: auth.currentUser.uid })
+        });
+        const data = await response.json();
+        if (!data.success) {
+          showNotification('Error: ' + data.message, 'error');
+        }
+      } catch (err) {
+        showNotification('Error de conexión al eliminar.', 'error');
+        console.error(err);
+      }
+    }
+
+    function updateProfileUI(user) {
+        document.title = `Nexo - ${user.nombre || 'Perfil'}`;
+        document.getElementById('user-name').textContent = user.nombre || 'Nuevo Usuario';
+        document.getElementById('user-bio').textContent = user.email || 'Usuario registrado con Google';
+        document.getElementById('user-avatar').src = user.foto || `https://placehold.co/100x100/111111/FFFFFF?text=${(user.nombre || 'U').charAt(0)}`;
+    }
+    
+    // --- Search filter ---
+    document.getElementById('search-user-items').addEventListener('input', (e) => {
+      const value = e.target.value.toLowerCase();
+      const filtered = allUserItems.filter(item =>
+        item.titulo.toLowerCase().includes(value) ||
+        (item.descripcion && item.descripcion.toLowerCase().includes(value)) ||
+        (item.categoria && item.categoria.toLowerCase().includes(value))
+      );
+      renderUserItems(filtered);
+    });
+
+    // --- Modal Logic ---
+    function openEditModal(item) {
+        editItemId.value = item.id;
+        editItemTitle.value = decodeURIComponent(item.title);
+        editItemDescription.value = decodeURIComponent(item.description);
+        editItemSitio.value = decodeURIComponent(item.sitio);
+        editItemImage.value = decodeURIComponent(item.image);
+        editItemCategory.value = decodeURIComponent(item.category);
+        editModal.classList.remove('hidden');
+    }
+
+    function closeEditModal() {
+        editModal.classList.add('hidden');
+        editForm.reset();
+    }
+    
+    cancelEditBtn.addEventListener('click', closeEditModal);
+    editModal.addEventListener('click', (e) => {
+        if (e.target === editModal) { // Close if backdrop is clicked
+            closeEditModal();
+        }
+    });
+
+    editForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const updatedItem = {
+            id: editItemId.value,
+            titulo: editItemTitle.value,
+            descripcion: editItemDescription.value,
+            enlace_sitio: editItemSitio.value,
+            enlace_imagen: editItemImage.value,
+            categoria: editItemCategory.value,
+            user_uid: auth.currentUser.uid // <-- AÑADIR ESTO
+        };
+        await updateUserItem(updatedItem);
+    });
+
+    async function updateUserItem(itemData) {
+      try {
+        const response = await fetch('https://unbiased-tough-mayfly.ngrok-free.app/update_item.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'ngrok-skip-browser-warning': 'true'
+          },
+          body: JSON.stringify(itemData)
+        });
+        const data = await response.json();
+        if (data.success) {
+          showNotification('Elemento actualizado con éxito.', 'success');
+          closeEditModal();
+          loadUserItems(auth.currentUser.uid);
+        } else {
+          showNotification('Error: ' + (data.message || 'Error desconocido.'), 'error');
+        }
+      } catch (err) {
+        showNotification('Error al conectar con el servidor para actualizar.', 'error');
+        console.error(err);
+      }
+    }
+
+    // --- Notification Logic ---
+    const notificationToast = document.getElementById('notification-toast');
+    const notificationMessage = document.getElementById('notification-message');
+    let notificationTimeout;
+
+    function showNotification(message, type = 'success') {
+        if (notificationTimeout) clearTimeout(notificationTimeout);
+        notificationMessage.textContent = message;
+        notificationToast.className = 'text-white rounded-lg shadow-xl'; // Reset
+        notificationToast.classList.add(type, 'show');
+        notificationTimeout = setTimeout(() => {
+            notificationToast.classList.remove('show');
+        }, 3000);
+    }
+    </script>
+</body>
+</html>
