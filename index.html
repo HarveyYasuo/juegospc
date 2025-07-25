@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Plataforma de juegos y recursos digitales">
     <meta name="keywords" content="juegos, emuladores, apps, comunidad gaming">
-    <title>Juegos Para PC | GamesOG</title>
+    <title>GamesOG</title>
     <link rel="icon" href="favicon.png" type="image/png">
 
     <!-- Meta Tags para Redes Sociales (Open Graph & Twitter) -->
@@ -618,7 +618,8 @@
         }
 
 
-        /* --- Estilos para el Modal de Ad-Blocker --- */
+        /* --- Estilos para el Modal de Ad-Blocker (Comentado) --- */
+        /*
         #adblock-modal {
             position: fixed;
             top: 0;
@@ -629,7 +630,7 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             z-index: 9999;
-            display: none; /* Inicialmente oculto */
+            display: none; 
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -655,6 +656,7 @@
         .modal-content-adblock h2 { color: #00B8D4; font-size: 2rem; margin-top: 0; }
         .modal-content-adblock p { font-size: 1.1rem; line-height: 1.6; }
         .modal-icon { font-size: 4rem; color: #D32F2F; margin-bottom: 1rem; }
+        */
 
         /* --- Estilos para el Panel de Administrador --- */
         .stat-card-admin {
@@ -1196,7 +1198,8 @@
         </div>
     </div>
 
-    <!-- Modal que se mostrará si se detecta un Ad-Blocker -->
+    <!-- Modal que se mostrará si se detecta un Ad-Blocker (Comentado) -->
+    <!--
     <div id="adblock-modal">
         <div class="modal-content-adblock">
             <div class="modal-icon">!</div>
@@ -1209,9 +1212,10 @@
             </p>
         </div>
     </div>
+    -->
 
-  <!-- Elemento de cebo para la detección por DOM -->
-    <div class="ad-banner text-ad ad-container" id="ad-bait-element"></div>
+  <!-- Elemento de cebo para la detección por DOM (Comentado) -->
+  <!-- <div class="ad-banner text-ad ad-container" id="ad-bait-element"></div> -->
 
 
 <!-- Popup para Pedir Apoyo a Usuarios Recurrentes -->
@@ -2586,6 +2590,8 @@ onValue(onlineUsersRef, (snapshot) => {
       });
   }
 
+  // --- Detección de Ad-Blocker (Comentado) ---
+  /*
   // Variable para asegurar que el modal se muestre solo una vez
             let adBlockerDetected = false;
             const modal = document.getElementById('adblock-modal');
@@ -2631,6 +2637,7 @@ onValue(onlineUsersRef, (snapshot) => {
                     console.log('DOM bait check passed. Element is visible.');
                 }
             }, 2000); // Esperamos 2 segundos para dar tiempo al ad-blocker a modificar el DOM.
+    */
 
 
   // --- Lógica del Panel de Administrador ---
