@@ -117,7 +117,7 @@ main.container {
     padding: 0;
     border-radius: 12px; /* Bordes redondeados para la tarjeta completa */
     width: 267px;
-    height: 400px;
+    /* Se elimina la altura fija para que se ajuste al contenido */
 }
 
 .item-card:hover {
@@ -128,7 +128,7 @@ main.container {
 .card-thumbnail {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9; /* Proporción de video estándar */
+    height: 320px; /* Altura fija para hacer la imagen más larga */
     border-radius: 12px;
     overflow: hidden;
     background-color: var(--surface-color); /* Color de fondo mientras carga la imagen */
