@@ -989,6 +989,126 @@
             transform: scale(0.95);
             transition: transform 0.3s ease;
         }
+        
+        /* --- Estilos para el Nuevo Modal de Añadir Elemento (Rediseño) --- */
+        #add-item-modal .modal-content {
+            background-color: #1e1e3f; /* Un azul oscuro más profundo */
+            border: 1px solid #00ffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.15);
+            width: 90%;
+            max-width: 550px; /* Un poco más ancho */
+            padding: 2rem;
+            color: #e0e0e0;
+            transform: scale(0.95);
+            transition: transform 0.3s ease-out;
+        }
+
+        #add-item-modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        #add-item-modal h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #00e5ff;
+            text-align: left;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #3a3a5e;
+            padding-bottom: 1rem;
+        }
+
+        #add-item-modal .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        #add-item-modal label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #a0a0c0;
+        }
+
+        #add-item-modal input[type="text"],
+        #add-item-modal input[type="url"],
+        #add-item-modal textarea,
+        #add-item-modal select {
+            width: 100%;
+            background-color: #1a1a2e;
+            border: 1px solid #3a3a5e;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: #e0e0e0;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        #add-item-modal input:focus,
+        #add-item-modal textarea:focus,
+        #add-item-modal select:focus {
+            outline: none;
+            border-color: #00e5ff;
+            box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.2);
+        }
+
+        #add-item-modal textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        #add-item-modal .action-btn {
+            width: 100%;
+            background: linear-gradient(90deg, #00e5ff, #00b8d4);
+            color: #111;
+            padding: 0.85rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        #add-item-modal .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3);
+        }
+
+        #add-item-modal .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: #a0a0c0;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        #add-item-modal .close-btn:hover {
+            color: #00e5ff;
+        }
+
+        #add-item-modal .feedback-message {
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            display: none; /* Oculto por defecto */
+        }
+        #add-item-modal .feedback-message.success {
+            background-color: rgba(0, 229, 255, 0.1);
+            color: #00e5ff;
+            display: block;
+        }
+        #add-item-modal .feedback-message.error {
+            background-color: rgba(255, 59, 48, 0.15);
+            color: #ff3b30;
+            display: block;
+        }
+
         .action-btn {
             background-color: #007bff;
             color: white;
@@ -1179,6 +1299,88 @@
                 height: auto; /* Altura automática */
             }
         }
+        /* --- Estilos para Mensajes de Chat (Estilo Facebook) --- */
+        .chat-message {
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: flex-end;
+            gap: 0.5rem;
+        }
+        .chat-message.current-user {
+            justify-content: flex-end; /* Alinea a la derecha */
+        }
+        .chat-message.current-user .message-content {
+            background-color: #0078ff; /* Azul de Facebook */
+            color: #fff;
+            border-top-right-radius: 4px; /* Esquina no redondeada */
+        }
+        .chat-message.current-user .chat-avatar {
+            display: none; /* Ocultar propio avatar */
+        }
+        .chat-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .message-content {
+            max-width: 75%;
+            padding: 0.75rem 1rem;
+            border-radius: 18px;
+            background-color: #3a3b3c; /* Gris oscuro de Facebook */
+            color: #e4e6eb;
+            line-height: 1.4;
+        }
+        .chat-user-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #b0b3b8;
+        }
+        .chat-message.current-user .chat-user-name {
+            display: none; /* No mostrar tu propio nombre */
+        }
+        /* --- Estilos para Mensajes de Chat (Estilo Facebook) --- */
+        .chat-message {
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: flex-end;
+            gap: 0.5rem;
+        }
+        .chat-message.current-user {
+            justify-content: flex-end; /* Alinea a la derecha */
+        }
+        .chat-message.current-user .message-content {
+            background-color: #0078ff; /* Azul de Facebook */
+            color: #fff;
+            border-top-right-radius: 4px; /* Esquina no redondeada */
+        }
+        .chat-message.current-user .chat-avatar {
+            display: none; /* Ocultar propio avatar */
+        }
+        .chat-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .message-content {
+            max-width: 75%;
+            padding: 0.75rem 1rem;
+            border-radius: 18px;
+            background-color: #3a3b3c; /* Gris oscuro de Facebook */
+            color: #e4e6eb;
+            line-height: 1.4;
+        }
+        .chat-user-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #b0b3b8;
+        }
+        .chat-message.current-user .chat-user-name {
+            display: none; /* No mostrar tu propio nombre */
+        }
     </style>
 
 </head>
@@ -1329,39 +1531,41 @@
             <p class="sidebar-outro">¡Explora, crea y lleva tus ideas al siguiente nivel con el poder de Adobe!</p>
         </aside>
     </div>
-    <div id="add-item-modal" class="modal-overlay" style="display: none;">
+    <div id="add-item-modal" class="modal-overlay">
         <div class="modal-content">
             <span id="close-modal-btn" class="close-btn">&times;</span>
-            <h2>Agregar Nuevo Elemento</h2>
-            <form id="add-item-form">
+            <h2>Añadir Nuevo Elemento</h2>
+            <form id="add-item-form" novalidate>
                 <div class="form-group">
-                    <label for="titulo">Título</label>
-                    <input type="text" id="titulo" name="titulo" required>
+                    <label for="titulo">Título del Elemento</label>
+                    <input type="text" id="titulo" name="titulo" placeholder="Ej: Grand Theft Auto V" required>
                 </div>
                 <div class="form-group">
-                    <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                    <label for="descripcion">Descripción Breve</label>
+                    <textarea id="descripcion" name="descripcion" rows="4" placeholder="Una descripción corta y atractiva sobre el elemento." required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="enlace_sitio">URL del Sitio</label>
-                    <input type="url" id="enlace_sitio" name="enlace_sitio" required>
+                    <label for="enlace_sitio">URL del Sitio Oficial o Descarga</label>
+                    <input type="url" id="enlace_sitio" name="enlace_sitio" placeholder="https://..." required>
                 </div>
                 <div class="form-group">
-                    <label for="enlace_imagen">URL de la Imagen</label>
-                    <input type="url" id="enlace_imagen" name="enlace_imagen" required>
+                    <label for="enlace_imagen">URL de la Imagen de Portada</label>
+                    <input type="url" id="enlace_imagen" name="enlace_imagen" placeholder="https://.../imagen.jpg" required>
                 </div>
                 <div class="form-group">
                     <label for="category">Categoría</label>
                     <select id="category" name="category" required>
+                        <option value="" disabled selected>Selecciona una categoría...</option>
                         <option value="juegos">Juegos</option>
                         <option value="emuladores">Emuladores</option>
+                        <option value="programas">Programas</option>
                         <option value="celulares">Celulares</option>
                         <option value="extras">Extras</option>
                         <option value="comunidad">Comunidad</option>
                         <option value="ganaplus">GanaPlus</option>
                     </select>
                 </div>
-                <button type="submit" class="action-btn">Agregar a la Biblioteca</button>
+                <button type="submit" class="action-btn">Añadir a la Biblioteca</button>
                 <div id="form-feedback" class="feedback-message"></div>
             </form>
         </div>
@@ -1957,7 +2161,7 @@ function updateHeaderUI(user) {
         const addLink = document.createElement('button');
         addLink.textContent = '+ Agregar Elemento';
         addLink.onclick = () => {
-            addModal.style.display = 'flex';
+            addModal.classList.add('show');
             userDropdownMenu.classList.remove('show');
         };
 
@@ -2512,12 +2716,12 @@ function createItemCard(item, category) {
     });
   }
 
-  openAddModalBtnMenu.addEventListener('click', () => addModal.style.display = 'flex');
-  closeAddModalBtn.addEventListener('click', () => addModal.style.display = 'none');
+  openAddModalBtnMenu.addEventListener('click', () => addModal.classList.add('show'));
+  closeAddModalBtn.addEventListener('click', () => addModal.classList.remove('show'));
   closeDetailsModalBtn.addEventListener('click', () => detailsModal.classList.remove('show'));
   closeGuideModalBtn.addEventListener('click', closeGuideModal);
   window.addEventListener('click', (event) => {
-    if (event.target === addModal) addModal.style.display = 'none';
+    if (event.target === addModal) addModal.classList.remove('show');
     if (event.target === detailsModal) detailsModal.classList.remove('show');
     if (event.target === guideModal) closeGuideModal();
   });
@@ -2556,7 +2760,7 @@ function createItemCard(item, category) {
       feedbackMessage.className = 'feedback-message success';
       addItemForm.reset();
       setTimeout(() => {
-        addModal.style.display = 'none';
+        addModal.classList.remove('show');
         fetchAndRenderItems(data.category.toLowerCase());
       }, 1500);
     } else {
@@ -2857,7 +3061,7 @@ function createItemCard(item, category) {
           }
           // Si está logueado, pre-seleccionar la categoría y abrir el modal.
           categorySelect.value = 'ganaplus';
-          addModal.style.display = 'flex';
+          addModal.classList.add('show');
       });
   }
 
