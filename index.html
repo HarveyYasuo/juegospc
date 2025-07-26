@@ -752,56 +752,7 @@
     </div>
 </header>
 
-<!-- =============================================================== -->
-<!-- ============   PANEL DE ADMINISTRADOR INICIO   ================ -->
-<!-- =============================================================== -->
-<section id="admin-stats-panel" class="bg-gray-900 py-8" style="display: none;">
-    <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center">Panel de Administrador</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Card: Vistas Totales -->
-            <div class="stat-card-admin">
-                <h3 class="text-lg font-semibold text-gray-300">Vistas Totales</h3>
-                <p id="admin-total-views" class="text-4xl font-bold text-white">Cargando...</p>
-            </div>
-            <!-- Card: Visitantes Únicos -->
-            <div class="stat-card-admin">
-                <h3 class="text-lg font-semibold text-gray-300">Visitantes Únicos</h3>
-                <p id="admin-unique-visitors" class="text-4xl font-bold text-white">Cargando...</p>
-            </div>
-            <!-- Card: Promedio de Tiempo -->
-            <div class="stat-card-admin">
-                <h3 class="text-lg font-semibold text-gray-300">Tiempo Promedio (Seg.)</h3>
-                <p id="admin-avg-time" class="text-4xl font-bold text-white">Cargando...</p>
-            </div>
-            <!-- Card: Total de "Me Gusta" -->
-            <div class="stat-card-admin">
-                <h3 class="text-lg font-semibold text-gray-300">"Me Gusta" Totales</h3>
-                <p id="admin-total-likes" class="text-4xl font-bold text-white">Cargando...</p>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
-            <!-- Columna: Desglose de Dispositivos -->
-            <div class="stat-card-admin">
-                <h3 class="text-xl font-bold text-white mb-4">Desglose por Dispositivo</h3>
-                <ul id="admin-device-stats" class="stat-list-admin"><li>Cargando...</li></ul>
-            </div>
-            <!-- Columna: Desglose de Navegadores -->
-            <div class="stat-card-admin">
-                <h3 class="text-xl font-bold text-white mb-4">Top Navegadores</h3>
-                <ul id="admin-browser-stats" class="stat-list-admin"><li>Cargando...</li></ul>
-            </div>
-            <!-- Columna: Desglose de Países -->
-            <div class="stat-card-admin">
-                <h3 class="text-xl font-bold text-white mb-4">Top Países</h3>
-                <ul id="admin-country-stats" class="stat-list-admin"><li>Cargando...</li></ul>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- =============================================================== -->
-<!-- =============   PANEL DE ADMINISTRADOR FINAL   ================ -->
-<!-- =============================================================== -->
+
 
  <div class="category-header">
             <h2 id="category-title">Juegos</h2>
@@ -1257,11 +1208,56 @@
 <!-- El Panel/Modal -->
 <div id="adminPanelModal" class="modal">
   <!-- Contenido del Modal -->
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <h2>Panel de Administrador</h2>
-    <p>Aquí va el contenido del panel...</p>
-  </div>
+  <!-- =============================================================== -->
+<!-- ============   PANEL DE ADMINISTRADOR INICIO   ================ -->
+<!-- =============================================================== -->
+<section id="admin-stats-panel" class="bg-gray-900 py-8" style="display: none;">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center">Panel de Administrador</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card: Vistas Totales -->
+            <div class="stat-card-admin">
+                <h3 class="text-lg font-semibold text-gray-300">Vistas Totales</h3>
+                <p id="admin-total-views" class="text-4xl font-bold text-white">Cargando...</p>
+            </div>
+            <!-- Card: Visitantes Únicos -->
+            <div class="stat-card-admin">
+                <h3 class="text-lg font-semibold text-gray-300">Visitantes Únicos</h3>
+                <p id="admin-unique-visitors" class="text-4xl font-bold text-white">Cargando...</p>
+            </div>
+            <!-- Card: Promedio de Tiempo -->
+            <div class="stat-card-admin">
+                <h3 class="text-lg font-semibold text-gray-300">Tiempo Promedio (Seg.)</h3>
+                <p id="admin-avg-time" class="text-4xl font-bold text-white">Cargando...</p>
+            </div>
+            <!-- Card: Total de "Me Gusta" -->
+            <div class="stat-card-admin">
+                <h3 class="text-lg font-semibold text-gray-300">"Me Gusta" Totales</h3>
+                <p id="admin-total-likes" class="text-4xl font-bold text-white">Cargando...</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+            <!-- Columna: Desglose de Dispositivos -->
+            <div class="stat-card-admin">
+                <h3 class="text-xl font-bold text-white mb-4">Desglose por Dispositivo</h3>
+                <ul id="admin-device-stats" class="stat-list-admin"><li>Cargando...</li></ul>
+            </div>
+            <!-- Columna: Desglose de Navegadores -->
+            <div class="stat-card-admin">
+                <h3 class="text-xl font-bold text-white mb-4">Top Navegadores</h3>
+                <ul id="admin-browser-stats" class="stat-list-admin"><li>Cargando...</li></ul>
+            </div>
+            <!-- Columna: Desglose de Países -->
+            <div class="stat-card-admin">
+                <h3 class="text-xl font-bold text-white mb-4">Top Países</h3>
+                <ul id="admin-country-stats" class="stat-list-admin"><li>Cargando...</li></ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =============================================================== -->
+<!-- =============   PANEL DE ADMINISTRADOR FINAL   ================ -->
+<!-- =============================================================== -->
 </div>
 
 <footer>
