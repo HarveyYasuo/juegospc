@@ -97,26 +97,27 @@ main.container {
 /* --- Grid de Tarjetas --- */
 .items-grid {
     display: grid;
-    /* Columnas flexibles que se adaptan, con un tamaño mínimo de 300px */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* Columnas de ancho fijo para las tarjetas */
+    grid-template-columns: repeat(auto-fill, 267px);
     gap: 40px 16px; /* 40px de espacio vertical, 16px horizontal */
     justify-content: center;
 }
 
 /* --- Estilo de Tarjeta --- */
 .item-card {
-    background-color: transparent;
+    background-color: var(--surface-color); /* Añadido para dar un fondo a la tarjeta */
     cursor: pointer;
     display: flex;
     flex-direction: column;
     gap: 12px; /* Espacio entre la miniatura y los detalles */
-    /* Quitamos los estilos de la tarjeta "contenedora" original */
     border: none;
     box-shadow: none;
     transition: none;
-    overflow: visible;
+    overflow: hidden; /* Cambiado para contener los bordes redondeados */
     padding: 0;
-    border-radius: 0;
+    border-radius: 12px; /* Bordes redondeados para la tarjeta completa */
+    width: 267px;
+    height: 400px;
 }
 
 .item-card:hover {
@@ -142,7 +143,7 @@ main.container {
 }
 
 .item-card:hover .card-thumbnail img {
-    transform: scale(0.5); /* Efecto de zoom out (reduce la imagen) al pasar el ratón */
+    transform: scale(1.05); /* Ligero zoom para un efecto sutil */
 }
 
 /* Detalles (Avatar + Texto) */
