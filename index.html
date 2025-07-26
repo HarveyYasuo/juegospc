@@ -8,10 +8,10 @@
     <title>GamesOG</title>
     <link rel="icon" href="favicon.png" type="image/png">
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602"
-     crossorigin="anonymous"></script>
-<meta name="google-adsense-account" content="ca-pub-7408875684074602">
-    <!-- Meta Tags para Redes Sociales (Open Graph & Twitter) -->
+    <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602"
+     crossorigin="anonymous"></script>-->
+<!--<meta name="google-adsense-account" content="ca-pub-7408875684074602">
+    <-- Meta Tags para Redes Sociales (Open Graph & Twitter) -->
     <meta property="og:title" content="GamesOG: Tu Plataforma de Juegos y Recursos Digitales">
     <meta property="og:description" content="Descubre, comparte y descarga juegos, emuladores, programas y más. Únete a una comunidad activa y encuentra todo en un solo lugar.">
     <meta property="og:image" content="https://juegospc.pro/gamesog-og-image.png"> <!-- Imagen de 1200x630px para compartir -->
@@ -24,23 +24,193 @@
     <meta name="twitter:description" content="Descubre, comparte y descarga juegos, emuladores, programas y más. Únete a una comunidad activa y encuentra todo en un solo lugar.">
     <meta name="twitter:image" content="https://juegospc.pro/gamesog-og-image.png"> <!-- Imagen para la tarjeta de Twitter -->
 
-    <meta name="4944953a256973d4c9684b6e4370318168697432" content="4944953a256973d4c9684b6e4370318168697432" />
-    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <!--<meta name="4944953a256973d4c9684b6e4370318168697432" content="4944953a256973d4c9684b6e4370318168697432" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />-->
     <!--<meta name="google-adsense-account" content="ca-pub-7408875684074602"-->
-    <meta name='admaven-placement' content=BqdU9pjYG>
-    <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602"
+    <!--<meta name='admaven-placement' content=BqdU9pjYG>
+    <--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602"
      crossorigin="anonymous"></script>-->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type='text/javascript' src='//temperweekly.com/a8/d8/a4/a8d8a4f19762d95ee8420f9d8cb80119.js'></script>
-    <!--<script type='text/javascript' src='//temperweekly.com/a8/d8/a4/a8d8a4f19762d95ee8420f9d8cb80119.js'></script>-->
+    <!--<script type='text/javascript' src='//temperweekly.com/a8/d8/a4/a8d8a4f19762d95ee8420f9d8cb80119.js'></script>
+    <--<script type='text/javascript' src='//temperweekly.com/a8/d8/a4/a8d8a4f19762d95ee8420f9d8cb80119.js'></script>-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
+    <script type='text/javascript' src='//temperweekly.com/a8/d8/a4/a8d8a4f19762d95ee8420f9d8cb80119.js'></script>
     <style>
+        /* --- Estilos para el Nuevo Header Compacto --- */
+        .compact-header {
+            background-color: #1a1a2e;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid #00ffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-main {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-grow: 1;
+            min-width: 0; /* Evita que el nav se desborde */
+        }
+
+        .compact-header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00ffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .compact-header .category-nav {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto; /* Permite scroll horizontal en móvil */
+            scrollbar-width: none; /* Oculta scrollbar en Firefox */
+        }
+        .compact-header .category-nav::-webkit-scrollbar {
+            display: none; /* Oculta scrollbar en Chrome/Safari */
+        }
+
+        .compact-header .nav-link {
+            color: #e0e0e0;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s, border-color 0.3s;
+            white-space: nowrap; /* Evita que los nombres de categoría se rompan */
+        }
+
+        .compact-header .nav-link:hover,
+        .compact-header .nav-link.active {
+            color: #00ffff;
+            border-bottom-color: #00ffff;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: #e0e0e0;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .icon-btn:hover {
+            color: #00ffff;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .icon-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .search-input {
+            width: 0;
+            padding: 0.5rem 0;
+            border: none;
+            background: transparent;
+            color: white;
+            border-bottom: 2px solid #00ffff;
+            transition: width 0.4s ease-in-out, padding 0.4s ease-in-out;
+            outline: none;
+        }
+        .search-container.active .search-input {
+            width: 200px;
+            padding: 0.5rem;
+        }
+
+        .user-menu-container {
+            position: relative;
+        }
+        
+        #user-menu-icon img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid #00ffff;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 10px);
+            background-color: #1e1e3f;
+            border: 1px solid #00ffff;
+            border-radius: 8px;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            z-index: 1001;
+            padding: 0.5rem 0;
+        }
+        .dropdown-content.show {
+            display: block;
+        }
+        .dropdown-content a, .dropdown-content button {
+            color: #e0e0e0;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+        }
+        .dropdown-content a:hover, .dropdown-content button:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+            color: #00ffff;
+        }
+
+        .compact-header .nav-toggle {
+            display: none; /* Oculto por defecto */
+        }
+
+        /* --- Media Queries para Responsividad del Header --- */
+        @media (max-width: 768px) {
+            .compact-header .category-nav {
+                display: none; /* Ocultar la navegación principal */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #1a1a2e;
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .compact-header .category-nav.active {
+                display: flex; /* Mostrar cuando esté activo */
+            }
+            .compact-header .nav-toggle {
+                display: block; /* Mostrar el botón de hamburguesa */
+            }
+        }
+
 
         /* --- Estilos para el Layout Principal y Sidebar de Artículos --- */
         .page-content-wrapper {
@@ -702,7 +872,313 @@
 
         /* --- Clase de Cebo (Honeypot) --- */
         .ad-banner { height: 1px; width: 1px; position: absolute; top: -10px; left: -10px; opacity: 0.01; pointer-events: none; }
+        
+        /* --- Estilos para Tarjetas (Estilo Epic Games) --- */
+        .item-card {
+            background-color: transparent !important;
+            border: none !important;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem; /* 12px */
+            max-width: 250px; /* Ancho máximo para la tarjeta */
+            margin: 0 auto; /* Centrar la tarjeta en la celda de la grilla */
+        }
+        
+        .item-card .card-thumbnail {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        
+        .item-card .card-thumbnail img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 250 / 400; /* Proporción 250x400px */
+            object-fit: cover;
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+            border-bottom: none !important; /* Override previous style */
+        }
+        
+        .item-card:hover .card-thumbnail img {
+            transform: scale(1.05);
+        }
+        
+        .item-card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem; /* 4px */
+            padding: 0; /* Override previous style */
+        }
+        
+        .item-card-basetype {
+            font-size: 0.8rem; /* 12.8px */
+            color: #aaa;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        
+        .item-card-title {
+            font-size: 1rem; /* 16px */
+            font-weight: 500;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0;
+        }
+        
+        /* Media Query para ajustar el tamaño en móviles */
+        @media (max-width: 768px) {
+            .item-card {
+                max-width: 180px; /* Tamaño más pequeño para móviles */
+            }
+        }
 
+        /* --- Estilos para el Cabecero de Categoría --- */
+        .category-header {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            gap: 1rem; /* Espacio entre elementos */
+            border-bottom: 1px solid #333;
+        }
+        .category-header h2 {
+            margin-right: auto; /* Empuja todo lo demás a la derecha */
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+        .category-header .menu-icon, .category-header .icon-btn {
+            color: #e0e0e0;
+            text-decoration: none;
+        }
+
+        /* --- Estilos para el Modal (Popup Elegante) --- */
+        .modal-overlay {
+            position: fixed; /* Se posiciona sobre toda la ventana */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo negro semitransparente */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000; /* Asegura que esté por encima de todo */
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.95);
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+        .modal-content {
+            background-color: #1a1a2e; /* Fondo oscuro para el contenido del modal */
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #00ffff;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .action-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* Asegura que los enlaces no estén subrayados */
+            display: inline-block; /* Para que el padding funcione correctamente en enlaces */
+        }
+        .action-btn:hover {
+            background-color: #0056b3;
+        }
+        /* Ajuste para el tamaño del modal de detalles */
+        #details-modal .modal-content {
+            width: 468px;
+            height: 600px;
+            max-width: 90vw; /* Asegura que no se desborde en pantallas pequeñas */
+            max-height: 85vh;
+            overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+        }
+        /* --- Estilos para la Ventana de Chat Flotante --- */
+        #chat-window {
+            position: fixed;
+            bottom: 6rem; /* Posición sobre el botón de chat */
+            right: 2rem;
+            width: 350px;
+            height: 500px;
+            max-width: 90vw;
+            max-height: 70vh;
+            background-color: #1a1a2e;
+            border: 1px solid #00ffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            /* Animación */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+        }
+        #chat-window.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .chat-header {
+            background-color: #1e1e3f;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #00ffff;
+            color: #fff;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        #close-chat-button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        #chat-form {
+            display: flex;
+            border-top: 1px solid #00ffff;
+            padding: 0.5rem;
+            flex-shrink: 0;
+        }
+        #chat-input {
+            flex-grow: 1;
+            border: none;
+            background: transparent;
+            padding: 0.5rem;
+            color: #fff;
+            outline: none;
+        }
+        #chat-form button {
+            background: none;
+            border: none;
+            color: #00e5ff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0 0.5rem;
+        }
+        /* --- Estilos para Mensajes de Chat (Estilo Facebook) --- */
+        .chat-message {
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: flex-end;
+            gap: 0.5rem;
+        }
+        .chat-message.current-user {
+            justify-content: flex-end; /* Alinea a la derecha */
+        }
+        .chat-message.current-user .message-content {
+            background-color: #0078ff; /* Azul de Facebook */
+            color: #fff;
+            border-top-right-radius: 4px; /* Esquina no redondeada */
+        }
+        .chat-message.current-user .chat-avatar {
+            display: none; /* Ocultar propio avatar */
+        }
+        .chat-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .message-content {
+            max-width: 75%;
+            padding: 0.75rem 1rem;
+            border-radius: 18px;
+            background-color: #3a3b3c; /* Gris oscuro de Facebook */
+            color: #e4e6eb;
+            line-height: 1.4;
+        }
+        .chat-user-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #b0b3b8;
+        }
+        .chat-message.current-user .chat-user-name {
+            display: none; /* No mostrar tu propio nombre */
+        }
+        /* --- Estilos para la Sección de Artículos --- */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            justify-items: center; /* Centrar artículos en la celda */
+            margin-top: 2rem;
+        }
+        .articles-grid article {
+            background-color: #1a1a2e;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #2a2a4e;
+            display: flex;
+            flex-direction: column;
+            width: 468px;
+            height: 600px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .articles-grid article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff44;
+        }
+        .articles-grid .article-img {
+            width: 100%;
+            height: 250px; /* Una porción de la altura total */
+            object-fit: cover;
+        }
+        .articles-grid h2 {
+            font-size: 1.5rem;
+            padding: 1rem 1.5rem 0.5rem;
+            text-align: left;
+            margin-bottom: 0;
+        }
+        .articles-grid .article-content {
+            padding: 0 1.5rem 1.5rem;
+            flex-grow: 1;
+            overflow-y: auto; /* Scroll si el contenido es muy largo */
+        }
+        .articles-grid .read-more-btn {
+            margin: 0 1.5rem 1.5rem;
+            align-self: flex-start;
+        }
+        /* Responsive para móviles */
+        @media (max-width: 1024px) {
+            .articles-grid {
+                grid-template-columns: 1fr; /* 1 columna en tablet/móvil */
+            }
+            .articles-grid article {
+                width: 100%;
+                max-width: 468px; /* Mantiene el ancho máximo en pantallas más pequeñas */
+                height: auto; /* Altura automática */
+            }
+        }
     </style>
 
 </head>
@@ -722,37 +1198,37 @@
          </div>-->
     
 
-    <header>
-    <div class="nexo-header">
-        <!--<div class="nexo-logo">OG</div>-->
-        <button id="go-to-profile-btn" class="icon-btn" style="display: none;" title="Ver Perfil"><!-- Icono de usuario --></button>
-         <button class="nav-toggle" id="menu-toggle" aria-label="Menú">☰</button>
-            <nav class="nav-menu category-nav" id="nav-menu">
-              <a href="#" class="nav-link active" data-category="juegos">Juegos</a>
-              <a href="#" class="nav-link" data-category="emuladores">Emuladores</a>
-              <a href="#" class="nav-link" data-category="extras">Extras</a>
-              <a href="#" class="nav-link" data-category="celulares">Celulares</a>
-              <a href="#" class="nav-link" data-category="programas">Programas</a>
-              <a href="#" class="nav-link" data-category="comunidad">Comunidad</a>
-              <a href="#" class="nav-link ganaplus-nav-link" data-category="ganaplus">GanaPlus</a>
-            <input type="text" id="search-input" placeholder="Buscar..." class="nav-search">
-           </nav>
-        </nav>
-
-        <div class="nexo-user-menu">
-            <div id="user-dropdown-menu" class="dropdown-content">
-                <div id="user-info" class="dropdown-section">
-                    </div>
-                <div class="dropdown-section">
-                    <input type="search" id="user-dropdown-search" placeholder="Buscar...">
-                </div>
-                 <div class="dropdown-section">
-                     <button id="open-add-modal-btn-header" class="action-btn" style="display: none; width: 100%;">+ Agregar Elemento</button>
+    <header class="compact-header">
+        <div class="header-main">
+            <a href="#" class="logo">GamesOG</a>
+            <nav class="category-nav" id="category-nav-new">
+                <a href="#" class="nav-link active" data-category="juegos">Juegos</a>
+                <a href="#" class="nav-link" data-category="emuladores">Emuladores</a>
+                <a href="#" class="nav-link" data-category="extras">Extras</a>
+                <a href="#" class="nav-link" data-category="celulares">Celulares</a>
+                <a href="#" class="nav-link" data-category="programas">Programas</a>
+                <a href="#" class="nav-link" data-category="comunidad">Comunidad</a>
+                <a href="#" class="nav-link ganaplus-nav-link" data-category="ganaplus">GanaPlus</a>
+            </nav>
+        </div>
+        <div class="header-actions">
+            <div class="search-container">
+                <button id="search-icon" class="icon-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+                <input type="text" id="search-input" class="search-input" placeholder="Buscar...">
+            </div>
+            <div class="user-menu-container">
+                <button id="user-menu-icon" class="icon-btn">
+                    <!-- El contenido (avatar o icono de login) se llenará con JS -->
+                </button>
+                <div id="user-dropdown-menu" class="dropdown-content">
+                    <!-- El contenido del dropdown se llenará con JS -->
                 </div>
             </div>
+            <button class="nav-toggle" id="menu-toggle" aria-label="Menú">☰</button>
         </div>
-    </div>
-</header>
+    </header>
 
 <!-- =============================================================== -->
 <!-- ============   PANEL DE ADMINISTRADOR INICIO   ================ -->
@@ -807,8 +1283,10 @@
 
  <div class="category-header">
             <h2 id="category-title">Juegos</h2>
-            <button id="open-add-modal-btn-menu" class="menu-icon" style="display: none;" title="Agregar Elemento">Subir Elemento</button>
             <div id="user-count" class="menu-icon" style="display: none;">Cargando...</div>
+            <button id="open-add-modal-btn-menu" class="icon-btn" style="display: none;" title="Agregar Elemento">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            </button>
             <a href="https://apkpure.com/gamesog/com.harvey.gamesog/download" class="menu-icon" title="Descargar APK">Descargar el App</a>
         </div>
 
@@ -890,7 +1368,7 @@
     </div>
 
     <!-- Ventana del Chat -->
-    <div id="chat-window" style="display: none; flex-direction: column;">
+    <div id="chat-window">
         <div class="chat-header">
             <span>Chat General</span>
             <button id="close-chat-button">&times;</button>
@@ -904,7 +1382,7 @@
         </form>
     </div>
 
-<div id="details-modal" class="modal-overlay" style="display: none;">
+<div id="details-modal" class="modal-overlay">
     <div class="modal-content large">
         <span id="close-details-modal-btn" class="close-btn">&times;</span>
         <div id="modal-details-content"></div>
@@ -1321,11 +1799,10 @@ const db = getDatabase(app);
 let currentUser = null;
 
   // --- UI Referencias ---
-  const userInfoDiv = document.getElementById('user-info');
-  const addBtnHeader = document.getElementById('open-add-modal-btn-header');
+  // --- UI Referencias ---
   const userCountDiv = document.getElementById('user-count');
   const itemsContainer = document.getElementById('items-container');
-  const categoryNav = document.querySelector('.category-nav');
+  const categoryNav = document.getElementById('category-nav-new');
   const categoryTitle = document.getElementById('category-title');
   const openAddModalBtnMenu = document.getElementById('open-add-modal-btn-menu');
   const addModal = document.getElementById('add-item-modal');
@@ -1339,10 +1816,11 @@ let currentUser = null;
   const closeGuideModalBtn = document.getElementById('close-guide-modal-btn');
   const guideModalContent = document.getElementById('guide-modal-content');
   const searchInput = document.getElementById('search-input');
-  const searchDropdown = document.getElementById('user-dropdown-search');
-  const menuBtn = document.getElementById('user-menu-btn');
-  const dropdown = document.getElementById('user-dropdown-menu');
-  const profileBtn = document.getElementById('go-to-profile-btn');
+  const searchIcon = document.getElementById('search-icon');
+  const searchContainer = document.querySelector('.search-container');
+  const userMenuIcon = document.getElementById('user-menu-icon');
+  const userDropdownMenu = document.getElementById('user-dropdown-menu');
+  const menuToggle = document.getElementById('menu-toggle');
   const incentiveModal = document.getElementById('signup-incentive-modal');
   const closeIncentiveBtn = document.getElementById('close-incentive-modal-btn');
   const incentiveLoginBtn = document.getElementById('incentive-login-btn');
@@ -1430,110 +1908,97 @@ const handleLogout = () => {
 };
 
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-
-   profileBtn.style.display = 'inline-block';
-   profileBtn.innerHTML = `<img src="${user.photoURL}" alt="Perfil" class="w-10 h-10 rounded-full border-2 border-cyan-400 object-cover">`;
-   profileBtn.title = user.displayName || "Ver Perfil";
-   profileBtn.onclick = () => {
-  window.location.href = 'perfil.html';
-};
-   saveDeviceInfo(user); // Guardar información del dispositivo del usuario logueado
-
-     menuBtn.innerHTML = `<text class="menu-icon">Cerrar Sesión</text>`;
-
-
-    renderUserUI(user);
-    guardarUsuarioEnPHP(user);
     currentUser = user;
-
-    // --- MODO FANTASMA PARA ADMIN ---
-    // Si el usuario NO es el admin, actualiza su estado en Firebase.
-    // Si es el admin, no se registra su presencia online.
-    if (user.uid !== ADMIN_UID) {
-        const userStatusRef = ref(db, `online_users/${user.uid}`);
-        set(userStatusRef, {
-            nombre: user.displayName || 'Anónimo',
-            uid: user.uid,
-            foto: user.photoURL || '',
-            timestamp: Date.now()
-        });
-        onDisconnect(userStatusRef).remove();
-    }
-
-    // Mostrar el contador de usuarios solo si el usuario es el administrador
-    if (user.uid === ADMIN_UID) {
-        userCountDiv.style.display = 'inline-block';
-        // Si es admin, mostramos el panel y cargamos los datos
-        document.getElementById('admin-stats-panel').style.display = 'block';
-        loadAdminStats();
-    }
-
-    if (messageInput && chatSubmitButton) {
-        messageInput.disabled = false;
-        chatSubmitButton.disabled = false;
-        messageInput.placeholder = 'Escribe un mensaje...';
-    }
-
-    menuBtn.onclick = handleLogout;
+    updateHeaderUI(user);
+    saveDeviceInfo(user);
     startChatPolling();
-  } else {
-    renderLoggedOutUI();
-    saveDeviceInfo(null); // Guardar información del dispositivo del invitado
-    profileBtn.style.display = 'none';
-    currentUser = null;
-    userCountDiv.style.display = 'none'; // Asegurarse de que esté oculto para invitados y no-admins
 
-    if (messageInput && chatSubmitButton) {
-        messageInput.disabled = true;
-        chatSubmitButton.disabled = true;
-        messageInput.placeholder = 'Inicia sesión para chatear...';
+    if (user) {
+        guardarUsuarioEnPHP(user);
+        // Lógica de estado online para usuarios no-admin
+        if (user.uid !== ADMIN_UID) {
+            const userStatusRef = ref(db, `online_users/${user.uid}`);
+            set(userStatusRef, {
+                nombre: user.displayName || 'Anónimo',
+                uid: user.uid,
+                foto: user.photoURL || '',
+                timestamp: Date.now()
+            });
+            onDisconnect(userStatusRef).remove();
+        }
+        // Lógica para admin
+        if (user.uid === ADMIN_UID) {
+            userCountDiv.style.display = 'inline-block';
+            document.getElementById('admin-stats-panel').style.display = 'block';
+            loadAdminStats();
+        }
+    } else {
+        // Lógica para invitados (anon)
+        userCountDiv.style.display = 'none';
+        const guestId = 'anon-' + Math.random().toString(36).substring(2, 10);
+        const anonRef = ref(db, `online_users/${guestId}`);
+        set(anonRef, { nombre: 'Invitado', uid: guestId, timestamp: Date.now() });
+        onDisconnect(anonRef).remove();
+        showIncentivePopup();
     }
-
-    const guestId = 'anon-' + Math.random().toString(36).substring(2, 10);
-    const anonRef = ref(db, `online_users/${guestId}`);
-    set(anonRef, {
-      nombre: 'Invitado',
-      uid: guestId,
-      timestamp: Date.now()
-    });
-
-    // Icono de "login" o hamburguesa
-    menuBtn.innerHTML = `<text class="menu-icon">Iniciar Sesión</text>`;
-    menuBtn.onclick = handleLogin;
-
-    // --- Lógica para el popup de incentivo ---
-    const popupShown = sessionStorage.getItem('signupPopupShown');
-    if (!popupShown) {
-        // Array de mensajes dinámicos
-        const incentiveMessages = [
-            { main: '¿Sabías que al registrarte puedes compartir tus propios juegos, programas y herramientas con miles de usuarios?', cta: '¡Crea tu cuenta gratis y empieza a contribuir!' },
-            { main: 'Desbloquea la capacidad de calificar y comentar en tus elementos favoritos. ¡Tu opinión cuenta!', cta: '¡Únete ahora y haz oír tu voz!' },
-            { main: 'Guarda tus elementos preferidos en tu perfil y accede a ellos fácilmente desde cualquier dispositivo.', cta: '¡Regístrate para crear tu biblioteca personal!' },
-            { main: 'Forma parte de una comunidad activa. Chatea, comparte ideas y descubre contenido exclusivo.', cta: '¡No te quedes fuera, únete a la conversación!' }
-        ];
-
-        // Seleccionar un mensaje al azar
-        const randomIndex = Math.floor(Math.random() * incentiveMessages.length);
-        const selectedMessage = incentiveMessages[randomIndex];
-
-        // Actualizar el contenido del popup
-        document.getElementById('incentive-main-text').textContent = selectedMessage.main;
-        document.getElementById('incentive-cta-text').textContent = selectedMessage.cta;
-
-        setTimeout(() => {
-            incentiveModal.style.display = 'flex';
-        }, 5000); // Retraso de 5 segundos
-    }
-    onDisconnect(anonRef).remove();
-    // Iniciar el polling del chat también para invitados
-    startChatPolling();
-  }
 });
 
-function renderUserUI(user) {
-  addBtnHeader.style.display = 'inline-block';
-  openAddModalBtnMenu.style.display = 'inline-block';
+function updateHeaderUI(user) {
+    userDropdownMenu.innerHTML = ''; // Limpiar menú
+    if (user) {
+        // Usuario logueado
+        userMenuIcon.innerHTML = `<img src="${user.photoURL}" alt="Perfil" title="${user.displayName || 'Ver Perfil'}">`;
+        
+        // Construir dropdown
+        const profileLink = document.createElement('a');
+        profileLink.href = 'perfil.html';
+        profileLink.textContent = 'Ver Perfil';
+        
+        const addLink = document.createElement('button');
+        addLink.textContent = '+ Agregar Elemento';
+        addLink.onclick = () => {
+            addModal.style.display = 'flex';
+            userDropdownMenu.classList.remove('show');
+        };
+
+        const logoutBtn = document.createElement('button');
+        logoutBtn.textContent = 'Cerrar Sesión';
+        logoutBtn.onclick = handleLogout;
+
+        userDropdownMenu.append(profileLink, addLink, logoutBtn);
+        openAddModalBtnMenu.style.display = 'inline-block';
+
+    } else {
+        // Usuario deslogueado
+        userMenuIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`;
+        
+        const loginBtn = document.createElement('button');
+        loginBtn.textContent = 'Iniciar Sesión / Registrarse';
+        loginBtn.onclick = handleLogin;
+        
+        userDropdownMenu.appendChild(loginBtn);
+        openAddModalBtnMenu.style.display = 'none';
+    }
+}
+
+function showIncentivePopup() {
+    const popupShown = sessionStorage.getItem('signupPopupShown');
+    if (popupShown) return;
+
+    const incentiveMessages = [
+        { main: '¿Sabías que al registrarte puedes compartir tus propios juegos, programas y herramientas con miles de usuarios?', cta: '¡Crea tu cuenta gratis y empieza a contribuir!' },
+        { main: 'Desbloquea la capacidad de calificar y comentar en tus elementos favoritos. ¡Tu opinión cuenta!', cta: '¡Únete ahora y haz oír tu voz!' },
+        { main: 'Guarda tus elementos preferidos en tu perfil y accede a ellos fácilmente desde cualquier dispositivo.', cta: '¡Regístrate para crear tu biblioteca personal!' },
+        { main: 'Forma parte de una comunidad activa. Chatea, comparte ideas y descubre contenido exclusivo.', cta: '¡No te quedes fuera, únete a la conversación!' }
+    ];
+    const selectedMessage = incentiveMessages[Math.floor(Math.random() * incentiveMessages.length)];
+
+    document.getElementById('incentive-main-text').textContent = selectedMessage.main;
+    document.getElementById('incentive-cta-text').textContent = selectedMessage.cta;
+
+    setTimeout(() => {
+        incentiveModal.style.display = 'flex';
+    }, 5000);
 }
 
 async function guardarUsuarioEnPHP(user) {
@@ -1553,10 +2018,6 @@ async function guardarUsuarioEnPHP(user) {
   }
 }
 
-function renderLoggedOutUI() {
-  addBtnHeader.style.display = 'none';
-  openAddModalBtnMenu.style.display = 'none';
-}
 
 
 const onlineUsersRef = ref(db, 'online_users');
@@ -1650,104 +2111,57 @@ onValue(onlineUsersRef, (snapshot) => {
   // =================================================================
   // === FUNCIÓN createItemCard MODIFICADA PARA EL ESTILO YOUTUBE ===
   // =================================================================
-    function createItemCard(item, category) {
-      const rating = isNaN(parseFloat(item.rating_avg)) ? "N/A" : parseFloat(item.rating_avg).toFixed(1);
-      const ratingCount = isNaN(parseInt(item.rating_count)) ? 0 : parseInt(item.rating_count);
-  
-      // Contenedor principal de la tarjeta
-      const cardDiv = document.createElement('div');
-      cardDiv.className = 'item-card';
-      cardDiv.dataset.id = item.id;
-      cardDiv.dataset.category = category;
-  
-      // --- Miniatura ---
-      const thumbnailDiv = document.createElement('div');
-      thumbnailDiv.className = 'card-thumbnail';
-      const img = document.createElement('img');
-      img.src = item.enlace_imagen;
-      img.alt = item.titulo;
-      thumbnailDiv.appendChild(img);
-  
-      // --- Detalles (Avatar + Texto) ---
-      const detailsDiv = document.createElement('div');
-      detailsDiv.className = 'card-details';
-  
-      // Avatar
-      const avatarDiv = document.createElement('div');
-      avatarDiv.className = 'card-avatar';
-      const avatarImg = document.createElement('img');
-      // Usamos un placeholder para el avatar con la inicial del creador
-      const creatorInitial = item.nombre_creador ? item.nombre_creador.charAt(0).toUpperCase() : 'G';
-      avatarImg.src = `https://placehold.co/36x36/777/FFF?text=${creatorInitial}`;
-      avatarImg.alt = item.nombre_creador;
-      avatarDiv.appendChild(avatarImg);
-  
-      // Información de Texto
-      const textInfoDiv = document.createElement('div');
-      textInfoDiv.className = 'card-text-info';
-  
-      const titleH3 = document.createElement('h3');
-      titleH3.className = 'card-title';
-      titleH3.textContent = item.titulo; // Uso seguro
-  
-      const metadataDiv = document.createElement('div');
-      metadataDiv.className = 'card-metadata';
-  
-      const channelNameP = document.createElement('p');
-      channelNameP.className = 'channel-name';
-      channelNameP.textContent = item.nombre_creador || 'Comunidad GamesOG'; // Nombre del creador o fallback
-  
-      // Contenedor para estadísticas y botón de "Me Gusta"
-      const statsAndLikesDiv = document.createElement('div');
-      statsAndLikesDiv.className = 'card-stats-container';
-  
-      const statsP = document.createElement('p');
-      statsP.className = 'video-stats';
-      
-      let statsHTML = `⭐ ${rating} (${ratingCount} votos)`;
-      // Solo muestra las vistas si el usuario actual es el administrador
-      if (currentUser && currentUser.uid === ADMIN_UID) {
-          const views = item.views_count || 0;
-          const viewText = views === 1 ? 'vista' : 'vistas';
-          statsHTML += ` &bull; ${views} ${viewText}`;
-      }
-      statsP.innerHTML = statsHTML;
-  
-      const likeButton = document.createElement('button');
-      likeButton.className = 'like-btn';
-      likeButton.innerHTML = `
-          <svg class="like-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
-          <span class="like-count">${item.likes_count || 0}</span>
-      `;
-  
-      statsAndLikesDiv.appendChild(statsP);
-      statsAndLikesDiv.appendChild(likeButton);
-  
-      metadataDiv.appendChild(channelNameP);
-      metadataDiv.appendChild(statsAndLikesDiv);
-  
-      textInfoDiv.appendChild(titleH3);
-      textInfoDiv.appendChild(metadataDiv);
-  
-      detailsDiv.appendChild(avatarDiv);
-      detailsDiv.appendChild(textInfoDiv);
-  
-      // Ensamblar la tarjeta
-      cardDiv.appendChild(thumbnailDiv);
-      cardDiv.appendChild(detailsDiv);
-  
-      // Si la categoría es 'GanaPlus', añade el ícono especial
-      if (category === 'ganaplus') {
-          cardDiv.classList.add('ganaplus-card');
-          const moneyIcon = document.createElement('div');
-          moneyIcon.className = 'ganaplus-icon';
-          moneyIcon.textContent = '💰';
-          // Lo añadimos dentro de la miniatura para que se superponga
-          thumbnailDiv.appendChild(moneyIcon);
-      }
-  
-      return cardDiv;
-  }
+function createItemCard(item, category) {
+    // Contenedor principal de la tarjeta, ahora es un enlace <a> que abre el modal
+    const cardLink = document.createElement('a');
+    cardLink.className = 'item-card';
+    cardLink.href = '#'; // Enlace de marcador de posición
+    cardLink.dataset.id = item.id;
+    cardLink.dataset.category = category;
+    cardLink.setAttribute('role', 'button');
+    cardLink.setAttribute('aria-label', `Ver detalles de ${item.titulo}`);
+
+    // --- Miniatura ---
+    const thumbnailDiv = document.createElement('div');
+    thumbnailDiv.className = 'card-thumbnail';
+    const img = document.createElement('img');
+    img.src = item.enlace_imagen;
+    img.alt = item.titulo;
+    img.loading = 'lazy'; // Carga diferida para mejorar el rendimiento
+    thumbnailDiv.appendChild(img);
+
+    // --- Información de Texto ---
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'item-card-info';
+
+    const baseTypeP = document.createElement('p');
+    baseTypeP.className = 'item-card-basetype';
+    // Usamos la categoría como el tipo base, o un valor por defecto
+    baseTypeP.textContent = category || 'Elemento';
+
+    const titleH3 = document.createElement('h3');
+    titleH3.className = 'item-card-title';
+    titleH3.textContent = item.titulo;
+
+    // Ensamblar la información de texto
+    infoDiv.appendChild(baseTypeP);
+    infoDiv.appendChild(titleH3);
+
+    // Ensamblar la tarjeta completa
+    cardLink.appendChild(thumbnailDiv);
+    cardLink.appendChild(infoDiv);
+
+    // Si la categoría es 'GanaPlus', añade el ícono especial
+    if (category === 'ganaplus') {
+        cardLink.classList.add('ganaplus-card'); // Puedes redefinir este estilo si es necesario
+        const moneyIcon = document.createElement('div');
+        moneyIcon.className = 'ganaplus-icon';
+        moneyIcon.textContent = '💰';
+        thumbnailDiv.appendChild(moneyIcon);
+    }
+
+    return cardLink;
+}
   // =================================================================
   // === FIN DE LA FUNCIÓN MODIFICADA ===============================
   // =================================================================
@@ -1845,31 +2259,26 @@ onValue(onlineUsersRef, (snapshot) => {
   });
 
   itemsContainer.addEventListener('click', (e) => {
-    const likeBtn = e.target.closest('.like-btn');
+    // Encuentra el elemento de la tarjeta más cercano al que se hizo clic
     const card = e.target.closest('.item-card');
 
-    if (likeBtn && card) {
-        e.stopPropagation(); // Evita que se abra el modal de detalles
-        handleLikeClick(likeBtn, card.dataset.id, card.dataset.category);
+    // Si no se hizo clic en una tarjeta, no hagas nada
+    if (!card) {
         return;
     }
 
-    const infoBtn = e.target.closest('.info-btn');
-    if (infoBtn && card) {
-        e.stopPropagation(); // Evita que se abra el otro modal
-        const itemId = card.dataset.id;
-        const item = currentItems.find(i => i.id == itemId);
-        if (item && item.guideContent) {
-            openGuideModal(item.titulo, item.guideContent);
-        }
-    } else if (card) {
-      openDetailsModal(card.dataset.id, card.dataset.category);
-    }
+    // Prevenir el comportamiento por defecto del enlace
+    e.preventDefault();
+
+    // Obtener los datos de la tarjeta y abrir el modal
+    const itemId = card.dataset.id;
+    const category = card.dataset.category;
+    openDetailsModal(itemId, category);
   });
 
   async function openDetailsModal(itemId, category) {
     modalDetailsContent.innerHTML = '<p>Cargando detalles...</p>';
-    detailsModal.style.display = 'flex';
+    detailsModal.classList.add('show');
 
     // Rastrear la vista ANTES de cargar los detalles para actualizar el contador
     trackView(itemId, category);
@@ -2105,11 +2514,11 @@ onValue(onlineUsersRef, (snapshot) => {
 
   openAddModalBtnMenu.addEventListener('click', () => addModal.style.display = 'flex');
   closeAddModalBtn.addEventListener('click', () => addModal.style.display = 'none');
-  closeDetailsModalBtn.addEventListener('click', () => detailsModal.style.display = 'none');
+  closeDetailsModalBtn.addEventListener('click', () => detailsModal.classList.remove('show'));
   closeGuideModalBtn.addEventListener('click', closeGuideModal);
   window.addEventListener('click', (event) => {
     if (event.target === addModal) addModal.style.display = 'none';
-    if (event.target === detailsModal) detailsModal.style.display = 'none';
+    if (event.target === detailsModal) detailsModal.classList.remove('show');
     if (event.target === guideModal) closeGuideModal();
   });
 
@@ -2159,11 +2568,36 @@ onValue(onlineUsersRef, (snapshot) => {
   }
 });
 
-  const toggleBtn = document.getElementById('menu-toggle');
-  const navMenu = document.getElementById('nav-menu');
+  // --- Lógica para los nuevos iconos del header ---
+  searchIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      searchContainer.classList.toggle('active');
+      if (searchContainer.classList.contains('active')) {
+          searchInput.focus();
+      }
+  });
 
-  toggleBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
+  userMenuIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      userDropdownMenu.classList.toggle('show');
+  });
+
+  menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      categoryNav.classList.toggle('active');
+  });
+
+  // Cerrar menús si se hace clic fuera
+  window.addEventListener('click', () => {
+      if (searchContainer.classList.contains('active')) {
+          searchContainer.classList.remove('active');
+      }
+      if (userDropdownMenu.classList.contains('show')) {
+          userDropdownMenu.classList.remove('show');
+      }
+      if (categoryNav.classList.contains('active')) {
+          categoryNav.classList.remove('active');
+      }
   });
 
   // --- Lógica del Chat ---
@@ -2179,14 +2613,14 @@ onValue(onlineUsersRef, (snapshot) => {
 
             // Abrir/Cerrar ventana de chat
             chatToggleButton.addEventListener('click', () => {
-                chatWindow.style.display = 'flex';
+                chatWindow.classList.add('show');
                 chatToggleButton.style.display = 'none';
                 resetNewMessageNotification(); // Oculta notificaciones al abrir
                 fetchMessages(); // Carga los mensajes inmediatamente
             });
 
             closeChatButton.addEventListener('click', () => {
-                chatWindow.style.display = 'none';
+                chatWindow.classList.remove('show');
                 chatToggleButton.style.display = 'flex';
                 updateLastSeenTimestamp(); // Guarda la hora del último mensaje visto
             });
