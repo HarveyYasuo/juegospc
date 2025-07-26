@@ -1251,6 +1251,19 @@
 </div>
 
 
+<!-- Botón para abrir el panel -->
+<button id="openAdminBtn">Panel de Administrador</button>
+
+<!-- El Panel/Modal -->
+<div id="adminPanelModal" class="modal">
+  <!-- Contenido del Modal -->
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2>Panel de Administrador</h2>
+    <p>Aquí va el contenido del panel...</p>
+  </div>
+</div>
+
 <footer>
     <div class="footer-left">
         <p>&copy; 2025 GamesOG. Todos los derechos reservados.</p>
@@ -2723,5 +2736,32 @@ onValue(onlineUsersRef, (snapshot) => {
   });
 
     </script>
+<script>
+// Obtener el modal
+var modal = document.getElementById("adminPanelModal");
+
+// Obtener el botón que abre el modal
+var btn = document.getElementById("openAdminBtn");
+
+// Obtener el elemento <span> que cierra el modal
+var span = document.getElementsByClassName("close-btn")[0];
+
+// Cuando el usuario hace clic en el botón, abre el modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// Cuando el usuario hace clic en <span> (x), cierra el modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// Cuando el usuario hace clic fuera del modal, lo cierra
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 </body>
 </html>
