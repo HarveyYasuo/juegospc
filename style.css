@@ -1162,7 +1162,6 @@ header {
   background-color: #1f1d1d;
   margin: 15% auto; /* 15% desde arriba y centrado horizontalmente */
   padding: 20px;
-  border: 1px solid #888;
   width: 80%;
   max-width: 600px;
   border-radius: 15px; /* Bordes redondeados */
