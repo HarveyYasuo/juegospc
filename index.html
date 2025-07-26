@@ -5,33 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Plataforma de juegos y recursos digitales">
     <meta name="keywords" content="juegos, emuladores, apps, comunidad gaming">
-    <title>GamesOG | Juegos Para PC</title>
+    <title>GamesOG</title>
     <link rel="icon" href="favicon.png" type="image/png">
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602"
+     crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-7408875684074602">
     <!-- Meta Tags para Redes Sociales (Open Graph & Twitter) -->
     <meta property="og:title" content="GamesOG: Tu Plataforma de Juegos y Recursos Digitales">
     <meta property="og:description" content="Descubre, comparte y descarga juegos, emuladores, programas y más. Únete a una comunidad activa y encuentra todo en un solo lugar.">
-    <meta property="og:image" content="https://juegospc.pro/gamesog-og-image.png"> <!-- Imagen de 1200x630px para compartir -->
-    <meta property="og:url" content="https://juegospc.pro/">
+    <meta property="og:image" content="https://gamesog.netlify.app/gamesog-og-image.png"> <!-- Imagen de 1200x630px para compartir -->
+    <meta property="og:url" content="https://gamesog.netlify.app/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="GamesOG">
-    
-    <!--Etiquetas Google Adsense-->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602"
-     crossorigin="anonymous"></script>
-
-     <meta name="google-adsense-account" content="ca-pub-7408875684074602">
-
-     <!--Fin de equitas google adsense-->
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="GamesOG: Tu Plataforma de Juegos y Recursos Digitales">
     <meta name="twitter:description" content="Descubre, comparte y descarga juegos, emuladores, programas y más. Únete a una comunidad activa y encuentra todo en un solo lugar.">
-    <meta name="twitter:image" content="https://juegospc.pro/gamesog-og-image.png"> <!-- Imagen para la tarjeta de Twitter -->
+    <meta name="twitter:image" content="https://gamesog.netlify.app/gamesog-og-image.png"> <!-- Imagen para la tarjeta de Twitter -->
+
+    <meta name="4944953a256973d4c9684b6e4370318168697432" content="4944953a256973d4c9684b6e4370318168697432" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <!--<meta name="google-adsense-account" content="ca-pub-7408875684074602"-->
+    <meta name='admaven-placement' content=BqdU9pjYG>
+    <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602"
+     crossorigin="anonymous"></script>-->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type='text/javascript' src='//temperweekly.com/a8/d8/a4/a8d8a4f19762d95ee8420f9d8cb80119.js'></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -622,8 +625,7 @@
         }
 
 
-        /* --- Estilos para el Modal de Ad-Blocker (Comentado) --- */
-        /*
+        /* --- Estilos para el Modal de Ad-Blocker --- */
         #adblock-modal {
             position: fixed;
             top: 0;
@@ -634,7 +636,7 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             z-index: 9999;
-            display: none; 
+            display: none; /* Inicialmente oculto */
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -660,7 +662,6 @@
         .modal-content-adblock h2 { color: #00B8D4; font-size: 2rem; margin-top: 0; }
         .modal-content-adblock p { font-size: 1.1rem; line-height: 1.6; }
         .modal-icon { font-size: 4rem; color: #D32F2F; margin-bottom: 1rem; }
-        */
 
         /* --- Estilos para el Panel de Administrador --- */
         .stat-card-admin {
@@ -720,37 +721,135 @@
          </div>-->
     
 
-    <!-- Barra Lateral de Navegación -->
-    <nav class="sidebar">
-        <a href="#" class="logo" title="GamesOG">OG</a>
-        <div class="category-nav">
-            <a href="#" class="nav-link active" data-category="juegos" title="Juegos">🎮</a>
-            <a href="#" class="nav-link" data-category="emuladores" title="Emuladores">🕹️</a>
-            <a href="#" class="nav-link" data-category="extras" title="Extras">✨</a>
-            <a href="#" class="nav-link" data-category="celulares" title="Celulares">📱</a>
-            <a href="#" class="nav-link" data-category="programas" title="Programas">💻</a>
-            <a href="#" class="nav-link" data-category="comunidad" title="Comunidad">🌐</a>
-            <a href="#" class="nav-link ganaplus-nav-link" data-category="ganaplus" title="GanaPlus">💰</a>
-        </div>
-        <input type="text" id="search-input" placeholder="Buscar...">
-        <div class="sidebar-bottom">
-             <button id="user-menu-btn" title="Iniciar Sesión / Perfil"></button>
-        </div>
-    </nav>
+    <header>
+    <div class="nexo-header">
+        <!--<div class="nexo-logo">OG</div>-->
+        <button id="go-to-profile-btn" class="icon-btn" style="display: none;" title="Ver Perfil"><!-- Icono de usuario --></button>
+         <button class="nav-toggle" id="menu-toggle" aria-label="Menú">☰</button>
+            <nav class="nav-menu category-nav" id="nav-menu">
+              <a href="#" class="nav-link active" data-category="juegos">Juegos</a>
+              <a href="#" class="nav-link" data-category="emuladores">Emuladores</a>
+              <a href="#" class="nav-link" data-category="extras">Extras</a>
+              <a href="#" class="nav-link" data-category="celulares">Celulares</a>
+              <a href="#" class="nav-link" data-category="programas">Programas</a>
+              <a href="#" class="nav-link" data-category="comunidad">Comunidad</a>
+              <a href="#" class="nav-link ganaplus-nav-link" data-category="ganaplus">GanaPlus</a>
+            <input type="text" id="search-input" placeholder="Buscar..." class="nav-search">
+           </nav>
+        </nav>
 
-    <!-- Contenido Principal -->
-    <div class="main-content">
-        <header class="main-header">
-            <h2 id="category-title">Juegos</h2>
-            <button id="open-add-modal-btn-menu" class="action-btn" style="display: none;">+ Subir Elemento</button>
-        </header>
-
-        <main id="items-container" class="items-grid">
-            <div id="loader" class="loader" style="display: none;"></div>
-            <!-- El contenido se cargará aquí -->
-        </main>
+        <div class="nexo-user-menu">
+            <div id="user-dropdown-menu" class="dropdown-content">
+                <div id="user-info" class="dropdown-section">
+                    </div>
+                <div class="dropdown-section">
+                    <input type="search" id="user-dropdown-search" placeholder="Buscar...">
+                </div>
+                 <div class="dropdown-section">
+                     <button id="open-add-modal-btn-header" class="action-btn" style="display: none; width: 100%;">+ Agregar Elemento</button>
+                </div>
+            </div>
+        </div>
     </div>
+</header>
 
+<!-- =============================================================== -->
+<!-- ============   PANEL DE ADMINISTRADOR INICIO   ================ -->
+<!-- =============================================================== -->
+<section id="admin-stats-panel" class="bg-gray-900 py-8" style="display: none;">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center">Panel de Administrador</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card: Vistas Totales -->
+            <div class="stat-card-admin">
+                <h3 class="text-lg font-semibold text-gray-300">Vistas Totales</h3>
+                <p id="admin-total-views" class="text-4xl font-bold text-white">Cargando...</p>
+            </div>
+            <!-- Card: Visitantes Únicos -->
+            <div class="stat-card-admin">
+                <h3 class="text-lg font-semibold text-gray-300">Visitantes Únicos</h3>
+                <p id="admin-unique-visitors" class="text-4xl font-bold text-white">Cargando...</p>
+            </div>
+            <!-- Card: Promedio de Tiempo -->
+            <div class="stat-card-admin">
+                <h3 class="text-lg font-semibold text-gray-300">Tiempo Promedio (Seg.)</h3>
+                <p id="admin-avg-time" class="text-4xl font-bold text-white">Cargando...</p>
+            </div>
+            <!-- Card: Total de "Me Gusta" -->
+            <div class="stat-card-admin">
+                <h3 class="text-lg font-semibold text-gray-300">"Me Gusta" Totales</h3>
+                <p id="admin-total-likes" class="text-4xl font-bold text-white">Cargando...</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+            <!-- Columna: Desglose de Dispositivos -->
+            <div class="stat-card-admin">
+                <h3 class="text-xl font-bold text-white mb-4">Desglose por Dispositivo</h3>
+                <ul id="admin-device-stats" class="stat-list-admin"><li>Cargando...</li></ul>
+            </div>
+            <!-- Columna: Desglose de Navegadores -->
+            <div class="stat-card-admin">
+                <h3 class="text-xl font-bold text-white mb-4">Top Navegadores</h3>
+                <ul id="admin-browser-stats" class="stat-list-admin"><li>Cargando...</li></ul>
+            </div>
+            <!-- Columna: Desglose de Países -->
+            <div class="stat-card-admin">
+                <h3 class="text-xl font-bold text-white mb-4">Top Países</h3>
+                <ul id="admin-country-stats" class="stat-list-admin"><li>Cargando...</li></ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =============================================================== -->
+<!-- =============   PANEL DE ADMINISTRADOR FINAL   ================ -->
+<!-- =============================================================== -->
+
+ <div class="category-header">
+            <h2 id="category-title">Juegos</h2>
+            <button id="open-add-modal-btn-menu" class="menu-icon" style="display: none;" title="Agregar Elemento">Subir Elemento</button>
+            <div id="user-count" class="menu-icon" style="display: none;">Cargando...</div>
+            <a href="https://apkpure.com/gamesog/com.harvey.gamesog/download" class="menu-icon" title="Descargar APK">Descargar el App</a>
+        </div>
+
+    <div id="page-wrapper" class="page-content-wrapper">
+        <main class="container">
+            <div id="items-container" class="items-grid">
+                <div id="loader" class="loader" style="display: none;"></div>
+                <!-- El contenido de los juegos, programas, etc., se cargará aquí -->
+            </div>
+        </main>
+
+        <!-- Contenedor para el anuncio de banner (Profitableratecpm) -->
+    <!--<div id="container-67652e013479741bdf0d0c4b6cc91601"></div>
+    <script async="async" data-cfasync="false" src="//pl27221912.profitableratecpm.com/67652e013479741bdf0d0c4b6cc91601/invoke.js"></script>-->
+
+        <!-- Panel lateral con el artículo sobre herramientas de IA -->
+        <aside id="ai-tools-sidebar" class="sidebar-article hidden">
+            <h3 class="sidebar-title">Guía Esencial de Adobe Creative Cloud</h3>
+            <p class="sidebar-intro">
+                Explora el universo de <strong>Adobe</strong>, el estándar de la industria para la creatividad digital. Desde la edición de fotos y video hasta el diseño gráfico y los efectos visuales, estas herramientas te permiten crear cualquier cosa que imagines.
+            </p>
+            <ul class="ai-tools-list">
+                <li><strong>Adobe Photoshop:</strong> El rey de la edición de imágenes. Ideal para retocar fotografías, crear composiciones complejas, diseño web y pintura digital.</li>
+                <li><strong>Adobe Illustrator:</strong> La herramienta vectorial por excelencia. Perfecta para crear logotipos, iconos, ilustraciones y tipografías que se pueden escalar a cualquier tamaño sin perder calidad.</li>
+                <li><strong>Adobe Premiere Pro:</strong> El estándar profesional para la edición de video. Utilizado en cine, televisión y web para montar, corregir color y añadir audio a tus producciones.</li>
+                <li><strong>Adobe After Effects:</strong> El mago de los efectos visuales y motion graphics. Crea animaciones, intros, transiciones y añade efectos especiales a tus videos.</li>
+                <li><strong>Adobe Animate:</strong> La evolución del legendario Flash. Crea animaciones interactivas para juegos, aplicaciones y la web. <em>(Nota: Adobe Flash Player ya no tiene soporte oficial).</em></li>
+            </ul>
+            
+            <!-- Nueva sección de precios -->
+            <h4 style="font-size: 1.2rem; font-weight: 600; color: #fff; margin-top: 1.5rem; margin-bottom: 0.5rem;">Precios y Prueba Gratuita</h4>
+            <p class="sidebar-intro" style="margin-bottom: 1rem;">
+                Adobe funciona con un modelo de suscripción. Puedes optar por una <strong>suscripción a una sola aplicación</strong> (si solo necesitas una) o el plan <strong>Creative Cloud Todas las Aplicaciones</strong>, que te da acceso a más de 20 herramientas.
+            </p>
+            <ul class="ai-tools-list">
+                 <li><strong>Prueba Gratuita:</strong> ¡Puedes probar cualquier aplicación o el plan completo <strong>gratis durante 7 días</strong>! Es la mejor forma de ver si se adapta a tus necesidades.</li>
+                 <li><strong>Descuento para Estudiantes:</strong> Si eres estudiante o profesor, puedes obtener un descuento de más del 60% en el plan de Todas las Aplicaciones.</li>
+            </ul>
+
+            <p class="sidebar-outro">¡Explora, crea y lleva tus ideas al siguiente nivel con el poder de Adobe!</p>
+        </aside>
+    </div>
     <div id="add-item-modal" class="modal-overlay" style="display: none;">
         <div class="modal-content">
             <span id="close-modal-btn" class="close-btn">&times;</span>
@@ -1104,8 +1203,7 @@
         </div>
     </div>
 
-    <!-- Modal que se mostrará si se detecta un Ad-Blocker (Comentado) -->
-    <!--
+    <!-- Modal que se mostrará si se detecta un Ad-Blocker -->
     <div id="adblock-modal">
         <div class="modal-content-adblock">
             <div class="modal-icon">!</div>
@@ -1118,10 +1216,9 @@
             </p>
         </div>
     </div>
-    -->
 
-  <!-- Elemento de cebo para la detección por DOM (Comentado) -->
-  <!-- <div class="ad-banner text-ad ad-container" id="ad-bait-element"></div> -->
+  <!-- Elemento de cebo para la detección por DOM -->
+    <div class="ad-banner text-ad ad-container" id="ad-bait-element"></div>
 
 
 <!-- Popup para Pedir Apoyo a Usuarios Recurrentes -->
@@ -1153,65 +1250,26 @@
 </div>
 
 
-<!-- Botón para abrir el panel -->
-<button id="openAdminBtn">Panel de Administrador</button>
-
-<!-- El Panel/Modal -->
-<div id="adminPanelModal" class="modal">
-  <!-- Contenido del Modal -->
-  <!-- =============================================================== -->
-<!-- ============   PANEL DE ADMINISTRADOR INICIO   ================ -->
-<!-- =============================================================== -->
-<section id="admin-stats-panel" class="bg-gray-900 py-8" style="display: none;">
-    <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center">Panel de Administrador</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Card: Vistas Totales -->
-            <div class="stat-card-admin">
-                <h3 class="text-lg font-semibold text-gray-300">Vistas Totales</h3>
-                <p id="admin-total-views" class="text-4xl font-bold text-white">Cargando...</p>
-            </div>
-            <!-- Card: Visitantes Únicos -->
-            <div class="stat-card-admin">
-                <h3 class="text-lg font-semibold text-gray-300">Visitantes Únicos</h3>
-                <p id="admin-unique-visitors" class="text-4xl font-bold text-white">Cargando...</p>
-            </div>
-            <!-- Card: Promedio de Tiempo -->
-            <div class="stat-card-admin">
-                <h3 class="text-lg font-semibold text-gray-300">Tiempo Promedio (Seg.)</h3>
-                <p id="admin-avg-time" class="text-4xl font-bold text-white">Cargando...</p>
-            </div>
-            <!-- Card: Total de "Me Gusta" -->
-            <div class="stat-card-admin">
-                <h3 class="text-lg font-semibold text-gray-300">"Me Gusta" Totales</h3>
-                <p id="admin-total-likes" class="text-4xl font-bold text-white">Cargando...</p>
-            </div>
+<footer>
+    <div class="footer-left">
+        <p>&copy; 2025 GamesOG. Todos los derechos reservados.</p>
+    </div>
+    <div class="footer-center">
+        <div class="footer-links">
+            <a href="/about.html">Acerca de Nosotros</a> |
+            <a href="/privacy.html">Política de Privacidad</a> |
+            <a href="/terms.html">Términos de Servicio</a>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
-            <!-- Columna: Desglose de Dispositivos -->
-            <div class="stat-card-admin">
-                <h3 class="text-xl font-bold text-white mb-4">Desglose por Dispositivo</h3>
-                <ul id="admin-device-stats" class="stat-list-admin"><li>Cargando...</li></ul>
-            </div>
-            <!-- Columna: Desglose de Navegadores -->
-            <div class="stat-card-admin">
-                <h3 class="text-xl font-bold text-white mb-4">Top Navegadores</h3>
-                <ul id="admin-browser-stats" class="stat-list-admin"><li>Cargando...</li></ul>
-            </div>
-            <!-- Columna: Desglose de Países -->
-            <div class="stat-card-admin">
-                <h3 class="text-xl font-bold text-white mb-4">Top Países</h3>
-                <ul id="admin-country-stats" class="stat-list-admin"><li>Cargando...</li></ul>
-            </div>
+        <div class="footer-links" style="margin-top: 0.5rem;">
+            <a href="mailto:harveyrivas66@gmail.com" title="Correo Principal">Correo Principal</a> |
+            <a href="mailto:oficialmenteharvey@gmail.com" title="Correo Alternativo">Correo Alternativo</a> |
+            <a href="https://wa.me/573225695953" target="_blank" rel="noopener noreferrer" title="Contactar por WhatsApp">WhatsApp</a> |
+            <a href="https://www.instagram.com/carlosrivas8174/" target="_blank" rel="noopener noreferrer" title="Visitar Instagram">Instagram</a>
         </div>
     </div>
-</section>
-<!-- =============================================================== -->
-<!-- =============   PANEL DE ADMINISTRADOR FINAL   ================ -->
-<!-- =============================================================== -->
-</div>
-
-<!-- Footer eliminado para un diseño más compacto -->
+    <div class="footer-right">
+    </div>
+</footer>
 
 <!-- Elemento de audio para el sonido de notificación -->
 <audio id="chat-notification-sound" src="https://cdn.freesound.org/previews/219/219244_4082823-lq.mp3" preload="auto"></audio>
@@ -2535,8 +2593,6 @@ onValue(onlineUsersRef, (snapshot) => {
       });
   }
 
-  // --- Detección de Ad-Blocker (Comentado) ---
-  /*
   // Variable para asegurar que el modal se muestre solo una vez
             let adBlockerDetected = false;
             const modal = document.getElementById('adblock-modal');
@@ -2552,7 +2608,7 @@ onValue(onlineUsersRef, (snapshot) => {
             // --- TÉCNICA 1: Cebo de Red (Honeypot Script) ---
             // Creamos un script que sabemos que será bloqueado.
             const baitScript = document.createElement('script');
-            baitScript.src = '';
+            baitScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
             baitScript.async = true;
             
             // Si el script falla en cargar (es bloqueado), se dispara 'onerror'.
@@ -2582,7 +2638,6 @@ onValue(onlineUsersRef, (snapshot) => {
                     console.log('DOM bait check passed. Element is visible.');
                 }
             }, 2000); // Esperamos 2 segundos para dar tiempo al ad-blocker a modificar el DOM.
-    */
 
 
   // --- Lógica del Panel de Administrador ---
@@ -2664,32 +2719,5 @@ onValue(onlineUsersRef, (snapshot) => {
   });
 
     </script>
-<script>
-// Obtener el modal
-var modal = document.getElementById("adminPanelModal");
-
-// Obtener el botón que abre el modal
-var btn = document.getElementById("openAdminBtn");
-
-// Obtener el elemento <span> que cierra el modal
-var span = document.getElementsByClassName("close-btn")[0];
-
-// Cuando el usuario hace clic en el botón, abre el modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// Cuando el usuario hace clic en <span> (x), cierra el modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// Cuando el usuario hace clic fuera del modal, lo cierra
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
 </body>
 </html>
