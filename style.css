@@ -485,11 +485,11 @@ header {
 
 .details-image {
     flex: 1 1 250px;
-    max-width: 100%;
+    max-width: 250ppx;
 }
 
 .details-image img {
-    width: 100%;
+    width: 250px;
     border-radius: 8px;
 }
 
@@ -682,7 +682,7 @@ header {
 }
 
 /* --- Media Queries --- */
-@media (max-width: 768px) {
+@media (max-width: 250px) {
     .nav-toggle {
         display: block;
     }
@@ -1162,6 +1162,7 @@ header {
   background-color: #1f1d1d;
   margin: 15% auto; /* 15% desde arriba y centrado horizontalmente */
   padding: 20px;
+  border: 1px solid #888;
   width: 80%;
   max-width: 600px;
   border-radius: 15px; /* Bordes redondeados */
