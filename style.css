@@ -1159,7 +1159,7 @@ header {
 
 /* Estilos para la ventana del modal */
 .modal-content {
-  background-color: #fefefe;
+  background-color: #1f1d1d;
   margin: 15% auto; /* 15% desde arriba y centrado horizontalmente */
   padding: 20px;
   border: 1px solid #888;
