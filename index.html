@@ -55,7 +55,7 @@
         </div>
 
         <div class="start-menu-footer">
-            <div class="user-profile">
+            <div class="user-profile" id="user-profile-container">
                 <i class="fas fa-user-circle"></i>
                 <span>No Disponible</span>
             </div>
@@ -77,15 +77,19 @@
             <div class="taskbar-icon"><i class="fas fa-search"></i></div>
             <div class="taskbar-icon" id="task-view-btn"><i class="fas fa-th-large"></i></div>
             <div class="taskbar-icon"><i class="fab fa-edge"></i></div>
-            <div class="taskbar-icon" id="explorer-icon"><i class="fas fa-folder"></i></div>
+            <div class="taskbar-icon" id="chat-icon"><i class="fas fa-comments"></i></div>
         </div>
         <div class="system-tray">
+            <div class="tray-icon" id="online-users-icon" title="Usuarios en línea">
+                <i class="fas fa-users"></i>
+                <span id="online-users-count">0</span>
+            </div>
             <div class="tray-icon"><i class="fas fa-wifi"></i></div>
             <div class="tray-icon"><i class="fas fa-volume-up"></i></div>
             <div id="clock">12:00 PM</div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

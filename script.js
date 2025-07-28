@@ -1,10 +1,30 @@
+// --- Firebase y Autenticación ---
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getDatabase, ref, set, onDisconnect, onValue, serverTimestamp, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDXqLCRY6OgcXTXsAR-TvnC4bIICjDndsw",
+    authDomain: "todo-en-uno-e79c7.firebaseapp.com",
+    projectId: "todo-en-uno-e79c7",
+    storageBucket: "todo-en-uno-e79c7.appspot.com",
+    messagingSenderId: "122399269850",
+    appId: "1:122399269850:web:210049a35cc9abff9fd6e3",
+    databaseURL: "https://todo-en-uno-e79c7-default-rtdb.firebaseio.com/"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+const db = getDatabase(app);
+
 document.addEventListener('DOMContentLoaded', () => {
     const desktop = document.getElementById('desktop');
     const startBtn = document.getElementById('start-btn');
     const startMenu = document.getElementById('start-menu');
     const searchInput = startMenu.querySelector('input[type="text"]');
     const clockElement = document.getElementById('clock');
-    const explorerIcon = document.getElementById('explorer-icon');
+    const chatIcon = document.getElementById('chat-icon');
     const youtubeIcon = document.getElementById('youtube-icon');
     const appsGrid = document.querySelector('.apps-grid');
     const pinnedApps = document.querySelector('.pinned-apps');
@@ -13,6 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskViewBtn = document.getElementById('task-view-btn'); // Nuevo
     const taskView = document.getElementById('task-view'); // Nuevo
     const taskViewGrid = document.querySelector('.task-view-grid'); // Nuevo
+    const userProfileContainer = document.getElementById('user-profile-container');
+    const onlineUsersCount = document.getElementById('online-users-count');
 
     let currentPage = 1;
     let isLoading = false;
@@ -211,7 +233,71 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.addEventListener('mouseup', () => { activeWindow = null; });
 
-    explorerIcon.addEventListener('click', () => createWindow('explorer', 'Explorador de Archivos', '<p>Contenido del explorador...</p>'));
+    chatIcon.addEventListener('click', () => {
+        if (document.getElementById('window-chat')) return; // No abrir si ya existe
+
+        const chatContent = `
+            <div class="chat-messages" id="chat-messages-area"></div>
+            <div class="chat-input-container">
+                <input type="text" id="chat-message-input" placeholder="Escribe un mensaje...">
+                <button id="chat-send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        `;
+        createWindow('chat', 'Chat General', chatContent, { width: '400px', height: '600px' });
+
+        const sendBtn = document.getElementById('chat-send-btn');
+        const messageInput = document.getElementById('chat-message-input');
+        const messagesArea = document.getElementById('chat-messages-area');
+        const messagesRef = ref(db, 'messages');
+
+        const sendMessage = () => {
+            const user = auth.currentUser;
+            if (!user) {
+                alert('Debes iniciar sesión para enviar mensajes.');
+                return;
+            }
+            const messageText = messageInput.value.trim();
+            if (messageText) {
+                push(messagesRef, {
+                    text: messageText,
+                    timestamp: serverTimestamp(),
+                    uid: user.uid,
+                    displayName: user.displayName,
+                    photoURL: user.photoURL
+                });
+                messageInput.value = '';
+            }
+        };
+
+        sendBtn.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        onChildAdded(messagesRef, (snapshot) => {
+            const msg = snapshot.val();
+            const messageEl = document.createElement('div');
+            messageEl.classList.add('chat-message');
+            
+            const currentUser = auth.currentUser;
+            if (currentUser && currentUser.uid === msg.uid) {
+                messageEl.classList.add('sent');
+            } else {
+                messageEl.classList.add('received');
+            }
+
+            messageEl.innerHTML = `
+                <img src="${msg.photoURL || 'favicon.png'}" alt="${msg.displayName}" class="chat-avatar">
+                <div class="message-content">
+                    <div class="message-sender">${msg.displayName}</div>
+                    <div class="message-text">${msg.text}</div>
+                </div>
+            `;
+            messagesArea.appendChild(messageEl);
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+        });
+    });
+
     youtubeIcon.addEventListener('dblclick', () => {
         if (document.getElementById('window-youtube')) return;
         const youtubeContent = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
@@ -221,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     settingsBtn.addEventListener('click', () => {
         if (document.getElementById('window-about-main')) return;
-        const aboutWindowContent = `<div class="about-content"><div class="about-header"><i class="fab fa-windows"></i><h2>GamesOG</h2></div><p>Versión 1.0 (Compilación SO 2024.07)</p><p>© GamesPC. Todos los derechos reservados.</p><p>El sistema operativo GamesOG y su interfaz de usuario están protegidos por las leyes de marca comercial y otros derechos de propiedad intelectual.</p><p>La licencia de este producto se concede de acuerdo con los <a href="#" id="terms-link">Términos de Servicio</a> y la <a href="#" id="privacy-link">Política de Privacidad</a>.</p><p>Licencia para: harveyrivas66@gmail.com</p></div>`;
+        const aboutWindowContent = `<div class="about-content"><div class="about-header"><i class="fab fa-windows"></i><h2>GamesOG</h2></div><p>Versión 1.0 (Compilación SO 2024.07)</p><p>© Harvey & OptiProjects. Todos los derechos reservados.</p><p>El sistema operativo GamesOG y su interfaz de usuario están protegidos por las leyes de marca comercial y otros derechos de propiedad intelectual.</p><p>La licencia de este producto se concede de acuerdo con los <a href="#" id="terms-link">Términos de Servicio</a> y la <a href="#" id="privacy-link">Política de Privacidad</a>.</p><p>Licencia para: harveyrivas66@gmail.com</p></div>`;
         const aboutWindowFooter = `<div class="window-footer"><button class="accept-btn">Aceptar</button></div>`;
         createWindow('about-main', 'Acerca de GamesOG', aboutWindowContent, { isModal: true, footer: aboutWindowFooter, width: '500px', height: 'auto' });
         const aboutWindow = document.getElementById('window-about-main');
@@ -234,5 +320,107 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             createWindow('privacy', 'Política de Privacidad', privacyContent, { width: '800px', height: '600px' });
         });
+    });
+
+    // --- Lógica de Autenticación y Presencia de Firebase ---
+    
+    function updateUserProfileUI(user) {
+        userProfileContainer.innerHTML = ''; // Limpiar el contenedor
+
+        if (user) {
+            // Usuario ha iniciado sesión
+            const profilePic = document.createElement('img');
+            profilePic.src = user.photoURL || 'favicon.png'; // Usa la foto de Google o un avatar por defecto
+            profilePic.alt = user.displayName;
+            profilePic.style.width = '24px';
+            profilePic.style.height = '24px';
+            profilePic.style.borderRadius = '50%';
+            profilePic.style.marginRight = '8px';
+
+            const userName = document.createElement('span');
+            userName.textContent = user.displayName;
+
+            const signOutBtn = document.createElement('button');
+            signOutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i>';
+            signOutBtn.title = 'Cerrar Sesión';
+            signOutBtn.style.background = 'none';
+            signOutBtn.style.border = 'none';
+            signOutBtn.style.color = 'white';
+            signOutBtn.style.cursor = 'pointer';
+            signOutBtn.style.marginLeft = '15px';
+
+            signOutBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const userStatusRef = ref(db, '/status/' + user.uid);
+                set(userStatusRef, { isOnline: false, last_changed: serverTimestamp() });
+                signOut(auth);
+            });
+
+            userProfileContainer.appendChild(profilePic);
+            userProfileContainer.appendChild(userName);
+            userProfileContainer.appendChild(signOutBtn);
+
+        } else {
+            // Usuario no ha iniciado sesión
+            const signInBtn = document.createElement('button');
+            signInBtn.textContent = 'Iniciar Sesión con Google';
+            signInBtn.style.background = '#4285F4';
+            signInBtn.style.color = 'white';
+            signInBtn.style.border = 'none';
+            signInBtn.style.padding = '8px 12px';
+            signInBtn.style.borderRadius = '4px';
+            signInBtn.style.cursor = 'pointer';
+
+            signInBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                signInWithPopup(auth, provider).catch(error => {
+                    console.error("Error al iniciar sesión:", error);
+                });
+            });
+            
+            const defaultIcon = document.createElement('i');
+            defaultIcon.className = 'fas fa-user-circle';
+            const defaultText = document.createElement('span');
+            defaultText.textContent = 'Invitado';
+
+            userProfileContainer.appendChild(defaultIcon);
+            userProfileContainer.appendChild(defaultText);
+            userProfileContainer.appendChild(signInBtn);
+        }
+    }
+
+    onAuthStateChanged(auth, user => {
+        console.log('Auth state changed. User:', user);
+        updateUserProfileUI(user);
+
+        if (user) {
+            const userStatusRef = ref(db, '/status/' + user.uid);
+            const presenceInfo = {
+                isOnline: true,
+                last_changed: serverTimestamp(),
+                displayName: user.displayName,
+                photoURL: user.photoURL
+            };
+
+            onDisconnect(userStatusRef).set({ isOnline: false, last_changed: serverTimestamp() }).then(() => {
+                console.log('Setting user online:', user.uid);
+                set(userStatusRef, presenceInfo);
+            });
+        }
+    });
+
+    // Escuchar para actualizar el contador de usuarios en línea
+    const statusRef = ref(db, 'status');
+    onValue(statusRef, (snapshot) => {
+        console.log('Status node changed. Snapshot exists:', snapshot.exists());
+        if (snapshot.exists()) {
+            const allUsers = snapshot.val();
+            console.log('All users data:', allUsers);
+            const onlineCount = Object.values(allUsers).filter(u => u && u.isOnline).length;
+            console.log('Calculated online count:', onlineCount);
+            onlineUsersCount.textContent = onlineCount;
+        } else {
+            onlineUsersCount.textContent = '0';
+        }
     });
 });
