@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     settingsBtn.addEventListener('click', () => {
         if (document.getElementById('window-about-main')) return;
-        const aboutWindowContent = `<div class="about-content"><div class="about-header"><i class="fab fa-windows"></i><h2>GamesOG</h2></div><p>Versión 1.0 (Compilación SO 2024.07)</p><p>© Harvey & OptiProjects. Todos los derechos reservados.</p><p>El sistema operativo GamesOG y su interfaz de usuario están protegidos por las leyes de marca comercial y otros derechos de propiedad intelectual.</p><p>La licencia de este producto se concede de acuerdo con los <a href="#" id="terms-link">Términos de Servicio</a> y la <a href="#" id="privacy-link">Política de Privacidad</a>.</p><p>Licencia para: harveyrivas66@gmail.com</p></div>`;
+        const aboutWindowContent = `<div class="about-content"><div class="about-header"><i class="fab fa-windows"></i><h2>GamesOG</h2></div><p>Versión 1.0 (Compilación SO 2024.07)</p><p>© GamesPC. Todos los derechos reservados.</p><p>El sistema operativo GamesOG y su interfaz de usuario están protegidos por las leyes de marca comercial y otros derechos de propiedad intelectual.</p><p>La licencia de este producto se concede de acuerdo con los <a href="#" id="terms-link">Términos de Servicio</a> y la <a href="#" id="privacy-link">Política de Privacidad</a>.</p><p>Licencia para: harveyrivas66@gmail.com</p></div>`;
         const aboutWindowFooter = `<div class="window-footer"><button class="accept-btn">Aceptar</button></div>`;
         createWindow('about-main', 'Acerca de GamesOG', aboutWindowContent, { isModal: true, footer: aboutWindowFooter, width: '500px', height: 'auto' });
         const aboutWindow = document.getElementById('window-about-main');
