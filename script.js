@@ -480,7 +480,6 @@ document.addEventListener('DOMContentLoaded', () => {
             onlineUsersCount.textContent = '0';
         }
     });
-});
     // --- Lógica de Perfil de Usuario ---
     async function openProfileWindow(userId) {
         if (!userId || userId.startsWith('guest_')) return; // No abrir perfiles para invitados
@@ -625,3 +624,4 @@ document.addEventListener('DOMContentLoaded', () => {
             notification.remove();
         }, 5000); // 5 segundos
     }
+});
