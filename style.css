@@ -749,3 +749,94 @@ body {
 .profile-edit-btn:hover, .profile-save-btn:hover {
     background-color: #005a9e;
 }
+/* --- Estilos para la Ventana de Configuración --- */
+.settings-window-body {
+    padding: 1rem;
+    background-color: #f5f5f5;
+}
+
+.settings-section h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+.wallpaper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.wallpaper-thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.wallpaper-thumbnail:hover {
+    border-color: #0078d4;
+}
+
+.wallpaper-thumbnail.selected {
+    border-color: #0078d4;
+    box-shadow: 0 0 10px rgba(0, 120, 212, 0.5);
+}
+/* --- Estilos para Notificaciones --- */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000; /* Por encima de todo */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notification {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideIn 0.5s ease-out forwards, fadeOut 0.5s ease-in forwards 4.5s;
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.notification.info {
+    background-color: rgba(0, 120, 212, 0.8);
+}
+
+.notification.success {
+    background-color: rgba(16, 124, 16, 0.8);
+}
+
+.notification.error {
+    background-color: rgba(232, 17, 35, 0.8);
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}

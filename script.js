@@ -20,6 +20,12 @@ const db = getDatabase(app);
 
 document.addEventListener('DOMContentLoaded', () => {
     const desktop = document.getElementById('desktop');
+
+    // Cargar fondo de pantalla guardado al iniciar
+    const savedWallpaper = localStorage.getItem('desktopWallpaper');
+    if (savedWallpaper) {
+        desktop.style.backgroundImage = `url('${savedWallpaper}')`;
+    }
     const startBtn = document.getElementById('start-btn');
     const startMenu = document.getElementById('start-menu');
     const searchInput = startMenu.querySelector('input[type="text"]');
@@ -285,6 +291,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 messageEl.classList.add('sent');
             } else {
                 messageEl.classList.add('received');
+                // Notificar solo si la ventana de chat no está activa o el mensaje es de otro usuario
+                if (document.getElementById('window-chat')) {
+                    showNotification(`Nuevo mensaje de ${msg.displayName}`);
+                }
             }
 
             messageEl.innerHTML = `
@@ -314,20 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     settingsBtn.addEventListener('click', () => {
-        if (document.getElementById('window-about-main')) return;
-        const aboutWindowContent = `<div class="about-content"><div class="about-header"><i class="fab fa-windows"></i><h2>GamesOG</h2></div><p>Versión 1.0 (Compilación SO 2024.07)</p><p>© Harvey & OptiProjects. Todos los derechos reservados.</p><p>El sistema operativo GamesOG y su interfaz de usuario están protegidos por las leyes de marca comercial y otros derechos de propiedad intelectual.</p><p>La licencia de este producto se concede de acuerdo con los <a href="#" id="terms-link">Términos de Servicio</a> y la <a href="#" id="privacy-link">Política de Privacidad</a>.</p><p>Licencia para: harveyrivas66@gmail.com</p></div>`;
-        const aboutWindowFooter = `<div class="window-footer"><button class="accept-btn">Aceptar</button></div>`;
-        createWindow('about-main', 'Acerca de GamesOG', aboutWindowContent, { isModal: true, footer: aboutWindowFooter, width: '500px', height: 'auto' });
-        const aboutWindow = document.getElementById('window-about-main');
-        aboutWindow.querySelector('.accept-btn').addEventListener('click', () => desktop.removeChild(aboutWindow));
-        aboutWindow.querySelector('#terms-link').addEventListener('click', (e) => {
-            e.preventDefault();
-            createWindow('terms', 'Térmimos de Servicio', termsContent, { width: '800px', height: '600px' });
-        });
-        aboutWindow.querySelector('#privacy-link').addEventListener('click', (e) => {
-            e.preventDefault();
-            createWindow('privacy', 'Política de Privacidad', privacyContent, { width: '800px', height: '600px' });
-        });
+        openSettingsWindow();
     });
 
     // --- Lógica de Autenticación y Presencia de Firebase ---
@@ -448,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const userInfo = { displayName: user.displayName, photoURL: user.photoURL };
             setupPresence(user.uid, userInfo);
 
-            // Crear perfil si no existe
+            // Crear perfil si no existe y notificar bienvenida
             const profileRef = ref(db, `profiles/${user.uid}`);
             onValue(profileRef, (snapshot) => {
                 if (!snapshot.exists()) {
@@ -458,6 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         bio: '¡Hola! Soy nuevo en GamesOG.',
                         favoriteGames: {}
                     });
+                    showNotification(`¡Bienvenido, ${user.displayName}!`, 'success');
                 }
             }, { onlyOnce: true }); // Solo se ejecuta una vez
 
@@ -558,4 +556,72 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error("Error al abrir la ventana de perfil:", error);
         }
+    }
+    // --- Lógica de Configuración ---
+    function openSettingsWindow() {
+        const windowId = 'window-settings';
+        if (document.getElementById(windowId)) return;
+
+        const wallpapers = [
+            'https://get.wallhere.com/photo/Windows-11-Microsoft-minimalism-logo-simple-background-blue-background-light-blue-operating-system-2073323.jpg',
+            'https://w.forfun.com/fetch/e2/e2550198837517b6752205b24938c349.jpeg',
+            'https://w0.peakpx.com/wallpaper/379/905/HD-wallpaper-windows-11-dark-mode-windows-11-dark-theme.jpg',
+            'https://cdn.wallpapersafari.com/4/84/A3Bq5c.jpg',
+            'https://i.redd.it/p8j6i9z2b2h71.png',
+            'https://wallpapercave.com/wp/wp10809353.jpg'
+        ];
+
+        let wallpaperGridHTML = '';
+        const currentWallpaper = localStorage.getItem('desktopWallpaper') || wallpapers[0];
+
+        wallpapers.forEach(url => {
+            const isSelected = url === currentWallpaper ? 'selected' : '';
+            wallpaperGridHTML += `<div class="wallpaper-thumbnail ${isSelected}" style="background-image: url('${url}')" data-url="${url}"></div>`;
+        });
+
+        const settingsContent = `
+            <div class="settings-window-body">
+                <div class="settings-section">
+                    <h3>Fondo de Escritorio</h3>
+                    <div class="wallpaper-grid" id="wallpaper-grid-container">
+                        ${wallpaperGridHTML}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        createWindow('settings', 'Configuración', settingsContent, { width: '600px', height: '400px' });
+
+        const gridContainer = document.getElementById('wallpaper-grid-container');
+        gridContainer.addEventListener('click', (e) => {
+            if (e.target && e.target.classList.contains('wallpaper-thumbnail')) {
+                const newWallpaperUrl = e.target.dataset.url;
+                
+                // Aplicar el nuevo fondo
+                desktop.style.backgroundImage = `url('${newWallpaperUrl}')`;
+                
+                // Guardar en localStorage
+                localStorage.setItem('desktopWallpaper', newWallpaperUrl);
+
+                // Actualizar la clase 'selected'
+                gridContainer.querySelector('.selected')?.classList.remove('selected');
+                e.target.classList.add('selected');
+            }
+        });
+    }
+    // --- Lógica de Notificaciones ---
+    function showNotification(message, type = 'info') { // type puede ser 'info', 'success', 'error'
+        const container = document.getElementById('notification-container');
+        if (!container) return;
+
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+
+        container.appendChild(notification);
+
+        // La animación de salida se encarga de la opacidad, pero la eliminamos del DOM después
+        setTimeout(() => {
+            notification.remove();
+        }, 5000); // 5 segundos
     }
