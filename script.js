@@ -1,7 +1,7 @@
 // --- Firebase y Autenticación ---
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getDatabase, ref, set, onDisconnect, onValue, serverTimestamp, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+import { getDatabase, ref, set, onDisconnect, onValue, serverTimestamp, push, onChildAdded, get, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDXqLCRY6OgcXTXsAR-TvnC4bIICjDndsw",
@@ -276,6 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         onChildAdded(messagesRef, (snapshot) => {
             const msg = snapshot.val();
+            if (!msg || !msg.uid) return; // Ignorar mensajes inválidos o sin UID
             const messageEl = document.createElement('div');
             messageEl.classList.add('chat-message');
             
@@ -287,13 +288,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             messageEl.innerHTML = `
-                <img src="${msg.photoURL || 'favicon.png'}" alt="${msg.displayName}" class="chat-avatar">
+                <img src="${msg.photoURL || 'favicon.png'}" alt="${msg.displayName}" class="chat-avatar" data-uid="${msg.uid}" style="cursor: pointer;">
                 <div class="message-content">
-                    <div class="message-sender">${msg.displayName}</div>
+                    <div class="message-sender" data-uid="${msg.uid}" style="cursor: pointer;">${msg.displayName}</div>
                     <div class="message-text">${msg.text}</div>
                 </div>
             `;
             messagesArea.appendChild(messageEl);
+
+            // Añadir listeners para abrir el perfil (solo si no es un invitado)
+            if (!msg.uid.startsWith('guest_')) {
+                messageEl.querySelector('.chat-avatar').addEventListener('click', (e) => openProfileWindow(e.target.dataset.uid));
+                messageEl.querySelector('.message-sender').addEventListener('click', (e) => openProfileWindow(e.target.dataset.uid));
+            }
+
             messagesArea.scrollTop = messagesArea.scrollHeight;
         });
     });
@@ -359,6 +367,8 @@ document.addEventListener('DOMContentLoaded', () => {
             userProfileContainer.appendChild(profilePic);
             userProfileContainer.appendChild(userName);
             userProfileContainer.appendChild(signOutBtn);
+            userProfileContainer.style.cursor = 'pointer';
+            userProfileContainer.addEventListener('click', () => openProfileWindow(user.uid));
 
         } else {
             // Usuario no ha iniciado sesión
@@ -437,6 +447,20 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('guestId'); // Ya no se necesita el ID de invitado
             const userInfo = { displayName: user.displayName, photoURL: user.photoURL };
             setupPresence(user.uid, userInfo);
+
+            // Crear perfil si no existe
+            const profileRef = ref(db, `profiles/${user.uid}`);
+            onValue(profileRef, (snapshot) => {
+                if (!snapshot.exists()) {
+                    set(profileRef, {
+                        displayName: user.displayName,
+                        photoURL: user.photoURL,
+                        bio: '¡Hola! Soy nuevo en GamesOG.',
+                        favoriteGames: {}
+                    });
+                }
+            }, { onlyOnce: true }); // Solo se ejecuta una vez
+
         } else {
             // Usuario es invitado o ha cerrado sesión
             const guestId = getOrCreateGuestId();
@@ -459,3 +483,79 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+    // --- Lógica de Perfil de Usuario ---
+    async function openProfileWindow(userId) {
+        if (!userId || userId.startsWith('guest_')) return; // No abrir perfiles para invitados
+        const windowId = `window-profile-${userId}`;
+        if (document.getElementById(windowId)) return; // Evitar ventanas duplicadas
+
+        try {
+            const profileRef = ref(db, `profiles/${userId}`);
+            const snapshot = await get(profileRef);
+
+            if (!snapshot.exists()) {
+                console.error("No se encontró el perfil para el usuario:", userId);
+                return;
+            }
+
+            const profileData = snapshot.val();
+            const currentUser = auth.currentUser;
+            const isOwnProfile = currentUser && currentUser.uid === userId;
+
+            const profileContent = `
+                <div class="profile-window-body">
+                    <div class="profile-header">
+                        <img src="${profileData.photoURL || 'favicon.png'}" alt="Avatar" class="profile-avatar">
+                        <h2 class="profile-display-name">${profileData.displayName}</h2>
+                    </div>
+                    <div class="profile-section profile-bio">
+                        <h3>Biografía</h3>
+                        <div id="bio-content-${userId}">
+                            <p>${profileData.bio.replace(/\n/g, '<br>')}</p>
+                        </div>
+                    </div>
+                    <div class="profile-section">
+                        <h3>Juegos Favoritos</h3>
+                        <div class="profile-games-grid" id="games-grid-${userId}">
+                            <!-- Los juegos se cargarán aquí -->
+                            <p>Próximamente...</p>
+                        </div>
+                    </div>
+                    <div class="profile-footer">
+                        ${isOwnProfile ? `<button class="profile-edit-btn" id="edit-btn-${userId}">Editar Perfil</button>` : ''}
+                    </div>
+                </div>
+            `;
+
+            createWindow(`profile-${userId}`, `Perfil de ${profileData.displayName}`, profileContent, { width: '500px', height: '600px' });
+
+            if (isOwnProfile) {
+                const editBtn = document.getElementById(`edit-btn-${userId}`);
+                const bioContentDiv = document.getElementById(`bio-content-${userId}`);
+
+                editBtn.addEventListener('click', () => {
+                    if (editBtn.textContent === 'Editar Perfil') {
+                        // Cambiar a modo edición
+                        editBtn.textContent = 'Guardar Cambios';
+                        const currentBio = profileData.bio;
+                        bioContentDiv.innerHTML = `<textarea id="bio-textarea-${userId}">${currentBio}</textarea>`;
+                    } else {
+                        // Guardar cambios
+                        editBtn.textContent = 'Editar Perfil';
+                        const newBio = document.getElementById(`bio-textarea-${userId}`).value;
+                        
+                        // Actualizar en Firebase
+                        const updates = { bio: newBio };
+                        update(profileRef, updates);
+                        
+                        // Actualizar la vista
+                        profileData.bio = newBio; // Actualizar datos locales
+                        bioContentDiv.innerHTML = `<p>${newBio.replace(/\n/g, '<br>')}</p>`;
+                    }
+                });
+            }
+
+        } catch (error) {
+            console.error("Error al abrir la ventana de perfil:", error);
+        }
+    }

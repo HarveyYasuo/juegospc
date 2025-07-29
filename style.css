@@ -653,3 +653,99 @@ body {
 .chat-message.received {
     align-self: flex-start;
 }
+/* --- Estilos para la Ventana de Perfil --- */
+.profile-window-body {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.profile-display-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.profile-section h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.profile-bio textarea {
+    width: 100%;
+    min-height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-family: var(--font-family);
+    resize: vertical;
+}
+
+.profile-bio p {
+    margin: 0;
+    white-space: pre-wrap; /* Respeta los saltos de línea */
+}
+
+.profile-games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+}
+
+.profile-game-card {
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.profile-game-card h4 {
+    color: white;
+    margin: 0;
+    padding: 8px;
+    background-color: rgba(0,0,0,0.5);
+    font-size: 12px;
+    text-align: center;
+}
+
+.profile-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+    text-align: right;
+}
+
+.profile-edit-btn, .profile-save-btn {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.profile-edit-btn:hover, .profile-save-btn:hover {
+    background-color: #005a9e;
+}
