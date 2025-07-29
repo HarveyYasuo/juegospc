@@ -482,76 +482,80 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // --- Lógica de Perfil de Usuario ---
     async function openProfileWindow(userId) {
-        if (!userId || userId.startsWith('guest_')) return; // No abrir perfiles para invitados
+        if (!userId || userId.startsWith('guest_')) return;
         const windowId = `window-profile-${userId}`;
-        if (document.getElementById(windowId)) return; // Evitar ventanas duplicadas
+        if (document.getElementById(windowId)) return;
 
         try {
             const profileRef = ref(db, `profiles/${userId}`);
             const snapshot = await get(profileRef);
-
             if (!snapshot.exists()) {
                 console.error("No se encontró el perfil para el usuario:", userId);
                 return;
             }
-
             const profileData = snapshot.val();
             const currentUser = auth.currentUser;
             const isOwnProfile = currentUser && currentUser.uid === userId;
 
+            // 1. Crear el contenido base de la ventana
             const profileContent = `
-                <div class="profile-window-body">
+                <div class="profile-window-body" id="profile-body-${userId}">
                     <div class="profile-header">
                         <img src="${profileData.photoURL || 'favicon.png'}" alt="Avatar" class="profile-avatar">
                         <h2 class="profile-display-name">${profileData.displayName}</h2>
                     </div>
                     <div class="profile-section profile-bio">
                         <h3>Biografía</h3>
-                        <div id="bio-content-${userId}">
-                            <p>${profileData.bio.replace(/\n/g, '<br>')}</p>
-                        </div>
+                        <div id="bio-content-${userId}"></div>
                     </div>
                     <div class="profile-section">
                         <h3>Juegos Favoritos</h3>
                         <div class="profile-games-grid" id="games-grid-${userId}">
-                            <!-- Los juegos se cargarán aquí -->
                             <p>Próximamente...</p>
                         </div>
                     </div>
-                    <div class="profile-footer">
-                        ${isOwnProfile ? `<button class="profile-edit-btn" id="edit-btn-${userId}">Editar Perfil</button>` : ''}
-                    </div>
-                </div>
-            `;
+                    <div class="profile-footer" id="profile-footer-${userId}"></div>
+                </div>`;
 
+            // 2. Crear la ventana
             createWindow(`profile-${userId}`, `Perfil de ${profileData.displayName}`, profileContent, { width: '500px', height: '600px' });
 
+            // 3. Poblar el contenido dinámico y añadir listeners
+            const bioContentDiv = document.getElementById(`bio-content-${userId}`);
+            const bioP = document.createElement('p');
+            bioP.innerHTML = profileData.bio.replace(/\n/g, '<br>');
+            bioContentDiv.appendChild(bioP);
+
             if (isOwnProfile) {
-                const editBtn = document.getElementById(`edit-btn-${userId}`);
-                const bioContentDiv = document.getElementById(`bio-content-${userId}`);
+                const footer = document.getElementById(`profile-footer-${userId}`);
+                const editBtn = document.createElement('button');
+                editBtn.className = 'profile-edit-btn';
+                editBtn.textContent = 'Editar Perfil';
+                footer.appendChild(editBtn);
 
                 editBtn.addEventListener('click', () => {
                     if (editBtn.textContent === 'Editar Perfil') {
-                        // Cambiar a modo edición
                         editBtn.textContent = 'Guardar Cambios';
-                        const currentBio = profileData.bio;
-                        bioContentDiv.innerHTML = `<textarea id="bio-textarea-${userId}">${currentBio}</textarea>`;
+                        bioContentDiv.innerHTML = ''; // Limpiar
+                        const bioTextarea = document.createElement('textarea');
+                        bioTextarea.id = `bio-textarea-${userId}`;
+                        bioTextarea.value = profileData.bio;
+                        bioContentDiv.appendChild(bioTextarea);
                     } else {
-                        // Guardar cambios
                         editBtn.textContent = 'Editar Perfil';
                         const newBio = document.getElementById(`bio-textarea-${userId}`).value;
                         
-                        // Actualizar en Firebase
-                        const updates = { bio: newBio };
-                        update(profileRef, updates);
+                        update(profileRef, { bio: newBio });
                         
-                        // Actualizar la vista
-                        profileData.bio = newBio; // Actualizar datos locales
-                        bioContentDiv.innerHTML = `<p>${newBio.replace(/\n/g, '<br>')}</p>`;
+                        profileData.bio = newBio;
+                        bioContentDiv.innerHTML = ''; // Limpiar
+                        const newBioP = document.createElement('p');
+                        newBioP.innerHTML = newBio.replace(/\n/g, '<br>');
+                        bioContentDiv.appendChild(newBioP);
+                        showNotification('Perfil actualizado con éxito.', 'success');
                     }
                 });
             }
-
         } catch (error) {
             console.error("Error al abrir la ventana de perfil:", error);
         }
@@ -561,6 +565,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const windowId = 'window-settings';
         if (document.getElementById(windowId)) return;
 
+        // 1. Crear el contenido HTML de la ventana con un contenedor vacío
+        const settingsContent = `
+            <div class="settings-window-body">
+                <div class="settings-section">
+                    <h3>Fondo de Escritorio</h3>
+                    <div class="wallpaper-grid" id="wallpaper-grid-container"></div>
+                </div>
+            </div>
+        `;
+
+        // 2. Crear la ventana
+        createWindow('settings', 'Configuración', settingsContent, { width: '600px', height: '400px' });
+
+        // 3. Obtener el contenedor ahora que existe en el DOM
+        const gridContainer = document.getElementById('wallpaper-grid-container');
+        if (!gridContainer) {
+            console.error("No se pudo encontrar el contenedor de la galería de fondos.");
+            return;
+        }
+
         const wallpapers = [
             'https://get.wallhere.com/photo/Windows-11-Microsoft-minimalism-logo-simple-background-blue-background-light-blue-operating-system-2073323.jpg',
             'https://w.forfun.com/fetch/e2/e2550198837517b6752205b24938c349.jpeg',
@@ -569,32 +593,20 @@ document.addEventListener('DOMContentLoaded', () => {
             'https://i.redd.it/p8j6i9z2b2h71.png',
             'https://wallpapercave.com/wp/wp10809353.jpg'
         ];
-
-        let wallpaperGridHTML = '';
         const currentWallpaper = localStorage.getItem('desktopWallpaper') || wallpapers[0];
 
+        // 4. Crear y añadir cada miniatura mediante programación
         wallpapers.forEach(url => {
-            const isSelected = url === currentWallpaper ? 'selected' : '';
-            wallpaperGridHTML += `<div class="wallpaper-thumbnail ${isSelected}" style="background-image: url('${url}')" data-url="${url}"></div>`;
-        });
+            const thumb = document.createElement('div');
+            thumb.className = 'wallpaper-thumbnail';
+            if (url === currentWallpaper) {
+                thumb.classList.add('selected');
+            }
+            thumb.style.backgroundImage = `url('${url}')`;
+            thumb.dataset.url = url;
 
-        const settingsContent = `
-            <div class="settings-window-body">
-                <div class="settings-section">
-                    <h3>Fondo de Escritorio</h3>
-                    <div class="wallpaper-grid" id="wallpaper-grid-container">
-                        ${wallpaperGridHTML}
-                    </div>
-                </div>
-            </div>
-        `;
-
-        createWindow('settings', 'Configuración', settingsContent, { width: '600px', height: '400px' });
-
-        const gridContainer = document.getElementById('wallpaper-grid-container');
-        gridContainer.addEventListener('click', (e) => {
-            if (e.target && e.target.classList.contains('wallpaper-thumbnail')) {
-                const newWallpaperUrl = e.target.dataset.url;
+            thumb.addEventListener('click', () => {
+                const newWallpaperUrl = thumb.dataset.url;
                 
                 // Aplicar el nuevo fondo
                 desktop.style.backgroundImage = `url('${newWallpaperUrl}')`;
@@ -602,10 +614,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Guardar en localStorage
                 localStorage.setItem('desktopWallpaper', newWallpaperUrl);
 
-                // Actualizar la clase 'selected'
-                gridContainer.querySelector('.selected')?.classList.remove('selected');
-                e.target.classList.add('selected');
-            }
+                // Actualizar la clase 'selected' en la galería
+                const currentSelected = gridContainer.querySelector('.selected');
+                if (currentSelected) {
+                    currentSelected.classList.remove('selected');
+                }
+                thumb.classList.add('selected');
+            });
+
+            gridContainer.appendChild(thumb);
         });
     }
     // --- Lógica de Notificaciones ---
