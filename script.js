@@ -389,10 +389,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    let currentPresenceId = null; // Variable para rastrear el ID de presencia actual
+
     function getOrCreateGuestId() {
         let guestId = localStorage.getItem('guestId');
         if (!guestId) {
-            guestId = 'guest_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+            guestId = 'guest_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
             localStorage.setItem('guestId', guestId);
         }
         return guestId;
@@ -410,19 +412,36 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         onDisconnect(userStatusRef).set({ isOnline: false, last_changed: serverTimestamp() }).then(() => {
-            console.log('Setting user online:', userId);
             set(userStatusRef, presenceInfo);
+            currentPresenceId = userId;
+            console.log('Presence setup for:', userId);
         });
+    }
+    
+    function clearPresence(userId) {
+        if (!userId) return;
+        console.log('Clearing presence for:', userId);
+        const userStatusRef = ref(db, '/status/' + userId);
+        set(userStatusRef, null); // Elimina el nodo para limpiar la presencia anterior
     }
 
     onAuthStateChanged(auth, user => {
         console.log('Auth state changed. User:', user);
         updateUserProfileUI(user);
 
-        const currentUserId = user ? user.uid : getOrCreateGuestId();
-        const userInfo = user ? { displayName: user.displayName, photoURL: user.photoURL } : {};
-        
-        setupPresence(currentUserId, userInfo);
+        // Limpia la presencia anterior (invitado o usuario) antes de establecer una nueva.
+        clearPresence(currentPresenceId);
+
+        if (user) {
+            // Usuario ha iniciado sesión
+            localStorage.removeItem('guestId'); // Ya no se necesita el ID de invitado
+            const userInfo = { displayName: user.displayName, photoURL: user.photoURL };
+            setupPresence(user.uid, userInfo);
+        } else {
+            // Usuario es invitado o ha cerrado sesión
+            const guestId = getOrCreateGuestId();
+            setupPresence(guestId, { displayName: 'Invitado', photoURL: 'favicon.png' });
+        }
     });
 
     // Escuchar para actualizar el contador de usuarios en línea
