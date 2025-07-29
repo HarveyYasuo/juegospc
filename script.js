@@ -389,24 +389,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function getOrCreateGuestId() {
+        let guestId = localStorage.getItem('guestId');
+        if (!guestId) {
+            guestId = 'guest_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+            localStorage.setItem('guestId', guestId);
+        }
+        return guestId;
+    }
+
+    function setupPresence(userId, userInfo = {}) {
+        const userStatusRef = ref(db, '/status/' + userId);
+        const isGuest = userId.startsWith('guest_');
+
+        const presenceInfo = {
+            isOnline: true,
+            last_changed: serverTimestamp(),
+            displayName: isGuest ? 'Invitado' : userInfo.displayName,
+            photoURL: isGuest ? 'favicon.png' : userInfo.photoURL
+        };
+
+        onDisconnect(userStatusRef).set({ isOnline: false, last_changed: serverTimestamp() }).then(() => {
+            console.log('Setting user online:', userId);
+            set(userStatusRef, presenceInfo);
+        });
+    }
+
     onAuthStateChanged(auth, user => {
         console.log('Auth state changed. User:', user);
         updateUserProfileUI(user);
 
-        if (user) {
-            const userStatusRef = ref(db, '/status/' + user.uid);
-            const presenceInfo = {
-                isOnline: true,
-                last_changed: serverTimestamp(),
-                displayName: user.displayName,
-                photoURL: user.photoURL
-            };
-
-            onDisconnect(userStatusRef).set({ isOnline: false, last_changed: serverTimestamp() }).then(() => {
-                console.log('Setting user online:', user.uid);
-                set(userStatusRef, presenceInfo);
-            });
-        }
+        const currentUserId = user ? user.uid : getOrCreateGuestId();
+        const userInfo = user ? { displayName: user.displayName, photoURL: user.photoURL } : {};
+        
+        setupPresence(currentUserId, userInfo);
     });
 
     // Escuchar para actualizar el contador de usuarios en línea
