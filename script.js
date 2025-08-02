@@ -528,11 +528,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (isOwnProfile) {
                 const footer = document.getElementById(`profile-footer-${userId}`);
+                
+                // Botón de Editar
                 const editBtn = document.createElement('button');
                 editBtn.className = 'profile-edit-btn';
                 editBtn.textContent = 'Editar Perfil';
                 footer.appendChild(editBtn);
 
+                // Botón de Eliminar Cuenta
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Eliminar Cuenta';
+                deleteBtn.className = 'profile-delete-btn'; // Para estilos futuros
+                // Estilos básicos para que sea visible y funcional
+                deleteBtn.style.marginLeft = '10px';
+                deleteBtn.style.backgroundColor = '#dc3545';
+                deleteBtn.style.color = 'white';
+                deleteBtn.style.border = 'none';
+                deleteBtn.style.padding = '8px 12px';
+                deleteBtn.style.borderRadius = '4px';
+                deleteBtn.style.cursor = 'pointer';
+                footer.appendChild(deleteBtn);
+
+                // Listener para el botón de eliminar
+                deleteBtn.addEventListener('click', () => {
+                    // Abre la página de eliminación en una nueva pestaña
+                    window.open('eliminarmicuenta.html', '_blank');
+                });
+
+                // Listener para el botón de editar
                 editBtn.addEventListener('click', () => {
                     if (editBtn.textContent === 'Editar Perfil') {
                         editBtn.textContent = 'Guardar Cambios';

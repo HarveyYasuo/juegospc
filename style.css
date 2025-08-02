@@ -851,3 +851,18 @@ body {
         transform: translateX(100%);
     }
 }
+/* Estilos para el botón de eliminar cuenta */
+.profile-delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-delete-btn:hover {
+    background-color: #c82333;
+}
