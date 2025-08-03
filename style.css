@@ -399,6 +399,51 @@ nav {
         grid-template-columns: repeat(2, 1fr);
     }
     .featured-article {
+/* Contenido de la tarjeta dinámica (juegos, emuladores, etc.) */
+#games-grid .article-card h4,
+#emulators-grid .article-card h4,
+#phones-grid .article-card h4,
+#programs-grid .article-card h4,
+#ganaplus-grid .article-card h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1rem 1.5rem 0.5rem 1.5rem;
+}
+
+#games-grid .article-card p,
+#emulators-grid .article-card p,
+#phones-grid .article-card p,
+#programs-grid .article-card p,
+#ganaplus-grid .article-card p {
+    font-size: 0.9rem;
+    color: #8892b0;
+    margin: 0 1.5rem 1.5rem 1.5rem;
+}
+
+#games-grid .article-card .download-link,
+#emulators-grid .article-card .download-link,
+#phones-grid .article-card .download-link,
+#programs-grid .article-card .download-link,
+#ganaplus-grid .article-card .download-link {
+    display: inline-block;
+    background-color: #f1c40f;
+    color: #2c3e50;
+    padding: 0.6rem 1.2rem;
+    margin: 0 1.5rem 1.5rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+#games-grid .article-card .download-link:hover,
+#emulators-grid .article-card .download-link:hover,
+#phones-grid .article-card .download-link:hover,
+#programs-grid .article-card .download-link:hover,
+#ganaplus-grid .article-card .download-link:hover {
+    background-color: #f39c12;
+}
         grid-template-columns: 1fr;
     }
     .article-image {
