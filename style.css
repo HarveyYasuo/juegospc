@@ -32,7 +32,7 @@ body {
 /* --- Header y Navegación --- */
 header {
     padding: 1.5rem 0;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid #1d2d50;
 }
 
 nav {
@@ -88,7 +88,6 @@ nav {
     gap: 1.5rem;
 }
 
-.nav-icon {
 /* --- Estilos del Buscador --- */
 .search-container {
     position: relative;
@@ -106,13 +105,15 @@ nav {
     transition: width 0.4s ease-in-out;
     font-size: 1rem;
     margin-left: 0.5rem;
+    color: var(--text-color);
 }
 
 .search-container.active .search-input {
     width: 200px;
     padding-left: 0.5rem;
 }
-    color: #495057;
+.nav-icon {
+    color: var(--text-color);
     font-size: 1.2rem;
     text-decoration: none;
 }
@@ -142,97 +143,7 @@ nav {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.view-all-link {
-    text-decoration: none;
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-/* --- Artículo Destacado --- */
-.featured-article-section {
-    padding: var(--section-padding);
-}
-
-.featured-article {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background-color: #000;
-    border-radius: var(--card-border-radius);
-    overflow: hidden;
-    color: #fff;
-    min-height: 400px;
-}
-
-.article-image {
-    background: url('https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=2574&auto=format&fit=crop') no-repeat center center/cover;
-}
-
-.article-content {
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.category-tag {
-    display: inline-block;
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    align-self: flex-start;
-}
-
-.article-content h3 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 0 0 1rem 0;
-}
-
-.article-content p {
-    font-size: 1rem;
-    opacity: 0.8;
-    margin-bottom: 2rem;
-}
-
-.article-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.author {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.author img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.read-time {
-    font-size: 0.9rem;
-    opacity: 0.7;
-}
-
-.article-stats {
-    display: flex;
-    gap: 1.5rem;
-    font-size: 1rem;
-}
-
-.article-stats span {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-/* --- Últimos Artículos --- */
+/* --- Contenedores de Secciones --- */
 .latest-articles-section {
     padding: 2rem;
     margin-bottom: 2rem;
@@ -267,22 +178,41 @@ nav {
     color: #fff;
 }
 
-#tools-grid {
+/* --- Cuadrículas de Contenido --- */
+.articles-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
     margin-top: 2rem;
+    max-height: 800px;
+    overflow-y: auto;
+    padding: 1rem;
 }
 
 #articles-grid-static {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 2rem;
+    max-height: none;
+    overflow-y: visible;
+    padding: 0;
 }
 
-/* --- Estilo de la Barra de Scroll para la cuadrícula de juegos --- */
+/* Estilo de la Barra de Scroll para cuadrículas dinámicas */
+.articles-grid::-webkit-scrollbar {
+    width: 8px;
+}
+.articles-grid::-webkit-scrollbar-track {
+    background: #0a192f;
+    border-radius: 10px;
+}
+.articles-grid::-webkit-scrollbar-thumb {
+    background: #1d2d50;
+    border-radius: 10px;
+}
+.articles-grid::-webkit-scrollbar-thumb:hover {
+    background: #2c3e50;
+}
 
+/* --- Tarjetas de Artículo (Estáticas en index.html) --- */
 .article-card-link {
     text-decoration: none;
     color: inherit;
@@ -292,6 +222,7 @@ nav {
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+    border: 1px solid #1d2d50;
 }
 
 .article-card-link:hover {
@@ -299,7 +230,7 @@ nav {
     box-shadow: 0 8px 30px rgba(0,0,0,0.1);
 }
 
-.article-card {
+#articles-grid-static .article-card {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -315,7 +246,6 @@ nav {
     align-items: flex-start;
 }
 
-/* Contenido de la tarjeta estática (artículos) */
 .card-content {
     padding: 1.5rem;
     border-top: 1px solid #1d2d50;
@@ -332,7 +262,7 @@ nav {
 
 .card-content p {
     font-size: 0.9rem;
-    color: #8892b0; /* Color de texto secundario más claro */
+    color: #8892b0;
     margin: 0 0 1.5rem 0;
     flex-grow: 1;
 }
@@ -380,55 +310,48 @@ nav {
     gap: 1rem;
 }
 
-/* Contenido de la tarjeta dinámica (juegos) */
-#games-grid .article-card h4 {
-    font-size: 1.2rem;
+/* --- Tarjetas de Contenido (Dinámicas en games.html) --- */
+.articles-grid .article-card {
+    background-color: #1c2e4a;
+    border-radius: var(--card-border-radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 380px; /* Altura fija */
+    transition: transform 0.2s ease;
+    border: 1px solid #2c3e50;
+}
+
+.articles-grid .article-card:hover {
+    transform: translateY(-5px);
+}
+
+.articles-grid .article-card .card-image-container {
+    height: 180px;
+}
+
+.articles-grid .article-card h4 {
+    font-size: 1.1rem;
     font-weight: 600;
     margin: 1rem 1.5rem 0.5rem 1.5rem;
+    color: var(--text-color);
+    height: 48px;
+    overflow: hidden;
 }
 
-#games-grid .article-card p {
-    font-size: 0.9rem;
-    color: #6c757d;
-    margin: 0 1.5rem 1.5rem 1.5rem;
-}
-
-/* --- Responsive --- */
-@media (max-width: 992px) {
-    #games-grid, #articles-grid-static {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .featured-article {
-/* Contenido de la tarjeta dinámica (juegos, emuladores, etc.) */
-#games-grid .article-card h4,
-#emulators-grid .article-card h4,
-#phones-grid .article-card h4,
-#programs-grid .article-card h4,
-#ganaplus-grid .article-card h4 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 1rem 1.5rem 0.5rem 1.5rem;
-}
-
-#games-grid .article-card p,
-#emulators-grid .article-card p,
-#phones-grid .article-card p,
-#programs-grid .article-card p,
-#ganaplus-grid .article-card p {
+.articles-grid .article-card p {
     font-size: 0.9rem;
     color: #8892b0;
-    margin: 0 1.5rem 1.5rem 1.5rem;
+    margin: 0 1.5rem 1rem 1.5rem;
+    flex-grow: 1;
+    overflow: hidden;
 }
 
-#games-grid .article-card .download-link,
-#emulators-grid .article-card .download-link,
-#phones-grid .article-card .download-link,
-#programs-grid .article-card .download-link,
-#ganaplus-grid .article-card .download-link {
-    display: inline-block;
-    background-color: #f1c40f;
-    color: #2c3e50;
-    padding: 0.6rem 1.2rem;
+.articles-grid .article-card .download-link {
+    display: block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 0.8rem;
     margin: 0 1.5rem 1.5rem 1.5rem;
     border-radius: 6px;
     text-decoration: none;
@@ -437,17 +360,24 @@ nav {
     transition: background-color 0.2s ease;
 }
 
-#games-grid .article-card .download-link:hover,
-#emulators-grid .article-card .download-link:hover,
-#phones-grid .article-card .download-link:hover,
-#programs-grid .article-card .download-link:hover,
-#ganaplus-grid .article-card .download-link:hover {
-    background-color: #f39c12;
+.articles-grid .article-card .download-link:hover {
+    background-color: var(--secondary-color);
 }
-        grid-template-columns: 1fr;
+
+
+/* --- Responsive --- */
+@media (max-width: 1200px) {
+    .articles-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
-    .article-image {
-        min-height: 250px;
+    #articles-grid-static {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .articles-grid, #articles-grid-static {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -468,7 +398,7 @@ nav {
         gap: 1rem;
         text-align: center;
     }
-    #games-grid, #articles-grid-static {
+    .articles-grid, #articles-grid-static {
         grid-template-columns: 1fr;
     }
     .filter-buttons {
@@ -478,10 +408,11 @@ nav {
 }
 /* --- Pie de Página --- */
 .site-footer {
-    background: linear-gradient(45deg, #2c3e50, #34495e);
+    background: linear-gradient(45deg, #0f1f3a, #112240);
     color: #ecf0f1;
     padding: 4rem 0 0;
     margin-top: 4rem;
+    border-top: 1px solid #1d2d50;
 }
 
 .footer-content {
@@ -534,8 +465,8 @@ nav {
 
 .subscribe-form input {
     flex-grow: 1;
-    border: 1px solid #7f8c8d;
-    background-color: #34495e;
+    border: 1px solid #2c3e50;
+    background-color: #0a192f;
     color: #fff;
     padding: 0.8rem;
     border-radius: 6px 0 0 6px;
@@ -547,9 +478,9 @@ nav {
 }
 
 .subscribe-form button {
-    background-color: #f1c40f;
+    background-color: var(--primary-color);
     border: none;
-    color: #2c3e50;
+    color: #fff;
     padding: 0.8rem 1.2rem;
     border-radius: 0 6px 6px 0;
     cursor: pointer;
@@ -558,11 +489,11 @@ nav {
 }
 
 .subscribe-form button:hover {
-    background-color: #f39c12;
+    background-color: var(--secondary-color);
 }
 
 .footer-bottom {
-    border-top: 1px solid #4a627a;
+    border-top: 1px solid #1d2d50;
     padding: 1.5rem 0;
     display: flex;
     justify-content: space-between;
@@ -641,27 +572,4 @@ nav {
     height: 36px;
     border-radius: 50%;
     border: 2px solid var(--primary-color);
-}
-
-/* Enlace de descarga en la tarjeta */
-.article-card .download-link {
-    display: inline-block;
-    background-color: #f1c40f;
-    color: #2c3e50;
-    padding: 0.6rem 1.2rem;
-    margin: 0 1.5rem 1.5rem 1.5rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    text-align: center;
-    transition: background-color 0.2s ease;
-}
-
-.article-card .download-link:hover {
-    background-color: #f39c12;
-}
-
-/* Ajuste para el párrafo de la tarjeta */
-.article-card p {
-    min-height: 45px; /* Da un poco de espacio para que las tarjetas se alineen mejor */
 }
