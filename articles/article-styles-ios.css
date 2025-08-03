@@ -1,0 +1,76 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #1c1c1c, #2e2e2e);
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: #ff7675;
+  padding: 2rem;
+  text-align: center;
+  color: #000;
+}
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+section {
+  padding: 2rem 3rem;
+  max-width: 1000px;
+  margin: auto;
+}
+h2 {
+  color: #ff7675;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+}
+p {
+  line-height: 1.7;
+}
+.highlight {
+  color: #FFD700;
+  font-weight: bold;
+}
+.ia-box {
+  background: #2f2f2f;
+  border-left: 5px solid #ff7675;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+}
+ul {
+  padding-left: 1.5rem;
+}
+li::marker {
+  color: #ff7675;
+}
+footer {
+  background: #111;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+.experiencias {
+  background: #3a3a3a;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+.experiencias h3 {
+  color: #FFD700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    section {
+        padding: 1.5rem 1rem;
+    }
+    header h1 {
+        font-size: 1.8rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+}
