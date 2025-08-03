@@ -267,14 +267,11 @@ nav {
     color: #fff;
 }
 
-#games-grid, #emulators-grid, #phones-grid, #programs-grid, #ganaplus-grid {
+#tools-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-top: 2rem;
-    max-height: 800px; /* Altura máxima para el contenedor */
-    overflow-y: auto; /* Habilita el scroll vertical cuando sea necesario */
-    padding-right: 10px; /* Espacio para la barra de scroll */
 }
 
 #articles-grid-static {
@@ -285,23 +282,6 @@ nav {
 }
 
 /* --- Estilo de la Barra de Scroll para la cuadrícula de juegos --- */
-#games-grid::-webkit-scrollbar, #emulators-grid::-webkit-scrollbar, #phones-grid::-webkit-scrollbar, #programs-grid::-webkit-scrollbar, #ganaplus-grid::-webkit-scrollbar {
-    width: 8px;
-}
-
-#games-grid::-webkit-scrollbar-track, #emulators-grid::-webkit-scrollbar-track, #phones-grid::-webkit-scrollbar-track, #programs-grid::-webkit-scrollbar-track, #ganaplus-grid::-webkit-scrollbar-track {
-    background: #e9ecef;
-    border-radius: 10px;
-}
-
-#games-grid::-webkit-scrollbar-thumb, #emulators-grid::-webkit-scrollbar-thumb, #phones-grid::-webkit-scrollbar-thumb, #programs-grid::-webkit-scrollbar-thumb, #ganaplus-grid::-webkit-scrollbar-thumb {
-    background: #bdc3c7;
-    border-radius: 10px;
-}
-
-#games-grid::-webkit-scrollbar-thumb:hover, #emulators-grid::-webkit-scrollbar-thumb:hover, #phones-grid::-webkit-scrollbar-thumb:hover, #programs-grid::-webkit-scrollbar-thumb:hover, #ganaplus-grid::-webkit-scrollbar-thumb:hover {
-    background: #95a5a6;
-}
 
 .article-card-link {
     text-decoration: none;
