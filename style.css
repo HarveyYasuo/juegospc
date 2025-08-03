@@ -6,6 +6,9 @@
 body {
     font-family: var(--font-family);
     margin: 0;
+}
+
+.no-scroll {
     overflow: hidden;
 }
 
@@ -865,4 +868,74 @@ body {
 
 .profile-delete-btn:hover {
     background-color: #c82333;
+}
+
+/* --- Media Queries para Diseño Responsivo --- */
+@media (max-width: 768px) {
+    /* --- Ajustes del Escritorio --- */
+    #desktop {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: flex-start;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .desktop-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .desktop-icon i {
+        font-size: 32px;
+        margin-bottom: 5px;
+    }
+
+    .desktop-icon span {
+        font-size: 12px;
+    }
+
+    /* --- Ajustes de la Barra de Tareas --- */
+    #taskbar {
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        transform: none;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+    }
+
+    /* --- Ajustes del Menú de Inicio --- */
+    #start-menu {
+        width: 100vw;
+        height: 100vh;
+        bottom: 0;
+        left: 0;
+        transform: none;
+        border-radius: 0;
+        padding: 1rem;
+    }
+
+    #start-menu.hidden {
+        transform: translateY(100%);
+        opacity: 1; /* La opacidad no es necesaria con la transformación Y */
+    }
+
+    .apps-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+    }
+
+    /* --- Ajustes de las Ventanas --- */
+    .window {
+        width: 100% !important; /* Forzar ancho completo */
+        height: 100% !important; /* Forzar alto completo */
+        top: 0 !important;
+        left: 0 !important;
+        border-radius: 0;
+        resize: none; /* Deshabilitar redimensión en móviles */
+    }
 }
