@@ -1,951 +1,642 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
 :root {
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --taskbar-height: 48px;
+    --background-color: #0a192f; /* Azul marino muy oscuro */
+    --text-color: #ccd6f6; /* Texto claro, azulado */
+    --primary-color: #6a11cb; /* Morado vibrante */
+    --secondary-color: #2575fc; /* Azul vibrante */
+    --card-background: #112240; /* Azul marino ligeramente más claro */
+    --card-border-radius: 16px;
+    --section-padding: 4rem 0;
+    --container-width: 1400px;
+    --font-family: 'Inter', sans-serif;
 }
 
 body {
     font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
     margin: 0;
+    line-height: 1.6;
 }
 
-.no-scroll {
-    overflow: hidden;
+.page-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
-#desktop {
-    width: 100vw;
-    height: 100vh;
-    background: url('https://get.wallhere.com/photo/Windows-11-Microsoft-minimalism-logo-simple-background-blue-background-light-blue-operating-system-2073323.jpg') no-repeat center center/cover;
-    position: relative;
-    padding: 20px;
+/* --- Header y Navegación --- */
+header {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e9ecef;
 }
 
-/* --- Iconos del Escritorio --- */
-.desktop-icons-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    grid-auto-flow: row;
-    gap: 20px;
-    padding: 20px;
-    max-width: 1000px; /* Opcional: para centrar en pantallas muy grandes */
-}
-
-.desktop-icon {
-    width: 120px;
-    height: 120px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid transparent;
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-    text-decoration: none; /* Asegura que los enlaces no tengan subrayado */
-}
-
-.desktop-icon:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-}
-
-.desktop-icon i {
-    font-size: 48px;
-    margin-bottom: 10px;
-}
-
-.desktop-icon span {
-    font-size: 14px;
-}
-
-
-#taskbar {
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    height: var(--taskbar-height);
-    background-color: rgba(240, 240, 240, 0.7);
-    backdrop-filter: blur(20px) saturate(1.5);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    z-index: 1000;
 }
 
-.taskbar-icons {
+.nav-brand {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
 }
 
-.taskbar-icon {
-    font-size: 20px;
-    padding: 10px 12px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    border-radius: 4px;
+.nav-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 10px rgba(37, 117, 252, 0.5);
 }
-
-.taskbar-icon:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-.system-tray {
-    display: flex;
-    align-items: center;
-}
-
-.tray-icon {
-    font-size: 16px;
-    padding: 10px 8px;
-}
-
-#clock {
-    font-size: 12px;
-    padding: 10px;
-}
-
-#start-menu {
-    position: fixed;
-    bottom: calc(var(--taskbar-height) + 20px);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 634px;
-    height: 719px;
-    background-color: rgba(230, 230, 230, 0.8);
-    backdrop-filter: blur(30px) saturate(1.8);
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    z-index: 999;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    padding: 1.5rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-}
-
-#start-menu.hidden {
-    opacity: 0;
-    transform: translateX(-50%) translateY(20px);
-    pointer-events: none;
-}
-
-.start-menu-header input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: none;
-    box-sizing: border-box;
-}
-
-.ad-container {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    font-size: 0.8rem;
-    color: #555;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.pinned-apps {
-    margin-top: 1.5rem;
-    flex-grow: 1;
-    min-height: 0; /* Solución clave para el scroll en un contenedor flex */
-    overflow-y: auto; /* Habilitar scroll vertical */
-    padding-right: 10px; /* Espacio para la barra de scroll */
-}
-
-.apps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem;
-}
-
-/* --- Estilo de la Barra de Scroll --- */
-.pinned-apps::-webkit-scrollbar {
-    width: 6px;
-}
-
-.pinned-apps::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.pinned-apps::-webkit-scrollbar-thumb {
-    background: rgba(128, 128, 128, 0.5);
-    border-radius: 10px;
-    border: 2px solid transparent;
-    background-clip: content-box;
-}
-
-.pinned-apps::-webkit-scrollbar-thumb:hover {
-    background: rgba(128, 128, 128, 0.7);
-    background-clip: content-box;
-}
-
-
-/* --- Estilo Tarjeta de Juego (Fortnite) --- */
-.game-card {
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
-    border: 2px solid transparent;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    aspect-ratio: 1 / 1; /* Asegura que las tarjetas sean cuadradas */
-}
-
-.game-card:hover {
-    transform: scale(1.05);
-    border-color: #f8ff28;
-}
-
-.game-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 70%;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-}
-
-.game-card-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1rem;
-    z-index: 2;
-    color: white;
-}
-
-.game-card-title {
+.nav-brand h1 {
+    margin: 0;
     font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0 0 0.5rem 0;
-    text-shadow: 2px 2px 4px #000;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.play-button {
-    background-color: #f8ff28;
-    color: #000;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-/* --- Estilos de las Ventanas --- */
-.window {
-    position: absolute;
-    width: 800px;
-    height: 500px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+.nav-links {
+    list-style: none;
     display: flex;
-    flex-direction: column;
-    resize: both;
-    overflow: hidden;
-}
-
-.window-header {
-    height: 30px;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-    cursor: move;
-    flex-shrink: 0;
-}
-
-.window-title {
-    font-weight: bold;
-}
-
-.window-controls button {
-    background: none;
-    border: none;
-    font-size: 16px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.window-controls button:hover {
-    background-color: #ddd;
-}
-
-.window-controls .close-btn:hover {
-    background-color: #e81123;
-    color: white;
-}
-
-.window-body {
-    flex-grow: 1;
-    padding: 1rem;
-    background-color: #fff;
-    color: #333;
-    overflow-y: auto; /* Añadido para el scroll */
-}
-
-/* --- Visualizador de Audio --- */
-#audio-visualizer {
-    position: fixed;
-    bottom: 80px; /* Un poco por encima de la barra de tareas */
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: flex-end;
-    height: 50px;
-    gap: 4px;
-    z-index: 500;
-    transition: opacity 0.3s ease;
-}
-
-#audio-visualizer.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-#audio-visualizer .bar {
-    width: 8px;
-    background: linear-gradient(to top, #f8ff28, #ff5722);
-    border-radius: 4px;
-    animation: wave 1.5s infinite ease-in-out;
-}
-
-/* Animación de las ondas */
-@keyframes wave {
-    0%, 100% { height: 5px; }
-    50% { height: 50px; }
-}
-
-/* Retraso de animación para cada barra para crear un efecto más orgánico */
-#audio-visualizer .bar:nth-child(2) { animation-delay: 0.2s; }
-#audio-visualizer .bar:nth-child(3) { animation-delay: 0.4s; }
-#audio-visualizer .bar:nth-child(4) { animation-delay: 0.6s; }
-#audio-visualizer .bar:nth-child(5) { animation-delay: 0.8s; }
-#audio-visualizer .bar:nth-child(6) { animation-delay: 1s; }
-#audio-visualizer .bar:nth-child(7) { animation-delay: 1.2s; }
-#audio-visualizer .bar:nth-child(8) { animation-delay: 1.4s; }
-
-/* --- Pie de Página del Menú de Inicio --- */
-.start-menu-footer {
-    margin-top: auto; /* Empuja el footer al fondo */
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.user-profile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    padding: 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.user-profile:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.user-profile i {
-    font-size: 24px;
-}
-
-.action-button {
-    font-size: 20px;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.action-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* --- Estilos para la Ventana Modal "Acerca de" --- */
-.modal-window .window-body {
+    gap: 2rem;
+    margin: 0;
     padding: 0;
 }
 
-.about-content {
-    padding: 1.5rem;
-    font-size: 14px;
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
-.about-header {
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-actions {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 1rem;
+    gap: 1.5rem;
 }
 
-.about-header i {
-    font-size: 48px;
-    color: #0078d4;
+.nav-icon {
+/* --- Estilos del Buscador --- */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
-.about-header h2 {
-    font-size: 32px;
-    font-weight: 600;
-    margin: 0;
+.search-input {
+    width: 0;
+    padding: 0.5rem 0;
+    border: none;
+    border-bottom: 2px solid var(--primary-color);
+    background-color: transparent;
+    outline: none;
+    transition: width 0.4s ease-in-out;
+    font-size: 1rem;
+    margin-left: 0.5rem;
 }
 
-.about-content p {
-    margin-bottom: 1rem;
+.search-container.active .search-input {
+    width: 200px;
+    padding-left: 0.5rem;
 }
-
-.about-content a {
-    color: #0066cc;
+    color: #495057;
+    font-size: 1.2rem;
     text-decoration: none;
 }
 
-.about-content a:hover {
-    text-decoration: underline;
+.profile-icon img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
 }
 
-.window-footer {
-    padding: 1rem;
-    background-color: #f0f0f0;
-    text-align: right;
-    border-top: 1px solid #ddd;
-}
-
-.accept-btn {
-    background-color: #e1e1e1;
-    border: 1px solid #adadad;
-    padding: 8px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.accept-btn:hover {
-    background-color: #e5f1fb;
-    border-color: #0078d4;
-}
-
-/* --- Vista de Tareas (Widgets) --- */
-#task-view {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(20px);
-    z-index: 998;
+/* --- Secciones Generales --- */
+.section-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    transition: opacity 0.3s ease;
-    padding: 2rem;
-    box-sizing: border-box;
+    margin-bottom: 2rem;
 }
 
-#task-view.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.task-view-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-auto-rows: 250px;
-    gap: 1rem;
-    width: 100%;
-    max-width: 1600px;
-    height: 100%;
-    overflow-y: auto;
-    padding: 1rem;
-    box-sizing: border-box;
-}
-
-.task-view-grid::-webkit-scrollbar {
-    width: 8px;
-}
-.task-view-grid::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.2);
-    border-radius: 10px;
-}
-.task-view-grid::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-}
-
-.task-view-item {
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 1rem;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.task-view-item::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 70%;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-}
-
-.task-view-item-content {
-    z-index: 2;
-}
-
-.task-view-item-content h4 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.2rem;
-}
-
-.task-view-item-content p {
+.section-header h2 {
     margin: 0;
-    font-size: 0.9rem;
-    opacity: 0.8;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.task-view-item.large {
-    grid-row: span 2;
-}
-
-.task-view-item.wide {
-    grid-column: span 2;
-}
-
-/* --- Estilos para Usuarios en Línea y Perfil --- */
-#online-users-icon {
-    position: relative;
-    cursor: help;
-}
-
-#online-users-count {
-    position: absolute;
-    top: 2px;
-    right: 0px;
-    background-color: #ff0000;
-    color: white;
-    border-radius: 50%;
-    padding: 1px 4px;
-    font-size: 10px;
-    font-weight: bold;
-    border: 1px solid rgba(240, 240, 240, 0.7);
-}
-
-.user-profile {
-    min-width: 150px; /* Espacio para el botón de login */
-    justify-content: flex-start;
-}
-
-.user-profile button {
-    margin-left: auto; /* Empuja el botón a la derecha */
-    background-color: #4285F4;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.user-profile button:hover {
-    background-color: #357ae8;
-}
-
-/* --- Estilos para la Ventana de Chat --- */
-.chat-messages {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: #e5ddd5; /* Un fondo tipo WhatsApp */
-}
-
-.chat-input-container {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-    background-color: #f0f0f0;
-}
-
-#chat-message-input {
-    flex-grow: 1;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    padding: 10px 15px;
-    margin-right: 10px;
-}
-
-#chat-send-btn {
-    background-color: #0078d4;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#chat-send-btn:hover {
-    background-color: #005a9e;
-}
-
-.chat-message {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    max-width: 80%;
-}
-
-.chat-avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-}
-
-.message-content {
-    background-color: #fff;
-    padding: 8px 12px;
-    border-radius: 18px;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-}
-
-.message-sender {
-    font-weight: bold;
-    font-size: 12px;
-    margin-bottom: 4px;
-    color: #005a9e;
-}
-
-.message-text {
-    font-size: 14px;
-}
-
-/* Mensajes enviados por el usuario actual */
-.chat-message.sent {
-    align-self: flex-end;
-    flex-direction: row-reverse;
-}
-
-.chat-message.sent .message-content {
-    background-color: #dcf8c6; /* Verde claro tipo WhatsApp */
-}
-
-.chat-message.sent .message-sender {
-    color: #075e54;
-}
-
-/* Mensajes recibidos */
-.chat-message.received {
-    align-self: flex-start;
-}
-/* --- Estilos para la Ventana de Perfil --- */
-.profile-window-body {
-    background-color: #f5f5f5;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.profile-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #ddd;
-}
-
-.profile-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.profile-display-name {
-    font-size: 1.5rem;
+.view-all-link {
+    text-decoration: none;
+    color: var(--primary-color);
     font-weight: 600;
 }
 
-.profile-section h3 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    color: #555;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+/* --- Artículo Destacado --- */
+.featured-article-section {
+    padding: var(--section-padding);
 }
 
-.profile-bio textarea {
-    width: 100%;
-    min-height: 80px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 8px;
-    font-family: var(--font-family);
-    resize: vertical;
-}
-
-.profile-bio p {
-    margin: 0;
-    white-space: pre-wrap; /* Respeta los saltos de línea */
-}
-
-.profile-games-grid {
+.featured-article {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: 1fr 1fr;
+    background-color: #000;
+    border-radius: var(--card-border-radius);
+    overflow: hidden;
+    color: #fff;
+    min-height: 400px;
+}
+
+.article-image {
+    background: url('https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=2574&auto=format&fit=crop') no-repeat center center/cover;
+}
+
+.article-content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.category-tag {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+}
+
+.article-content h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+}
+
+.article-content p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+.article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.author img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.read-time {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.article-stats {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 1rem;
+}
+
+.article-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* --- Últimos Artículos --- */
+.latest-articles-section {
+    padding: 2rem;
+    margin-bottom: 2rem;
+    background-color: var(--card-background);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border: 1px solid #1d2d50;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    background-color: #0a192f;
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    background-color: rgba(106, 17, 203, 0.2);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+#games-grid, #emulators-grid, #phones-grid, #programs-grid, #ganaplus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+    max-height: 800px; /* Altura máxima para el contenedor */
+    overflow-y: auto; /* Habilita el scroll vertical cuando sea necesario */
+    padding-right: 10px; /* Espacio para la barra de scroll */
+}
+
+#articles-grid-static {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* --- Estilo de la Barra de Scroll para la cuadrícula de juegos --- */
+#games-grid::-webkit-scrollbar, #emulators-grid::-webkit-scrollbar, #phones-grid::-webkit-scrollbar, #programs-grid::-webkit-scrollbar, #ganaplus-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+#games-grid::-webkit-scrollbar-track, #emulators-grid::-webkit-scrollbar-track, #phones-grid::-webkit-scrollbar-track, #programs-grid::-webkit-scrollbar-track, #ganaplus-grid::-webkit-scrollbar-track {
+    background: #e9ecef;
+    border-radius: 10px;
+}
+
+#games-grid::-webkit-scrollbar-thumb, #emulators-grid::-webkit-scrollbar-thumb, #phones-grid::-webkit-scrollbar-thumb, #programs-grid::-webkit-scrollbar-thumb, #ganaplus-grid::-webkit-scrollbar-thumb {
+    background: #bdc3c7;
+    border-radius: 10px;
+}
+
+#games-grid::-webkit-scrollbar-thumb:hover, #emulators-grid::-webkit-scrollbar-thumb:hover, #phones-grid::-webkit-scrollbar-thumb:hover, #programs-grid::-webkit-scrollbar-thumb:hover, #ganaplus-grid::-webkit-scrollbar-thumb:hover {
+    background: #95a5a6;
+}
+
+.article-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    background-color: var(--card-background);
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.article-card-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.article-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-image-container {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Contenido de la tarjeta estática (artículos) */
+.card-content {
+    padding: 1.5rem;
+    border-top: 1px solid #1d2d50;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    color: #8892b0; /* Color de texto secundario más claro */
+    margin: 0 0 1.5rem 0;
+    flex-grow: 1;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #8892b0;
+    margin-bottom: 1rem;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.author-info img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.card-stats {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #8892b0;
+    padding-top: 1rem;
+    border-top: 1px solid #1d2d50;
+}
+
+.card-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.card-actions {
+    margin-left: auto;
+    display: flex;
     gap: 1rem;
 }
 
-.profile-game-card {
-    aspect-ratio: 1 / 1;
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+/* Contenido de la tarjeta dinámica (juegos) */
+#games-grid .article-card h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1rem 1.5rem 0.5rem 1.5rem;
 }
 
-.profile-game-card h4 {
-    color: white;
+#games-grid .article-card p {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin: 0 1.5rem 1.5rem 1.5rem;
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+    #games-grid, #articles-grid-static {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .featured-article {
+        grid-template-columns: 1fr;
+    }
+    .article-image {
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        padding: 0 1rem;
+    }
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .section-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    #games-grid, #articles-grid-static {
+        grid-template-columns: 1fr;
+    }
+    .filter-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+/* --- Pie de Página --- */
+.site-footer {
+    background: linear-gradient(45deg, #2c3e50, #34495e);
+    color: #ecf0f1;
+    padding: 4rem 0 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+}
+
+.footer-column h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.footer-column p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    opacity: 0.8;
     margin: 0;
-    padding: 8px;
-    background-color: rgba(0,0,0,0.5);
-    font-size: 12px;
-    text-align: center;
 }
 
-.profile-footer {
-    margin-top: auto;
-    padding-top: 1rem;
-    border-top: 1px solid #ddd;
-    text-align: right;
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.profile-edit-btn, .profile-save-btn {
-    background-color: #0078d4;
-    color: white;
+.footer-column ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-column ul a {
+    text-decoration: none;
+    color: #bdc3c7;
+    transition: color 0.2s ease;
+}
+
+.footer-column ul a:hover {
+    color: #fff;
+}
+
+.subscribe-form {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.subscribe-form input {
+    flex-grow: 1;
+    border: 1px solid #7f8c8d;
+    background-color: #34495e;
+    color: #fff;
+    padding: 0.8rem;
+    border-radius: 6px 0 0 6px;
+    outline: none;
+}
+
+.subscribe-form input::placeholder {
+    color: #95a5a6;
+}
+
+.subscribe-form button {
+    background-color: #f1c40f;
     border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
+    color: #2c3e50;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0 6px 6px 0;
     cursor: pointer;
+    font-weight: 600;
     transition: background-color 0.2s ease;
 }
 
-.profile-edit-btn:hover, .profile-save-btn:hover {
-    background-color: #005a9e;
-}
-/* --- Estilos para la Ventana de Configuración --- */
-.settings-window-body {
-    padding: 1rem;
-    background-color: #f5f5f5;
+.subscribe-form button:hover {
+    background-color: #f39c12;
 }
 
-.settings-section h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 0.5rem;
-}
-
-.wallpaper-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1rem;
-}
-
-.wallpaper-thumbnail {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background-size: cover;
-    background-position: center;
-    border-radius: 4px;
-    cursor: pointer;
-    border: 3px solid transparent;
-    transition: border-color 0.2s ease;
-}
-
-.wallpaper-thumbnail:hover {
-    border-color: #0078d4;
-}
-
-.wallpaper-thumbnail.selected {
-    border-color: #0078d4;
-    box-shadow: 0 0 10px rgba(0, 120, 212, 0.5);
-}
-/* --- Estilos para Notificaciones --- */
-#notification-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 2000; /* Por encima de todo */
+.footer-bottom {
+    border-top: 1px solid #4a627a;
+    padding: 1.5rem 0;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
 }
 
-.notification {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: slideIn 0.5s ease-out forwards, fadeOut 0.5s ease-in forwards 4.5s;
-    opacity: 0;
-    transform: translateX(100%);
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #95a5a6;
 }
 
-.notification.info {
-    background-color: rgba(0, 120, 212, 0.8);
+.footer-bottom ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
 }
 
-.notification.success {
-    background-color: rgba(16, 124, 16, 0.8);
+.footer-bottom a {
+    text-decoration: none;
+    color: #95a5a6;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
 }
 
-.notification.error {
-    background-color: rgba(232, 17, 35, 0.8);
+.footer-bottom a:hover {
+    color: #fff;
 }
 
-@keyframes slideIn {
-    to {
-        opacity: 1;
-        transform: translateX(0);
+@media (max-width: 992px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-}
-/* Estilos para el botón de eliminar cuenta */
-.profile-delete-btn {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-.profile-delete-btn:hover {
-    background-color: #c82333;
-}
-
-/* --- Media Queries para Diseño Responsivo --- */
 @media (max-width: 768px) {
-    /* --- Ajustes del Escritorio --- */
-    #desktop {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-content: flex-start;
-        gap: 15px;
-        padding: 15px;
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
     }
-
-    .desktop-icon {
-        width: 80px;
-        height: 80px;
+    .subscribe-form {
+        justify-content: center;
     }
-
-    .desktop-icon i {
-        font-size: 32px;
-        margin-bottom: 5px;
-    }
-
-    .desktop-icon span {
-        font-size: 12px;
-    }
-
-    /* --- Ajustes de la Barra de Tareas --- */
-    #taskbar {
-        width: 100%;
-        bottom: 0;
-        left: 0;
-        transform: none;
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
-        border-bottom: none;
-    }
-
-    /* --- Ajustes del Menú de Inicio --- */
-    #start-menu {
-        width: 100vw;
-        height: 100vh;
-        bottom: 0;
-        left: 0;
-        transform: none;
-        border-radius: 0;
-        padding: 1rem;
-    }
-
-    #start-menu.hidden {
-        transform: translateY(100%);
-        opacity: 1; /* La opacidad no es necesaria con la transformación Y */
-    }
-
-    .apps-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    .footer-bottom {
+        flex-direction: column;
         gap: 1rem;
+        text-align: center;
     }
+}
+/* --- Estilos para Funcionalidad (Login y Tarjetas) --- */
 
-    /* --- Ajustes de las Ventanas --- */
-    .window {
-        width: 100% !important; /* Forzar ancho completo */
-        height: 100% !important; /* Forzar alto completo */
-        top: 0 !important;
-        left: 0 !important;
-        border-radius: 0;
-        resize: none; /* Deshabilitar redimensión en móviles */
-    }
+/* Botón de Iniciar Sesión */
+.login-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.login-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Icono de perfil del usuario */
+.nav-actions .profile-icon img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+}
+
+/* Enlace de descarga en la tarjeta */
+.article-card .download-link {
+    display: inline-block;
+    background-color: #f1c40f;
+    color: #2c3e50;
+    padding: 0.6rem 1.2rem;
+    margin: 0 1.5rem 1.5rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.article-card .download-link:hover {
+    background-color: #f39c12;
+}
+
+/* Ajuste para el párrafo de la tarjeta */
+.article-card p {
+    min-height: 45px; /* Da un poco de espacio para que las tarjetas se alineen mejor */
 }

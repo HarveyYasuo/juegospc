@@ -5,122 +5,375 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Plataforma de juegos y recursos digitales">
     <meta name="keywords" content="juegos, emuladores, apps, comunidad gaming">
-    <title>GamesPC - Juegos Para PC</title>
+    <title>GamesPC - Tu Centro de Juegos</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602"
      crossorigin="anonymous"></script>
-     <meta name="google-adsense-account" content="ca-pub-7408875684074602">
+    <meta name="google-adsense-account" content="ca-pub-7408875684074602">
 
-    <meta property="og:title" content="GamesPC: Tu Plataforma de Juegos y Recursos Digitales">
-    <meta property="og:description"
-        content="Descubre, comparte y descarga juegos, emuladores, programas y más. Únete a una comunidad activa y encuentra todo en un solo lugar.">
-    <meta property="og:image" content="https://juegospc.pro/gamesog-og-image.png">
-    <meta property="og:url" content="https://juegospc.pro/">
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="GamesPC">
-    <div id="notification-container"></div>
+    <meta property="og:url" content="https://juegospc.pro/">
+    <meta property="og:title" content="GamesPC: Tu Plataforma de Juegos y Recursos Digitales">
+    <meta property="og:description" content="Descubre, comparte y descarga juegos, emuladores, programas y más. Únete a una comunidad activa y encuentra todo en un solo lugar.">
+    <meta property="og:image" content="https://juegospc.pro/gamesog-og-image.png">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GamesOG: Tu Plataforma de Juegos y Recursos Digitales">
-    <meta name="twitter:description"
-        content="Descubre, comparte y descarga juegos, emuladores, programas y más. Únete a una comunidad activa y encuentra todo en un solo lugar.">
-    <meta name="twitter:image" content="https://juegospc.pro/gamesog-og-image.png">
-    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://juegospc.pro/">
+    <meta property="twitter:title" content="GamesPC: Tu Plataforma de Juegos y Recursos Digitales">
+    <meta property="twitter:description" content="Descubre, comparte y descarga juegos, emuladores, programas y más. Únete a una comunidad activa y encuentra todo en un solo lugar.">
+    <meta property="twitter:image" content="https://juegospc.pro/gamesog-og-image.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 </head>
-<body class="no-scroll">
-    <div id="desktop">
-        <div class="desktop-icons-grid">
-            <!-- Fila 1 -->
-            <a href="articles/mejores-ia-web.html" class="desktop-icon" target="_blank"><i class="fas fa-robot" style="color: #8e44ad;"></i><span>IAs para Web</span></a>
-            <a href="articles/mejores-ia-android.html" class="desktop-icon" target="_blank"><i class="fab fa-android" style="color: #a4c639;"></i><span>IAs para Android</span></a>
-            <a href="articles/mejores-ia-ios.html" class="desktop-icon" target="_blank"><i class="fab fa-apple" style="color: #ecf0f1;"></i><span>IAs para iOS</span></a>
-            <a href="articles/mejores-ia-video.html" class="desktop-icon" target="_blank"><i class="fas fa-video" style="color: #1abc9c;"></i><span>IAs para Video</span></a>
-            <a href="articles/mejores-ia-musica.html" class="desktop-icon" target="_blank"><i class="fas fa-music" style="color: #3498db;"></i><span>IAs para Música</span></a>
-            
-            <!-- Fila 2 -->
-            <a href="articles/mejores-ia-productividad.html" class="desktop-icon" target="_blank"><i class="fas fa-rocket" style="color: #9b59b6;"></i><span>IAs para Productividad</span></a>
-            <a href="articles/mejores-ia-trabajo.html" class="desktop-icon" target="_blank"><i class="fas fa-briefcase" style="color: #2980b9;"></i><span>IAs para Trabajar</span></a>
-            <a href="articles/mejores-ia-aprendizaje.html" class="desktop-icon" target="_blank"><i class="fas fa-brain" style="color: #e74c3c;"></i><span>IAs para Aprender</span></a>
-            <a href="articles/mejores-ia-ml.html" class="desktop-icon" target="_blank"><i class="fas fa-cogs" style="color: #16a085;"></i><span>Machine Learning</span></a>
-            <a href="articles/mejores-ia-domotica.html" class="desktop-icon" target="_blank"><i class="fas fa-home" style="color: #ff8c00;"></i><span>IAs para Domótica</span></a>
+<body>
 
-            <!-- Fila 3 - Otros -->
-            <div class="desktop-icon" id="youtube-icon"><i class="fab fa-youtube" style="color: #ff0000;"></i><span>YouTube</span></div>
-            <a href="terms.html" class="desktop-icon" target="_blank"><i class="fas fa-file-contract" style="color: #f7dc6f;"></i><span>Términos</span></a>
-            <a href="privacy.html" class="desktop-icon" target="_blank"><i class="fas fa-user-shield" style="color: #82e0aa;"></i><span>Privacidad</span></a>
-            <a href="about.html" class="desktop-icon" target="_blank"><i class="fas fa-info-circle" style="color: #e59866;"></i><span>Sobre Nosotros</span></a>
-        </div>
+    <div class="page-container">
+        <header id="header">
+            <nav>
+                <div class="nav-brand">
+                    <img src="favicon.png" alt="GamesPC Logo" class="nav-logo">
+                    <h1>GamesPC</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#header">Hogar</a></li>
+                    <li><a href="#juegos-section">Juegos</a></li>
+                    <li><a href="#emuladores-section">Categorías</a></li>
+                    <li><a href="about.html">Acerca de</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="search-input" placeholder="Buscar juegos...">
+                        <a href="#" class="nav-icon" id="search-icon"><i class="fas fa-search"></i></a>
+                    </div>
+                    <!-- El login/perfil se insertará aquí dinámicamente -->
+                </div>
+            </nav>
+        </header>
 
-        <div id="audio-visualizer" class="hidden">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-    </div>
+        <main>
+            <section class="latest-articles-section" id="juegos-section">
+                <div class="section-header">
+                    <h2>Juegos Populares</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active">Todos</button>
+                        <button class="filter-btn">Acción</button>
+                        <button class="filter-btn">Aventura</button>
+                        <button class="filter-btn">Estrategia</button>
+                    </div>
+                </div>
+                <div class="articles-grid" id="games-grid">
+                    <!-- Las tarjetas de juego se cargarán aquí dinámicamente -->
+                </div>
+            </section>
 
-    <div id="start-menu" class="hidden">
-        <div class="start-menu-header">
-            <input type="text" placeholder="Buscar en aplicaciones, archivos y web">
-        </div>
-        <div class="ad-container">
-            <!-- Aquí irá el contenido del anuncio -->
-           <script type="text/javascript">
-	atOptions = {
-		'key' : 'ce259db21c29b9585ada42fc308537ee',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-  </div>
-        <div class="pinned-apps">
-            <div class="apps-grid">
-                <!-- Las tarjetas de juego se cargarán aquí dinámicamente -->
+            <section class="latest-articles-section" id="emuladores-section">
+                <div class="section-header">
+                    <h2>Emuladores</h2>
+                </div>
+                <div class="articles-grid" id="emulators-grid">
+                    <!-- Las tarjetas de emuladores se cargarán aquí dinámicamente -->
+                </div>
+            </section>
+
+            <section class="latest-articles-section">
+                <div class="section-header">
+                    <h2>Celulares</h2>
+                </div>
+                <div class="articles-grid" id="phones-grid">
+                    <!-- Las tarjetas de celulares se cargarán aquí dinámicamente -->
+                </div>
+            </section>
+
+            <section class="latest-articles-section">
+                <div class="section-header">
+                    <h2>Programas</h2>
+                </div>
+                <div class="articles-grid" id="programs-grid">
+                    <!-- Las tarjetas de programas se cargarán aquí dinámicamente -->
+                </div>
+            </section>
+
+            <section class="latest-articles-section">
+                <div class="section-header">
+                    <h2>GanaPlus</h2>
+                </div>
+                <div class="articles-grid" id="ganaplus-grid">
+                    <!-- Las tarjetas de GanaPlus se cargarán aquí dinámicamente -->
+                </div>
+            </section>
+
+            <section class="latest-articles-section">
+                <div class="section-header">
+                    <h2>Artículos Recientes</h2>
+                </div>
+                <div class="articles-grid" id="articles-grid-static">
+                    <!-- Artículo 1 -->
+                    <a href="articles/mejores-ia-web.html" class="article-card-link">
+                        <article class="article-card">
+                            <div class="card-image-container" style="background-image: url('img/desarrollo-web.jpg');">
+                                 <span class="category-tag" style="background-color: #3498db;">Desarrollo Web</span>
+                            </div>
+                            <div class="card-content">
+                                <h4>Las 5 Mejores IAs para Crear Páginas Web en 2025</h4>
+                                <p>Descubre las herramientas de inteligencia artificial más innovadoras para diseñar y construir sitios web modernos y profesionales en minutos...</p>
+                                <div class="card-footer">
+                                    <div class="author-info">
+                                        <img src="https://i.pravatar.cc/24?u=webdev" alt="Web Dev">
+                                        <span>Web Dev</span>
+                                    </div>
+                                    <span class="read-time">5 minutos de lectura</span>
+                                </div>
+                                <div class="card-stats">
+                                    <span><i class="far fa-heart"></i> 123</span>
+                                    <span><i class="far fa-comment"></i> 12</span>
+                                    <div class="card-actions">
+                                        <i class="far fa-bookmark"></i>
+                                        <i class="fas fa-share-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- Artículo 2 -->
+                    <a href="articles/mejores-ia-ml.html" class="article-card-link">
+                        <article class="article-card">
+                            <div class="card-image-container" style="background-image: url('img/5 mejores ias.jpg');">
+                                <span class="category-tag" style="background-color: #2ecc71;">Machine Learning</span>
+                            </div>
+                            <div class="card-content">
+                                <h4>Las 5 Mejores Plataformas de Aprendizaje Automatizado (Machine Learning) en 2025</h4>
+                                <p>Descubre las plataformas de Machine Learning que permiten a desarrolladores y empresas entrenar e implementar modelos de IA de forma eficiente...</p>
+                                <div class="card-footer">
+                                    <div class="author-info">
+                                        <img src="https://i.pravatar.cc/24?u=ml-expert" alt="ML Expert">
+                                        <span>ML Expert</span>
+                                    </div>
+                                    <span class="read-time">8 minutos de lectura</span>
+                                </div>
+                                <div class="card-stats">
+                                    <span><i class="far fa-heart"></i> 256</span>
+                                    <span><i class="far fa-comment"></i> 34</span>
+                                    <div class="card-actions">
+                                        <i class="far fa-bookmark"></i>
+                                        <i class="fas fa-share-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- Artículo 3 -->
+                    <a href="articles/mejores-ia-productividad.html" class="article-card-link">
+                        <article class="article-card">
+                            <div class="card-image-container" style="background-image: url('img/productividad.jpg');">
+                                 <span class="category-tag" style="background-color: #f1c40f;">Productividad</span>
+                            </div>
+                            <div class="card-content">
+                                <h4>Las 5 Mejores IAs para Productividad en 2025</h4>
+                                <p>Descubre cómo la inteligencia artificial puede automatizar tareas, organizar tu trabajo y potenciar tu productividad a niveles que no imaginabas.</p>
+                                <div class="card-footer">
+                                    <div class="author-info">
+                                        <img src="https://i.pravatar.cc/24?u=prod-guru" alt="Productivity Guru">
+                                        <span>Prod. Guru</span>
+                                    </div>
+                                    <span class="read-time">6 minutos de lectura</span>
+                                </div>
+                                <div class="card-stats">
+                                    <span><i class="far fa-heart"></i> 198</span>
+                                    <span><i class="far fa-comment"></i> 29</span>
+                                    <div class="card-actions">
+                                        <i class="far fa-bookmark"></i>
+                                        <i class="fas fa-share-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- Artículo 4 -->
+                    <a href="articles/mejores-ia-android.html" class="article-card-link">
+                        <article class="article-card">
+                            <div class="card-image-container" style="background-image: url('img/5 mejores ias.jpg');">
+                                 <span class="category-tag" style="background-color: #a4c639;">Android</span>
+                            </div>
+                            <div class="card-content">
+                                <h4>Las 5 Mejores IAs para Crear Apps Android en 2025</h4>
+                                <p>Descubre las plataformas de inteligencia artificial que te permiten construir aplicaciones móviles para Android sin necesidad de programar.</p>
+                                <div class="card-footer">
+                                    <div class="author-info">
+                                        <img src="https://i.pravatar.cc/24?u=android" alt="Android Dev">
+                                        <span>Android Dev</span>
+                                    </div>
+                                    <span class="read-time">7 minutos de lectura</span>
+                                </div>
+                                <div class="card-stats">
+                                    <span><i class="far fa-heart"></i> 150</span>
+                                    <span><i class="far fa-comment"></i> 18</span>
+                                    <div class="card-actions">
+                                        <i class="far fa-bookmark"></i>
+                                        <i class="fas fa-share-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- Artículo 5 -->
+                    <a href="articles/mejores-ia-ios.html" class="article-card-link">
+                        <article class="article-card">
+                            <div class="card-image-container" style="background-image: url('img/ias-ios.jpg');">
+                                 <span class="category-tag" style="background-color: #95a5a6;">iOS</span>
+                            </div>
+                            <div class="card-content">
+                                <h4>Las 5 Mejores IAs para Crear Apps iOS en 2025</h4>
+                                <p>Descubre las plataformas de inteligencia artificial que te permiten diseñar, construir y publicar aplicaciones para iOS en la App Store sin escribir código.</p>
+                                <div class="card-footer">
+                                    <div class="author-info">
+                                        <img src="https://i.pravatar.cc/24?u=ios" alt="iOS Dev">
+                                        <span>iOS Dev</span>
+                                    </div>
+                                    <span class="read-time">7 minutos de lectura</span>
+                                </div>
+                                <div class="card-stats">
+                                    <span><i class="far fa-heart"></i> 145</span>
+                                    <span><i class="far fa-comment"></i> 22</span>
+                                    <div class="card-actions">
+                                        <i class="far fa-bookmark"></i>
+                                        <i class="fas fa-share-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- Artículo 6 -->
+                    <a href="articles/mejores-ia-video.html" class="article-card-link">
+                        <article class="article-card">
+                            <div class="card-image-container" style="background-image: url('img/ais-video.jpg');">
+                                 <span class="category-tag" style="background-color: #e74c3c;">Video</span>
+                            </div>
+                            <div class="card-content">
+                                <h4>Las 5 Mejores IAs para Crear Video en 2025</h4>
+                                <p>Descubre cómo la inteligencia artificial generativa está revolucionando la creación de video, permitiendo generar escenas complejas a partir de texto.</p>
+                                <div class="card-footer">
+                                    <div class="author-info">
+                                        <img src="https://i.pravatar.cc/24?u=video" alt="Filmmaker AI">
+                                        <span>Filmmaker AI</span>
+                                    </div>
+                                    <span class="read-time">6 minutos de lectura</span>
+                                </div>
+                                <div class="card-stats">
+                                    <span><i class="far fa-heart"></i> 310</span>
+                                    <span><i class="far fa-comment"></i> 55</span>
+                                    <div class="card-actions">
+                                        <i class="far fa-bookmark"></i>
+                                        <i class="fas fa-share-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- Artículo 7 -->
+                    <a href="articles/mejores-ia-musica.html" class="article-card-link">
+                        <article class="article-card">
+                            <div class="card-image-container" style="background-image: url('img/ais-music.jpg');">
+                                 <span class="category-tag" style="background-color: #9b59b6;">Música</span>
+                            </div>
+                            <div class="card-content">
+                                <h4>Las 5 Mejores IAs para Crear Música en 2025</h4>
+                                <p>Descubre cómo la inteligencia artificial está permitiendo a músicos y aficionados crear composiciones complejas, melodías y ritmos de forma intuitiva.</p>
+                                <div class="card-footer">
+                                    <div class="author-info">
+                                        <img src="https://i.pravatar.cc/24?u=music" alt="AI Musician">
+                                        <span>AI Musician</span>
+                                    </div>
+                                    <span class="read-time">5 minutos de lectura</span>
+                                </div>
+                                <div class="card-stats">
+                                    <span><i class="far fa-heart"></i> 220</span>
+                                    <span><i class="far fa-comment"></i> 40</span>
+                                    <div class="card-actions">
+                                        <i class="far fa-bookmark"></i>
+                                        <i class="fas fa-share-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- Artículo 8 -->
+                    <a href="articles/mejores-ia-trabajo.html" class="article-card-link">
+                        <article class="article-card">
+                            <div class="card-image-container" style="background-image: url('img/ai-work.jpg');">
+                                 <span class="category-tag" style="background-color: #34495e;">Trabajo</span>
+                            </div>
+                            <div class="card-content">
+                                <h4>Las 5 Mejores IAs para Trabajar en 2025</h4>
+                                <p>Descubre las herramientas de inteligencia artificial que están transformando el entorno laboral, automatizando tareas y potenciando la creatividad y la eficiencia.</p>
+                                <div class="card-footer">
+                                    <div class="author-info">
+                                        <img src="https://i.pravatar.cc/24?u=work" alt="Office Pro">
+                                        <span>Office Pro</span>
+                                    </div>
+                                    <span class="read-time">6 minutos de lectura</span>
+                                </div>
+                                <div class="card-stats">
+                                    <span><i class="far fa-heart"></i> 180</span>
+                                    <span><i class="far fa-comment"></i> 25</span>
+                                    <div class="card-actions">
+                                        <i class="far fa-bookmark"></i>
+                                        <i class="fas fa-share-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>GamesPC</h4>
+                    <p>Tu principal destino para juegos y recursos digitales de calidad.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Categorías</h4>
+                    <ul>
+                        <li><a href="#">Acción</a></li>
+                        <li><a href="#">Aventura</a></li>
+                        <li><a href="#">Estrategia</a></li>
+                        <li><a href="#">RPG</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Compañía</h4>
+                    <ul>
+                        <li><a href="about.html">Sobre nosotros</a></li>
+                        <li><a href="mailto:contacto@juegospc.pro">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Suscribir</h4>
+                    <p>Recibe las últimas novedades y lanzamientos en tu bandeja de entrada.</p>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button type="submit">Suscribir</button>
+                    </form>
+                </div>
             </div>
-        </div>
-
-        <div class="start-menu-footer">
-            <div class="user-profile" id="user-profile-container">
-                <i class="fas fa-user-circle"></i>
-                <span>No Disponible</span>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GamesPC. Todos los derechos reservados.</p>
+                <ul>
+                    <li><a href="privacy.html">Política de privacidad</a></li>
+                    <li><a href="terms.html">Condiciones de servicio</a></li>
+                </ul>
             </div>
-            <div class="action-button" id="settings-btn">
-                <i class="fas fa-cog"></i>
-            </div>
-        </div>
+        </footer>
     </div>
-
-    <div id="task-view" class="hidden">
-        <div class="task-view-grid">
-            <!-- Contenido de la vista de tareas se cargará aquí -->
-        </div>
-    </div>
-
-    <div id="taskbar">
-        <div class="taskbar-icons">
-            <div class="taskbar-icon" id="start-btn"><i class="fab fa-windows"></i></div>
-            <div class="taskbar-icon"><i class="fas fa-search"></i></div>
-            <div class="taskbar-icon" id="task-view-btn"><i class="fas fa-th-large"></i></div>
-            <div class="taskbar-icon"><i class="fab fa-edge"></i></div>
-            <div class="taskbar-icon" id="chat-icon"><i class="fas fa-comments"></i></div>
-        </div>
-        <div class="system-tray">
-            <div class="tray-icon" id="online-users-icon" title="Usuarios en línea">
-                <i class="fas fa-users"></i>
-                <span id="online-users-count">0</span>
-            </div>
-            <div id="clock">12:00 PM</div>
-        </div>
-    </div>
-
-    <script type="module" src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
