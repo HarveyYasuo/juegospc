@@ -1,45 +1,67 @@
-// Función principal para obtener y mostrar los datos del Gist
-async function fetchGistData() {
-    // Reemplaza con la URL "raw" de tu Gist secreto
+document.addEventListener('DOMContentLoaded', async () => {
     const gistUrl = 'https://gist.githubusercontent.com/HarveyYasuo/9d3c5f517a39dd5164c966dd176c91b6/raw/e6700111544f4f151f888ce87330aa7ef40e9e4e/gamesog_data.json';
 
     const loadingEl = document.getElementById('loading');
-    const contentEl = document.getElementById('content');
-    const dataDisplayEl = document.getElementById('data-display');
     const errorEl = document.getElementById('error-message');
     const errorTextEl = document.getElementById('error-text');
+    const mainContent = document.querySelector('main');
 
-    // Muestra el indicador de carga
-    loadingEl.classList.remove('hidden');
-    contentEl.classList.add('hidden');
-    errorEl.classList.add('hidden');
+    const categoryGridMap = {
+        'juegos': 'juegos-grid',
+        'emuladores': 'emuladores-grid',
+        'celulares': 'celulares-grid',
+        'programas': 'programas-grid',
+        'ganaplus': 'ganaplus-grid'
+    };
+
+    const hideLoading = () => loadingEl.style.display = 'none';
+    const showError = (message) => {
+        errorTextEl.textContent = message;
+        errorEl.classList.remove('hidden');
+        mainContent.classList.add('hidden');
+    };
 
     try {
-        // Realiza la petición al Gist
         const response = await fetch(gistUrl);
-
-        // Maneja si la respuesta no es exitosa
         if (!response.ok) {
             throw new Error(`Error HTTP: ${response.status} - ${response.statusText}`);
         }
+        const data = await response.json();
 
-        // Parsea la respuesta a JSON
-        const jsonData = await response.json();
+        // Ocultar el indicador de carga una vez que los datos se han obtenido
+        hideLoading();
 
-        // Muestra los datos en la página
-        dataDisplayEl.textContent = JSON.stringify(jsonData, null, 2);
-        contentEl.classList.remove('hidden');
+        // Iterar sobre las categorías del JSON
+        for (const categoryKey in data) {
+            if (data.hasOwnProperty(categoryKey) && categoryGridMap[categoryKey]) {
+                const gridId = categoryGridMap[categoryKey];
+                const grid = document.getElementById(gridId);
+                const items = data[categoryKey];
+
+                if (grid && items.length > 0) {
+                    grid.innerHTML = ''; // Limpiar la grilla antes de agregar nuevos elementos
+                    items.forEach(item => {
+                        const itemCard = document.createElement('article');
+                        itemCard.className = 'article-card';
+                        itemCard.innerHTML = `
+                            <div class="card-image-container" style="background-image: url('${item.enlace_imagen}');">
+                                 <span class="category-tag">${categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)}</span>
+                            </div>
+                            <h4>${item.titulo}</h4>
+                            <p>Haz clic para descargar y obtener más información.</p>
+                            <a href="${item.enlace_sitio || '#'}" target="_blank" class="download-link">Descargar</a>
+                        `;
+                        grid.appendChild(itemCard);
+                    });
+                } else if (grid) {
+                    grid.innerHTML = `<p>No se encontraron elementos en esta categoría.</p>`;
+                }
+            }
+        }
 
     } catch (error) {
-        // Muestra el mensaje de error en caso de fallo
-        errorTextEl.textContent = `Hubo un problema al obtener los datos. Asegúrate de que la URL del Gist es correcta y el Gist no está vacío. Error: ${error.message}`;
-        errorEl.classList.remove('hidden');
+        hideLoading();
+        showError(`Hubo un problema al obtener los datos. Asegúrate de que la URL del Gist es correcta y el Gist no está vacío. Error: ${error.message}`);
         console.error('Error al obtener los datos:', error);
-    } finally {
-        // Oculta el indicador de carga
-        loadingEl.classList.add('hidden');
     }
-}
-
-// Ejecuta la función cuando el DOM esté cargado
-document.addEventListener('DOMContentLoaded', fetchGistData);
+});
