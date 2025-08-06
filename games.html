@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contenido Exclusivo - Centro de IA</title>
+    <title>Datos desde Gist - Centro de IA</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <style>
+        .hidden { display: none; }
+        #loading { text-align: center; padding: 50px; font-size: 1.2em; }
+        #error-message { color: red; text-align: center; padding: 20px; border: 1px solid red; margin: 20px; }
+        #data-display { white-space: pre-wrap; background-color: #f4f4f4; padding: 20px; border-radius: 5px; margin: 20px; }
+    </style>
 </head>
 <body>
 
@@ -25,57 +26,21 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Hogar</a></li>
                 </ul>
-                <div class="nav-actions">
-                    <!-- El perfil de usuario se insertará aquí dinámicamente -->
-                </div>
             </nav>
         </header>
 
         <main>
-            <section class="latest-articles-section">
-                <div class="section-header">
-                    <h2>Juegos Populares</h2>
-                </div>
-                <div class="articles-grid" id="games-grid">
-                    <!-- Las tarjetas de juego se cargarán aquí dinámicamente -->
-                </div>
-            </section>
+            <div id="loading">Cargando datos...</div>
 
-            <section class="latest-articles-section">
-                <div class="section-header">
-                    <h2>Emuladores</h2>
-                </div>
-                <div class="articles-grid" id="emulators-grid">
-                    <!-- Las tarjetas de emuladores se cargarán aquí dinámicamente -->
-                </div>
-            </section>
+            <div id="error-message" class="hidden">
+                <h3>Error</h3>
+                <p id="error-text"></p>
+            </div>
 
-            <section class="latest-articles-section">
-                <div class="section-header">
-                    <h2>Celulares</h2>
-                </div>
-                <div class="articles-grid" id="phones-grid">
-                    <!-- Las tarjetas de celulares se cargarán aquí dinámicamente -->
-                </div>
-            </section>
-
-            <section class="latest-articles-section">
-                <div class="section-header">
-                    <h2>Programas</h2>
-                </div>
-                <div class="articles-grid" id="programs-grid">
-                    <!-- Las tarjetas de programas se cargarán aquí dinámicamente -->
-                </div>
-            </section>
-
-            <section class="latest-articles-section">
-                <div class="section-header">
-                    <h2>GanaPlus</h2>
-                </div>
-                <div class="articles-grid" id="ganaplus-grid">
-                    <!-- Las tarjetas de GanaPlus se cargarán aquí dinámicamente -->
-                </div>
-            </section>
+            <div id="content" class="hidden">
+                <h2>Datos Obtenidos del Gist:</h2>
+                <pre id="data-display"></pre>
+            </div>
         </main>
 
         <footer class="site-footer">
@@ -85,27 +50,11 @@
                     <p>Tu principal destino para artículos y herramientas de inteligencia artificial.</p>
                 </div>
                 <div class="footer-column">
-                    <h4>Categorías</h4>
-                    <ul>
-                        <li><a href="#games-grid">Juegos</a></li>
-                        <li><a href="#emulators-grid">Emuladores</a></li>
-                        <li><a href="#programs-grid">Programas</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
                     <h4>Compañía</h4>
                     <ul>
                         <li><a href="about.html">Sobre nosotros</a></li>
                         <li><a href="mailto:contacto@juegospc.pro">Contacto</a></li>
                     </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Suscribir</h4>
-                    <p>Recibe las últimas novedades y lanzamientos en tu bandeja de entrada.</p>
-                    <form class="subscribe-form">
-                        <input type="email" placeholder="Tu correo electrónico">
-                        <button type="submit">Suscribir</button>
-                    </form>
                 </div>
             </div>
             <div class="footer-bottom">

@@ -1,124 +1,45 @@
-// Configuración de Firebase (sin imports)
-const firebaseConfig = {
-    apiKey: "AIzaSyDXqLCRY6OgcXTXsAR-TvnC4bIICjDndsw",
-    authDomain: "todo-en-uno-e79c7.firebaseapp.com",
-    projectId: "todo-en-uno-e79c7",
-    storageBucket: "todo-en-uno-e79c7.appspot.com",
-    messagingSenderId: "122399269850",
-    appId: "1:122399269850:web:210049a35cc9abff9fd6e3",
-    databaseURL: "https://todo-en-uno-e79c7-default-rtdb.firebaseio.com/"
-};
+// Función principal para obtener y mostrar los datos del Gist
+async function fetchGistData() {
+    // Reemplaza con la URL "raw" de tu Gist secreto
+    const gistUrl = 'https://gist.githubusercontent.com/HarveyYasuo/9d3c5f517a39dd5164c966dd176c91b6/raw/e6700111544f4f151f888ce87330aa7ef40e9e4e/gamesog_data.json';
 
-// Inicializar Firebase usando el objeto global
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const provider = new firebase.auth.GoogleAuthProvider();
-const db = firebase.database();
+    const loadingEl = document.getElementById('loading');
+    const contentEl = document.getElementById('content');
+    const dataDisplayEl = document.getElementById('data-display');
+    const errorEl = document.getElementById('error-message');
+    const errorTextEl = document.getElementById('error-text');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const navActions = document.querySelector('.nav-actions');
+    // Muestra el indicador de carga
+    loadingEl.classList.remove('hidden');
+    contentEl.classList.add('hidden');
+    errorEl.classList.add('hidden');
 
-    // --- LÓGICA REUTILIZABLE PARA CARGAR CATEGORÍAS ---
-    const setupCategory = (categoryName, gridId) => {
-        const grid = document.getElementById(gridId);
-        if (!grid) return;
+    try {
+        // Realiza la petición al Gist
+        const response = await fetch(gistUrl);
 
-        let state = {
-            currentPage: 1,
-            isLoading: false,
-            allItemsLoaded: false
-        };
-
-        const loadItems = async () => {
-            if (state.isLoading || state.allItemsLoaded) return;
-            state.isLoading = true;
-
-            try {
-                const API_BASE_URL = "https://unbiased-tough-mayfly.ngrok-free.app/";
-                let url = `${API_BASE_URL}get_items.php?category=${categoryName}&limit=12&page=${state.currentPage}`;
-                const response = await fetch(url, { headers: { 'ngrok-skip-browser-warning': 'true' } });
-                if (!response.ok) throw new Error(`Error de red: ${response.status}`);
-                const items = await response.json();
-
-                if (items.length === 0) {
-                    state.allItemsLoaded = true;
-                    if (state.currentPage === 1) {
-                        grid.innerHTML = `<p>No se encontraron elementos en ${categoryName}.</p>`;
-                    }
-                    return;
-                }
-
-                items.forEach(item => {
-                    const itemCard = document.createElement('article');
-                    itemCard.className = 'article-card';
-                    itemCard.innerHTML = `
-                        <div class="card-image-container" style="background-image: url('${item.enlace_imagen}');">
-                             <span class="category-tag">${categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}</span>
-                        </div>
-                        <h4>${item.titulo}</h4>
-                        <p>Haz clic para descargar y obtener más información.</p>
-                        <a href="${item.enlace_sitio || '#'}" target="_blank" class="download-link">Descargar</a>
-                    `;
-                    grid.appendChild(itemCard);
-                });
-                state.currentPage++;
-            } catch (error) {
-                console.error(`Error al cargar ${categoryName}:`, error);
-            } finally {
-                state.isLoading = false;
-            }
-        };
-
-        grid.addEventListener('scroll', () => {
-            const { scrollTop, scrollHeight, clientHeight } = grid;
-            if (scrollTop + clientHeight >= scrollHeight - 50 && !state.isLoading) {
-                loadItems();
-            }
-        });
-
-        loadItems();
-    };
-
-    // --- INICIALIZAR TODAS LAS CATEGORÍAS DE JUEGOS ---
-    setupCategory('juegos', 'games-grid');
-    setupCategory('emuladores', 'emulators-grid');
-    setupCategory('celulares', 'phones-grid');
-    setupCategory('programas', 'programs-grid');
-    setupCategory('ganaplus', 'ganaplus-grid');
-
-    // --- LÓGICA DE AUTENTICACIÓN Y REDIRECCIÓN ---
-    function updateUserProfileUI(user) {
-        if (!navActions) return;
-        const existingActions = navActions.querySelectorAll('.auth-action');
-        existingActions.forEach(action => action.remove());
-
-        if (user) {
-            const profileContainer = document.createElement('a');
-            profileContainer.href = "#";
-            profileContainer.className = 'nav-icon profile-icon auth-action';
-            profileContainer.innerHTML = `<img src="${user.photoURL}" alt="${user.displayName}" title="${user.displayName}">`;
-
-            const signOutBtn = document.createElement('a');
-            signOutBtn.href = "#";
-            signOutBtn.className = 'nav-icon auth-action';
-            signOutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i>';
-            signOutBtn.title = 'Cerrar Sesión';
-            signOutBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                auth.signOut();
-            });
-
-            navActions.appendChild(profileContainer);
-            navActions.appendChild(signOutBtn);
+        // Maneja si la respuesta no es exitosa
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status} - ${response.statusText}`);
         }
+
+        // Parsea la respuesta a JSON
+        const jsonData = await response.json();
+
+        // Muestra los datos en la página
+        dataDisplayEl.textContent = JSON.stringify(jsonData, null, 2);
+        contentEl.classList.remove('hidden');
+
+    } catch (error) {
+        // Muestra el mensaje de error en caso de fallo
+        errorTextEl.textContent = `Hubo un problema al obtener los datos. Asegúrate de que la URL del Gist es correcta y el Gist no está vacío. Error: ${error.message}`;
+        errorEl.classList.remove('hidden');
+        console.error('Error al obtener los datos:', error);
+    } finally {
+        // Oculta el indicador de carga
+        loadingEl.classList.add('hidden');
     }
+}
 
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            updateUserProfileUI(user);
-        } else {
-            // Si el usuario no está logueado en esta página, lo redirige al index.
-            window.location.href = 'index.html';
-        }
-    });
-});
+// Ejecuta la función cuando el DOM esté cargado
+document.addEventListener('DOMContentLoaded', fetchGistData);
