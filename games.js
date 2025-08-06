@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const loadingEl = document.getElementById('loading');
     const errorEl = document.getElementById('error-message');
     const errorTextEl = document.getElementById('error-text');
-    const mainContent = document.querySelector('main');
+    const contentSections = document.querySelectorAll('.latest-articles-section');
 
     const categoryGridMap = {
         'juegos': 'juegos-grid',
@@ -14,12 +14,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         'ganaplus': 'ganaplus-grid'
     };
 
-    const hideLoading = () => loadingEl.style.display = 'none';
-    const showError = (message) => {
-        errorTextEl.textContent = message;
-        errorEl.classList.remove('hidden');
-        mainContent.classList.add('hidden');
+    const hideLoading = () => {
+        if (loadingEl) loadingEl.style.display = 'none';
     };
+
+    const showError = (message) => {
+        if (errorTextEl) errorTextEl.textContent = message;
+        if (errorEl) errorEl.classList.remove('hidden');
+        contentSections.forEach(section => section.style.display = 'none');
+    };
+
+    // Ocultar secciones de contenido inicialmente
+    contentSections.forEach(section => section.style.display = 'none');
 
     try {
         const response = await fetch(gistUrl);
@@ -28,7 +34,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         const data = await response.json();
 
-        // Ocultar el indicador de carga una vez que los datos se han obtenido
         hideLoading();
 
         // Iterar sobre las categorías del JSON
@@ -39,7 +44,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const items = data[categoryKey];
 
                 if (grid && items.length > 0) {
-                    grid.innerHTML = ''; // Limpiar la grilla antes de agregar nuevos elementos
+                    const section = grid.closest('.latest-articles-section');
+                    if (section) section.style.display = 'block'; // Mostrar la sección si tiene items
+
+                    grid.innerHTML = ''; // Limpiar la grilla
                     items.forEach(item => {
                         const itemCard = document.createElement('article');
                         itemCard.className = 'article-card';
@@ -53,8 +61,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                         `;
                         grid.appendChild(itemCard);
                     });
-                } else if (grid) {
-                    grid.innerHTML = `<p>No se encontraron elementos en esta categoría.</p>`;
                 }
             }
         }
