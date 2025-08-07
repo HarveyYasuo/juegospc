@@ -1,10 +1,9 @@
-document.addEventListener('DOMContentLoaded', async () => {
+async function fetchAndDisplayData() {
     const gistUrl = 'https://gist.githubusercontent.com/HarveyYasuo/9d3c5f517a39dd5164c966dd176c91b6/raw/e6700111544f4f151f888ce87330aa7ef40e9e4e/gamesog_data.json';
 
     const loadingEl = document.getElementById('loading');
     const errorEl = document.getElementById('error-message');
     const errorTextEl = document.getElementById('error-text');
-    const contentSections = document.querySelectorAll('.latest-articles-section');
 
     const categoryGridMap = {
         'juegos': 'juegos-grid',
@@ -14,30 +13,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         'ganaplus': 'ganaplus-grid'
     };
 
-    const hideLoading = () => {
-        if (loadingEl) loadingEl.classList.add('hidden');
-    };
-
-    const showError = (message) => {
-        if (errorTextEl) errorTextEl.textContent = message;
-        if (errorEl) errorEl.classList.remove('hidden');
-        // Asegurarse de que las secciones de contenido estén ocultas
-        contentSections.forEach(section => section.classList.add('section-hidden'));
-    };
-
-    // Ocultar secciones de contenido inicialmente
-    contentSections.forEach(section => section.classList.add('section-hidden'));
+    // Mostrar 'Cargando...' y asegurarse de que el error esté oculto
+    loadingEl.classList.remove('hidden');
+    errorEl.classList.add('hidden');
 
     try {
         const response = await fetch(gistUrl);
         if (!response.ok) {
-            throw new Error(`Error HTTP: ${response.status} - ${response.statusText}`);
+            throw new Error(`Error de red: ${response.status} ${response.statusText}`);
         }
         const data = await response.json();
 
-        hideLoading();
-
-        // Iterar sobre las categorías del JSON
+        // Procesar los datos y construir las tarjetas
         for (const categoryKey in data) {
             if (data.hasOwnProperty(categoryKey) && categoryGridMap[categoryKey]) {
                 const gridId = categoryGridMap[categoryKey];
@@ -46,9 +33,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (grid && items.length > 0) {
                     const section = grid.closest('.latest-articles-section');
-                    if (section) section.classList.remove('section-hidden'); // Mostrar la sección si tiene items
+                    if (section) {
+                        section.classList.remove('hidden');
+                    }
 
-                    grid.innerHTML = ''; // Limpiar la grilla
+                    grid.innerHTML = ''; // Limpiar para evitar duplicados
                     items.forEach(item => {
                         const itemCard = document.createElement('article');
                         itemCard.className = 'article-card';
@@ -67,8 +56,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
     } catch (error) {
-        hideLoading();
-        showError(`Hubo un problema al obtener los datos. Asegúrate de que la URL del Gist es correcta y el Gist no está vacío. Error: ${error.message}`);
+        // Si algo falla, mostrar el mensaje de error
+        errorTextEl.textContent = `Hubo un problema al obtener los datos. Error: ${error.message}`;
+        errorEl.classList.remove('hidden');
         console.error('Error al obtener los datos:', error);
+    } finally {
+        // Ocultar 'Cargando...' sin importar si hubo éxito o error
+        loadingEl.classList.add('hidden');
     }
-});
+}
+
+// Ejecutar la función cuando el DOM esté cargado
+document.addEventListener('DOMContentLoaded', fetchAndDisplayData);

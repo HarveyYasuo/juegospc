@@ -7,6 +7,9 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
 
@@ -25,54 +28,35 @@
 
         <main>
             <div id="loading" style="text-align: center; padding: 50px; font-size: 1.2em;">Cargando contenido...</div>
+            
             <div id="error-message" class="hidden" style="color: red; text-align: center; padding: 20px; border: 1px solid red; margin: 20px;">
                 <h3>Error</h3>
                 <p id="error-text"></p>
             </div>
 
-            <section class="latest-articles-section">
-                <div class="section-header">
-                    <h2>Juegos Populares</h2>
-                </div>
-                <div class="articles-grid" id="juegos-grid">
-                    <!-- Las tarjetas de juego se cargarán aquí dinámicamente -->
-                </div>
+            <section class="latest-articles-section hidden">
+                <div class="section-header"><h2>Juegos Populares</h2></div>
+                <div class="articles-grid" id="juegos-grid"></div>
             </section>
 
-            <section class="latest-articles-section">
-                <div class="section-header">
-                    <h2>Emuladores</h2>
-                </div>
-                <div class="articles-grid" id="emuladores-grid">
-                    <!-- Las tarjetas de emuladores se cargarán aquí dinámicamente -->
-                </div>
+            <section class="latest-articles-section hidden">
+                <div class="section-header"><h2>Emuladores</h2></div>
+                <div class="articles-grid" id="emuladores-grid"></div>
             </section>
 
-            <section class="latest-articles-section">
-                <div class="section-header">
-                    <h2>Celulares</h2>
-                </div>
-                <div class="articles-grid" id="celulares-grid">
-                    <!-- Las tarjetas de celulares se cargarán aquí dinámicamente -->
-                </div>
+            <section class="latest-articles-section hidden">
+                <div class="section-header"><h2>Celulares</h2></div>
+                <div class="articles-grid" id="celulares-grid"></div>
             </section>
 
-            <section class="latest-articles-section">
-                <div class="section-header">
-                    <h2>Programas</h2>
-                </div>
-                <div class="articles-grid" id="programas-grid">
-                    <!-- Las tarjetas de programas se cargarán aquí dinámicamente -->
-                </div>
+            <section class="latest-articles-section hidden">
+                <div class="section-header"><h2>Programas</h2></div>
+                <div class="articles-grid" id="programas-grid"></div>
             </section>
 
-            <section class="latest-articles-section">
-                <div class="section-header">
-                    <h2>GanaPlus</h2>
-                </div>
-                <div class="articles-grid" id="ganaplus-grid">
-                    <!-- Las tarjetas de GanaPlus se cargarán aquí dinámicamente -->
-                </div>
+            <section class="latest-articles-section hidden">
+                <div class="section-header"><h2>GanaPlus</h2></div>
+                <div class="articles-grid" id="ganaplus-grid"></div>
             </section>
         </main>
 
