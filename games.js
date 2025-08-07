@@ -11,9 +11,11 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+console.log("Firebase inicializado.");
 
 // 2. Función para obtener y mostrar los datos de las tarjetas
 async function fetchAndDisplayData() {
+    console.log("Iniciando fetchAndDisplayData...");
     const gistUrl = 'https://gist.githubusercontent.com/HarveyYasuo/9d3c5f517a39dd5164c966dd176c91b6/raw/e6700111544f4f151f888ce87330aa7ef40e9e4e/gamesog_data.json';
     const loadingEl = document.getElementById('loading');
     const errorEl = document.getElementById('error-message');
@@ -29,37 +31,63 @@ async function fetchAndDisplayData() {
 
     loadingEl.classList.remove('hidden');
     errorEl.classList.add('hidden');
+    console.log("Indicador de carga mostrado.");
 
     try {
+        console.log("Intentando obtener datos desde:", gistUrl);
         const response = await fetch(gistUrl);
+        console.log("Respuesta recibida del fetch:", response.status);
         if (!response.ok) {
             throw new Error(`Error de red: ${response.status} ${response.statusText}`);
         }
         const data = await response.json();
+        console.log("Datos JSON parseados correctamente.");
 
-        // --- INICIO: CÓDIGO DE DEPURACIÓN ---
-        const debugOutput = document.getElementById('debug-output');
-        const debugPre = document.getElementById('debug-pre');
+        for (const categoryKey in data) {
+            if (data.hasOwnProperty(categoryKey) && categoryGridMap[categoryKey]) {
+                const gridId = categoryGridMap[categoryKey];
+                const grid = document.getElementById(gridId);
+                const items = data[categoryKey];
 
-        if (debugOutput && debugPre) {
-            debugPre.textContent = JSON.stringify(data, null, 2);
-            debugOutput.classList.remove('hidden');
+                if (grid && items.length > 0) {
+                    console.log(`Creando tarjetas para la categoría: ${categoryKey}`);
+                    const section = grid.closest('.latest-articles-section');
+                    if (section) section.classList.remove('hidden');
+
+                    grid.innerHTML = '';
+                    items.forEach(item => {
+                        const itemCard = document.createElement('article');
+                        itemCard.className = 'article-card';
+                        itemCard.innerHTML = `
+                            <div class="card-image-container" style="background-image: url('${item.enlace_imagen}');">
+                                 <span class="category-tag">${categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)}</span>
+                            </div>
+                            <h4>${item.titulo}</h4>
+                            <p>Haz clic para descargar y obtener más información.</p>
+                            <a href="${item.enlace_sitio || '#'}" target="_blank" class="download-link">Descargar</a>
+                        `;
+                        grid.appendChild(itemCard);
+                    });
+                }
+            }
         }
-        // --- FIN: CÓDIGO DE DEPURACIÓN ---
     } catch (error) {
+        console.error("Error en fetchAndDisplayData:", error);
         errorTextEl.textContent = `Hubo un problema al obtener los datos. Error: ${error.message}`;
         errorEl.classList.remove('hidden');
     } finally {
+        console.log("Finalizando fetchAndDisplayData, ocultando carga.");
         loadingEl.classList.add('hidden');
     }
 }
 
 // 3. Función para actualizar la UI del perfil de usuario
 function updateUserProfileUI(user) {
+    console.log("Actualizando UI para el usuario:", user.displayName);
     const navActions = document.querySelector('.nav-actions');
     if (!navActions) return;
 
-    navActions.innerHTML = ''; // Limpiar acciones anteriores
+    navActions.innerHTML = '';
 
     if (user) {
         const profileContainer = document.createElement('a');
@@ -84,15 +112,15 @@ function updateUserProfileUI(user) {
 
 // 4. Lógica principal que se ejecuta al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM completamente cargado. Añadiendo listener de estado de autenticación.");
     auth.onAuthStateChanged(user => {
+        console.log("Cambio de estado de autenticación detectado.");
         if (user) {
-            // Si el usuario está autenticado:
-            // 1. Muestra su perfil
+            console.log("Usuario autenticado:", user.uid);
             updateUserProfileUI(user);
-            // 2. Carga los datos de las tarjetas
             fetchAndDisplayData();
         } else {
-            // Si no está autenticado, redirige al inicio
+            console.log("Usuario no autenticado. Redirigiendo a index.html");
             window.location.href = 'index.html';
         }
     });
