@@ -15,17 +15,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     const hideLoading = () => {
-        if (loadingEl) loadingEl.style.display = 'none';
+        if (loadingEl) loadingEl.classList.add('hidden');
     };
 
     const showError = (message) => {
         if (errorTextEl) errorTextEl.textContent = message;
         if (errorEl) errorEl.classList.remove('hidden');
-        contentSections.forEach(section => section.style.display = 'none');
+        // Asegurarse de que las secciones de contenido estén ocultas
+        contentSections.forEach(section => section.classList.add('section-hidden'));
     };
 
     // Ocultar secciones de contenido inicialmente
-    contentSections.forEach(section => section.style.display = 'none');
+    contentSections.forEach(section => section.classList.add('section-hidden'));
 
     try {
         const response = await fetch(gistUrl);
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (grid && items.length > 0) {
                     const section = grid.closest('.latest-articles-section');
-                    if (section) section.style.display = 'block'; // Mostrar la sección si tiene items
+                    if (section) section.classList.remove('section-hidden'); // Mostrar la sección si tiene items
 
                     grid.innerHTML = ''; // Limpiar la grilla
                     items.forEach(item => {
