@@ -37,33 +37,15 @@ async function fetchAndDisplayData() {
         }
         const data = await response.json();
 
-        for (const categoryKey in data) {
-            if (data.hasOwnProperty(categoryKey) && categoryGridMap[categoryKey]) {
-                const gridId = categoryGridMap[categoryKey];
-                const grid = document.getElementById(gridId);
-                const items = data[categoryKey];
+        // --- INICIO: CÓDIGO DE DEPURACIÓN ---
+        const debugOutput = document.getElementById('debug-output');
+        const debugPre = document.getElementById('debug-pre');
 
-                if (grid && items.length > 0) {
-                    const section = grid.closest('.latest-articles-section');
-                    if (section) section.classList.remove('hidden');
-
-                    grid.innerHTML = '';
-                    items.forEach(item => {
-                        const itemCard = document.createElement('article');
-                        itemCard.className = 'article-card';
-                        itemCard.innerHTML = `
-                            <div class="card-image-container" style="background-image: url('${item.enlace_imagen}');">
-                                 <span class="category-tag">${categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)}</span>
-                            </div>
-                            <h4>${item.titulo}</h4>
-                            <p>Haz clic para descargar y obtener más información.</p>
-                            <a href="${item.enlace_sitio || '#'}" target="_blank" class="download-link">Descargar</a>
-                        `;
-                        grid.appendChild(itemCard);
-                    });
-                }
-            }
+        if (debugOutput && debugPre) {
+            debugPre.textContent = JSON.stringify(data, null, 2);
+            debugOutput.classList.remove('hidden');
         }
+        // --- FIN: CÓDIGO DE DEPURACIÓN ---
     } catch (error) {
         errorTextEl.textContent = `Hubo un problema al obtener los datos. Error: ${error.message}`;
         errorEl.classList.remove('hidden');
