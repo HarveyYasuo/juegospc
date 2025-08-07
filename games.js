@@ -20,9 +20,9 @@ async function fetchAndDisplayData() {
     const errorTextEl = document.getElementById('error-text');
 
     const categoryGridMap = {
+        'celulares': 'celulares-grid',
         'juegos': 'juegos-grid',
         'emuladores': 'emuladores-grid',
-        'celulares': 'celulares-grid',
         'programas': 'programas-grid',
         'ganaplus': 'ganaplus-grid'
     };
@@ -35,37 +35,45 @@ async function fetchAndDisplayData() {
         if (!response.ok) {
             throw new Error(`Error de red: ${response.status} ${response.statusText}`);
         }
-        const data = await response.json();
+        const dataArray = await response.json(); // El Gist contiene un Array
 
-        for (const categoryKey in data) {
-            if (data.hasOwnProperty(categoryKey) && categoryGridMap[categoryKey]) {
-                const gridId = categoryGridMap[categoryKey];
-                const grid = document.getElementById(gridId);
-                const items = data[categoryKey];
+        // Recorrer el array de la exportación de phpMyAdmin
+        dataArray.forEach(element => {
+            // Buscamos los elementos que son tablas y tienen datos
+            if (element.type === 'table' && element.name && Array.isArray(element.data)) {
+                const categoryKey = element.name; // ej: "celulares"
+                const items = element.data;
 
-                if (grid && items.length > 0) {
-                    const section = grid.closest('.latest-articles-section');
-                    if (section) section.classList.remove('hidden');
+                // Verificamos si esta categoría es una de las que queremos mostrar
+                if (categoryGridMap[categoryKey]) {
+                    const gridId = categoryGridMap[categoryKey];
+                    const grid = document.getElementById(gridId);
 
-                    grid.innerHTML = '';
-                    items.forEach(item => {
-                        const itemCard = document.createElement('article');
-                        itemCard.className = 'article-card';
-                        itemCard.innerHTML = `
-                            <div class="card-image-container" style="background-image: url('${item.enlace_imagen}');">
-                                 <span class="category-tag">${categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)}</span>
-                            </div>
-                            <h4>${item.titulo}</h4>
-                            <p>Haz clic para descargar y obtener más información.</p>
-                            <a href="${item.enlace_sitio || '#'}" target="_blank" class="download-link">Descargar</a>
-                        `;
-                        grid.appendChild(itemCard);
-                    });
+                    if (grid && items.length > 0) {
+                        const section = grid.closest('.latest-articles-section');
+                        if (section) section.classList.remove('hidden');
+
+                        grid.innerHTML = ''; // Limpiar la rejilla
+                        items.forEach(item => {
+                            const itemCard = document.createElement('article');
+                            itemCard.className = 'article-card';
+                            itemCard.innerHTML = `
+                                <div class="card-image-container" style="background-image: url('${item.enlace_imagen}');">
+                                     <span class="category-tag">${categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)}</span>
+                                </div>
+                                <h4>${item.titulo}</h4>
+                                <p>Haz clic para descargar y obtener más información.</p>
+                                <a href="${item.enlace_sitio || '#'}" target="_blank" class="download-link">Descargar</a>
+                            `;
+                            grid.appendChild(itemCard);
+                        });
+                    }
                 }
             }
-        }
+        });
+
     } catch (error) {
-        errorTextEl.textContent = `Hubo un problema al obtener los datos. Error: ${error.message}`;
+        errorTextEl.textContent = `Hubo un problema al procesar los datos. Error: ${error.message}`;
         errorEl.classList.remove('hidden');
     } finally {
         loadingEl.classList.add('hidden');
