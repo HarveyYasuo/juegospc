@@ -1,17 +1,3 @@
-// 1. Configuración e inicialización de Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyDXqLCRY6OgcXTXsAR-TvnC4bIICjDndsw",
-    authDomain: "todo-en-uno-e79c7.firebaseapp.com",
-    projectId: "todo-en-uno-e79c7",
-    storageBucket: "todo-en-uno-e79c7.appspot.com",
-    messagingSenderId: "122399269850",
-    appId: "1:122399269850:web:210049a35cc9abff9fd6e3",
-    databaseURL: "https://todo-en-uno-e79c7-default-rtdb.firebaseio.com/"
-};
-
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-
 // 2. Función para obtener y mostrar los datos de las tarjetas
 async function fetchAndDisplayData() {
     const gistUrl = 'https://gist.githubusercontent.com/HarveyYasuo/9d3c5f517a39dd5164c966dd176c91b6/raw/e6700111544f4f151f888ce87330aa7ef40e9e4e/gamesog_data.json';
@@ -80,42 +66,9 @@ async function fetchAndDisplayData() {
     }
 }
 
-// 3. Función para actualizar la UI del perfil de usuario
-function updateUserProfileUI(user) {
-    const navActions = document.querySelector('.nav-actions');
-    if (!navActions) return;
-
-    navActions.innerHTML = '';
-
-    if (user) {
-        const profileContainer = document.createElement('a');
-        profileContainer.href = "#";
-        profileContainer.className = 'nav-icon profile-icon auth-action';
-        profileContainer.innerHTML = `<img src="${user.photoURL}" alt="${user.displayName}" title="${user.displayName}">`;
-
-        const signOutBtn = document.createElement('a');
-        signOutBtn.href = "#";
-        signOutBtn.className = 'nav-icon auth-action';
-        signOutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i>';
-        signOutBtn.title = 'Cerrar Sesión';
-        signOutBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            auth.signOut();
-        });
-
-        navActions.appendChild(profileContainer);
-        navActions.appendChild(signOutBtn);
-    }
-}
-
 // 4. Lógica principal que se ejecuta al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            updateUserProfileUI(user);
-            fetchAndDisplayData();
-        } else {
-            window.location.href = 'index.html';
-        }
-    });
+    // Al eliminar el sistema de inicio de sesión, ya no es necesario verificar
+    // si el usuario está autenticado. Se carga el contenido directamente.
+    fetchAndDisplayData();
 });
