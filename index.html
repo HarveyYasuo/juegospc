@@ -9,6 +9,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .hidden { display: none; }
+        @keyframes rgb-animation {
+            0% { background-color: #ff0000; } /* Rojo */
+            15% { background-color: #ff7f00; } /* Naranja */
+            30% { background-color: #ffff00; } /* Amarillo */
+            45% { background-color: #00ff00; } /* Verde */
+            60% { background-color: #0000ff; } /* Azul */
+            75% { background-color: #4b0082; } /* Índigo */
+            90% { background-color: #8f00ff; } /* Violeta */
+            100% { background-color: #ff0000; } /* Rojo */
+        }
+        .rgb-animated-button {
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            animation: rgb-animation 8s infinite linear;
+        }
     </style>
 </head>
 <body>
@@ -21,7 +38,7 @@
                     <h1>Juegos y Programas</h1>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="https://github.com/HarveyYasuo/GamesPC/releases/tag/release">Descargar App GamesPC</a></li>
+                   <li><a href="https://github.com/HarveyYasuo/GamesPC/releases/tag/release" class="rgb-animated-button">Descargar App GamesPC</a></li>
                 </ul>
                 <div class="nav-actions">
                     <!-- El perfil de usuario se insertará aquí dinámicamente -->
@@ -88,4 +105,5 @@
     </div>
     <script src="games.js"></script>
 </body>
+
 </html>
