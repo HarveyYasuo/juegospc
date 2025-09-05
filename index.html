@@ -7,47 +7,33 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .hidden { display: none; }
-        @keyframes rgb-animation {
-            0% { background-color: #ff0000; } /* Rojo */
-            15% { background-color: #ff7f00; } /* Naranja */
-            30% { background-color: #ffff00; } /* Amarillo */
-            45% { background-color: #00ff00; } /* Verde */
-            60% { background-color: #0000ff; } /* Azul */
-            75% { background-color: #4b0082; } /* Índigo */
-            90% { background-color: #8f00ff; } /* Violeta */
-            100% { background-color: #ff0000; } /* Rojo */
-        }
-        .rgb-animated-button {
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            animation: rgb-animation 8s infinite linear;
-        }
-    </style>
 </head>
 <body>
 
     <div class="page-container">
         <header>
             <nav>
-                <ul class="nav-links">
-                   <li><a href="https://github.com/HarveyYasuo/GamesPC/releases/tag/release" class="rgb-animated-button">Descargar App GamesPC</a></li>
-                </ul>
-                <div class="nav-actions">
-                    <!-- El perfil de usuario se insertará aquí dinámicamente -->
+                <div class="nav-brand">
+                    <img src="favicon.png" alt="Logo" class="nav-logo">
+                    <h1>Juegos y Programas</h1>
                 </div>
+                <div class="nav-actions">
+                    <form class="search-form" id="search-form">
+                        <input type="text" id="search-input" class="search-input" placeholder="Buscar juegos, programas...">
+                        <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="https://github.com/HarveyYasuo/GamesPC/releases/tag/release" class="download-app-button">Descargar App GamesPC</a></li>
+                </ul>
             </nav>
         </header>
 
         <main>
-            <div id="loading" style="text-align: center; padding: 50px; font-size: 1.2em;">Cargando contenido...</div>
+            <div id="loading">Cargando contenido...</div>
             
-            <div id="error-message" class="hidden" style="color: red; text-align: center; padding: 20px; border: 1px solid red; margin: 20px;">
-                <h3>Error</h3>
-                <p id="error-text"></p>
+            <div id="error-message" class="hidden">
+                <h3 id="error-text"></h3>
             </div>
 
             <section class="latest-articles-section hidden">
@@ -79,28 +65,27 @@
         <footer class="site-footer">
             <div class="footer-content">
                  <div class="footer-column">
-                    <h4>Centro de IA</h4>
-                    <p>Tu principal destino para artículos y herramientas de inteligencia artificial.</p>
+                    <h4>Juegos y Programas</h4>
+                    <p>Tu principal destino para juegos y programas.</p>
                 </div>
                 <div class="footer-column">
                     <h4>Compañía</h4>
                     <ul>
-                        <li><a href="about.html">Sobre nosotros</a></li>
+                        <li><a href="#">Sobre nosotros</a></li>
                         <li><a href="mailto:contacto@juegospc.pro">Contacto</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Centro de IA. Todos los derechos reservados.</p>
+                <p>&copy; 2025 Juegos y Programas. Todos los derechos reservados.</p>
                 <ul>
-                    <li><a href="privacy.html">Política de privacidad</a></li>
-                    <li><a href="terms.html">Condiciones de servicio</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Condiciones de servicio</a></li>
                 </ul>
             </div>
         </footer>
     </div>
     <script src="games.js"></script>
+    <script src="script.js"></script>
 </body>
-
 </html>
-

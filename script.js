@@ -1,41 +1,63 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const searchContainer = document.querySelector('.search-container');
-    const searchIcon = document.getElementById('search-icon');
+    const searchForm = document.getElementById('search-form');
     const searchInput = document.getElementById('search-input');
-    const subscribeForm = document.querySelector('.subscribe-form');
-    let debounceTimer;
+    const sections = document.querySelectorAll('.latest-articles-section');
 
-    // --- LÓGICA DE BÚSQUEDA (Actualmente sin funcionalidad visible, pero preparada) ---
-    searchIcon.addEventListener('click', (e) => {
+    searchForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        searchContainer.classList.toggle('active');
-        if (searchContainer.classList.contains('active')) {
-            searchInput.focus();
-        }
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        filterArticles(searchTerm);
     });
 
     searchInput.addEventListener('input', () => {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-            const searchTerm = searchInput.value.trim();
-            // Aquí se podría implementar una búsqueda que filtre los artículos estáticos
-            console.log("Buscando:", searchTerm);
-        }, 500);
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        filterArticles(searchTerm);
     });
 
-    // --- LÓGICA DEL FORMULARIO DE SUSCRIPCIÓN ---
-    if (subscribeForm) {
-        subscribeForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const emailInput = subscribeForm.querySelector('input[type="email"]');
-            const email = emailInput.value.trim();
+    function filterArticles(searchTerm) {
+        let totalVisibleArticles = 0;
 
-            if (email) {
-                alert(`¡Gracias por suscribirte con ${email}!`);
-                emailInput.value = '';
+        sections.forEach(section => {
+            const articles = section.querySelectorAll('.article-card');
+            let sectionHasVisibleArticles = false;
+
+            articles.forEach(article => {
+                const title = article.querySelector('h4').textContent.toLowerCase();
+                const shouldBeVisible = title.includes(searchTerm);
+
+                if (shouldBeVisible) {
+                    article.style.display = 'flex';
+                    sectionHasVisibleArticles = true;
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+
+            if (sectionHasVisibleArticles) {
+                section.classList.remove('hidden');
+                totalVisibleArticles += Array.from(articles).filter(a => a.style.display === 'flex').length;
             } else {
-                alert('Por favor, introduce un correo electrónico válido.');
+                section.classList.add('hidden');
             }
         });
+
+        // Opcional: Mostrar un mensaje si no hay resultados
+        const noResultsMessage = document.getElementById('no-results-message');
+        if (totalVisibleArticles === 0 && searchTerm !== '') {
+            if (!noResultsMessage) {
+                const main = document.querySelector('main');
+                const message = document.createElement('p');
+                message.id = 'no-results-message';
+                message.textContent = 'No se encontraron resultados para tu búsqueda.';
+                message.style.textAlign = 'center';
+                message.style.fontSize = '1.2em';
+                message.style.marginTop = '2rem';
+                main.appendChild(message);
+            } else {
+                noResultsMessage.style.display = 'block';
+            }
+        } else if (noResultsMessage) {
+            noResultsMessage.style.display = 'none';
+        }
     }
 });
