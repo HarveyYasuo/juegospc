@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Web - Analiza y Navega con Seguridad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+    --primary-color: #2563EB;
+    --secondary-color: #FBBF24;
+    --background-color: #F9FAFB;
+    --text-color: #374151;
+    --heading-color: #111827;
+    --white: #FFFFFF;
+    --container-width: 1100px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--heading-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.nav-link {
+    margin: 0 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* Hero Section */
+.hero {
+    padding: 80px 0;
+    background-color: var(--white);
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 2.8rem;
+    color: var(--heading-color);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.btn-google-play img {
+    height: 60px;
+}
+
+.hero-image img {
+    max-width: 100%;
+    border-radius: 12px;
+}
+
+/* Features Section */
+.features {
+    padding: 80px 0;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--heading-color);
+    margin-bottom: 50px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    color: var(--heading-color);
+    margin-bottom: 10px;
+}
+
+/* News Section */
+.news {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.news h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.news-text {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* CTA Section */
+.cta {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 2.5rem;
+    color: var(--heading-color);
+}
+
+.cta p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--heading-color);
+    color: var(--background-color);
+    text-align: center;
+    padding: 40px 0;
+}
+
+footer a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .navbar .container {
+        flex-direction: column;
+    }
+    
+    .navbar nav {
+        margin-top: 15px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="https://play-lh.googleusercontent.com/6_mFCAL4HLPgwQNWpAvU50we9V_YJLXVyGiml6J42HIP0Xy_L1INlMoHImVvBcirDR1LnijfQgrVEnCIiKsLkg=s64-rw" alt="Logo Verificar Web">
+                Verificar Web
+            </a>
+            <nav>
+                <a href="#features" class="nav-link">Características</a>
+                <a href="#contact" class="nav-link">Contacto</a>
+                <a href="https://play.google.com/store/apps/details?id=com.harvey.verificarweb" class="btn btn-primary">Descargar App</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>Navega con Confianza. Analiza Cualquier Web al Instante.</h1>
+                    <p>Verificar Web te ofrece un análisis detallado y una puntuación de seguridad para que evites sitios engañosos. ¡Es gratis y fácil de usar!</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.harvey.verificarweb" target="_blank" class="btn btn-google-play">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" alt="Consíguelo en Google Play">
+                    </a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://play-lh.googleusercontent.com/6_mFCAL4HLPgwQNWpAvU50we9V_YJLXVyGiml6J42HIP0Xy_L1INlMoHImVvBcirDR1LnijfQgrVEnCIiKsLkg=w240-h480-rw" alt="Capturas de pantalla de la app Verificar Web">
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>¿Por qué elegir Verificar Web?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">&#128270;</div>
+                        <h3>Análisis Completo</h3>
+                        <p>Obtén una puntuación de Adsense, comprueba el contenido y evita penalizaciones de 2 engañosas con nuestro análisis mejorado.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">&#128170;</div>
+                        <h3>Fácil de Usar</h3>
+                        <p>Simplemente introduce una URL y deja que nuestra app haga el resto. Resultados claros y concisos en segundos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">&#128737;</div>
+                        <h3>Seguridad Primero</h3>
+                        <p>Nuestra puntuación general impulsada por IA te ayuda a identificar posibles amenazas y a navegar de forma mucho más segura.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="news">
+            <div class="container">
+                <h2>Novedades de la Última Versión</h2>
+                <p class="news-text">Hemos trabajado para hacer la app aún mejor. Esta versión incluye una puntuación de Adsense más coherente y una puntuación general impulsada por IA mucho más precisa para darte la información que necesitas.</p>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>¿Listo para tomar el control de tu navegación?</h2>
+                <p>Descarga Verificar Web hoy mismo y empieza a navegar con total seguridad y confianza.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.harvey.verificarweb" target="_blank" class="btn btn-google-play">
+                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" alt="Consíguelo en Google Play">
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <p>&copy; 2025 Verificar Web por GamesOG. Todos los derechos reservados.</p>
+            <p><a href="privacy.html">Política de Privacidad</a> | <a href="terms.html">Términos de Servicio</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
