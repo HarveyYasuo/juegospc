@@ -1,6 +1,11 @@
 [
 {"type":"header","version":"5.2.1deb3","comment":"Export to JSON plugin for PHPMyAdmin"},
 {"type":"database","name":"gamesog_data"},
+  
+  {
+    "min_required_version_code": [16]
+  },
+  
 {"type":"table","name":"celulares","database":"gamesog_data","data":
 [
 {"id":"1","titulo":"Delta-v2.680","descripcion":"Executor de script en roblox mobile","enlace_sitio":"https:\/\/www.mediafire.com\/file\/z6i3yujug59w828\/Delta-v2.680.apk\/file","enlace_imagen":"https:\/\/i.pinimg.com\/originals\/44\/cf\/d6\/44cfd6c16cb599310f63cadd1b4c1632.png","id_usuario_creador":"bdZOW2Pq89b8OvYceo6wbSQ5C762","nombre_creador":"Carlos Harvey Rivas Mosquera","fecha_creacion":"2025-07-05 22:07:43","calificacion_prom":"0.0","total_calificaciones":"0","contenido_guia":null,"views_count":"0","likes_count":"0"},
