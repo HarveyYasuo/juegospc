@@ -4,7 +4,7 @@
   
 {"type": "table", "name": "version", "database": "gamesog_data", "data": [
   {
-   "min_required_version_code": 16
+   "min_required_version_code": 17
   }]
 },
 {"type":"table","name":"celulares","database":"gamesog_data","data":
