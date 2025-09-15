@@ -1,5 +1,4 @@
 [
-{"type":"header","version":"5.2.1deb3","comment":"Export to JSON plugin for PHPMyAdmin"},
 {"type":"database","name":"gamesog_data"},
   
 {"type": "table", "name": "version", "database": "gamesog_data", "data": [
