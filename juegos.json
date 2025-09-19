@@ -95,8 +95,8 @@
     "data": [
         {
             "id": "1",
-            "titulo": "GamesPC 5.0",
-            "descripcion": "Ya Disponible!! 5.0",
+            "titulo": "GamesPC 5.1",
+            "descripcion": "Ya Disponible!!",
             "enlace_sitio": "https:\/\/play.google.com\/store\/apps\/details?id=com.harvey.gamespc",
             "enlace_imagen": "https:\/\/play-lh.googleusercontent.com\/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yh"
         },
@@ -1762,3 +1762,4 @@
 []
 }
 ]
+
