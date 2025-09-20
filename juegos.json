@@ -95,9 +95,9 @@
     "data": [
         {
             "id": "1",
-            "titulo": "GamesPC 5.1",
-            "descripcion": "Ya Disponible!!",
-            "enlace_sitio": "https:\/\/play.google.com\/store\/apps\/details?id=com.harvey.gamespc",
+            "titulo": "GamesPC 5.2",
+            "descripcion": "Pronto disponible solo compatible con Android 11+",
+            "enlace_sitio": "https://play-lh.googleusercontent.com/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yhfQka_4apj_uI_NilfwsuwGxdzR=w240-h480-rw",
             "enlace_imagen": "https:\/\/play-lh.googleusercontent.com\/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yh"
         },
         {
@@ -1770,5 +1770,6 @@
 []
 }
 ]
+
 
 
