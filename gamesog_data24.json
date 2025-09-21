@@ -3,7 +3,7 @@
   
 {"type": "table", "name": "version", "database": "gamesog_data", "data": [
   {
-   "min_required_version_code": 28
+   "min_required_version_code": 29
   }]
 },
 {"type":"table","name":"celulares","database":"gamesog_data","data":
@@ -93,7 +93,7 @@
 
 ,{"type":"table","name":"juegos","database":"gamesog_data","data":
 [
-{"id":"1","titulo":"GamesPC 5.2", "descripcion":"Ya disponible solo compatible con Android 11+", "enlace_sitio":"https://play-lh.googleusercontent.com/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yhfQka_4apj_uI_NilfwsuwGxdzR=w240-h480-rw","enlace_imagen":"https:\/\/play-lh.googleusercontent.com\/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yhfQka_4apj_uI_NilfwsuwGxdzR=w240-h480-rw", "id_usuario_creador":"a6d6m6i6n", "nombre_creador":"GamesOG", "fecha_creacion":"2025-09-15 15:15:40","calificacion_prom":"0.0", "total_calificaciones":"0", "contenido_guia":null, "views_count":"0", "likes_count":"0"},
+{"id":"1","titulo":"GamesPC 6.0", "descripcion":"Pronto disponible!! Se agregaron más compatibilidad con dispositivos", "enlace_sitio":"https://play-lh.googleusercontent.com/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yhfQka_4apj_uI_NilfwsuwGxdzR=w240-h480-rw","enlace_imagen":"https:\/\/play-lh.googleusercontent.com\/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yhfQka_4apj_uI_NilfwsuwGxdzR=w240-h480-rw", "id_usuario_creador":"a6d6m6i6n", "nombre_creador":"GamesOG", "fecha_creacion":"2025-09-15 15:15:40","calificacion_prom":"0.0", "total_calificaciones":"0", "contenido_guia":null, "views_count":"0", "likes_count":"0"},
 {"id":"2","titulo":"Schedule 1 ","descripcion":"","enlace_sitio":"https://www.mediafire.com/file/w7xa341v1o8ovnl","enlace_imagen":"https:\/\/static0.srcdn.com\/wordpress\/wp-content\/uploads\/sharedimages\/2025\/03\/schedule-i-tag-page-cover-art.jpg","id_usuario_creador":"bdZOW2Pq89b8OvYceo6wbSQ5C762","nombre_creador":"Carlos Harvey Rivas Mosquera","fecha_creacion":"2025-07-05 22:07:43","calificacion_prom":"0.0","total_calificaciones":"0","contenido_guia":null,"views_count":"0","likes_count":"0"},
 {"id":"3","titulo":"Rocket League Offline","descripcion":"","enlace_sitio":"https:\/\/www.mediafire.com\/file\/oe11b8z7qseswey","enlace_imagen":"https://cdn2.steamgriddb.com/thumb/b66051c2df231d78c3640fcecf6392fa.jpg","id_usuario_creador":"bdZOW2Pq89b8OvYceo6wbSQ5C762","nombre_creador":"Carlos Harvey Rivas Mosquera","fecha_creacion":"2025-07-05 22:07:43","calificacion_prom":"0.0","total_calificaciones":"0","contenido_guia":null,"views_count":"0","likes_count":"0"},
 {"id":"4","titulo":"Resident Evil Village","descripcion":"","enlace_sitio":"https:\/\/gofile.io\/d\/71UUBy","enlace_imagen":"https:\/\/img.asmedia.epimg.net\/resizer\/v2\/https%3A%2F%2Fstatic.prisa.com%2Fgamepedia%2Fimagenes%2F2021%2F05%2F07%2Fcover%2F117994511620343926.jpg?auth=59d0204bf09f1b7344afe8f0672a99fdacaa7818d32e00065edbdcf1258ac1c3&width=140&height=210&smart=true","id_usuario_creador":"bdZOW2Pq89b8OvYceo6wbSQ5C762","nombre_creador":"Carlos Harvey Rivas Mosquera","fecha_creacion":"2025-07-05 22:07:43","calificacion_prom":"0.0","total_calificaciones":"0","contenido_guia":null,"views_count":"0","likes_count":"0"},
