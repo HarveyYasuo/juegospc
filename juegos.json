@@ -95,8 +95,8 @@
     "data": [
         {
             "id": "1",
-            "titulo": "GamesPC 6.0",
-            "descripcion": "Pronto disponible!! Se agregaron más compatibilidad con dispositivos",
+            "titulo": "GamesPC 7.0",
+            "descripcion": "Pronto disponible!!",
             "enlace_sitio": "https://play-lh.googleusercontent.com/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yhfQka_4apj_uI_NilfwsuwGxdzR=w240-h480-rw",
             "enlace_imagen": "https:\/\/play-lh.googleusercontent.com\/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yh"
         },
@@ -1770,6 +1770,7 @@
 []
 }
 ]
+
 
 
 
