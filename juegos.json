@@ -95,10 +95,10 @@
     "data": [
         {
             "id": "1",
-            "titulo": "GamesPC 7.0",
-            "descripcion": "Pronto disponible!!",
-            "enlace_sitio": "https://play-lh.googleusercontent.com/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yhfQka_4apj_uI_NilfwsuwGxdzR=w240-h480-rw",
-            "enlace_imagen": "https:\/\/play-lh.googleusercontent.com\/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yh"
+            "titulo": "GamesPC 8.1",
+            "descripcion": "Ya disponible!!",
+            "enlace_sitio": "https://play.google.com/store/apps/details?id=com.harvey.gamespc&pcampaignid=web_share",
+            "enlace_imagen": "https://play-lh.googleusercontent.com/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yhfQka_4apj_uI_NilfwsuwGxdzR=w240-h480-rw"
         },
         {
             "id": "2",
@@ -161,7 +161,7 @@
             "titulo": "Resident Evil 2 remake",
             "descripcion": "Torrent",
             "enlace_sitio": "https:\/\/archive.org/download\/RE2_Lait_V3\/RE2_Lait_V3_archive.torrent",
-            "enlace_imagen": "https:\/\/cdn2.steamgriddb.com\/thumb\/e6e8f17293c7a0bc4a95b20175bff0c6.webm"
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/094b6ffdf4f7dc1d22e976e0afa3d88f.jpg"
         },
         {
             "id": "11",
@@ -1641,14 +1641,14 @@
             "titulo": "Cult of the lamb",
             "descripcion": "",
             "enlace_sitio": "https:\/\/www.mediafire.com\/file\/yih794cqkdsrjwl",
-            "enlace_imagen": "https:\/\/cdn2.steamgriddb.com\/thumb\/09887f5a912217c0712cd1bfb58fc80c.webm"
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/6c3c939a45087ca8c86b91d37372c6a7.jpg"
         },
         {
             "id": "221",
             "titulo": "The Elder Scrolls: Oblivion",
             "descripcion": "",
             "enlace_sitio": "https:\/\/www.mediafire.com\/file\/y3r25kvyd4wupku",
-            "enlace_imagen": "https:\/\/cdn2.steamgriddb.com\/thumb\/13bab97d8724b2872b56a24253ead5f5.webm"
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/4e4ba90b5f5c7f7984d97cd70dc51736.jpg"
         },
         {
             "id": "222",
@@ -1683,7 +1683,7 @@
             "titulo": "Watch Dogs 1 Ingles",
             "descripcion": "",
             "enlace_sitio": "https:\/\/www.mediafire.com\/file\/b00xo5isywrcw8f",
-            "enlace_imagen": "https:\/\/cdn2.steamgriddb.com\/thumb\/55c1c3efca29f410c7ccc881c65ed20a.webm"
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/bdee1222aa8aea187047aebe990fa6e7.jpg"
         },
         {
             "id": "227",
@@ -1778,6 +1778,7 @@
 []
 }
 ]
+
 
 
 
