@@ -1732,6 +1732,14 @@
             "enlace_sitio": "https://www.mediafire.com/file/bovrung3lct5yf7",
             "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/f9319417d045fa186722096920e9b1bc.jpg"
 
+        },
+        {
+            "id": "233",
+            "titulo": "Blur",
+            "descripcion": "New",
+            "enlace_sitio": "https://www.mediafire.com/file/l6ok9zjjo0cc51f",
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/f9319417d045fa186722096920e9b1bc.jpg",
+            "enlace_video": "https://drive.google.com/file/d/1wds6SXFVNZu4fnBiq29nQlMWtYw5GqdE/view"
         }
     ]
 
@@ -1786,6 +1794,7 @@
 []
 }
 ]
+
 
 
 
