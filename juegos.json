@@ -1748,6 +1748,14 @@
             "enlace_sitio": "https://gofile.io/d/qb0E4o",
             "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/1f51719bdfe392d043d98538013ad0fa.jpg",
             "enlace_video": "https://archive.org/download/days-gone-open-world-trailer/Days%20Gone%20-%20Open%20World%20Trailer.mp4"
+        },
+        {
+            "id": "235",
+            "titulo": "Doom: 2016",
+            "descripcion": "New 60 GB",
+            "enlace_sitio": "https://gofile.io/d/x2kBQ2",
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/e6b2e5d385c1503fbd55b97ba5dc4b77.jpg",
+            "enlace_video": "https://cdn2.steamgriddb.com/hero_thumb/b2a223f097589a3682d3221d102fc52e.webm"
         }
     ]
 
@@ -1802,6 +1810,7 @@
 []
 }
 ]
+
 
 
 
