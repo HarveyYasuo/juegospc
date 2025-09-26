@@ -1740,6 +1740,14 @@
             "enlace_sitio": "https://www.mediafire.com/file/l6ok9zjjo0cc51f",
             "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/af7bfda169753ac14f7181f598f57d4e.jpg",
             "enlace_video": "https://drive.google.com/uc?export=download&id=1wds6SXFVNZu4fnBiq29nQlMWtYw5GqdE"
+        },
+        {
+            "id": "234",
+            "titulo": "Days Gone",
+            "descripcion": "New 46 GB",
+            "enlace_sitio": "https://gofile.io/d/qb0E4o",
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/1f51719bdfe392d043d98538013ad0fa.jpg",
+            "enlace_video": "https://drive.google.com/uc?export=download&id=1Eya0-gYAK1IorO17dwxYa6GhLTqPozx1"
         }
     ]
 
@@ -1794,6 +1802,7 @@
 []
 }
 ]
+
 
 
 
