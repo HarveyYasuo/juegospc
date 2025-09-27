@@ -1684,6 +1684,14 @@
             "enlace_sitio": "https://www.mediafire.com/file/k8mjh1vesn0ik76",
             "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/23b6ccd661757295a41abd6a7ee3ac2d.jpg",
             "enlace_video": "https://archive.org/download/flat-out-2-trailer/FlatOut%202%20trailer.mp4"
+        },
+        {
+            "id": "238",
+            "titulo": "God of War 2018",
+            "descripcion": "New 39 GB",
+            "enlace_sitio": "https://gofile.io/d/JmySlU",
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/5855660034a74cfe0e5fc8d57d17f4ac.jpg",
+            "enlace_video": "https://archive.org/download/this-is-god-of-war/This%20is%20God%20of%20War.mp4"
         }
     ]
 
@@ -1718,6 +1726,7 @@
 ]
 }
 ]
+
 
 
 
