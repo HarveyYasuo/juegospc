@@ -1692,6 +1692,14 @@
             "enlace_sitio": "https://gofile.io/d/JmySlU",
             "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/5855660034a74cfe0e5fc8d57d17f4ac.jpg",
             "enlace_video": "https://archive.org/download/this-is-god-of-war/This%20is%20God%20of%20War.mp4"
+        },
+        {
+            "id": "239",
+            "titulo": "Forager",
+            "descripcion": "New",
+            "enlace_sitio": "https://www.mediafire.com/file/ac1ngmmlciv0e25",
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/64c06acc9a5858be426c2288782edd68.webm",
+            "enlace_video": ""
         }
     ]
 
@@ -1726,6 +1734,7 @@
 ]
 }
 ]
+
 
 
 
