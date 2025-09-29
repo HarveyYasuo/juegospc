@@ -1716,6 +1716,14 @@
             "enlace_sitio": "https://www.mediafire.com/file/5knw6eifmcqwwim",
             "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/bb29149477ea033228148e2d1159a8b4.jpg",
             "enlace_video": ""
+        },
+        {
+            "id": "242",
+            "titulo": "Hollow Knight Silksong",
+            "descripcion": "New",
+            "enlace_sitio": "https://www.mediafire.com/file/7duqlgl7a8i0xn4",
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/7282feea57f0e6cd89092df704f8e039.webm",
+            "enlace_video": "https://archive.org/download/hollow-knight-silksong-release-trailer/Hollow%20Knight%EF%BC%9A%20Silksong%20-%20Release%20Trailer.mp4"
         }
     ]
 
@@ -1750,6 +1758,7 @@
 ]
 }
 ]
+
 
 
 
