@@ -1708,6 +1708,14 @@
             "enlace_sitio": "https://gofile.io/d/OtEhEn",
             "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/68fd8e03a91bb1b8b9328a1c575a3435.webm",
             "enlace_video": "https://archive.org/download/videoplayback_2_202509/videoplayback_2.mp4"
+        },
+        {
+            "id": "241",
+            "titulo": "Guitar Hero World Tour",
+            "descripcion": "New",
+            "enlace_sitio": "https://www.mediafire.com/file/5knw6eifmcqwwim",
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/bb29149477ea033228148e2d1159a8b4.jpg",
+            "enlace_video": ""
         }
     ]
 
@@ -1742,6 +1750,7 @@
 ]
 }
 ]
+
 
 
 
