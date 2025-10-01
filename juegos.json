@@ -1740,6 +1740,14 @@
             "enlace_sitio": "https://gofile.io/d/t94dji",
             "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/376b9a28ae999d499acdecb090983284.jpg",
             "enlace_video": ""
+        },
+        {
+            "id": "245",
+            "titulo": "Phasmophobia",
+            "descripcion": "New",
+            "enlace_sitio": "https://www.mediafire.com/file/80d0pmzyalx2ia7",
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/b8ee42f6c6733d5db34b17a5aaa5844d.jpg",
+            "enlace_video": ""
         }
     ]
 
@@ -1774,6 +1782,7 @@
 ]
 }
 ]
+
 
 
 
