@@ -1760,7 +1760,7 @@
         {
             "id": "247",
             "titulo": "Kenshi",
-            "descripcion": "",
+            "descripcion": "New",
             "enlace_sitio": "https://www.mediafire.com/file/d1ms3fohhy4192z",
             "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/cd6a0855235c9b3e854881c9778352e7.jpg",
             "enlace_video": "https://archive.org/download/kenshi-english-trailer/Kenshi_%20English%20Trailer.mp4"
@@ -1768,10 +1768,18 @@
         {
             "id": "248",
             "titulo": "Land Of The Dead",
-            "descripcion": "",
+            "descripcion": "New",
             "enlace_sitio": "https://www.mediafire.com/file/4hbgrgdt4oiyyid",
             "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/a29fe7085fa5c30369217f301b067a77.jpg",
             "enlace_video": ""
+        },
+        {
+            "id": "249",
+            "titulo": "Payday The Heist",
+            "descripcion": "New",
+            "enlace_sitio": "https://www.mediafire.com/file/81fcs041ir95dap",
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/750fc88ab0ae1a503a50472f3ecca0dc.jpg",
+            "enlace_video": "https://archive.org/download/payday-the-heist-trailer-no-mercy/Payday_%20The%20Heist%20Trailer%20-%20No%20Mercy.mp4"
         }
     ]
 
@@ -1806,6 +1814,7 @@
 ]
 }
 ]
+
 
 
 
