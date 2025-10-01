@@ -1724,6 +1724,14 @@
             "enlace_sitio": "https://www.mediafire.com/file/7duqlgl7a8i0xn4",
             "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/7282feea57f0e6cd89092df704f8e039.webm",
             "enlace_video": "https://archive.org/download/hollow-knight-silksong-release-trailer/Hollow%20Knight%EF%BC%9A%20Silksong%20-%20Release%20Trailer.mp4"
+        },
+        {
+            "id": "243",
+            "titulo": "F1 2025",
+            "descripcion": "New",
+            "enlace_sitio": "https://www.mediafire.com/file/mye429c2z5i8nsn",
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/f7335979c04e4188f8457a2d67973288.jpg",
+            "enlace_video": "https://v1.pinimg.com/videos/mc/720p/ab/82/46/ab824619a033baf7fc6b73873b110d7a.mp4"
         }
     ]
 
@@ -1758,6 +1766,7 @@
 ]
 }
 ]
+
 
 
 
