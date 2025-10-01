@@ -1780,6 +1780,14 @@
             "enlace_sitio": "https://www.mediafire.com/file/81fcs041ir95dap",
             "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/750fc88ab0ae1a503a50472f3ecca0dc.jpg",
             "enlace_video": "https://archive.org/download/payday-the-heist-trailer-no-mercy/Payday_%20The%20Heist%20Trailer%20-%20No%20Mercy.mp4"
+        },
+        {
+            "id": "250",
+            "titulo": "Rayman Origins",
+            "descripcion": "New",
+            "enlace_sitio": "https://www.mediafire.com/file/ul4f98xtj1pmhd9",
+            "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/6e9c8746c47446e383b404bc3e5cab85.jpg",
+            "enlace_video": "https://archive.org/download/rayman-origins-ps-3-xbox-360-trailer/Rayman_%20Origins%20%28PS3%2C%20Xbox%20360%29%20-%20Trailer.mp4"
         }
     ]
 
@@ -1814,6 +1822,7 @@
 ]
 }
 ]
+
 
 
 
