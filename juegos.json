@@ -9,6 +9,14 @@
     "database": "gamesog_data",
     "data": [
       {
+        "id": "256",
+        "titulo": "Spider-Man 3",
+        "descripcion": "New",
+        "enlace_sitio": "https://www.mediafire.com/file/2zzvt86fx7q2siu",
+        "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/d51beb4a87741c147810dfc37d9e3cb3.jpg",
+        "enlace_video": "https://archive.org/download/spider-man-3-play-station-3-trailer-power-720-p-hd/Spider-Man%203%20PlayStation%203%20Trailer%20-%20Power%28720P_HD%29.mp4"
+      },
+      {
         "id": "255",
         "titulo": "Sons of the Forest",
         "descripcion": "New",
