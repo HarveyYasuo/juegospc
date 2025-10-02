@@ -9,6 +9,14 @@
     "database": "gamesog_data",
     "data": [
       {
+        "id": "255",
+        "titulo": "Sons of the Forest",
+        "descripcion": "New",
+        "enlace_sitio": "https://www.mediafire.com/file/vp7whpv0yltku99",
+        "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/e1efd4be8c07c512d600db2456b0536b.jpg",
+        "enlace_video": "https://archive.org/download/sons-of-the-forest-exclusive-official-release-date-trailer-720-p-hd/Sons%20of%20the%20Forest%20-%20Exclusive%20Official%20Release%20Date%20Trailer%28720P_HD%29.mp4"
+      },
+      {
         "id": "254",
         "titulo": "Simcity 2013",
         "descripcion": "New",
