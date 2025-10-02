@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Juegos y Programas</title>
+    <title>Formulario de Contenido</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @keyframes slideDown {
@@ -88,10 +88,9 @@
         <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-6 md:p-8 border border-white/20 mb-6 animate-fadeIn">
             <h2 class="text-white font-bold text-xl mb-4 flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-300">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M12 1v6m0 6v6m5.2-13.2L13 9m-2 6-4.2 4.2M1 12h6m6 0h6M5.8 5.8 10 10m4 4 4.2 4.2"/>
+                    <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="2" x2="16" y2="12"></line>
                 </svg>
-                Configuración de GitHub
+                Autenticación de GitHub
             </h2>
             <div class="space-y-4">
                 <div>
@@ -100,39 +99,11 @@
                         type="password"
                         id="github-token"
                         class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
-                        placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+                        placeholder="Pega tu token aquí"
                     />
                     <p class="text-indigo-200 text-xs mt-1">
                         <a href="#" onclick="mostrarInstrucciones()" class="underline hover:text-cyan-300">¿Cómo obtener mi token?</a>
                     </p>
-                </div>
-                <div>
-                    <label class="text-white font-semibold mb-2 block">Usuario de GitHub</label>
-                    <input
-                        type="text"
-                        id="github-user"
-                        class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
-                        placeholder="tu-usuario"
-                    />
-                </div>
-                <div>
-                    <label class="text-white font-semibold mb-2 block">Nombre del Repositorio</label>
-                    <input
-                        type="text"
-                        id="github-repo"
-                        class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
-                        placeholder="mi-repositorio"
-                    />
-                </div>
-                <div>
-                    <label class="text-white font-semibold mb-2 block">Archivo JSON (ruta desde la raíz)</label>
-                    <input
-                        type="text"
-                        id="json-file"
-                        class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
-                        placeholder="data/contenido.json"
-                        value="data/contenido.json"
-                    />
                 </div>
             </div>
         </div>
@@ -165,22 +136,22 @@
         <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-6 md:p-8 border border-white/20 animate-fadeIn">
             <div class="space-y-6">
                 
-                <!-- Nombre del Juego -->
+                <!-- Título -->
                 <div class="transform transition-all duration-300 hover:scale-[1.01]">
                     <label class="flex items-center gap-2 text-white font-semibold mb-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-300">
                             <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
                             <polyline points="14 2 14 8 20 8"/>
                         </svg>
-                        Nombre del Juego/Programa
+                        Título
                     </label>
                     <input
                         type="text"
-                        id="nombre"
+                        id="titulo"
                         class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
                         placeholder="Ej: Minecraft, Visual Studio Code"
                     />
-                    <p id="error-nombre" class="text-red-300 text-sm mt-1 hidden"></p>
+                    <p id="error-titulo" class="text-red-300 text-sm mt-1 hidden"></p>
                 </div>
 
                 <!-- Descripción -->
@@ -201,7 +172,7 @@
                     <p id="error-descripcion" class="text-red-300 text-sm mt-1 hidden"></p>
                 </div>
 
-                <!-- Enlace de Descarga -->
+                <!-- Enlace del Sitio -->
                 <div class="transform transition-all duration-300 hover:scale-[1.01]">
                     <label class="flex items-center gap-2 text-white font-semibold mb-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-300">
@@ -209,15 +180,15 @@
                             <polyline points="7 10 12 15 17 10"/>
                             <line x1="12" y1="15" x2="12" y2="3"/>
                         </svg>
-                        Enlace de Descarga
+                        Enlace del Sitio
                     </label>
                     <input
                         type="url"
-                        id="enlaceDescarga"
+                        id="enlace_sitio"
                         class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
                         placeholder="https://ejemplo.com/descarga"
                     />
-                    <p id="error-enlaceDescarga" class="text-red-300 text-sm mt-1 hidden"></p>
+                    <p id="error-enlace_sitio" class="text-red-300 text-sm mt-1 hidden"></p>
                 </div>
 
                 <!-- Enlace de Imagen -->
@@ -232,57 +203,35 @@
                     </label>
                     <input
                         type="url"
-                        id="enlaceImagen"
+                        id="enlace_imagen"
                         class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
                         placeholder="https://ejemplo.com/imagen.jpg"
                     />
-                    <p id="error-enlaceImagen" class="text-red-300 text-sm mt-1 hidden"></p>
+                    <p id="error-enlace_imagen" class="text-red-300 text-sm mt-1 hidden"></p>
                 </div>
 
-                <!-- Categoría -->
+                <!-- Enlace de Video -->
                 <div class="transform transition-all duration-300 hover:scale-[1.01]">
-                    <label class="flex items-center gap-2 text-white font-semibold mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-300">
-                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                    <label class="flex items-center gap-2 text-white font-semibold mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-300">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
                         </svg>
-                        Categoría
+                        Enlace de Video
                     </label>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button
-                            type="button"
-                            id="btn-juegos"
-                            class="flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-cyan-500 border-cyan-400 shadow-lg shadow-cyan-500/50 scale-105"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
-                                <line x1="6" y1="11" x2="10" y2="11"/>
-                                <line x1="8" y1="9" x2="8" y2="13"/>
-                                <line x1="15" y1="12" x2="15.01" y2="12"/>
-                                <line x1="18" y1="10" x2="18.01" y2="10"/>
-                                <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/>
-                            </svg>
-                            <span class="text-white font-semibold">Juegos</span>
-                        </button>
-
-                        <button
-                            type="button"
-                            id="btn-programas"
-                            class="flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
-                                <polyline points="16 18 22 12 16 6"/>
-                                <polyline points="8 6 2 12 8 18"/>
-                            </svg>
-                            <span class="text-white font-semibold">Programas</span>
-                        </button>
-                    </div>
+                    <input
+                        type="url"
+                        id="enlace_video"
+                        class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
+                        placeholder="https://...mp4, .webm"
+                    />
+                    <p id="error-enlace_video" class="text-red-300 text-sm mt-1 hidden"></p>
                 </div>
 
                 <!-- Submit Button -->
                 <button
                     type="button"
                     id="btn-submit"
-                    class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                    class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl !mt-10"
                 >
                     Agregar a GitHub
                 </button>
@@ -314,15 +263,21 @@
                         <!-- SVG Icon will be inserted here by JS -->
                     </div>
                     <div class="flex-1">
-                        <h4 id="preview-nombre" class="text-white font-bold text-lg"></h4>
+                        <h4 id="preview-titulo" class="text-white font-bold text-lg"></h4>
                         <p id="preview-descripcion" class="text-indigo-200 text-sm mt-1"></p>
-                        <div id="preview-download" class="flex items-center gap-2 mt-2 text-cyan-300 text-sm hidden">
+                        <div id="preview-sitio" class="flex items-center gap-2 mt-2 text-cyan-300 text-sm hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                                 <polyline points="7 10 12 15 17 10"/>
                                 <line x1="12" y1="15" x2="12" y2="3"/>
                             </svg>
-                            <span>Enlace de descarga disponible</span>
+                            <span>Enlace de sitio disponible</span>
+                        </div>
+                         <div id="preview-video" class="flex items-center gap-2 mt-2 text-red-300 text-sm hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                               <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                            <span>Enlace de video disponible</span>
                         </div>
                     </div>
                 </div>
@@ -331,11 +286,12 @@
     </div>
 
     <script>
-        let categoria = 'juegos';
+        // --- GitHub Configuration (Hardcoded) ---
+        const GITHUB_USER = 'HarveyYasuo';
+        const GITHUB_REPO = 'juegospc';
+        const JSON_FILE_PATH = 'gamesog_data.json';
 
         // --- DOM Elements ---
-        const btnJuegos = document.getElementById('btn-juegos');
-        const btnProgramas = document.getElementById('btn-programas');
         const btnSubmit = document.getElementById('btn-submit');
         const successMessage = document.getElementById('success-message');
         const errorMessage = document.getElementById('error-message');
@@ -343,14 +299,15 @@
         const previewCard = document.getElementById('preview-card');
         const modal = document.getElementById('instructions-modal');
 
-        const nombreInput = document.getElementById('nombre');
+        const githubTokenInput = document.getElementById('github-token');
+        const tituloInput = document.getElementById('titulo');
         const descripcionInput = document.getElementById('descripcion');
-        const enlaceDescargaInput = document.getElementById('enlaceDescarga');
-        const enlaceImagenInput = document.getElementById('enlaceImagen');
+        const enlaceSitioInput = document.getElementById('enlace_sitio');
+        const enlaceImagenInput = document.getElementById('enlace_imagen');
+        const enlaceVideoInput = document.getElementById('enlace_video');
 
         // --- SVG Icons ---
-        const gamepadIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><line x1="6" y1="11" x2="10" y2="11"/><line x1="8" y1="9" x2="8" y2="13"/><line x1="15" y1="12" x2="15.01" y2="12"/><line x1="18" y1="10" x2="18.01" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>`;
-        const codeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`;
+        const defaultIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
 
         // --- Modal Functions ---
         function mostrarInstrucciones() {
@@ -361,77 +318,45 @@
             modal.classList.add('hidden');
         }
 
-        // --- Category Selection ---
-        function selectCategory(selectedCategory) {
-            categoria = selectedCategory;
-            if (selectedCategory === 'juegos') {
-                btnJuegos.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-cyan-500 border-cyan-400 shadow-lg shadow-cyan-500/50 scale-105';
-                btnProgramas.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105';
-            } else {
-                btnProgramas.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-purple-500 border-purple-400 shadow-lg shadow-purple-500/50 scale-105';
-                btnJuegos.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105';
-            }
-            updatePreview();
-        }
-
-        btnJuegos.addEventListener('click', () => selectCategory('juegos'));
-        btnProgramas.addEventListener('click', () => selectCategory('programas'));
-
         // --- Live Preview Update ---
         function updatePreview() {
-            const nombre = nombreInput.value.trim();
+            const titulo = tituloInput.value.trim();
             const descripcion = descripcionInput.value.trim();
-            const enlaceDescarga = enlaceDescargaInput.value.trim();
+            const enlaceSitio = enlaceSitioInput.value.trim();
+            const enlaceVideo = enlaceVideoInput.value.trim();
 
-            if (nombre) {
+            if (titulo) {
                 if(previewCard.classList.contains('hidden')) {
                     previewCard.classList.remove('hidden');
                     previewCard.classList.add('animate-slideUp');
                 }
-                document.getElementById('preview-nombre').textContent = nombre;
+                document.getElementById('preview-titulo').textContent = titulo;
                 document.getElementById('preview-descripcion').textContent = descripcion || 'Sin descripción';
                 
-                const previewIcon = document.getElementById('preview-icon');
-                previewIcon.className = `p-3 rounded-lg transition-all duration-300 ${categoria === 'juegos' ? 'bg-cyan-500/30' : 'bg-purple-500/30'}`;
-                previewIcon.innerHTML = categoria === 'juegos' ? gamepadIcon : codeIcon;
+                document.getElementById('preview-icon').innerHTML = defaultIcon;
                 
-                if (enlaceDescarga) {
-                    document.getElementById('preview-download').classList.remove('hidden');
-                } else {
-                    document.getElementById('preview-download').classList.add('hidden');
-                }
+                document.getElementById('preview-sitio').classList.toggle('hidden', !enlaceSitio);
+                document.getElementById('preview-video').classList.toggle('hidden', !enlaceVideo);
+
             } else {
                 previewCard.classList.add('hidden');
             }
         }
-
-        [nombreInput, descripcionInput, enlaceDescargaInput, enlaceImagenInput].forEach(field => {
+        
+        [tituloInput, descripcionInput, enlaceSitioInput, enlaceImagenInput, enlaceVideoInput].forEach(field => {
             field.addEventListener('input', updatePreview);
         });
 
+
         // --- GitHub API Logic ---
         async function updateGitHubJSON() {
-            const token = document.getElementById('github-token').value.trim();
-            const user = document.getElementById('github-user').value.trim();
-            const repo = document.getElementById('github-repo').value.trim();
-            const filePath = document.getElementById('json-file').value.trim();
-
-            if (!token || !user || !repo || !filePath) {
-                mostrarError('Por favor, completa toda la configuración de GitHub.');
+            const token = githubTokenInput.value.trim();
+            if (!token) {
+                mostrarError('Por favor, introduce tu token de GitHub para continuar.');
                 return false;
             }
 
-            const nuevoItem = {
-                id: Date.now(),
-                nombre: nombreInput.value.trim(),
-                descripcion: descripcionInput.value.trim(),
-                enlaceDescarga: enlaceDescargaInput.value.trim(),
-                enlaceImagen: enlaceImagenInput.value.trim(),
-                categoria: categoria,
-                fecha: new Date().toISOString()
-            };
-
-            const getUrl = `https://api.github.com/repos/${user}/${repo}/contents/${filePath}`;
+            const getUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${JSON_FILE_PATH}`;
             const headers = {
                 'Authorization': `token ${token}`,
                 'Accept': 'application/vnd.github.v3+json'
@@ -441,33 +366,63 @@
                 // 1. Obtener el archivo y su SHA
                 const getResponse = await fetch(getUrl, { headers });
                 let sha = null;
-                let contenidoActual = [];
+                let fullJsonStructure = [];
+                let dataArray = [];
 
                 if (getResponse.ok) {
                     const fileData = await getResponse.json();
                     sha = fileData.sha;
                     const content = decodeURIComponent(escape(window.atob(fileData.content)));
-                    contenidoActual = JSON.parse(content);
-                } else if (getResponse.status !== 404) {
+                    fullJsonStructure = JSON.parse(content);
+                    
+                    // Encontrar el objeto de la tabla "juegos"
+                    const tableObject = fullJsonStructure.find(item => item.type === 'table' && item.name === 'juegos');
+
+                    if (tableObject && Array.isArray(tableObject.data)) {
+                        dataArray = tableObject.data;
+                    } else {
+                        throw new Error('La estructura del JSON es incorrecta. No se encontró la tabla "juegos" con un array de datos.');
+                    }
+                } else if (getResponse.status === 404) {
+                    throw new Error('El archivo JSON no se encontró en el repositorio. Debe existir con la estructura correcta.');
+                } else {
                     const errorData = await getResponse.json();
                     throw new Error(errorData.message || `Error al obtener el archivo: ${getResponse.statusText}`);
                 }
 
-                // 2. Agregar el nuevo item
-                contenidoActual.unshift(nuevoItem); // Añadir al principio
+                // 2. Determinar el nuevo ID secuencial
+                let newId = 1;
+                if (dataArray.length > 0) {
+                    // Encontrar el ID más alto (convertido a número) y sumarle 1
+                    const maxId = Math.max(...dataArray.map(item => parseInt(item.id, 10) || 0));
+                    newId = maxId + 1;
+                }
+                
+                // 3. Crear el nuevo objeto
+                const nuevoItem = {
+                    id: String(newId), // El ID debe ser un string
+                    titulo: tituloInput.value.trim(),
+                    descripcion: descripcionInput.value.trim(),
+                    enlace_sitio: enlaceSitioInput.value.trim(),
+                    enlace_imagen: enlaceImagenInput.value.trim(),
+                    enlace_video: enlaceVideoInput.value.trim()
+                };
 
-                // 3. Preparar el nuevo contenido para subirlo
-                const nuevoContenido = JSON.stringify(contenidoActual, null, 2);
+                // 4. Agregar el nuevo item al principio del array 'data'
+                dataArray.unshift(nuevoItem);
+
+                // 5. Preparar todo el contenido JSON para subirlo
+                const nuevoContenido = JSON.stringify(fullJsonStructure, null, 2);
                 const contenidoBase64 = window.btoa(unescape(encodeURIComponent(nuevoContenido)));
 
-                // 4. Actualizar o crear el archivo
+                // 6. Actualizar el archivo en GitHub
                 const updateResponse = await fetch(getUrl, {
                     method: 'PUT',
                     headers: { ...headers, 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        message: `Agregar: ${nuevoItem.nombre}`,
+                        message: `Agregar: ${nuevoItem.titulo}`,
                         content: contenidoBase64,
-                        sha: sha // Incluir SHA si se está actualizando
+                        sha: sha 
                     })
                 });
 
@@ -500,7 +455,7 @@
             let hasErrors = false;
             
             // Validar cada campo
-            ['nombre', 'descripcion', 'enlaceDescarga', 'enlaceImagen'].forEach(id => {
+            ['titulo', 'descripcion', 'enlace_sitio', 'enlace_imagen', 'enlace_video'].forEach(id => {
                 const input = document.getElementById(id);
                 const errorEl = document.getElementById(`error-${id}`);
                 if (!input.value.trim()) {
@@ -532,7 +487,7 @@
                 btnSubmit.className = 'w-full bg-green-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg';
 
                 setTimeout(() => {
-                    [nombreInput, descripcionInput, enlaceDescargaInput, enlaceImagenInput].forEach(i => i.value = '');
+                    [tituloInput, descripcionInput, enlaceSitioInput, enlaceImagenInput, enlaceVideoInput].forEach(i => i.value = '');
                     updatePreview();
                     
                     successMessage.classList.add('hidden');
@@ -551,3 +506,4 @@
     </script>
 </body>
 </html>
+
