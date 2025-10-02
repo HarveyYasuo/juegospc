@@ -295,7 +295,7 @@
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                         <polyline points="22 4 12 14.01 9 11.01"/>
                     </svg>
-                    <span id="success-text">¡Contenido agregado exitosamente a GitHub!</span>
+                    <span>¡Contenido agregado exitosamente a GitHub!</span>
                 </p>
             </div>
 
@@ -311,13 +311,7 @@
             <div class="bg-white/5 rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
                 <div class="flex items-start gap-4">
                     <div id="preview-icon" class="p-3 rounded-lg bg-cyan-500/30">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
-                            <line x1="6" y1="11" x2="10" y2="11"/>
-                            <line x1="8" y1="9" x2="8" y2="13"/>
-                            <line x1="15" y1="12" x2="15.01" y2="12"/>
-                            <line x1="18" y1="10" x2="18.01" y2="10"/>
-                            <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/>
-                        </svg>
+                        <!-- SVG Icon will be inserted here by JS -->
                     </div>
                     <div class="flex-1">
                         <h4 id="preview-nombre" class="text-white font-bold text-lg"></h4>
@@ -338,200 +332,62 @@
 
     <script>
         let categoria = 'juegos';
-        
+
+        // --- DOM Elements ---
         const btnJuegos = document.getElementById('btn-juegos');
         const btnProgramas = document.getElementById('btn-programas');
         const btnSubmit = document.getElementById('btn-submit');
         const successMessage = document.getElementById('success-message');
         const errorMessage = document.getElementById('error-message');
+        const errorText = document.getElementById('error-text');
         const previewCard = document.getElementById('preview-card');
+        const modal = document.getElementById('instructions-modal');
 
-        // SVG Icons
+        const nombreInput = document.getElementById('nombre');
+        const descripcionInput = document.getElementById('descripcion');
+        const enlaceDescargaInput = document.getElementById('enlaceDescarga');
+        const enlaceImagenInput = document.getElementById('enlaceImagen');
+
+        // --- SVG Icons ---
         const gamepadIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><line x1="6" y1="11" x2="10" y2="11"/><line x1="8" y1="9" x2="8" y2="13"/><line x1="15" y1="12" x2="15.01" y2="12"/><line x1="18" y1="10" x2="18.01" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>`;
         const codeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`;
 
+        // --- Modal Functions ---
         function mostrarInstrucciones() {
-            document.getElementById('instructions-modal').classList.remove('hidden');
+            modal.classList.remove('hidden');
         }
 
         function cerrarInstrucciones() {
-            document.getElementById('instructions-modal').classList.add('hidden');
+            modal.classList.add('hidden');
         }
 
-        btnJuegos.addEventListener('click', () => {
-            categoria = 'juegos';
-            btnJuegos.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-cyan-500 border-cyan-400 shadow-lg shadow-cyan-500/50 scale-105';
-            btnProgramas.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105';
+        // --- Category Selection ---
+        function selectCategory(selectedCategory) {
+            categoria = selectedCategory;
+            if (selectedCategory === 'juegos') {
+                btnJuegos.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-cyan-500 border-cyan-400 shadow-lg shadow-cyan-500/50 scale-105';
+                btnProgramas.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105';
+            } else {
+                btnProgramas.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-purple-500 border-purple-400 shadow-lg shadow-purple-500/50 scale-105';
+                btnJuegos.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105';
+            }
             updatePreview();
-        });
+        }
 
-        btnProgramas.addEventListener('click', () => {
-            categoria = 'programas';
-            btnProgramas.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-purple-500 border-purple-400 shadow-lg shadow-purple-500/50 scale-105';
-            btnJuegos.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105';
-            updatePreview();
-        });
+        btnJuegos.addEventListener('click', () => selectCategory('juegos'));
+        btnProgramas.addEventListener('click', () => selectCategory('programas'));
 
-        ['nombre', 'descripcion', 'enlaceDescarga', 'enlaceImagen'].forEach(field => {
-            document.getElementById(field).addEventListener('input', updatePreview);
-        });
-
+        // --- Live Preview Update ---
         function updatePreview() {
-            const nombre = document.getElementById('nombre').value.trim();
-            const descripcion = document.getElementById('descripcion').value.trim();
-            const enlaceDescarga = document.getElementById('enlaceDescarga').value.trim();
-            const enlaceImagen = document.getElementById('enlaceImagen').value.trim();
+            const nombre = nombreInput.value.trim();
+            const descripcion = descripcionInput.value.trim();
+            const enlaceDescarga = enlaceDescargaInput.value.trim();
 
-            const nuevoItem = {
-                id: Date.now(),
-                nombre: nombre,
-                descripcion: descripcion,
-                enlaceDescarga: enlaceDescarga,
-                enlaceImagen: enlaceImagen,
-                categoria: categoria,
-                fecha: new Date().toISOString()
-            };
-
-            try {
-                // Obtener el archivo actual
-                const getUrl = `https://api.github.com/repos/${user}/${repo}/contents/${filePath}`;
-                const getResponse = await fetch(getUrl, {
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
-
-                let sha = null;
-                let contenidoActual = [];
-
-                if (getResponse.ok) {
-                    const fileData = await getResponse.json();
-                    sha = fileData.sha;
-                    const content = atob(fileData.content);
-                    contenidoActual = JSON.parse(content);
-                } else if (getResponse.status === 404) {
-                    // El archivo no existe, se creará uno nuevo
-                    contenidoActual = [];
-                } else {
-                    throw new Error(`Error al obtener el archivo: ${getResponse.status}`);
-                }
-
-                // Agregar el nuevo item
-                contenidoActual.push(nuevoItem);
-
-                // Convertir a JSON y codificar en base64
-                const nuevoContenido = JSON.stringify(contenidoActual, null, 2);
-                const contenidoBase64 = btoa(unescape(encodeURIComponent(nuevoContenido)));
-
-                // Actualizar o crear el archivo
-                const updateUrl = `https://api.github.com/repos/${user}/${repo}/contents/${filePath}`;
-                const updateResponse = await fetch(updateUrl, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: `Agregar: ${nombre}`,
-                        content: contenidoBase64,
-                        sha: sha
-                    })
-                });
-
-                if (!updateResponse.ok) {
-                    const errorData = await updateResponse.json();
-                    throw new Error(errorData.message || 'Error al actualizar el archivo');
-                }
-
-                return true;
-            } catch (error) {
-                console.error('Error:', error);
-                mostrarError('Error: ' + error.message);
-                return false;
-            }
-        }
-
-        function mostrarError(mensaje) {
-            errorMessage.classList.remove('hidden');
-            document.getElementById('error-text').textContent = mensaje;
-            setTimeout(() => {
-                errorMessage.classList.add('hidden');
-            }, 5000);
-        }
-
-        btnSubmit.addEventListener('click', async () => {
-            const nombre = document.getElementById('nombre').value.trim();
-            const descripcion = document.getElementById('descripcion').value.trim();
-            const enlaceDescarga = document.getElementById('enlaceDescarga').value.trim();
-            const enlaceImagen = document.getElementById('enlaceImagen').value.trim();
-            
-            let hasErrors = false;
-            
-            ['nombre', 'descripcion', 'enlaceDescarga', 'enlaceImagen'].forEach(field => {
-                const input = document.getElementById(field);
-                const error = document.getElementById(`error-${field}`);
-                
-                if (!input.value.trim()) {
-                    input.classList.remove('border-white/30');
-                    input.classList.add('border-red-400');
-                    error.textContent = 'Este campo es requerido';
-                    error.classList.remove('hidden');
-                    error.classList.add('animate-shake');
-                    hasErrors = true;
-                } else {
-                    input.classList.remove('border-red-400');
-                    input.classList.add('border-white/30');
-                    error.classList.add('hidden');
-                }
-            });
-            
-            if (!hasErrors) {
-                // Deshabilitar botón y mostrar loading
-                btnSubmit.innerHTML = `<svg class="animate-spin inline mr-2" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"/></svg> Subiendo a GitHub...`;
-                btnSubmit.disabled = true;
-                btnSubmit.className = 'w-full bg-gray-500 text-white font-bold py-4 px-6 rounded-xl shadow-lg cursor-wait';
-                
-                // Intentar subir a GitHub
-                const success = await updateGitHubJSON();
-                
-                if (success) {
-                    btnSubmit.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce inline"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> ¡Subido a GitHub!`;
-                    btnSubmit.className = 'w-full bg-green-500 text-white font-bold py-4 px-6 rounded-xl shadow-lg';
-                    
-                    successMessage.classList.remove('hidden');
-                    successMessage.classList.add('animate-pulse');
-                    
-                    setTimeout(() => {
-                        btnSubmit.innerHTML = 'Agregar a GitHub';
-                        btnSubmit.className = 'w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl';
-                        btnSubmit.disabled = false;
-                        successMessage.classList.add('hidden');
-                        
-                        document.getElementById('nombre').value = '';
-                        document.getElementById('descripcion').value = '';
-                        document.getElementById('enlaceDescarga').value = '';
-                        document.getElementById('enlaceImagen').value = '';
-                        
-                        updatePreview();
-                    }, 3000);
-                } else {
-                    btnSubmit.innerHTML = 'Agregar a GitHub';
-                    btnSubmit.className = 'w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl';
-                    btnSubmit.disabled = false;
-                }
-            }
-        });
-    </script>
-</body>
-</html>').value;
-            const descripcion = document.getElementById('descripcion').value;
-            const enlaceDescarga = document.getElementById('enlaceDescarga').value;
-            
             if (nombre) {
-                previewCard.classList.remove('hidden');
-                previewCard.classList.add('animate-slideUp');
+                if(previewCard.classList.contains('hidden')) {
+                    previewCard.classList.remove('hidden');
+                    previewCard.classList.add('animate-slideUp');
+                }
                 document.getElementById('preview-nombre').textContent = nombre;
                 document.getElementById('preview-descripcion').textContent = descripcion || 'Sin descripción';
                 
@@ -549,15 +405,149 @@
             }
         }
 
+        [nombreInput, descripcionInput, enlaceDescargaInput, enlaceImagenInput].forEach(field => {
+            field.addEventListener('input', updatePreview);
+        });
+
+        // --- GitHub API Logic ---
         async function updateGitHubJSON() {
             const token = document.getElementById('github-token').value.trim();
             const user = document.getElementById('github-user').value.trim();
             const repo = document.getElementById('github-repo').value.trim();
             const filePath = document.getElementById('json-file').value.trim();
 
-            if (!token || !user || !repo) {
-                mostrarError('Por favor completa la configuración de GitHub');
+            if (!token || !user || !repo || !filePath) {
+                mostrarError('Por favor, completa toda la configuración de GitHub.');
                 return false;
             }
 
-            const nombre = document.getElementById('nombre
+            const nuevoItem = {
+                id: Date.now(),
+                nombre: nombreInput.value.trim(),
+                descripcion: descripcionInput.value.trim(),
+                enlaceDescarga: enlaceDescargaInput.value.trim(),
+                enlaceImagen: enlaceImagenInput.value.trim(),
+                categoria: categoria,
+                fecha: new Date().toISOString()
+            };
+
+            const getUrl = `https://api.github.com/repos/${user}/${repo}/contents/${filePath}`;
+            const headers = {
+                'Authorization': `token ${token}`,
+                'Accept': 'application/vnd.github.v3+json'
+            };
+
+            try {
+                // 1. Obtener el archivo y su SHA
+                const getResponse = await fetch(getUrl, { headers });
+                let sha = null;
+                let contenidoActual = [];
+
+                if (getResponse.ok) {
+                    const fileData = await getResponse.json();
+                    sha = fileData.sha;
+                    const content = decodeURIComponent(escape(window.atob(fileData.content)));
+                    contenidoActual = JSON.parse(content);
+                } else if (getResponse.status !== 404) {
+                    const errorData = await getResponse.json();
+                    throw new Error(errorData.message || `Error al obtener el archivo: ${getResponse.statusText}`);
+                }
+
+                // 2. Agregar el nuevo item
+                contenidoActual.unshift(nuevoItem); // Añadir al principio
+
+                // 3. Preparar el nuevo contenido para subirlo
+                const nuevoContenido = JSON.stringify(contenidoActual, null, 2);
+                const contenidoBase64 = window.btoa(unescape(encodeURIComponent(nuevoContenido)));
+
+                // 4. Actualizar o crear el archivo
+                const updateResponse = await fetch(getUrl, {
+                    method: 'PUT',
+                    headers: { ...headers, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: `Agregar: ${nuevoItem.nombre}`,
+                        content: contenidoBase64,
+                        sha: sha // Incluir SHA si se está actualizando
+                    })
+                });
+
+                if (!updateResponse.ok) {
+                    const errorData = await updateResponse.json();
+                    throw new Error(errorData.message || 'Error al actualizar el archivo en GitHub.');
+                }
+                
+                return true;
+
+            } catch (error) {
+                console.error('Error en la operación de GitHub:', error);
+                mostrarError(`Error: ${error.message}`);
+                return false;
+            }
+        }
+        
+        function mostrarError(mensaje) {
+            errorMessage.classList.remove('hidden');
+            errorText.textContent = mensaje;
+            errorMessage.classList.add('animate-shake');
+            setTimeout(() => {
+                errorMessage.classList.remove('animate-shake');
+                errorMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        // --- Form Submission ---
+        btnSubmit.addEventListener('click', async () => {
+            let hasErrors = false;
+            
+            // Validar cada campo
+            ['nombre', 'descripcion', 'enlaceDescarga', 'enlaceImagen'].forEach(id => {
+                const input = document.getElementById(id);
+                const errorEl = document.getElementById(`error-${id}`);
+                if (!input.value.trim()) {
+                    input.classList.remove('border-white/30', 'focus:border-cyan-400');
+                    input.classList.add('border-red-400');
+                    errorEl.textContent = 'Este campo es requerido.';
+                    errorEl.classList.remove('hidden');
+                    errorEl.classList.add('animate-shake');
+                    hasErrors = true;
+                } else {
+                    input.classList.remove('border-red-400');
+                    input.classList.add('border-white/30', 'focus:border-cyan-400');
+                    errorEl.classList.add('hidden');
+                }
+            });
+
+            if (hasErrors) return;
+
+            // Mostrar estado de carga
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<svg class="animate-spin inline mr-2" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"/></svg> Subiendo a GitHub...`;
+            btnSubmit.className = 'w-full bg-gray-500 text-white font-bold py-4 px-6 rounded-xl shadow-lg cursor-wait';
+
+            const success = await updateGitHubJSON();
+
+            if (success) {
+                successMessage.classList.remove('hidden');
+                btnSubmit.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce inline mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> ¡Agregado con éxito!`;
+                btnSubmit.className = 'w-full bg-green-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg';
+
+                setTimeout(() => {
+                    [nombreInput, descripcionInput, enlaceDescargaInput, enlaceImagenInput].forEach(i => i.value = '');
+                    updatePreview();
+                    
+                    successMessage.classList.add('hidden');
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerHTML = 'Agregar a GitHub';
+                    btnSubmit.className = 'w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl';
+                }, 3000);
+
+            } else {
+                // Restaurar el botón en caso de error
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = 'Agregar a GitHub';
+                btnSubmit.className = 'w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl';
+            }
+        });
+    </script>
+</body>
+</html>
