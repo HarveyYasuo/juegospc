@@ -1,0 +1,303 @@
+import React, { useState } from 'react';
+import { Download, Gamepad2, Code, Image, FileText, Link, CheckCircle } from 'lucide-react';
+
+export default function GameFormPage() {
+  const [formData, setFormData] = useState({
+    nombre: '',
+    descripcion: '',
+    enlaceDescarga: '',
+    enlaceImagen: '',
+    categoria: 'juegos'
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.nombre.trim()) newErrors.nombre = 'El nombre es requerido';
+    if (!formData.descripcion.trim()) newErrors.descripcion = 'La descripción es requerida';
+    if (!formData.enlaceDescarga.trim()) newErrors.enlaceDescarga = 'El enlace de descarga es requerido';
+    if (!formData.enlaceImagen.trim()) newErrors.enlaceImagen = 'El enlace de imagen es requerido';
+    return newErrors;
+  };
+
+  const handleSubmit = () => {
+    const newErrors = validateForm();
+    
+    if (Object.keys(newErrors).length === 0) {
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({
+          nombre: '',
+          descripcion: '',
+          enlaceDescarga: '',
+          enlaceImagen: '',
+          categoria: 'juegos'
+        });
+      }, 3000);
+    } else {
+      setErrors(newErrors);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 p-4 md:p-8">
+      <div className="max-w-2xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8 animate-slideDown">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 drop-shadow-lg">
+            Agregar Contenido
+          </h1>
+          <p className="text-indigo-200 text-lg">
+            Comparte tus juegos y programas favoritos
+          </p>
+        </div>
+
+        {/* Form Card */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-6 md:p-8 border border-white/20 animate-fadeIn">
+          <div className="space-y-6">
+            
+            {/* Nombre del Juego */}
+            <div className="transform transition-all duration-300 hover:scale-[1.01]">
+              <label className="flex items-center gap-2 text-white font-semibold mb-2">
+                <FileText size={20} className="text-cyan-300" />
+                Nombre del Juego/Programa
+              </label>
+              <input
+                type="text"
+                value={formData.nombre}
+                onChange={(e) => handleChange('nombre', e.target.value)}
+                className={`w-full px-4 py-3 rounded-lg bg-white/20 border-2 ${
+                  errors.nombre ? 'border-red-400' : 'border-white/30'
+                } text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300`}
+                placeholder="Ej: Minecraft, Visual Studio Code"
+              />
+              {errors.nombre && (
+                <p className="text-red-300 text-sm mt-1 animate-shake">{errors.nombre}</p>
+              )}
+            </div>
+
+            {/* Descripción */}
+            <div className="transform transition-all duration-300 hover:scale-[1.01]">
+              <label className="flex items-center gap-2 text-white font-semibold mb-2">
+                <FileText size={20} className="text-green-300" />
+                Descripción
+              </label>
+              <textarea
+                value={formData.descripcion}
+                onChange={(e) => handleChange('descripcion', e.target.value)}
+                rows="4"
+                className={`w-full px-4 py-3 rounded-lg bg-white/20 border-2 ${
+                  errors.descripcion ? 'border-red-400' : 'border-white/30'
+                } text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300 resize-none`}
+                placeholder="Describe el contenido, características principales..."
+              />
+              {errors.descripcion && (
+                <p className="text-red-300 text-sm mt-1 animate-shake">{errors.descripcion}</p>
+              )}
+            </div>
+
+            {/* Enlace de Descarga */}
+            <div className="transform transition-all duration-300 hover:scale-[1.01]">
+              <label className="flex items-center gap-2 text-white font-semibold mb-2">
+                <Download size={20} className="text-yellow-300" />
+                Enlace de Descarga
+              </label>
+              <input
+                type="url"
+                value={formData.enlaceDescarga}
+                onChange={(e) => handleChange('enlaceDescarga', e.target.value)}
+                className={`w-full px-4 py-3 rounded-lg bg-white/20 border-2 ${
+                  errors.enlaceDescarga ? 'border-red-400' : 'border-white/30'
+                } text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300`}
+                placeholder="https://ejemplo.com/descarga"
+              />
+              {errors.enlaceDescarga && (
+                <p className="text-red-300 text-sm mt-1 animate-shake">{errors.enlaceDescarga}</p>
+              )}
+            </div>
+
+            {/* Enlace de Imagen */}
+            <div className="transform transition-all duration-300 hover:scale-[1.01]">
+              <label className="flex items-center gap-2 text-white font-semibold mb-2">
+                <Image size={20} className="text-pink-300" />
+                Enlace de Imagen
+              </label>
+              <input
+                type="url"
+                value={formData.enlaceImagen}
+                onChange={(e) => handleChange('enlaceImagen', e.target.value)}
+                className={`w-full px-4 py-3 rounded-lg bg-white/20 border-2 ${
+                  errors.enlaceImagen ? 'border-red-400' : 'border-white/30'
+                } text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300`}
+                placeholder="https://ejemplo.com/imagen.jpg"
+              />
+              {errors.enlaceImagen && (
+                <p className="text-red-300 text-sm mt-1 animate-shake">{errors.enlaceImagen}</p>
+              )}
+            </div>
+
+            {/* Categoría */}
+            <div className="transform transition-all duration-300 hover:scale-[1.01]">
+              <label className="flex items-center gap-2 text-white font-semibold mb-3">
+                <Link size={20} className="text-orange-300" />
+                Categoría
+              </label>
+              <div className="grid grid-cols-2 gap-4">
+                <button
+                  type="button"
+                  onClick={() => handleChange('categoria', 'juegos')}
+                  className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 ${
+                    formData.categoria === 'juegos'
+                      ? 'bg-cyan-500 border-cyan-400 shadow-lg shadow-cyan-500/50 scale-105'
+                      : 'bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105'
+                  }`}
+                >
+                  <Gamepad2 size={32} className="text-white" />
+                  <span className="text-white font-semibold">Juegos</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleChange('categoria', 'programas')}
+                  className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 ${
+                    formData.categoria === 'programas'
+                      ? 'bg-purple-500 border-purple-400 shadow-lg shadow-purple-500/50 scale-105'
+                      : 'bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105'
+                  }`}
+                >
+                  <Code size={32} className="text-white" />
+                  <span className="text-white font-semibold">Programas</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="button"
+              onClick={handleSubmit}
+              disabled={submitted}
+              className={`w-full font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 flex items-center justify-center gap-2 ${
+                submitted
+                  ? 'bg-green-500 scale-100'
+                  : 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 hover:scale-105 hover:shadow-xl'
+              } text-white`}
+            >
+              {submitted ? (
+                <>
+                  <CheckCircle size={24} className="animate-bounce" />
+                  ¡Enviado!
+                </>
+              ) : (
+                'Agregar Contenido'
+              )}
+            </button>
+          </div>
+
+          {/* Success Message */}
+          {submitted && (
+            <div className="mt-6 p-4 bg-green-500/20 border-2 border-green-400 rounded-xl animate-pulse">
+              <p className="text-green-200 text-center font-semibold">
+                ¡Contenido agregado exitosamente!
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Preview Card */}
+        {formData.nombre && (
+          <div className="mt-8 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-6 border border-white/20 animate-slideUp">
+            <h3 className="text-white font-bold text-xl mb-4">Vista Previa</h3>
+            <div className="bg-white/5 rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <div className={`p-3 rounded-lg transition-all duration-300 ${
+                  formData.categoria === 'juegos' ? 'bg-cyan-500/30' : 'bg-purple-500/30'
+                }`}>
+                  {formData.categoria === 'juegos' ? (
+                    <Gamepad2 size={24} className="text-white" />
+                  ) : (
+                    <Code size={24} className="text-white" />
+                  )}
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-white font-bold text-lg">{formData.nombre}</h4>
+                  <p className="text-indigo-200 text-sm mt-1">
+                    {formData.descripcion || 'Sin descripción'}
+                  </p>
+                  {formData.enlaceDescarga && (
+                    <div className="flex items-center gap-2 mt-2 text-cyan-300 text-sm">
+                      <Download size={16} />
+                      <span>Enlace de descarga disponible</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <style jsx>{`
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-5px); }
+          75% { transform: translateX(5px); }
+        }
+        .animate-slideDown {
+          animation: slideDown 0.6s ease-out;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.6s ease-out;
+        }
+        .animate-slideUp {
+          animation: slideUp 0.5s ease-out;
+        }
+        .animate-shake {
+          animation: shake 0.3s ease-in-out;
+        }
+      `}</style>
+    </div>
+  );
+}
