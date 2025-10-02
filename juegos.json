@@ -9,6 +9,14 @@
     "database": "gamesog_data",
     "data": [
       {
+        "id": "254",
+        "titulo": "Simcity 2013",
+        "descripcion": "New",
+        "enlace_sitio": "https://www.mediafire.com/file/kvi47pxcmb4vlwt",
+        "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/297c5d34ea49c4c89da2c1d7a7a62b06.jpg",
+        "enlace_video": "https://archive.org/download/sim-city-2013-official-trailer-game-spot-trailers-720p-h-264/SimCity%20%282013%29%20Official%20Trailer%20-%20GameSpot%20Trailers%20%28720p%2C%20h264%29.mp4"
+      },
+      {
         "id": "253",
         "titulo": "Silent Hill 2: Enhanced Edition",
         "descripcion": "New",
