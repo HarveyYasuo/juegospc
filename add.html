@@ -45,6 +45,10 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
         .animate-slideDown {
             animation: slideDown 0.6s ease-out;
         }
@@ -59,6 +63,9 @@
         }
         .animate-bounce {
             animation: bounce 0.5s ease-in-out infinite;
+        }
+        .animate-spin {
+            animation: spin 1s linear infinite;
         }
         .hidden {
             display: none;
@@ -75,6 +82,83 @@
             <p class="text-indigo-200 text-lg">
                 Comparte tus juegos y programas favoritos
             </p>
+        </div>
+
+        <!-- Configuration Card -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-6 md:p-8 border border-white/20 mb-6 animate-fadeIn">
+            <h2 class="text-white font-bold text-xl mb-4 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-300">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M12 1v6m0 6v6m5.2-13.2L13 9m-2 6-4.2 4.2M1 12h6m6 0h6M5.8 5.8 10 10m4 4 4.2 4.2"/>
+                </svg>
+                Configuración de GitHub
+            </h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="text-white font-semibold mb-2 block">Token de GitHub (Personal Access Token)</label>
+                    <input
+                        type="password"
+                        id="github-token"
+                        class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
+                        placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+                    />
+                    <p class="text-indigo-200 text-xs mt-1">
+                        <a href="#" onclick="mostrarInstrucciones()" class="underline hover:text-cyan-300">¿Cómo obtener mi token?</a>
+                    </p>
+                </div>
+                <div>
+                    <label class="text-white font-semibold mb-2 block">Usuario de GitHub</label>
+                    <input
+                        type="text"
+                        id="github-user"
+                        class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
+                        placeholder="tu-usuario"
+                    />
+                </div>
+                <div>
+                    <label class="text-white font-semibold mb-2 block">Nombre del Repositorio</label>
+                    <input
+                        type="text"
+                        id="github-repo"
+                        class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
+                        placeholder="mi-repositorio"
+                    />
+                </div>
+                <div>
+                    <label class="text-white font-semibold mb-2 block">Archivo JSON (ruta desde la raíz)</label>
+                    <input
+                        type="text"
+                        id="json-file"
+                        class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
+                        placeholder="data/contenido.json"
+                        value="data/contenido.json"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions Modal -->
+        <div id="instructions-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-6 border border-white/20 max-w-2xl max-h-[80vh] overflow-y-auto">
+                <h3 class="text-white font-bold text-2xl mb-4">📝 Cómo obtener tu Token de GitHub</h3>
+                <div class="text-indigo-200 space-y-3 text-sm">
+                    <p><strong class="text-white">1.</strong> Ve a GitHub.com y inicia sesión</p>
+                    <p><strong class="text-white">2.</strong> Haz clic en tu foto de perfil → Settings</p>
+                    <p><strong class="text-white">3.</strong> En el menú lateral, busca "Developer settings" (al final)</p>
+                    <p><strong class="text-white">4.</strong> Haz clic en "Personal access tokens" → "Tokens (classic)"</p>
+                    <p><strong class="text-white">5.</strong> Haz clic en "Generate new token" → "Generate new token (classic)"</p>
+                    <p><strong class="text-white">6.</strong> Dale un nombre descriptivo (ej: "Formulario de juegos")</p>
+                    <p><strong class="text-white">7.</strong> Selecciona los permisos: marca la casilla <strong class="text-cyan-300">"repo"</strong> (esto incluye todos los permisos del repositorio)</p>
+                    <p><strong class="text-white">8.</strong> Haz clic en "Generate token" al final de la página</p>
+                    <p><strong class="text-white">9.</strong> <strong class="text-yellow-300">¡IMPORTANTE!</strong> Copia el token inmediatamente, no podrás verlo de nuevo</p>
+                    <p class="mt-4 p-3 bg-yellow-500/20 border border-yellow-400 rounded-lg">
+                        ⚠️ <strong>Nota de seguridad:</strong> No compartas tu token con nadie. Trátalo como una contraseña.
+                    </p>
+                </div>
+                <button onclick="cerrarInstrucciones()" class="mt-6 w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300">
+                    Entendido
+                </button>
+            </div>
         </div>
 
         <!-- Form Card -->
@@ -200,7 +284,7 @@
                     id="btn-submit"
                     class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
                 >
-                    Agregar Contenido
+                    Agregar a GitHub
                 </button>
             </div>
 
@@ -211,8 +295,13 @@
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                         <polyline points="22 4 12 14.01 9 11.01"/>
                     </svg>
-                    ¡Contenido agregado exitosamente!
+                    <span id="success-text">¡Contenido agregado exitosamente a GitHub!</span>
                 </p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="error-message" class="mt-6 p-4 bg-red-500/20 border-2 border-red-400 rounded-xl hidden">
+                <p class="text-red-200 text-center font-semibold" id="error-text"></p>
             </div>
         </div>
 
@@ -254,11 +343,20 @@
         const btnProgramas = document.getElementById('btn-programas');
         const btnSubmit = document.getElementById('btn-submit');
         const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
         const previewCard = document.getElementById('preview-card');
 
         // SVG Icons
         const gamepadIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><line x1="6" y1="11" x2="10" y2="11"/><line x1="8" y1="9" x2="8" y2="13"/><line x1="15" y1="12" x2="15.01" y2="12"/><line x1="18" y1="10" x2="18.01" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>`;
         const codeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`;
+
+        function mostrarInstrucciones() {
+            document.getElementById('instructions-modal').classList.remove('hidden');
+        }
+
+        function cerrarInstrucciones() {
+            document.getElementById('instructions-modal').classList.add('hidden');
+        }
 
         btnJuegos.addEventListener('click', () => {
             categoria = 'juegos';
@@ -279,31 +377,91 @@
         });
 
         function updatePreview() {
-            const nombre = document.getElementById('nombre').value;
-            const descripcion = document.getElementById('descripcion').value;
-            const enlaceDescarga = document.getElementById('enlaceDescarga').value;
-            
-            if (nombre) {
-                previewCard.classList.remove('hidden');
-                previewCard.classList.add('animate-slideUp');
-                document.getElementById('preview-nombre').textContent = nombre;
-                document.getElementById('preview-descripcion').textContent = descripcion || 'Sin descripción';
-                
-                const previewIcon = document.getElementById('preview-icon');
-                previewIcon.className = `p-3 rounded-lg transition-all duration-300 ${categoria === 'juegos' ? 'bg-cyan-500/30' : 'bg-purple-500/30'}`;
-                previewIcon.innerHTML = categoria === 'juegos' ? gamepadIcon : codeIcon;
-                
-                if (enlaceDescarga) {
-                    document.getElementById('preview-download').classList.remove('hidden');
+            const nombre = document.getElementById('nombre').value.trim();
+            const descripcion = document.getElementById('descripcion').value.trim();
+            const enlaceDescarga = document.getElementById('enlaceDescarga').value.trim();
+            const enlaceImagen = document.getElementById('enlaceImagen').value.trim();
+
+            const nuevoItem = {
+                id: Date.now(),
+                nombre: nombre,
+                descripcion: descripcion,
+                enlaceDescarga: enlaceDescarga,
+                enlaceImagen: enlaceImagen,
+                categoria: categoria,
+                fecha: new Date().toISOString()
+            };
+
+            try {
+                // Obtener el archivo actual
+                const getUrl = `https://api.github.com/repos/${user}/${repo}/contents/${filePath}`;
+                const getResponse = await fetch(getUrl, {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                let sha = null;
+                let contenidoActual = [];
+
+                if (getResponse.ok) {
+                    const fileData = await getResponse.json();
+                    sha = fileData.sha;
+                    const content = atob(fileData.content);
+                    contenidoActual = JSON.parse(content);
+                } else if (getResponse.status === 404) {
+                    // El archivo no existe, se creará uno nuevo
+                    contenidoActual = [];
                 } else {
-                    document.getElementById('preview-download').classList.add('hidden');
+                    throw new Error(`Error al obtener el archivo: ${getResponse.status}`);
                 }
-            } else {
-                previewCard.classList.add('hidden');
+
+                // Agregar el nuevo item
+                contenidoActual.push(nuevoItem);
+
+                // Convertir a JSON y codificar en base64
+                const nuevoContenido = JSON.stringify(contenidoActual, null, 2);
+                const contenidoBase64 = btoa(unescape(encodeURIComponent(nuevoContenido)));
+
+                // Actualizar o crear el archivo
+                const updateUrl = `https://api.github.com/repos/${user}/${repo}/contents/${filePath}`;
+                const updateResponse = await fetch(updateUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `Agregar: ${nombre}`,
+                        content: contenidoBase64,
+                        sha: sha
+                    })
+                });
+
+                if (!updateResponse.ok) {
+                    const errorData = await updateResponse.json();
+                    throw new Error(errorData.message || 'Error al actualizar el archivo');
+                }
+
+                return true;
+            } catch (error) {
+                console.error('Error:', error);
+                mostrarError('Error: ' + error.message);
+                return false;
             }
         }
 
-        btnSubmit.addEventListener('click', () => {
+        function mostrarError(mensaje) {
+            errorMessage.classList.remove('hidden');
+            document.getElementById('error-text').textContent = mensaje;
+            setTimeout(() => {
+                errorMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        btnSubmit.addEventListener('click', async () => {
             const nombre = document.getElementById('nombre').value.trim();
             const descripcion = document.getElementById('descripcion').value.trim();
             const enlaceDescarga = document.getElementById('enlaceDescarga').value.trim();
@@ -330,28 +488,76 @@
             });
             
             if (!hasErrors) {
-                btnSubmit.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce inline"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> ¡Enviado!`;
-                btnSubmit.className = 'w-full bg-green-500 text-white font-bold py-4 px-6 rounded-xl shadow-lg';
+                // Deshabilitar botón y mostrar loading
+                btnSubmit.innerHTML = `<svg class="animate-spin inline mr-2" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"/></svg> Subiendo a GitHub...`;
                 btnSubmit.disabled = true;
+                btnSubmit.className = 'w-full bg-gray-500 text-white font-bold py-4 px-6 rounded-xl shadow-lg cursor-wait';
                 
-                successMessage.classList.remove('hidden');
-                successMessage.classList.add('animate-pulse');
+                // Intentar subir a GitHub
+                const success = await updateGitHubJSON();
                 
-                setTimeout(() => {
-                    btnSubmit.innerHTML = 'Agregar Contenido';
+                if (success) {
+                    btnSubmit.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce inline"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> ¡Subido a GitHub!`;
+                    btnSubmit.className = 'w-full bg-green-500 text-white font-bold py-4 px-6 rounded-xl shadow-lg';
+                    
+                    successMessage.classList.remove('hidden');
+                    successMessage.classList.add('animate-pulse');
+                    
+                    setTimeout(() => {
+                        btnSubmit.innerHTML = 'Agregar a GitHub';
+                        btnSubmit.className = 'w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl';
+                        btnSubmit.disabled = false;
+                        successMessage.classList.add('hidden');
+                        
+                        document.getElementById('nombre').value = '';
+                        document.getElementById('descripcion').value = '';
+                        document.getElementById('enlaceDescarga').value = '';
+                        document.getElementById('enlaceImagen').value = '';
+                        
+                        updatePreview();
+                    }, 3000);
+                } else {
+                    btnSubmit.innerHTML = 'Agregar a GitHub';
                     btnSubmit.className = 'w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl';
                     btnSubmit.disabled = false;
-                    successMessage.classList.add('hidden');
-                    
-                    document.getElementById('nombre').value = '';
-                    document.getElementById('descripcion').value = '';
-                    document.getElementById('enlaceDescarga').value = '';
-                    document.getElementById('enlaceImagen').value = '';
-                    
-                    updatePreview();
-                }, 3000);
+                }
             }
         });
     </script>
 </body>
-</html>
+</html>').value;
+            const descripcion = document.getElementById('descripcion').value;
+            const enlaceDescarga = document.getElementById('enlaceDescarga').value;
+            
+            if (nombre) {
+                previewCard.classList.remove('hidden');
+                previewCard.classList.add('animate-slideUp');
+                document.getElementById('preview-nombre').textContent = nombre;
+                document.getElementById('preview-descripcion').textContent = descripcion || 'Sin descripción';
+                
+                const previewIcon = document.getElementById('preview-icon');
+                previewIcon.className = `p-3 rounded-lg transition-all duration-300 ${categoria === 'juegos' ? 'bg-cyan-500/30' : 'bg-purple-500/30'}`;
+                previewIcon.innerHTML = categoria === 'juegos' ? gamepadIcon : codeIcon;
+                
+                if (enlaceDescarga) {
+                    document.getElementById('preview-download').classList.remove('hidden');
+                } else {
+                    document.getElementById('preview-download').classList.add('hidden');
+                }
+            } else {
+                previewCard.classList.add('hidden');
+            }
+        }
+
+        async function updateGitHubJSON() {
+            const token = document.getElementById('github-token').value.trim();
+            const user = document.getElementById('github-user').value.trim();
+            const repo = document.getElementById('github-repo').value.trim();
+            const filePath = document.getElementById('json-file').value.trim();
+
+            if (!token || !user || !repo) {
+                mostrarError('Por favor completa la configuración de GitHub');
+                return false;
+            }
+
+            const nombre = document.getElementById('nombre
