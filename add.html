@@ -1,303 +1,357 @@
-import React, { useState } from 'react';
-import { Download, Gamepad2, Code, Image, FileText, Link, CheckCircle } from 'lucide-react';
-
-export default function GameFormPage() {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    descripcion: '',
-    enlaceDescarga: '',
-    enlaceImagen: '',
-    categoria: 'juegos'
-  });
-
-  const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: '' }));
-    }
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-    if (!formData.nombre.trim()) newErrors.nombre = 'El nombre es requerido';
-    if (!formData.descripcion.trim()) newErrors.descripcion = 'La descripción es requerida';
-    if (!formData.enlaceDescarga.trim()) newErrors.enlaceDescarga = 'El enlace de descarga es requerido';
-    if (!formData.enlaceImagen.trim()) newErrors.enlaceImagen = 'El enlace de imagen es requerido';
-    return newErrors;
-  };
-
-  const handleSubmit = () => {
-    const newErrors = validateForm();
-    
-    if (Object.keys(newErrors).length === 0) {
-      setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
-        setFormData({
-          nombre: '',
-          descripcion: '',
-          enlaceDescarga: '',
-          enlaceImagen: '',
-          categoria: 'juegos'
-        });
-      }, 3000);
-    } else {
-      setErrors(newErrors);
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 p-4 md:p-8">
-      <div className="max-w-2xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8 animate-slideDown">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 drop-shadow-lg">
-            Agregar Contenido
-          </h1>
-          <p className="text-indigo-200 text-lg">
-            Comparte tus juegos y programas favoritos
-          </p>
-        </div>
-
-        {/* Form Card */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-6 md:p-8 border border-white/20 animate-fadeIn">
-          <div className="space-y-6">
-            
-            {/* Nombre del Juego */}
-            <div className="transform transition-all duration-300 hover:scale-[1.01]">
-              <label className="flex items-center gap-2 text-white font-semibold mb-2">
-                <FileText size={20} className="text-cyan-300" />
-                Nombre del Juego/Programa
-              </label>
-              <input
-                type="text"
-                value={formData.nombre}
-                onChange={(e) => handleChange('nombre', e.target.value)}
-                className={`w-full px-4 py-3 rounded-lg bg-white/20 border-2 ${
-                  errors.nombre ? 'border-red-400' : 'border-white/30'
-                } text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300`}
-                placeholder="Ej: Minecraft, Visual Studio Code"
-              />
-              {errors.nombre && (
-                <p className="text-red-300 text-sm mt-1 animate-shake">{errors.nombre}</p>
-              )}
-            </div>
-
-            {/* Descripción */}
-            <div className="transform transition-all duration-300 hover:scale-[1.01]">
-              <label className="flex items-center gap-2 text-white font-semibold mb-2">
-                <FileText size={20} className="text-green-300" />
-                Descripción
-              </label>
-              <textarea
-                value={formData.descripcion}
-                onChange={(e) => handleChange('descripcion', e.target.value)}
-                rows="4"
-                className={`w-full px-4 py-3 rounded-lg bg-white/20 border-2 ${
-                  errors.descripcion ? 'border-red-400' : 'border-white/30'
-                } text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300 resize-none`}
-                placeholder="Describe el contenido, características principales..."
-              />
-              {errors.descripcion && (
-                <p className="text-red-300 text-sm mt-1 animate-shake">{errors.descripcion}</p>
-              )}
-            </div>
-
-            {/* Enlace de Descarga */}
-            <div className="transform transition-all duration-300 hover:scale-[1.01]">
-              <label className="flex items-center gap-2 text-white font-semibold mb-2">
-                <Download size={20} className="text-yellow-300" />
-                Enlace de Descarga
-              </label>
-              <input
-                type="url"
-                value={formData.enlaceDescarga}
-                onChange={(e) => handleChange('enlaceDescarga', e.target.value)}
-                className={`w-full px-4 py-3 rounded-lg bg-white/20 border-2 ${
-                  errors.enlaceDescarga ? 'border-red-400' : 'border-white/30'
-                } text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300`}
-                placeholder="https://ejemplo.com/descarga"
-              />
-              {errors.enlaceDescarga && (
-                <p className="text-red-300 text-sm mt-1 animate-shake">{errors.enlaceDescarga}</p>
-              )}
-            </div>
-
-            {/* Enlace de Imagen */}
-            <div className="transform transition-all duration-300 hover:scale-[1.01]">
-              <label className="flex items-center gap-2 text-white font-semibold mb-2">
-                <Image size={20} className="text-pink-300" />
-                Enlace de Imagen
-              </label>
-              <input
-                type="url"
-                value={formData.enlaceImagen}
-                onChange={(e) => handleChange('enlaceImagen', e.target.value)}
-                className={`w-full px-4 py-3 rounded-lg bg-white/20 border-2 ${
-                  errors.enlaceImagen ? 'border-red-400' : 'border-white/30'
-                } text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300`}
-                placeholder="https://ejemplo.com/imagen.jpg"
-              />
-              {errors.enlaceImagen && (
-                <p className="text-red-300 text-sm mt-1 animate-shake">{errors.enlaceImagen}</p>
-              )}
-            </div>
-
-            {/* Categoría */}
-            <div className="transform transition-all duration-300 hover:scale-[1.01]">
-              <label className="flex items-center gap-2 text-white font-semibold mb-3">
-                <Link size={20} className="text-orange-300" />
-                Categoría
-              </label>
-              <div className="grid grid-cols-2 gap-4">
-                <button
-                  type="button"
-                  onClick={() => handleChange('categoria', 'juegos')}
-                  className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 ${
-                    formData.categoria === 'juegos'
-                      ? 'bg-cyan-500 border-cyan-400 shadow-lg shadow-cyan-500/50 scale-105'
-                      : 'bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105'
-                  }`}
-                >
-                  <Gamepad2 size={32} className="text-white" />
-                  <span className="text-white font-semibold">Juegos</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => handleChange('categoria', 'programas')}
-                  className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 ${
-                    formData.categoria === 'programas'
-                      ? 'bg-purple-500 border-purple-400 shadow-lg shadow-purple-500/50 scale-105'
-                      : 'bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105'
-                  }`}
-                >
-                  <Code size={32} className="text-white" />
-                  <span className="text-white font-semibold">Programas</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="button"
-              onClick={handleSubmit}
-              disabled={submitted}
-              className={`w-full font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 flex items-center justify-center gap-2 ${
-                submitted
-                  ? 'bg-green-500 scale-100'
-                  : 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 hover:scale-105 hover:shadow-xl'
-              } text-white`}
-            >
-              {submitted ? (
-                <>
-                  <CheckCircle size={24} className="animate-bounce" />
-                  ¡Enviado!
-                </>
-              ) : (
-                'Agregar Contenido'
-              )}
-            </button>
-          </div>
-
-          {/* Success Message */}
-          {submitted && (
-            <div className="mt-6 p-4 bg-green-500/20 border-2 border-green-400 rounded-xl animate-pulse">
-              <p className="text-green-200 text-center font-semibold">
-                ¡Contenido agregado exitosamente!
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* Preview Card */}
-        {formData.nombre && (
-          <div className="mt-8 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-6 border border-white/20 animate-slideUp">
-            <h3 className="text-white font-bold text-xl mb-4">Vista Previa</h3>
-            <div className="bg-white/5 rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
-              <div className="flex items-start gap-4">
-                <div className={`p-3 rounded-lg transition-all duration-300 ${
-                  formData.categoria === 'juegos' ? 'bg-cyan-500/30' : 'bg-purple-500/30'
-                }`}>
-                  {formData.categoria === 'juegos' ? (
-                    <Gamepad2 size={24} className="text-white" />
-                  ) : (
-                    <Code size={24} className="text-white" />
-                  )}
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-white font-bold text-lg">{formData.nombre}</h4>
-                  <p className="text-indigo-200 text-sm mt-1">
-                    {formData.descripcion || 'Sin descripción'}
-                  </p>
-                  {formData.enlaceDescarga && (
-                    <div className="flex items-center gap-2 mt-2 text-cyan-300 text-sm">
-                      <Download size={16} />
-                      <span>Enlace de descarga disponible</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      <style jsx>{`
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Juegos y Programas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
         @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
         @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          25% { transform: translateX(-5px); }
-          75% { transform: translateX(5px); }
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         .animate-slideDown {
-          animation: slideDown 0.6s ease-out;
+            animation: slideDown 0.6s ease-out;
         }
         .animate-fadeIn {
-          animation: fadeIn 0.6s ease-out;
+            animation: fadeIn 0.6s ease-out;
         }
         .animate-slideUp {
-          animation: slideUp 0.5s ease-out;
+            animation: slideUp 0.5s ease-out;
         }
         .animate-shake {
-          animation: shake 0.3s ease-in-out;
+            animation: shake 0.3s ease-in-out;
         }
-      `}</style>
+        .animate-bounce {
+            animation: bounce 0.5s ease-in-out infinite;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 p-4 md:p-8">
+    <div class="max-w-2xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8 animate-slideDown">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2 drop-shadow-lg">
+                Agregar Contenido
+            </h1>
+            <p class="text-indigo-200 text-lg">
+                Comparte tus juegos y programas favoritos
+            </p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-6 md:p-8 border border-white/20 animate-fadeIn">
+            <div class="space-y-6">
+                
+                <!-- Nombre del Juego -->
+                <div class="transform transition-all duration-300 hover:scale-[1.01]">
+                    <label class="flex items-center gap-2 text-white font-semibold mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-300">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                        </svg>
+                        Nombre del Juego/Programa
+                    </label>
+                    <input
+                        type="text"
+                        id="nombre"
+                        class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
+                        placeholder="Ej: Minecraft, Visual Studio Code"
+                    />
+                    <p id="error-nombre" class="text-red-300 text-sm mt-1 hidden"></p>
+                </div>
+
+                <!-- Descripción -->
+                <div class="transform transition-all duration-300 hover:scale-[1.01]">
+                    <label class="flex items-center gap-2 text-white font-semibold mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-300">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                        </svg>
+                        Descripción
+                    </label>
+                    <textarea
+                        id="descripcion"
+                        rows="4"
+                        class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300 resize-none"
+                        placeholder="Describe el contenido, características principales..."
+                    ></textarea>
+                    <p id="error-descripcion" class="text-red-300 text-sm mt-1 hidden"></p>
+                </div>
+
+                <!-- Enlace de Descarga -->
+                <div class="transform transition-all duration-300 hover:scale-[1.01]">
+                    <label class="flex items-center gap-2 text-white font-semibold mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-300">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Enlace de Descarga
+                    </label>
+                    <input
+                        type="url"
+                        id="enlaceDescarga"
+                        class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
+                        placeholder="https://ejemplo.com/descarga"
+                    />
+                    <p id="error-enlaceDescarga" class="text-red-300 text-sm mt-1 hidden"></p>
+                </div>
+
+                <!-- Enlace de Imagen -->
+                <div class="transform transition-all duration-300 hover:scale-[1.01]">
+                    <label class="flex items-center gap-2 text-white font-semibold mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-pink-300">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        Enlace de Imagen
+                    </label>
+                    <input
+                        type="url"
+                        id="enlaceImagen"
+                        class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
+                        placeholder="https://ejemplo.com/imagen.jpg"
+                    />
+                    <p id="error-enlaceImagen" class="text-red-300 text-sm mt-1 hidden"></p>
+                </div>
+
+                <!-- Categoría -->
+                <div class="transform transition-all duration-300 hover:scale-[1.01]">
+                    <label class="flex items-center gap-2 text-white font-semibold mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-300">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                        </svg>
+                        Categoría
+                    </label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button
+                            type="button"
+                            id="btn-juegos"
+                            class="flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-cyan-500 border-cyan-400 shadow-lg shadow-cyan-500/50 scale-105"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+                                <line x1="6" y1="11" x2="10" y2="11"/>
+                                <line x1="8" y1="9" x2="8" y2="13"/>
+                                <line x1="15" y1="12" x2="15.01" y2="12"/>
+                                <line x1="18" y1="10" x2="18.01" y2="10"/>
+                                <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/>
+                            </svg>
+                            <span class="text-white font-semibold">Juegos</span>
+                        </button>
+
+                        <button
+                            type="button"
+                            id="btn-programas"
+                            class="flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+                                <polyline points="16 18 22 12 16 6"/>
+                                <polyline points="8 6 2 12 8 18"/>
+                            </svg>
+                            <span class="text-white font-semibold">Programas</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button
+                    type="button"
+                    id="btn-submit"
+                    class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                >
+                    Agregar Contenido
+                </button>
+            </div>
+
+            <!-- Success Message -->
+            <div id="success-message" class="mt-6 p-4 bg-green-500/20 border-2 border-green-400 rounded-xl hidden">
+                <p class="text-green-200 text-center font-semibold flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    ¡Contenido agregado exitosamente!
+                </p>
+            </div>
+        </div>
+
+        <!-- Preview Card -->
+        <div id="preview-card" class="mt-8 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-6 border border-white/20 hidden">
+            <h3 class="text-white font-bold text-xl mb-4">Vista Previa</h3>
+            <div class="bg-white/5 rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
+                <div class="flex items-start gap-4">
+                    <div id="preview-icon" class="p-3 rounded-lg bg-cyan-500/30">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+                            <line x1="6" y1="11" x2="10" y2="11"/>
+                            <line x1="8" y1="9" x2="8" y2="13"/>
+                            <line x1="15" y1="12" x2="15.01" y2="12"/>
+                            <line x1="18" y1="10" x2="18.01" y2="10"/>
+                            <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h4 id="preview-nombre" class="text-white font-bold text-lg"></h4>
+                        <p id="preview-descripcion" class="text-indigo-200 text-sm mt-1"></p>
+                        <div id="preview-download" class="flex items-center gap-2 mt-2 text-cyan-300 text-sm hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            <span>Enlace de descarga disponible</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  );
-}
+
+    <script>
+        let categoria = 'juegos';
+        
+        const btnJuegos = document.getElementById('btn-juegos');
+        const btnProgramas = document.getElementById('btn-programas');
+        const btnSubmit = document.getElementById('btn-submit');
+        const successMessage = document.getElementById('success-message');
+        const previewCard = document.getElementById('preview-card');
+
+        // SVG Icons
+        const gamepadIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><line x1="6" y1="11" x2="10" y2="11"/><line x1="8" y1="9" x2="8" y2="13"/><line x1="15" y1="12" x2="15.01" y2="12"/><line x1="18" y1="10" x2="18.01" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>`;
+        const codeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`;
+
+        btnJuegos.addEventListener('click', () => {
+            categoria = 'juegos';
+            btnJuegos.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-cyan-500 border-cyan-400 shadow-lg shadow-cyan-500/50 scale-105';
+            btnProgramas.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105';
+            updatePreview();
+        });
+
+        btnProgramas.addEventListener('click', () => {
+            categoria = 'programas';
+            btnProgramas.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-purple-500 border-purple-400 shadow-lg shadow-purple-500/50 scale-105';
+            btnJuegos.className = 'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 bg-white/10 border-white/30 hover:bg-white/20 hover:scale-105';
+            updatePreview();
+        });
+
+        ['nombre', 'descripcion', 'enlaceDescarga', 'enlaceImagen'].forEach(field => {
+            document.getElementById(field).addEventListener('input', updatePreview);
+        });
+
+        function updatePreview() {
+            const nombre = document.getElementById('nombre').value;
+            const descripcion = document.getElementById('descripcion').value;
+            const enlaceDescarga = document.getElementById('enlaceDescarga').value;
+            
+            if (nombre) {
+                previewCard.classList.remove('hidden');
+                previewCard.classList.add('animate-slideUp');
+                document.getElementById('preview-nombre').textContent = nombre;
+                document.getElementById('preview-descripcion').textContent = descripcion || 'Sin descripción';
+                
+                const previewIcon = document.getElementById('preview-icon');
+                previewIcon.className = `p-3 rounded-lg transition-all duration-300 ${categoria === 'juegos' ? 'bg-cyan-500/30' : 'bg-purple-500/30'}`;
+                previewIcon.innerHTML = categoria === 'juegos' ? gamepadIcon : codeIcon;
+                
+                if (enlaceDescarga) {
+                    document.getElementById('preview-download').classList.remove('hidden');
+                } else {
+                    document.getElementById('preview-download').classList.add('hidden');
+                }
+            } else {
+                previewCard.classList.add('hidden');
+            }
+        }
+
+        btnSubmit.addEventListener('click', () => {
+            const nombre = document.getElementById('nombre').value.trim();
+            const descripcion = document.getElementById('descripcion').value.trim();
+            const enlaceDescarga = document.getElementById('enlaceDescarga').value.trim();
+            const enlaceImagen = document.getElementById('enlaceImagen').value.trim();
+            
+            let hasErrors = false;
+            
+            ['nombre', 'descripcion', 'enlaceDescarga', 'enlaceImagen'].forEach(field => {
+                const input = document.getElementById(field);
+                const error = document.getElementById(`error-${field}`);
+                
+                if (!input.value.trim()) {
+                    input.classList.remove('border-white/30');
+                    input.classList.add('border-red-400');
+                    error.textContent = 'Este campo es requerido';
+                    error.classList.remove('hidden');
+                    error.classList.add('animate-shake');
+                    hasErrors = true;
+                } else {
+                    input.classList.remove('border-red-400');
+                    input.classList.add('border-white/30');
+                    error.classList.add('hidden');
+                }
+            });
+            
+            if (!hasErrors) {
+                btnSubmit.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce inline"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> ¡Enviado!`;
+                btnSubmit.className = 'w-full bg-green-500 text-white font-bold py-4 px-6 rounded-xl shadow-lg';
+                btnSubmit.disabled = true;
+                
+                successMessage.classList.remove('hidden');
+                successMessage.classList.add('animate-pulse');
+                
+                setTimeout(() => {
+                    btnSubmit.innerHTML = 'Agregar Contenido';
+                    btnSubmit.className = 'w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl';
+                    btnSubmit.disabled = false;
+                    successMessage.classList.add('hidden');
+                    
+                    document.getElementById('nombre').value = '';
+                    document.getElementById('descripcion').value = '';
+                    document.getElementById('enlaceDescarga').value = '';
+                    document.getElementById('enlaceImagen').value = '';
+                    
+                    updatePreview();
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
