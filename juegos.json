@@ -9,6 +9,14 @@
     "database": "gamesog_data",
     "data": [
       {
+        "id": "253",
+        "titulo": "Silent Hill 2: Enhanced Edition",
+        "descripcion": "New",
+        "enlace_sitio": "https://www.mediafire.com/file/6oer4zphtkednyw",
+        "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/f4d85c10cf4648759a1b5c9d3b20ce2b.jpg",
+        "enlace_video": "https://archive.org/download/trailer-silent-hill-2-enhanced-edition-luis-hernandez-lopez-720p-h-264/Trailer%20Silent%20Hill%202%20-%20Enhanced%20Edition%20-%20Luis%20Hern%C3%A1ndez%20L%C3%B3pez%20%28720p%2C%20h264%29.mp4"
+      },
+      {
         "id": "252",
         "titulo": "Silent Hill f",
         "descripcion": "New",
