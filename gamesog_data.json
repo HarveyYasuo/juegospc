@@ -1023,6 +1023,14 @@
     "database": "gamesog_data",
     "data": [
       {
+        "id": "2",
+        "titulo": "Hp Laptop",
+        "descripcion": "New",
+        "enlace_sitio": "https://www.google.com",
+        "enlace_imagen": "https://www.img.jpg",
+        "enlace_video": "https://www.video.mp4"
+      },
+      {
         "id": "1",
         "titulo": "Última versión 3.0",
         "descripcion": "Ya Disponible!!",
