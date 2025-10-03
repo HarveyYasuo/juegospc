@@ -9,6 +9,14 @@
     "database": "gamesog_data",
     "data": [
       {
+        "id": "258",
+        "titulo": "Teardown",
+        "descripcion": "New",
+        "enlace_sitio": "https://www.mediafire.com/file/x5efxit9v60vyel",
+        "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/c758b90f89a9328ea7ed05248b5774c7.jpg",
+        "enlace_video": "https://archive.org/download/teardown-gameplay-overview-trailer-720-p-60-fps/Teardown%20-%20Gameplay%20Overview%20Trailer%28720P_60FPS%29.mp4"
+      },
+      {
         "id": "257",
         "titulo": "The Amazing Spider-Man",
         "descripcion": "New",
