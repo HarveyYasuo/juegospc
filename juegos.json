@@ -9,6 +9,14 @@
     "database": "gamesog_data",
     "data": [
       {
+        "id": "260",
+        "titulo": "Transformers: Devastation",
+        "descripcion": "New 6.1 GB",
+        "enlace_sitio": "https://gofile.io/d/KkwmMX",
+        "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/9d02f6d1ecae51151dc504d74d212257.jpg",
+        "enlace_video": "https://archive.org/download/transformers-devastation-launch-trailer-ps-4-720-p-60-fps/TRANSFORMERS_%20Devastation%20-%20Launch%20Trailer%20_%20PS4%28720P_60FPS%29.mp4"
+      },
+      {
         "id": "259",
         "titulo": "WWE: 2K15",
         "descripcion": "New 22.6 GB",
