@@ -9,6 +9,14 @@
     "database": "gamesog_data",
     "data": [
       {
+        "id": "257",
+        "titulo": "The Amazing Spider-Man",
+        "descripcion": "New",
+        "enlace_sitio": "https://www.mediafire.com/file/9ws542u6k7cly46",
+        "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/65c8d0861c6fd015908867259c63cc91.jpg",
+        "enlace_video": "https://archive.org/download/the-amazing-spider-man-launch-trailer-720-p-hd/The%20Amazing%20Spider-Man%20-%20Launch%20Trailer%28720P_HD%29.mp4"
+      },
+      {
         "id": "256",
         "titulo": "Spider-Man 3",
         "descripcion": "New",
