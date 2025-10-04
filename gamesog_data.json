@@ -18,7 +18,7 @@
     "database": "gamesog_data",
     "data": [
       {
-        "min_required_version_code": 24
+        "min_required_version_code": 46
       }
     ]
   },
