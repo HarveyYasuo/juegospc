@@ -9,6 +9,14 @@
     "database": "gamesog_data",
     "data": [
       {
+        "id": "261",
+        "titulo": "Detroit: Become Human",
+        "descripcion": "New 59.6 GB",
+        "enlace_sitio": "https://gofile.io/d/tcNQbI",
+        "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/2078750ea356ba9fd472655dec36c068.jpg",
+        "enlace_video": "https://archive.org/download/detroit-become-human-official-pc-release-date-trailer-4-k-720-p-hd/Detroit_%20Become%20Human%20-%20Official%20PC%20Release%20Date%20Trailer%20%284K%29%28720P_HD%29.mp4"
+      },
+      {
         "id": "260",
         "titulo": "Transformers: Devastation",
         "descripcion": "New 6.1 GB",
