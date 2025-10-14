@@ -1,6 +1,6 @@
 // 2. Función para obtener y mostrar los datos de las tarjetas
 async function fetchAndDisplayData() {
-    const gistUrl = 'https://gist.githubusercontent.com/HarveyYasuo/9d3c5f517a39dd5164c966dd176c91b6/raw/e6700111544f4f151f888ce87330aa7ef40e9e4e/gamesog_data.json';
+    const gistUrl = 'https://raw.githubusercontent.com/HarveyYasuo/juegospc/refs/heads/main/juegos.json';
     const loadingEl = document.getElementById('loading');
     const errorEl = document.getElementById('error-message');
     const errorTextEl = document.getElementById('error-text');
@@ -71,4 +71,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Al eliminar el sistema de inicio de sesión, ya no es necesario verificar
     // si el usuario está autenticado. Se carga el contenido directamente.
     fetchAndDisplayData();
+
 });
