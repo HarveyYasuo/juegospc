@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descarga juegos y programas gratis para PC y Android. Encuentra una gran selección de software, emuladores y mucho más en nuestro centro de descargas.">
     <title>Juegos para pc - Centro de juegos gratuitos</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
@@ -26,6 +27,37 @@
       }
     }
     </script>
+    <style>
+    .cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #222;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        z-index: 1000;
+        display: none; /* Hidden by default */
+    }
+    .cookie-banner p {
+        margin: 0 0 10px 0;
+        font-size: 14px;
+    }
+    .cookie-banner a {
+        color: #4e8cff;
+        text-decoration: none;
+    }
+    .cookie-accept-btn {
+        background-color: #4e8cff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    </style>
 </head>
 <body>
 
@@ -110,5 +142,28 @@
     </div>
     <script src="games.js"></script>
     <script src="script.js"></script>
+<div id="cookie-banner" class="cookie-banner">
+        <p>
+            Este sitio web utiliza cookies para garantizar que obtengas la mejor experiencia en nuestro sitio web. Al continuar navegando, aceptas nuestro uso de cookies.
+            <a href="./privacy.html">Leer más</a>
+        </p>
+        <button id="cookie-accept-btn" class="cookie-accept-btn">Aceptar</button>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const banner = document.getElementById('cookie-banner');
+        const acceptBtn = document.getElementById('cookie-accept-btn');
+
+        if (!localStorage.getItem('cookieConsent')) {
+            banner.style.display = 'block';
+        }
+
+        acceptBtn.addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'true');
+            banner.style.display = 'none';
+        });
+    });
+    </script>
 </body>
 </html>
