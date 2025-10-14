@@ -1,6 +1,6 @@
 // 2. Función para obtener y mostrar los datos de las tarjetas
 async function fetchAndDisplayData() {
-    const gistUrl = 'https://raw.githubusercontent.com/HarveyYasuo/juegospc/refs/heads/main/juegos.json';
+    const gistUrl = 'https://raw.githubusercontent.com/HarveyYasuo/juegospc/main/juegos.json';
     const loadingEl = document.getElementById('loading');
     const errorEl = document.getElementById('error-message');
     const errorTextEl = document.getElementById('error-text');
@@ -48,10 +48,32 @@ async function fetchAndDisplayData() {
                                      <span class="category-tag">${categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)}</span>
                                 </div>
                                 <h4>${item.titulo}</h4>
-                                <p>Haz clic para descargar y obtener más información.</p>
+                                <p>${item.descripcion || 'Haz clic para descargar y obtener más información.'}</p>
                                 <a href="${item.enlace_sitio || '#'}" target="_blank" class="download-link">Descargar</a>
                             `;
                             grid.appendChild(itemCard);
+
+                            // Crear y añadir el script de Schema.org para SoftwareApplication
+                            const schema = {
+                                "@context": "https://schema.org",
+                                "@type": "SoftwareApplication",
+                                "name": item.titulo,
+                                "image": item.enlace_imagen,
+                                "url": item.enlace_sitio,
+                                "description": item.descripcion || `Descarga ${item.titulo}`,
+                                "applicationCategory": categoryKey === 'juegos' ? "GameApplication" : "SoftwareApplication",
+                                "operatingSystem": "Windows, Android", // Puedes hacer este campo dinámico añadiéndolo a tu JSON
+                                "offers": {
+                                    "@type": "Offer",
+                                    "price": "0",
+                                    "priceCurrency": "USD"
+                                }
+                            };
+
+                            const schemaScript = document.createElement('script');
+                            schemaScript.type = 'application/ld+json';
+                            schemaScript.textContent = JSON.stringify(schema, null, 2);
+                            document.head.appendChild(schemaScript);
                         });
                     }
                 }
