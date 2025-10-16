@@ -8,8 +8,16 @@
     "name": "juegos",
     "database": "gamesog_data",
     "data": [
+      ,
       {
         "id": "261",
+        "titulo": "GamesPC 1.1.1 Actualiza Ahora",
+        "descripcion": "",
+        "enlace_sitio": "https://github.com/HarveyYasuo/GamesPC/releases/tag/Release",
+        "enlace_imagen": "https://play-lh.googleusercontent.com/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yhfQka_4apj_uI_NilfwsuwGxdzR=w240-h480-rw"
+      }
+      {
+        "id": "260",
         "titulo": "Detroit: Become Human",
         "descripcion": "New 59.6 GB",
         "enlace_sitio": "https://gofile.io/d/tcNQbI",
@@ -17,7 +25,7 @@
         "enlace_video": "https://archive.org/download/detroit-become-human-official-pc-release-date-trailer-4-k-720-p-hd/Detroit_%20Become%20Human%20-%20Official%20PC%20Release%20Date%20Trailer%20%284K%29%28720P_HD%29.mp4"
       },
       {
-        "id": "260",
+        "id": "259",
         "titulo": "Transformers: Devastation",
         "descripcion": "New 6.1 GB",
         "enlace_sitio": "https://gofile.io/d/KkwmMX",
@@ -25,7 +33,7 @@
         "enlace_video": "https://archive.org/download/transformers-devastation-launch-trailer-ps-4-720-p-60-fps/TRANSFORMERS_%20Devastation%20-%20Launch%20Trailer%20_%20PS4%28720P_60FPS%29.mp4"
       },
       {
-        "id": "259",
+        "id": "258",
         "titulo": "WWE: 2K15",
         "descripcion": "New 22.6 GB",
         "enlace_sitio": "https://gofile.io/d/5Z0ev7",
@@ -33,7 +41,7 @@
         "enlace_video": "https://archive.org/download/wwe-2-k-15-first-official-gameplay-trailer-720-p-hd/WWE%202K15%20First%20Official%20Gameplay%20Trailer%28720P_HD%29.mp4"
       },
       {
-        "id": "258",
+        "id": "257",
         "titulo": "Teardown",
         "descripcion": "New",
         "enlace_sitio": "https://www.mediafire.com/file/x5efxit9v60vyel",
@@ -41,7 +49,7 @@
         "enlace_video": "https://archive.org/download/teardown-gameplay-overview-trailer-720-p-60-fps/Teardown%20-%20Gameplay%20Overview%20Trailer%28720P_60FPS%29.mp4"
       },
       {
-        "id": "257",
+        "id": "256",
         "titulo": "The Amazing Spider-Man",
         "descripcion": "New",
         "enlace_sitio": "https://www.mediafire.com/file/9ws542u6k7cly46",
@@ -49,7 +57,7 @@
         "enlace_video": "https://archive.org/download/the-amazing-spider-man-launch-trailer-720-p-hd/The%20Amazing%20Spider-Man%20-%20Launch%20Trailer%28720P_HD%29.mp4"
       },
       {
-        "id": "256",
+        "id": "255",
         "titulo": "Spider-Man 3",
         "descripcion": "New",
         "enlace_sitio": "https://www.mediafire.com/file/2zzvt86fx7q2siu",
@@ -57,7 +65,7 @@
         "enlace_video": "https://archive.org/download/spider-man-3-play-station-3-trailer-power-720-p-hd/Spider-Man%203%20PlayStation%203%20Trailer%20-%20Power%28720P_HD%29.mp4"
       },
       {
-        "id": "255",
+        "id": "254",
         "titulo": "Sons of the Forest",
         "descripcion": "New",
         "enlace_sitio": "https://www.mediafire.com/file/vp7whpv0yltku99",
@@ -65,7 +73,7 @@
         "enlace_video": "https://archive.org/download/sons-of-the-forest-exclusive-official-release-date-trailer-720-p-hd/Sons%20of%20the%20Forest%20-%20Exclusive%20Official%20Release%20Date%20Trailer%28720P_HD%29.mp4"
       },
       {
-        "id": "254",
+        "id": "253",
         "titulo": "Simcity 2013",
         "descripcion": "New",
         "enlace_sitio": "https://www.mediafire.com/file/kvi47pxcmb4vlwt",
@@ -73,7 +81,7 @@
         "enlace_video": "https://archive.org/download/sim-city-2013-official-trailer-game-spot-trailers-720p-h-264/SimCity%20%282013%29%20Official%20Trailer%20-%20GameSpot%20Trailers%20%28720p%2C%20h264%29.mp4"
       },
       {
-        "id": "253",
+        "id": "252",
         "titulo": "Silent Hill 2: Enhanced Edition",
         "descripcion": "New",
         "enlace_sitio": "https://www.mediafire.com/file/6oer4zphtkednyw",
@@ -81,19 +89,12 @@
         "enlace_video": "https://archive.org/download/trailer-silent-hill-2-enhanced-edition-luis-hernandez-lopez-720p-h-264/Trailer%20Silent%20Hill%202%20-%20Enhanced%20Edition%20-%20Luis%20Hern%C3%A1ndez%20L%C3%B3pez%20%28720p%2C%20h264%29.mp4"
       },
       {
-        "id": "252",
+        "id": "251",
         "titulo": "Silent Hill f",
         "descripcion": "New",
         "enlace_sitio": "https://gofile.io/d/o8uN67",
         "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/836fc55095976e7a7c4df140be0ee93e.jpg",
         "enlace_video": "https://archive.org/download/silent-hill-f-official-4-k-teaser-trailer-game-spot-720p-h-264/SILENT%20HILL%20f%20Official%204K%20Teaser%20Trailer%20-%20GameSpot%20%28720p%2C%20h264%29.mp4"
-      },
-      {
-        "id": "251",
-        "titulo": "GamesPC",
-        "descripcion": "",
-        "enlace_sitio": "https://play.google.com/store/apps/details?id=com.harvey.gamespc&pcampaignid=web_share",
-        "enlace_imagen": "https://play-lh.googleusercontent.com/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yhfQka_4apj_uI_NilfwsuwGxdzR=w240-h480-rw"
       },
       {
         "id": "250",
