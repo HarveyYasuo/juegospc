@@ -8,14 +8,13 @@
     "name": "juegos",
     "database": "gamesog_data",
     "data": [
-      ,
       {
         "id": "261",
         "titulo": "GamesPC 1.1.1 Actualiza Ahora",
         "descripcion": "",
         "enlace_sitio": "https://github.com/HarveyYasuo/GamesPC/releases/tag/Release",
         "enlace_imagen": "https://play-lh.googleusercontent.com/K97hXFBhPUZ78WC81mGKdGjHphNsbu5DmydDGnSh5xhJ8du1qYoTxKN-yhfQka_4apj_uI_NilfwsuwGxdzR=w240-h480-rw"
-      }
+      },
       {
         "id": "260",
         "titulo": "Detroit: Become Human",
