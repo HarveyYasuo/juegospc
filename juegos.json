@@ -9,6 +9,14 @@
     "database": "gamesog_data",
     "data": [
       {
+        "id": "264",
+        "titulo": "Sillent Hill 3",
+        "descripcion": "New",
+        "enlace_sitio": "https://www.mediafire.com/file/mzgbt8k33aykjf4",
+        "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/b4aa46eec336d130ed40c2b77bb7e0e7.jpg",
+        "enlace_video": "http//novideo.mp4"
+      },
+      {
         "id": "263",
         "titulo": "Megabonk",
         "descripcion": "new",
