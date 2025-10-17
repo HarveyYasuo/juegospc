@@ -197,6 +197,30 @@
         .main-footer p {
             color: var(--text-muted-color);
         }
+
+        /* App Gallery Section */
+        .app-gallery {
+            padding: 6rem 20px;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .screenshots-grid img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .screenshots-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
@@ -247,6 +271,17 @@
                     <h3>Actualizaciones Fáciles</h3>
                     <p>Mantén todos tus juegos actualizados automáticamente sin complicaciones.</p>
                 </div>
+            </div>
+        </section>
+
+        <section id="app-gallery" class="container">
+            <h2 class="section-title" style="text-align: center;">Un Vistazo a la App</h2>
+            <p class="section-subtitle" style="text-align: center;">Así es como se ve GamesPC en acción.</p>
+            <div class="screenshots-grid">
+                <img src="screenshot-1.jpg" alt="App Screenshot 1">
+                <img src="screenshot-2.jpg" alt="App Screenshot 2">
+                <img src="screenshot-3.jpg" alt="App Screenshot 3">
+                <img src="screenshot-4.jpg" alt="App Screenshot 4">
             </div>
         </section>
 
