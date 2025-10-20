@@ -9,6 +9,14 @@
     "database": "gamesog_data",
     "data": [
       {
+        "id": "265",
+        "titulo": "Plantas vs Zombies: Replanted",
+        "descripcion": "New",
+        "enlace_sitio": "https://www.mediafire.com/file/nhc3aengxaioow0",
+        "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/8f22f0bd48898f3af3972b07b34f6da9.jpg",
+        "enlace_video": "https://archive.org/download/plants-vs.-zombies-replantedtm-launch-trailer/Plants%20vs.%20Zombies_%20Replanted%E2%84%A2%20Launch%20Trailer.mp4"
+      },
+      {
         "id": "264",
         "titulo": "Sillent Hill 3",
         "descripcion": "New",
