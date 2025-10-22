@@ -10,19 +10,18 @@
     "data": [
       {
         "id": "267",
+        "titulo": "GamesPC Actualizado",
+        "descripcion": "v1.1.4",
+        "enlace_sitio": "https://juegospc.pro",
+        "enlace_imagen": "https://raw.githubusercontent.com/HarveyYasuo/juegospc/refs/heads/main/gamesog-og-image.png",
+      },
+      {
+        "id": "266",
         "titulo": "Hearts of Iron 4",
         "descripcion": "New",
         "enlace_sitio": "https://www.mediafire.com/file/vnxhjh7xj41uu2r",
         "enlace_imagen": "https://cdn2.steamgriddb.com/thumb/b82c662168a672cb8f9b7695bb1e3842.jpg",
         "enlace_video": "https://archive.org/download/hearts-of-iron-iv-official-gameplay-trailer/Hearts%20of%20Iron%20IV_%20Official%20Gameplay%20Trailer.mp4"
-      },
-      {
-        "id": "266",
-        "titulo": "GamesPC 1.1.2",
-        "descripcion": "New version download in https://juegospc.pro",
-        "enlace_sitio": "https://juegospc.pro",
-        "enlace_imagen": "https://raw.githubusercontent.com/HarveyYasuo/juegospc/refs/heads/main/gamesog-og-image.png",
-        "enlace_video": "https://novideo.mp4"
       },
       {
         "id": "265",
