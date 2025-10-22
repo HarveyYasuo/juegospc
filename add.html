@@ -311,10 +311,10 @@
         // --- Firebase Database Logic ---
         async function addToFirebase() {
             try {
-                const juegosRef = database.ref('juegos');
+                const dataRef = database.ref('Base/1/data');
                 
                 // 1. Leer los datos para obtener el siguiente ID
-                const snapshot = await juegosRef.once('value');
+                const snapshot = await dataRef.once('value');
                 const data = snapshot.val();
                 const nextId = data ? Object.keys(data).length : 0;
 
@@ -330,7 +330,7 @@
                 };
 
                 // 3. Escribir el nuevo item en la ruta del nuevo ID
-                await database.ref('juegos/' + nextId).set(nuevoItem);
+                await database.ref('Base/1/data/' + nextId).set(nuevoItem);
                 
                 return true;
 
