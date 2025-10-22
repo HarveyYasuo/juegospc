@@ -1,4 +1,6 @@
 google.com, pub-7408875684074602, DIRECT, f08c47fec0942fa0
+appnexus.com, 17779, RESELLER
+pubmatic.com, 167130, RESELLER, 5d62403b186f2ace
 lijit.com, 483304, RESELLER, fafdf38b16bf6b2b
 smartadserver.com, 4865, RESELLER
 triplelift.com, 13883, RESELLER, 6c33edb13117fd86
@@ -304,3 +306,4 @@ visoon.de, 64393, RESELLER
 rubiconproject.com, 26132, RESELLER, 0bfd66d529a55807
 
 thebrave.io, 1234634, RESELLER, c25b2154543746ac
+
