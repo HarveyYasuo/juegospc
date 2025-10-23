@@ -4,39 +4,255 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Política de Privacidad - Juegos y Programas</title>
-    <link rel="stylesheet" href="style.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602"
-     crossorigin="anonymous"></script>
-     <meta name="google-adsense-account" content="ca-pub-7408875684074602">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7408875684074602" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-7408875684074602">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.5;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .last-update {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        main {
+            padding: 3rem 2rem;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, #f6f8fb 0%, #e9ecf3 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 2.5rem;
+        }
+
+        .intro p {
+            margin: 0;
+            font-size: 1.05rem;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h2::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        a:hover {
+            color: #764ba2;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.875rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 1.2rem;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .back-button::after {
+            display: none;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            margin: 0;
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            h1 {
+                font-size: 1.875rem;
+            }
+
+            main {
+                padding: 2rem 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="page-container" style="padding: 2rem;">
+    <div class="container">
         <header>
             <h1>Política de Privacidad</h1>
+            <p class="last-update">Última actualización: 14 de octubre de 2025</p>
         </header>
+        
         <main>
-            <p><em>Última actualización: 14 de octubre de 2025</em></p>
-            <p>En Juegos y Programas, respetamos tu privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos tu información.</p>
-            
-            <h2>Información que Recopilamos</h2>
-            <p>No recopilamos información de identificación personal (como nombre o correo electrónico) a menos que nos la proporciones voluntariamente (por ejemplo, al contactarnos por correo).</p>
-            <p>Podemos recopilar información no personal sobre tu visita, como el tipo de navegador que usas, tu sistema operativo y datos de uso anónimos a través de servicios de terceros como Google Analytics.</p>
-
-            <h2>Uso de Cookies</h2>
-            <p>Este sitio puede usar "cookies" para mejorar la experiencia del usuario. Las cookies son pequeños archivos que se almacenan en tu dispositivo. Puedes configurar tu navegador para que rechace las cookies si lo prefieres.</p>
-            <p>Los proveedores de terceros, incluido Google, utilizan cookies para publicar anuncios basados en las visitas anteriores de un usuario a su sitio web o a otros sitios web. El uso de cookies de publicidad de Google le permite a Google y a sus socios publicar anuncios para sus usuarios en función de su visita a sus sitios y/u otros sitios en Internet. Los usuarios pueden inhabilitar la publicidad personalizada visitando la <a href="https://www.google.com/settings/ads" target="_blank">Configuración de anuncios</a>.</p>
-
-            <h2>Enlaces a Otros Sitios</h2>
-            <p>Nuestro sitio puede contener enlaces a otros sitios web. No somos responsables de las prácticas de privacidad de esos otros sitios.</p>
-
-            <h2>Cambios a esta Política</h2>
-            <p>Podemos actualizar nuestra Política de Privacidad de vez en cuando. Te notificaremos cualquier cambio publicando la nueva política en esta página.</p>
-            <a href="index.html">Volver al inicio</a>
-        </main>
-        <footer class="site-footer" style="position: absolute; bottom: 0; width: 95%;">
-             <div class="footer-bottom">
-                <p>&copy; 2025 Juegos y Programas. Todos los derechos reservados.</p>
+            <div class="intro">
+                <p>En Juegos y Programas, respetamos tu privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos tu información.</p>
             </div>
+
+            <div class="section">
+                <h2>Información que Recopilamos</h2>
+                <p>No recopilamos información de identificación personal (como nombre o correo electrónico) a menos que nos la proporciones voluntariamente (por ejemplo, al contactarnos por correo).</p>
+                <p>Podemos recopilar información no personal sobre tu visita, como el tipo de navegador que usas, tu sistema operativo y datos de uso anónimos a través de servicios de terceros como Google Analytics.</p>
+            </div>
+
+            <div class="section">
+                <h2>Uso de Cookies</h2>
+                <p>Este sitio puede usar "cookies" para mejorar la experiencia del usuario. Las cookies son pequeños archivos que se almacenan en tu dispositivo. Puedes configurar tu navegador para que rechace las cookies si lo prefieres.</p>
+                <p>Los proveedores de terceros, incluido Google, utilizan cookies para publicar anuncios basados en las visitas anteriores de un usuario a su sitio web o a otros sitios web. El uso de cookies de publicidad de Google le permite a Google y a sus socios publicar anuncios para sus usuarios en función de su visita a sus sitios y/u otros sitios en Internet. Los usuarios pueden inhabilitar la publicidad personalizada visitando la <a href="https://www.google.com/settings/ads" target="_blank">Configuración de anuncios</a>.</p>
+            </div>
+
+            <div class="section">
+                <h2>Enlaces a Otros Sitios</h2>
+                <p>Nuestro sitio puede contener enlaces a otros sitios web. No somos responsables de las prácticas de privacidad de esos otros sitios.</p>
+            </div>
+
+            <div class="section">
+                <h2>Cambios a esta Política</h2>
+                <p>Podemos actualizar nuestra Política de Privacidad de vez en cuando. Te notificaremos cualquier cambio publicando la nueva política en esta página.</p>
+            </div>
+
+            <a href="index.html" class="back-button">Volver al inicio</a>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Juegos y Programas. Todos los derechos reservados.</p>
         </footer>
     </div>
 </body>
