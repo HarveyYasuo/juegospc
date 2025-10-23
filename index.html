@@ -1,304 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GamesPC: La plataforma definitiva para descubrir y descargar tus juegos de PC favoritos. Rápido, seguro y fácil de usar.">
-    <title>GamesPC</title>
-    <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --background-color: #121212;
-            --surface-color: #1e1e1e;
-            --text-color: #ffffff;
-            --text-muted-color: #adb5bd;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        .main-header {
-            background: rgba(30, 30, 30, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #333;
-        }
-
-        .main-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--text-color);
-            text-decoration: none;
-        }
-
-        .logo img {
-            height: 40px;
-        }
-
-        .main-nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .main-nav a:hover {
-            color: var(--primary-color);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: #fff;
-            border: 1px solid var(--primary-color);
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding-top: 60px; /* Header height */
-            background: url('https://juegospc.pro/1170240.jpg') no-repeat center center/cover;
-            position: relative;
-        }
-        
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
-            color: var(--text-muted-color);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 0;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted-color);
-            margin-bottom: 4rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-item {
-            background: var(--surface-color);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid #333;
-        }
-
-        .feature-item i {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .feature-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Download Section */
-        .download-section {
-            background-color: var(--surface-color);
-            padding: 6rem 0;
-            text-align: center;
-        }
-
-        /* Footer */
-        .main-footer {
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid #333;
-        }
-
-        .main-footer p {
-            color: var(--text-muted-color);
-        }
-
-        /* App Gallery Section */
-        .app-gallery {
-            padding: 6rem 20px;
-        }
-
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 4rem;
-        }
-
-        .screenshots-grid img {
-            width: 100%;
-            border-radius: 8px;
-            border: 1px solid #333;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .screenshots-grid img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GamesPC: la plataforma definitiva para descubrir, descargar y gestionar tus juegos de PC. Rápido, seguro y fácil de usar." />
+  <meta name="keywords" content="descargar juegos PC, launcher, instalador, GamesPC, juegos gratis PC" />
+  <meta property="og:title" content="GamesPC - Tu plataforma de juegos para PC" />
+  <meta property="og:description" content="Descarga e instala tus juegos de PC desde un solo lugar con GamesPC." />
+  <meta property="og:image" content="https://juegospc.pro/assets/img/preview.webp" />
+  <meta property="og:url" content="https://juegospc.pro" />
+  <meta name="theme-color" content="#007bff" />
+  <title>GamesPC - Descarga tus juegos de PC</title>
+  <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="assets/css/main.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-color: #007bff;
+      --secondary-color: #6c757d;
+      --background-color: #121212;
+      --surface-color: #1e1e1e;
+      --text-color: #ffffff;
+      --text-muted-color: #adb5bd;
+    }
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    .container {max-width: 1100px; margin: 0 auto; padding: 0 20px;}
+    .main-header {
+      background: rgba(30,30,30,0.8);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #333;
+      transition: background .3s ease;
+    }
+    .main-header.scrolled {background:#1e1e1e;}
+    .main-header .container {
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .logo {display:flex; align-items:center; gap:10px; font-size:1.5rem; font-weight:bold; color:var(--text-color); text-decoration:none;}
+    .logo img {height:40px;}
+    .main-nav a {color:var(--text-color); text-decoration:none; margin-left:20px; font-weight:500; transition:color .3s;}
+    .main-nav a:hover {color:var(--primary-color);}
+    .btn {display:inline-block; padding:10px 25px; border-radius:5px; text-decoration:none; font-weight:bold; transition:all .3s;}
+    .btn-primary {background-color:var(--primary-color); color:#fff; border:1px solid var(--primary-color);}
+    .btn-primary:hover {background-color:#0056b3; border-color:#0056b3;}
+    .hero {
+      height:90vh; display:flex; align-items:center; justify-content:center; text-align:center;
+      padding-top:60px; background:url('assets/img/hero.webp') no-repeat center/cover; position:relative;
+    }
+    .hero::after {content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.7);}
+    .hero-content {position:relative; z-index:1;}
+    .hero h1 {font-size:3.2rem; margin-bottom:1rem;}
+    .hero p {font-size:1.2rem; max-width:600px; margin:0 auto 2rem auto; color:var(--text-muted-color);}
+    .features {padding:6rem 0; text-align:center;}
+    .section-title {font-size:2.5rem; margin-bottom:1rem;}
+    .section-subtitle {font-size:1.1rem; color:var(--text-muted-color); margin-bottom:4rem;}
+    .features-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem;
+    }
+    .feature-item {
+      background:var(--surface-color); padding:2rem; border-radius:8px; border:1px solid #333;
+    }
+    .feature-item i {font-size:3rem; color:var(--primary-color); margin-bottom:1rem;}
+    .feature-item h3 {font-size:1.5rem; margin-bottom:0.5rem;}
+    .app-gallery {padding:6rem 20px;}
+    .screenshots-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; margin-top:4rem;
+    }
+    .screenshots-grid img {
+      width:100%; border-radius:8px; border:1px solid #333;
+      transition:transform .3s, box-shadow .3s;
+    }
+    .screenshots-grid img:hover {transform:scale(1.05); box-shadow:0 10px 20px rgba(0,0,0,.2);}
+    .download-section {background-color:var(--surface-color); padding:6rem 0; text-align:center;}
+    .main-footer {padding:2rem 0; text-align:center; border-top:1px solid #333;}
+    .main-footer p {color:var(--text-muted-color);}
+    .main-footer a {color:var(--primary-color); margin:0 5px; text-decoration:none;}
+    .main-footer a:hover {text-decoration:underline;}
+  </style>
 </head>
 <body>
+  <header class="main-header">
+    <div class="container">
+      <a href="#" class="logo">
+        <img src="assets/img/favicon.png" alt="Logo GamesPC" />
+        <span>GamesPC</span>
+      </a>
+      <nav class="main-nav">
+        <a href="#features">Características</a>
+        <a href="#download" class="btn btn-primary">Descargar</a>
+      </nav>
+    </div>
+  </header>
 
-    <header class="main-header">
-        <div class="container">
-            <a href="#" class="logo">
-                <img src="favicon.png" alt="GamesPC Logo">
-                <span>GamesPC</span>
-            </a>
-            <nav class="main-nav">
-                <a href="#features">Características</a>
-                <a href="#download" class="btn btn-primary">Descargar</a>
-            </nav>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Descarga tus juegos de PC desde un solo lugar</h1>
+        <p>Explora, descarga y gestiona tus juegos de PC con nuestra aplicación oficial. Rápido, seguro y gratuito.</p>
+        <a href="https://github.com/HarveyYasuo/GamesPC/releases/download/GamesPCv1.1.5/GamesPCv1.1.5.apk" class="btn btn-primary"><i class="fab fa-android"></i> Descargar para Android v1.1.5</a>
+      </div>
+    </section>
+
+    <section id="features" class="features container">
+      <h2 class="section-title">Todo lo que necesitas</h2>
+      <p class="section-subtitle">GamesPC está diseñado para optimizar tu experiencia gamer.</p>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fas fa-gamepad"></i>
+          <h3>Catálogo Extenso</h3>
+          <p>Accede a una biblioteca masiva de juegos, desde los clásicos hasta los últimos lanzamientos.</p>
         </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1>La Experiencia Definitiva para Gamers</h1>
-                <p>Descubre, descarga y organiza todos tus juegos de PC desde un solo lugar. GamesPC es la plataforma todo-en-uno que estabas esperando.</p>
-                <a href="https://github.com/HarveyYasuo/GamesPC/releases/download/GamesPCv1.1.5/GamesPCv1.1.5.apk" class="btn btn-primary btn-lg">Descargar para Android APK v1.1.5</a>
-            </div>
-        </section>
-
-        <section id="features" class="features container">
-            <h2 class="section-title">Todo lo que Necesitas</h2>
-            <p class="section-subtitle">GamesPC está diseñado para hacer tu vida como gamer más fácil.</p>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <i class="fas fa-gamepad"></i>
-                    <h3>Catálogo Extenso</h3>
-                    <p>Accede a una biblioteca masiva de juegos, desde los clásicos hasta los últimos lanzamientos.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Descargas Rápidas</h3>
-                    <p>Nuestro sistema optimizado te garantiza las velocidades de descarga más altas posibles.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-users"></i>
-                    <h3>Comunidad Integrada</h3>
-                    <p>Conéctate con otros jugadores, comparte tus logros y descubre nuevas comunidades.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-sync-alt"></i>
-                    <h3>Actualizaciones Fáciles</h3>
-                    <p>Mantén todos tus juegos actualizados automáticamente sin complicaciones.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="app-gallery" class="container">
-            <h2 class="section-title" style="text-align: center;">Un Vistazo a la App</h2>
-            <p class="section-subtitle" style="text-align: center;">Así es como se ve GamesPC en acción.</p>
-            <div class="screenshots-grid">
-                <img src="screenshot-1.jpg" alt="App Screenshot 1">
-                <img src="screenshot-2.jpg" alt="App Screenshot 2">
-                <img src="screenshot-3.jpg" alt="App Screenshot 3">
-                <img src="screenshot-4.jpg" alt="App Screenshot 4">
-            </div>
-        </section>
-
-        <section id="download" class="download-section">
-            <div class="container">
-                <h2 class="section-title">Descarga GamesPC Ahora</h2>
-                <p class="section-subtitle">Disponible para Android. ¡Comienza tu aventura hoy mismo!</p>
-                <a href="https://github.com/HarveyYasuo/GamesPC/releases/download/GamesPCv1.1.5/GamesPCv1.1.5.apk" class="btn btn-primary btn-lg"><i class="fab fa-android"></i> Descargar para Android</a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="main-footer">
-        <div class="container">
-            <p>&copy; 2025 GamesPC. Todos los derechos reservados.</p>
+        <div class="feature-item">
+          <i class="fas fa-bolt"></i>
+          <h3>Descargas Rápidas</h3>
+          <p>Infraestructura optimizada con servidores de alta velocidad y soporte CDN.</p>
         </div>
-    </footer>
+        <div class="feature-item">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Seguridad Garantizada</h3>
+          <p>Instaladores verificados con firma digital y descarga cifrada.</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-sync-alt"></i>
+          <h3>Actualizaciones Automáticas</h3>
+          <p>Mantén tu biblioteca de juegos al día sin intervención manual.</p>
+        </div>
+      </div>
+    </section>
 
+    <section id="app-gallery" class="container app-gallery">
+      <h2 class="section-title" style="text-align:center;">Un vistazo a la app</h2>
+      <p class="section-subtitle" style="text-align:center;">Explora cómo luce GamesPC en acción.</p>
+      <div class="screenshots-grid">
+        <img src="assets/img/screenshot-1.webp" alt="Interfaz GamesPC 1" loading="lazy" />
+        <img src="assets/img/screenshot-2.webp" alt="Interfaz GamesPC 2" loading="lazy" />
+        <img src="assets/img/screenshot-3.webp" alt="Interfaz GamesPC 3" loading="lazy" />
+        <img src="assets/img/screenshot-4.webp" alt="Interfaz GamesPC 4" loading="lazy" />
+      </div>
+    </section>
+
+    <section id="download" class="download-section">
+      <div class="container">
+        <h2 class="section-title">Descarga GamesPC ahora</h2>
+        <p class="section-subtitle">Disponible para Android. Versión para Windows próximamente.</p>
+        <a href="https://github.com/HarveyYasuo/GamesPC/releases/download/GamesPCv1.1.5/GamesPCv1.1.5.apk" class="btn btn-primary"><i class="fab fa-android"></i> Descargar para Android</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="container">
+      <p>&copy; 2025 GamesPC. Todos los derechos reservados.</p>
+      <a href="privacy.html">Privacidad</a> |
+      <a href="about.html">Acerca de</a> |
+      <a href="mailto:contact@gamespc.pro">Contacto</a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded",()=>{
+      document.querySelectorAll("img").forEach(i=>i.loading="lazy");
+      const header=document.querySelector(".main-header");
+      window.addEventListener("scroll",()=>header.classList.toggle("scrolled",window.scrollY>50));
+    });
+  </script>
 </body>
 </html>
