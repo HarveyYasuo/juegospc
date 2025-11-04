@@ -86,9 +86,59 @@
     .main-footer p {color:var(--text-muted-color);}
     .main-footer a {color:var(--primary-color); margin:0 5px; text-decoration:none;}
     .main-footer a:hover {text-decoration:underline;}
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.3s;
+    }
+    .modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .modal-content {
+      background: var(--surface-color);
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      border: 1px solid #333;
+    }
+    .modal-content h2 {
+      margin-bottom: 1rem;
+    }
+    .modal-content p {
+      margin-bottom: 2rem;
+      color: var(--text-muted-color);
+    }
+    .modal-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
   </style>
 </head>
 <body>
+  <div id="security-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h2 style="color: #ffc107;">Advertencia de Seguridad</h2>
+      <p>Antes de continuar, es importante que leas nuestras advertencias de seguridad. Por favor, tómate un momento para revisar la información y proteger tu dispositivo.</p>
+      <div class="modal-buttons">
+        <button id="accept-security" class="btn btn-primary">Leer Advertencia</button>
+        <button id="close-modal" class="btn">Cerrar</button>
+      </div>
+    </div>
+  </div>
   <header class="main-header">
     <div class="container">
       <a href="#" class="logo">
@@ -196,6 +246,28 @@
   </style>
 </section>
 
+    <section id="security-warning" class="download-section" style="background-color:var(--surface-color); padding:6rem 0; text-align:center;">
+      <div class="container">
+        <h2 class="section-title" style="color: #ffc107;">Advertencia de Seguridad Importante</h2>
+        <p class="section-subtitle" style="color: #ffc107;">Por favor, lee atentamente antes de descargar y usar la aplicación.</p>
+        <div style="max-width: 800px; margin: 0 auto; text-align: left; background: #2a2a4a; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+          <h3 style="color: #00d4ff; margin-bottom: 15px;">1. Descarga Exclusiva desde Este Sitio Web</h3>
+          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: #d1d1d1;">Para garantizar la integridad y seguridad de tu dispositivo, te recomendamos encarecidamente que <strong>solo descargues la aplicación AndroidPC desde este sitio web oficial</strong>. Evita descargarla de fuentes no verificadas o de terceros, ya que podrían contener versiones modificadas o maliciosas que comprometan tu seguridad y privacidad.</p>
+
+          <h3 style="color: #00d4ff; margin-bottom: 15px;">2. Uso de Entornos Seguros para Juegos Descargados</h3>
+          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: #d1d1d1;">La aplicación AndroidPC facilita el acceso a enlaces directos de descarga de juegos. Sin embargo, <strong>no nos hacemos responsables del contenido o la seguridad de los archivos descargados de terceros</strong>. Por tu propia seguridad, te sugerimos encarecidamente que <strong>no ejecutes juegos descargados en tu PC principal o en instalaciones de Windows críticas</strong>. Considera utilizar:</p>
+          <ul style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: #d1d1d1; list-style-type: disc; padding-left: 25px;">
+            <li><strong>Máquinas virtuales (VMs):</strong> Crea un entorno aislado para probar y jugar sin afectar tu sistema operativo principal.</li>
+            <li><strong>Sistemas operativos secundarios:</strong> Instala un sistema operativo dedicado para juegos en una partición separada o un disco duro diferente.</li>
+            <li><strong>Sandboxes:</strong> Utiliza herramientas de sandboxing para ejecutar aplicaciones en un entorno controlado.</li>
+          </ul>
+          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: #d1d1d1;">Estas precauciones te ayudarán a proteger tus datos y tu sistema de posibles riesgos asociados con software de origen desconocido.</p>
+
+          <h3 style="color: #00d4ff; margin-bottom: 15px;">3. Descargo de Responsabilidad</h3>
+          <p style="font-size: 1.1rem; line-height: 1.8; color: #d1d1d1;">AndroidPC actúa únicamente como un agregador de enlaces de descarga directa. <strong>No alojamos ni distribuimos los juegos directamente</strong>. Una vez que abandonas nuestra aplicación y procedes con la descarga o ejecución de archivos de terceros, <strong>la responsabilidad recae enteramente en el usuario</strong>. No nos hacemos responsables de ningún daño, pérdida de datos o cualquier otro problema que pueda surgir del uso de software descargado a través de enlaces proporcionados en nuestra aplicación.</p>
+        </div>
+      </div>
+    </section>
     <section id="download" class="download-section">
       <div class="container">
         <h2 class="section-title">Descarga GamesPC ahora</h2>
@@ -215,10 +287,46 @@
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded",()=>{
-      document.querySelectorAll("img").forEach(i=>i.loading="lazy");
-      const header=document.querySelector(".main-header");
-      window.addEventListener("scroll",()=>header.classList.toggle("scrolled",window.scrollY>50));
+    document.addEventListener("DOMContentLoaded", () => {
+      const modal = document.getElementById("security-modal");
+      const closeModalBtn = document.getElementById("close-modal");
+      const acceptSecurityBtn = document.getElementById("accept-security");
+
+      // Show modal on page load
+      if(modal) {
+        modal.classList.add("active");
+      }
+
+      if(closeModalBtn) {
+        closeModalBtn.addEventListener("click", () => {
+          modal.classList.remove("active");
+        });
+      }
+
+      if(acceptSecurityBtn) {
+        acceptSecurityBtn.addEventListener("click", () => {
+          modal.classList.remove("active");
+          const securityWarning = document.getElementById('security-warning');
+          if(securityWarning) {
+            securityWarning.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+
+      // Also close modal if user clicks outside of it
+      if(modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove("active");
+          }
+        });
+      }
+
+      document.querySelectorAll("img").forEach(i => i.loading = "lazy");
+      const header = document.querySelector(".main-header");
+      if(header) {
+        window.addEventListener("scroll", () => header.classList.toggle("scrolled", window.scrollY > 50));
+      }
     });
   </script>
 </body>
