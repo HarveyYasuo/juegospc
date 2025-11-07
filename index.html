@@ -324,63 +324,68 @@
     </div>
   </footer>
 
-  <script>
+  <script type="module">
+    import { computePosition, offset, shift } from 'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.3/+esm';
+
     document.addEventListener("DOMContentLoaded", () => {
+      // Modal logic
       const modal = document.getElementById("security-modal");
       const closeModalBtn = document.getElementById("close-modal");
       const acceptSecurityBtn = document.getElementById("accept-security");
 
-      // Show modal on page load
-      if(modal) {
-        modal.classList.add("active");
-      }
-
-      if(closeModalBtn) {
-        closeModalBtn.addEventListener("click", () => {
-          modal.classList.remove("active");
-        });
-      }
-
+      if(modal) modal.classList.add("active");
+      if(closeModalBtn) closeModalBtn.addEventListener("click", () => modal.classList.remove("active"));
       if(acceptSecurityBtn) {
         acceptSecurityBtn.addEventListener("click", () => {
           modal.classList.remove("active");
           const securityWarning = document.getElementById('security-warning');
-          if(securityWarning) {
-            securityWarning.scrollIntoView({ behavior: 'smooth' });
-          }
+          if(securityWarning) securityWarning.scrollIntoView({ behavior: 'smooth' });
         });
       }
-
-      // Also close modal if user clicks outside of it
       if(modal) {
         modal.addEventListener('click', (e) => {
-          if (e.target === modal) {
-            modal.classList.remove("active");
-          }
+          if (e.target === modal) modal.classList.remove("active");
         });
       }
 
+      // Lazy loading and header scroll effect
       document.querySelectorAll("img").forEach(i => i.loading = "lazy");
       const header = document.querySelector(".main-header");
-      if(header) {
-        window.addEventListener("scroll", () => header.classList.toggle("scrolled", window.scrollY > 50));
-      }
+      if(header) window.addEventListener("scroll", () => header.classList.toggle("scrolled", window.scrollY > 50));
 
+      // Tooltip logic
+      const tooltip = document.getElementById('tooltip');
+      const tooltipElements = document.querySelectorAll('[data-tooltip-text]');
+
+      tooltipElements.forEach(el => {
+        const showTooltip = () => {
+          tooltip.textContent = el.dataset.tooltipText;
+          tooltip.style.display = 'block';
+          computePosition(el, tooltip, {
+            placement: 'top',
+            middleware: [offset(8), shift({padding: 5})],
+          }).then(({x, y}) => {
+            Object.assign(tooltip.style, { left: `${x}px`, top: `${y}px` });
+          });
+        };
+        const hideTooltip = () => {
+          tooltip.style.display = 'none';
+        };
+        el.addEventListener('mouseenter', showTooltip);
+        el.addEventListener('mouseleave', hideTooltip);
+      });
+
+      // Dropdown logic
       const downloadButton = document.getElementById('download-button');
       const downloadMenu = document.getElementById('download-menu');
 
       if(downloadButton && downloadMenu) {
-        const { computePosition, offset, shift } = floatingUI;
-
         const updatePosition = () => {
           computePosition(downloadButton, downloadMenu, {
             placement: 'bottom-end',
             middleware: [offset(8), shift({padding: 5})]
           }).then(({x, y}) => {
-            Object.assign(downloadMenu.style, {
-              left: `${x}px`,
-              top: `${y}px`,
-            });
+            Object.assign(downloadMenu.style, { left: `${x}px`, top: `${y}px` });
           });
         };
 
@@ -399,37 +404,6 @@
           }
         });
       }
-    });
-  </script>
-  <div id="tooltip"></div>
-  <script type="module">
-    import { computePosition, offset, shift, arrow } from 'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.3/+esm';
-
-    const tooltip = document.getElementById('tooltip');
-    const tooltipElements = document.querySelectorAll('[data-tooltip-text]');
-
-    tooltipElements.forEach(el => {
-      function showTooltip() {
-        tooltip.textContent = el.dataset.tooltipText;
-        tooltip.style.display = 'block';
-
-        computePosition(el, tooltip, {
-          placement: 'top',
-          middleware: [offset(8), shift({padding: 5})],
-        }).then(({x, y}) => {
-          Object.assign(tooltip.style, {
-            left: `${x}px`,
-            top: `${y}px`,
-          });
-        });
-      }
-
-      function hideTooltip() {
-        tooltip.style.display = 'none';
-      }
-
-      el.addEventListener('mouseenter', showTooltip);
-      el.addEventListener('mouseleave', hideTooltip);
     });
   </script>
 </body>
