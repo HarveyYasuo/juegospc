@@ -59,7 +59,10 @@
     }
     .logo {display:flex; align-items:center; gap:10px; font-size:1.5rem; font-weight:bold; color:var(--text-color); text-decoration:none;}
     .logo img {height:40px;}
-    .main-nav a {color:var(--text-color); text-decoration:none; margin-left:20px; font-weight:500; transition:color .3s;}
+    .main-nav {
+      display: flex; align-items: center; gap: 20px;
+    }
+    .main-nav a {color:var(--text-color); text-decoration:none; font-weight:500; transition:color .3s;}
     .main-nav a:hover {color:var(--primary-color);}
     .btn {display:inline-block; padding:10px 25px; border-radius:5px; text-decoration:none; font-weight:bold; transition:all .3s; margin:6px;}
     .btn-primary {background-color:var(--primary-color); color:#fff; border:1px solid var(--primary-color);}
@@ -184,7 +187,9 @@
         <span>AndroidPC</span>
       </a>
       <nav class="main-nav">
-        <a href="https://juegospc.pro/verificarweb">Verificar Web</a>
+        <a href="https://juegospc.pro/verificarweb">
+          <img src="https://play-lh.googleusercontent.com/6_mFCAL4HLPgwQNWpAvU50we9V_YJLXVyGiml6J42HIP0Xy_L1INlMoCImVvBcirDR1LnijfQgrVEnCIiKsLkg=s64-rw" alt="Verificar Web" style="height: 40px; vertical-align: middle;">
+        </a>
         <a href="#features">Características</a>
         <div id="download-container" style="position: relative;">
           <a href="#" id="download-button" class="btn btn-primary">Descargar</a>
