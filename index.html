@@ -14,7 +14,18 @@
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="stylesheet" href="assets/css/main.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.3/+esm"></script>
   <style>
+    #tooltip {
+      position: absolute;
+      background: #333;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      z-index: 1001;
+      display: none; /* Hidden by default */
+    }
     :root {
       --primary-color: #007bff;
       --secondary-color: #6c757d;
@@ -126,6 +137,33 @@
       justify-content: center;
       gap: 1rem;
     }
+
+    .download-dropdown {
+      display: none;
+      position: absolute;
+      background-color: var(--surface-color);
+      min-width: 220px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 8px;
+      padding: 10px 0;
+      border: 1px solid #333;
+    }
+    .download-dropdown a.download-item {
+      color: var(--text-color);
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+      margin: 0;
+    }
+    .download-dropdown a.download-item:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+    .download-dropdown a.download-item i {
+      margin-right: 10px;
+    }
   </style>
 </head>
 <body>
@@ -148,7 +186,14 @@
       <nav class="main-nav">
         <a href="https://juegospc.pro/verificarweb">Verificar Web</a>
         <a href="#features">Características</a>
-        <a href="#download" class="btn btn-primary">Descargar</a>
+        <div id="download-container" style="position: relative;">
+          <a href="#" id="download-button" class="btn btn-primary">Descargar</a>
+          <div id="download-menu" class="download-dropdown">
+            <a href="https://github.com/HarveyYasuo/GamesPC/releases/download/AndroidPC/AndroidPC.apk" class="download-item"><i class="fab fa-android"></i> Descarga Directa APK</a>
+            <a href="https://github.com/HarveyYasuo/GamesPC/releases/tag/AndroidPC" class="download-item"><i class="fab fa-github"></i> Ver en GitHub</a>
+            <a href="https://juegospc.pro/amazonappstoreuniversalapkoficialfirmado.html" class="download-item"><i class="fab fa-amazon"></i> Amazon AppStore</a>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -158,9 +203,6 @@
       <div class="hero-content">
         <h1>Descarga tus juegos de PC desde un solo lugar</h1>
         <p>Explora, descarga y gestiona tus juegos de PC con nuestra aplicación oficial. Rápido, seguro y gratuito.</p>
-        <a href="https://github.com/HarveyYasuo/GamesPC/releases/download/AndroidPC/AndroidPC.apk" class="btn btn-primary"><i class="fab fa-android"></i> Descarga Directa APK</a>
-        <a href="https://github.com/HarveyYasuo/GamesPC/releases/tag/AndroidPC" class="btn btn-primary"><i class="fab fa-android"></i> Descargar en GitHub</a>
-        <a href="https://juegospc.pro/amazonappstoreuniversalapkoficialfirmado.html" class="btn btn-primary"><i class="fab fa-android"></i> Descargar en Amazon AppStore</a>
       </div>
     </section>
 
@@ -169,24 +211,20 @@
       <p class="section-subtitle">GamesPC está diseñado para optimizar tu experiencia gamer.</p>
       <div class="features-grid">
         <div class="feature-item">
-          <i class="fas fa-gamepad"></i>
+          <i class="fas fa-gamepad" data-tooltip-text="Accede a una biblioteca masiva de juegos, desde los clásicos hasta los últimos lanzamientos."></i>
           <h3>Catálogo Extenso</h3>
-          <p>Accede a una biblioteca masiva de juegos, desde los clásicos hasta los últimos lanzamientos.</p>
         </div>
         <div class="feature-item">
-          <i class="fas fa-bolt"></i>
+          <i class="fas fa-bolt" data-tooltip-text="Infraestructura optimizada con servidores de alta velocidad y soporte CDN."></i>
           <h3>Descargas Rápidas</h3>
-          <p>Infraestructura optimizada con servidores de alta velocidad y soporte CDN.</p>
         </div>
         <div class="feature-item">
-          <i class="fas fa-shield-alt"></i>
+          <i class="fas fa-shield-alt" data-tooltip-text="Instaladores verificados con firma digital y descarga cifrada."></i>
           <h3>Seguridad Garantizada</h3>
-          <p>Instaladores verificados con firma digital y descarga cifrada.</p>
         </div>
         <div class="feature-item">
-          <i class="fas fa-sync-alt"></i>
+          <i class="fas fa-sync-alt" data-tooltip-text="Mantén tu biblioteca de juegos al día sin intervención manual."></i>
           <h3>Actualizaciones Automáticas</h3>
-          <p>Mantén tu biblioteca de juegos al día sin intervención manual.</p>
         </div>
       </div>
     </section>
@@ -327,6 +365,71 @@
       if(header) {
         window.addEventListener("scroll", () => header.classList.toggle("scrolled", window.scrollY > 50));
       }
+
+      const downloadButton = document.getElementById('download-button');
+      const downloadMenu = document.getElementById('download-menu');
+
+      if(downloadButton && downloadMenu) {
+        const { computePosition, offset, shift } = floatingUI;
+
+        const updatePosition = () => {
+          computePosition(downloadButton, downloadMenu, {
+            placement: 'bottom-end',
+            middleware: [offset(8), shift({padding: 5})]
+          }).then(({x, y}) => {
+            Object.assign(downloadMenu.style, {
+              left: `${x}px`,
+              top: `${y}px`,
+            });
+          });
+        };
+
+        downloadButton.addEventListener('click', (e) => {
+          e.preventDefault();
+          const isHidden = downloadMenu.style.display === 'none' || !downloadMenu.style.display;
+          downloadMenu.style.display = isHidden ? 'block' : 'none';
+          if (isHidden) {
+            updatePosition();
+          }
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!downloadButton.contains(e.target) && !downloadMenu.contains(e.target)) {
+            downloadMenu.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+  <div id="tooltip"></div>
+  <script type="module">
+    import { computePosition, offset, shift, arrow } from 'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.3/+esm';
+
+    const tooltip = document.getElementById('tooltip');
+    const tooltipElements = document.querySelectorAll('[data-tooltip-text]');
+
+    tooltipElements.forEach(el => {
+      function showTooltip() {
+        tooltip.textContent = el.dataset.tooltipText;
+        tooltip.style.display = 'block';
+
+        computePosition(el, tooltip, {
+          placement: 'top',
+          middleware: [offset(8), shift({padding: 5})],
+        }).then(({x, y}) => {
+          Object.assign(tooltip.style, {
+            left: `${x}px`,
+            top: `${y}px`,
+          });
+        });
+      }
+
+      function hideTooltip() {
+        tooltip.style.display = 'none';
+      }
+
+      el.addEventListener('mouseenter', showTooltip);
+      el.addEventListener('mouseleave', hideTooltip);
     });
   </script>
 </body>
