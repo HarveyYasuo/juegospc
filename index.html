@@ -96,7 +96,13 @@
     .screenshots-grid img {
       width:100%; border-radius:8px; border:1px solid #333;
       transition:transform .3s, box-shadow .3s;
+       animation: zoomInOut 6s ease-in-out infinite;
     }
+     @keyframes zoomInOut {
+   0% { transform: scale(1); }
+   50% { transform: scale(1.15); }
+   100% { transform: scale(1); }
+ }
     .screenshots-grid img:hover {transform:scale(1.05); box-shadow:0 10px 20px rgba(0,0,0,.2);}
     .download-section {background-color:var(--surface-color); padding:6rem 0; text-align:center;}
     .main-footer {padding:2rem 0; text-align:center; border-top:1px solid #333;}
@@ -244,10 +250,10 @@
       <h2 class="section-title" style="text-align:center;">Un vistazo a la app</h2>
       <p class="section-subtitle" style="text-align:center;">Explora cómo luce GamesPC en acción.</p>
       <div class="screenshots-grid">
-        <img src="/screenshot-1.jpg" alt="Interfaz GamesPC 1" loading="lazy" />
-        <img src="/screenshot-2.jpg" alt="Interfaz GamesPC 2" loading="lazy" />
-        <img src="/screenshot-3.jpg" alt="Interfaz GamesPC 3" loading="lazy" />
-        <img src="/screenshot-4.jpg" alt="Interfaz GamesPC 4" loading="lazy" />
+        <img src="/screenshot-1.jpg" alt="Interfaz GamesPC 1" loading="lazy"  style="animation-delay: 0s;/>
+        <img src="/screenshot-2.jpg" alt="Interfaz GamesPC 2" loading="lazy"  style="animation-delay: 1.5s;/>
+        <img src="/screenshot-3.jpg" alt="Interfaz GamesPC 3" loading="lazy"  style="animation-delay: 3s;/>
+        <img src="/screenshot-4.jpg" alt="Interfaz GamesPC 4" loading="lazy"  style="animation-delay: 4.5s;/>
       </div>
     </section>
 
