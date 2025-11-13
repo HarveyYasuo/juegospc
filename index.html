@@ -87,6 +87,29 @@
     .feature-item {
       background:var(--surface-color); padding:2rem; border-radius:8px; border:1px solid #333;
     }
+    /* ======= GALERÍA CON TRANSICIÓN DE DIAPOSITIVAS ======= */
+  .slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid #333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  }
+
+  .slider {
+    display: flex;
+    width: 400%;
+    animation: slideShow 16s infinite;
+  }
+
+  .slider img {
+    width: 100%;
+    flex-shrink: 0;
+    transition: transform 0.6s ease-in-out;
+  }
     .feature-item i {font-size:3rem; color:var(--primary-color); margin-bottom:1rem;}
     .feature-item h3 {font-size:1.5rem; margin-bottom:0.5rem;}
     .app-gallery {padding:6rem 20px;}
@@ -103,6 +126,17 @@
    50% { transform: scale(1.15); }
    100% { transform: scale(1); }
  }
+    @keyframes slideShow {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(0); }
+    25% { transform: translateX(-100%); }
+    45% { transform: translateX(-100%); }
+    50% { transform: translateX(-200%); }
+    70% { transform: translateX(-200%); }
+    75% { transform: translateX(-300%); }
+    95% { transform: translateX(-300%); }
+    100% { transform: translateX(0); }
+  }
     .screenshots-grid img:hover {transform:scale(1.05); box-shadow:0 10px 20px rgba(0,0,0,.2);}
     .download-section {background-color:var(--surface-color); padding:6rem 0; text-align:center;}
     .main-footer {padding:2rem 0; text-align:center; border-top:1px solid #333;}
@@ -124,6 +158,26 @@
       opacity: 0;
       transition: visibility 0s, opacity 0.3s;
     }
+
+    /* Indicadores opcionales */
+  .slider-dots {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .slider-dots span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    background-color: #666;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .slider-dots span.active {
+    background-color: var(--primary-color);
+  }
+    
     .modal-overlay.active {
       visibility: visible;
       opacity: 1;
@@ -246,7 +300,7 @@
       </div>
     </section>
 
-    <section id="app-gallery" class="container app-gallery">
+    <!--<section id="app-gallery" class="container app-gallery">
       <h2 class="section-title" style="text-align:center;">Un vistazo a la app</h2>
       <p class="section-subtitle" style="text-align:center;">Explora cómo luce GamesPC en acción.</p>
       <div class="screenshots-grid">
@@ -255,7 +309,22 @@
         <img src="/screenshot-3.jpg" alt="Interfaz GamesPC 3" loading="lazy"  style="animation-delay: 3s;/>
         <img src="/screenshot-4.jpg" alt="Interfaz GamesPC 4" loading="lazy"  style="animation-delay: 4.5s;/>
       </div>
-    </section>
+    </section>-->
+
+    <section id="app-gallery" class="container app-gallery">
+  <h2 class="section-title" style="text-align:center;">Un vistazo a la app</h2>
+  <p class="section-subtitle" style="text-align:center;">Explora cómo luce GamesPC en acción.</p>
+
+  <div class="slider-container">
+    <div class="slider">
+      <img src="/screenshot-1.jpg" alt="Interfaz GamesPC 1" loading="lazy">
+      <img src="/screenshot-2.jpg" alt="Interfaz GamesPC 2" loading="lazy">
+      <img src="/screenshot-3.jpg" alt="Interfaz GamesPC 3" loading="lazy">
+      <img src="/screenshot-4.jpg" alt="Interfaz GamesPC 4" loading="lazy">
+    </div>
+  </div>
+</section>
+
 
     <section class="app-features-section" style="background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 60px 20px; color: #ffffff; text-align: center;">
   <div class="container" style="max-width: 1200px; margin: 0 auto;">
@@ -351,6 +420,25 @@
       const modal = document.getElementById("security-modal");
       const closeModalBtn = document.getElementById("close-modal");
       const acceptSecurityBtn = document.getElementById("accept-security");
+      const dotsContainer = document.createElement('div');
+       dotsContainer.classList.add('slider-dots');
+       document.querySelector('#app-gallery').appendChild(dotsContainer);
+
+      const slides = document.querySelectorAll('.slider img');
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      if (i === 0) dot.classList.add('active');
+      dotsContainer.appendChild(dot);
+    });
+
+    let current = 0;
+    const dots = dotsContainer.querySelectorAll('span');
+    setInterval(() => {
+      dots[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      dots[current].classList.add('active');
+    }, 4000);
+  });
 
       if(modal) modal.classList.add("active");
       if(closeModalBtn) closeModalBtn.addEventListener("click", () => modal.classList.remove("active"));
