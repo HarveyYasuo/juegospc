@@ -1,0 +1,843 @@
+/* ============================================
+   GamesPC - Modern CSS with 3D Animations
+   Inspired by Apple App Store Design
+   ============================================ */
+
+/* CSS Variables */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #121212;
+    --surface-color: #1e1e1e;
+    --text-color: #ffffff;
+    --text-muted-color: #adb5bd;
+    --accent-cyan: #00d4ff;
+    --warning-color: #ffc107;
+    --card-bg: #2a2a4a;
+
+    /* Animation Variables */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --shadow-3d: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Container */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   HEADER STYLES
+   ============================================ */
+.main-header {
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition-smooth);
+    transform: translateZ(0);
+    /* GPU acceleration */
+}
+
+.main-header.scrolled {
+    background: rgba(30, 30, 30, 0.95);
+    box-shadow: var(--shadow-md);
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    color: var(--accent-cyan);
+}
+
+.logo img {
+    height: 40px;
+    transition: var(--transition-smooth);
+}
+
+.logo:hover img {
+    filter: drop-shadow(0 0 10px var(--accent-cyan));
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.main-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    position: relative;
+    padding: 5px 0;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+.main-nav a:hover {
+    color: var(--primary-color);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    margin: 6px;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), #0056b3);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    z-index: 1;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-google-play img {
+    height: 60px;
+    transition: var(--transition-smooth);
+}
+
+.btn-google-play:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* ============================================
+   HERO SECTION WITH PARALLAX
+   ============================================ */
+.hero {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 60px;
+    background: url('https://juegospc.pro/1170240.jpg') no-repeat center/cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 123, 255, 0.3));
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: #fff;
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    color: var(--text-muted-color);
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+/* ============================================
+   FEATURES SECTION WITH 3D CARDS
+   ============================================ */
+.features {
+    padding: 6rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.section-subtitle {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: var(--text-muted-color);
+    margin-bottom: 4rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    perspective: 1000px;
+}
+
+.feature-item {
+    background: var(--surface-color);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition-smooth);
+    position: relative;
+    transform-style: preserve-3d;
+    will-change: transform;
+    cursor: pointer;
+}
+
+/* 3D Card Effect - Apple Style */
+.feature-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 123, 255, 0.1));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.feature-item:hover::before {
+    opacity: 1;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px) rotateX(5deg) scale(1.02);
+    box-shadow: var(--shadow-3d);
+    border-color: var(--accent-cyan);
+}
+
+.feature-item i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: inline-block;
+    transition: var(--transition-bounce);
+}
+
+.feature-item:hover i {
+    transform: scale(1.2) rotateY(360deg);
+    color: var(--accent-cyan);
+}
+
+.feature-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+/* ============================================
+   GALLERY SLIDER - RESPONSIVE
+   ============================================ */
+.app-gallery {
+    padding: 6rem 20px;
+    background: linear-gradient(180deg, var(--background-color), var(--surface-color));
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-lg);
+    background: var(--surface-color);
+}
+
+.slider {
+    display: flex;
+    height: clamp(300px, 50vh, 500px);
+    width: 100%;
+    animation: slideShow 16s infinite ease-in-out;
+    will-change: transform;
+}
+
+.slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Slider Dots */
+.slider-dots {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.slider-dots span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 5px;
+    background-color: #666;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dots span:hover {
+    background-color: #999;
+    transform: scale(1.2);
+}
+
+.slider-dots span.active {
+    background-color: var(--primary-color);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* ============================================
+   FEATURE CARDS SECTION
+   ============================================ */
+.app-features-section {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    padding: 60px 20px;
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.app-features-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+    animation: rotateGradient 20s linear infinite;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    padding: 30px 20px;
+    border-radius: 16px;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.feature-card:hover::before {
+    left: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: var(--shadow-3d);
+}
+
+.feature-card img {
+    transition: var(--transition-smooth);
+}
+
+.feature-card:hover img {
+    transform: scale(1.1) rotateZ(5deg);
+}
+
+/* ============================================
+   MODAL STYLES
+   ============================================ */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.3s, opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.3s ease;
+}
+
+.modal-content {
+    background: var(--surface-color);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-3d);
+    animation: modalSlideIn 0.4s ease-out;
+    transform-style: preserve-3d;
+}
+
+.modal-content h2 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.modal-content p {
+    margin-bottom: 2rem;
+    color: var(--text-muted-color);
+    line-height: 1.8;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   DROPDOWN MENU
+   ============================================ */
+.download-dropdown {
+    display: none;
+    position: absolute;
+    background-color: var(--surface-color);
+    min-width: 220px;
+    box-shadow: var(--shadow-lg);
+    z-index: 1;
+    border-radius: 12px;
+    padding: 10px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    animation: dropdownSlide 0.3s ease-out;
+}
+
+.download-dropdown a.download-item {
+    color: var(--text-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    margin: 0;
+    transition: var(--transition-smooth);
+    border-radius: 8px;
+}
+
+.download-dropdown a.download-item:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-cyan));
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.download-dropdown a.download-item i {
+    margin-right: 10px;
+}
+
+/* ============================================
+   TOOLTIP
+   ============================================ */
+#tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    z-index: 1001;
+    display: none;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 250px;
+    animation: tooltipFade 0.2s ease-out;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.main-footer {
+    padding: 3rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--surface-color);
+}
+
+.main-footer p {
+    color: var(--text-muted-color);
+    margin: 0.5rem 0;
+}
+
+.main-footer a {
+    color: var(--primary-color);
+    margin: 0 10px;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.main-footer a:hover {
+    color: var(--accent-cyan);
+    text-decoration: underline;
+}
+
+/* ============================================
+   ANIMATIONS & KEYFRAMES
+   ============================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideShow {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-100%);
+    }
+
+    45% {
+        transform: translateX(-100%);
+    }
+
+    50% {
+        transform: translateX(-200%);
+    }
+
+    70% {
+        transform: translateX(-200%);
+    }
+
+    75% {
+        transform: translateX(-300%);
+    }
+
+    95% {
+        transform: translateX(-300%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes dropdownSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tooltipFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes rotateGradient {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Scroll Reveal Animation Classes */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .slider {
+        height: clamp(250px, 40vh, 400px);
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .hero {
+        height: 70vh;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .features {
+        padding: 4rem 0;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .slider {
+        height: 300px;
+    }
+
+    .slider-container {
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
+    .feature-item {
+        padding: 2rem 1.5rem;
+    }
+
+    .app-features-section {
+        padding: 40px 15px;
+    }
+
+    .modal-content {
+        padding: 30px 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .slider {
+        height: 250px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .feature-item i {
+        font-size: 2.5rem;
+    }
+
+    .feature-item h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* High Performance Mode - Reduce animations on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark Mode Support (if system prefers dark) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #0a0a0a;
+        --surface-color: #1a1a1a;
+    }
+}
