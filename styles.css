@@ -407,7 +407,8 @@ body {
     color: #ffffff;
     text-align: center;
     position: relative;
-    overflow: hidden;
+    z-index: 2;
+    overflow: visible;
 }
 
 .app-features-section::before {
@@ -840,4 +841,47 @@ body {
         --background-color: #0a0a0a;
         --surface-color: #1a1a1a;
     }
+
+
+
+/* FIX: Missing styles for feature items and gallery content */
+.feature-item p {
+    color: var(--text-muted-color);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+   }
+
+   .app-gallery h2 {
+       color: var(--text-color);
+       font-size: 2rem;
+       margin-bottom: 1rem;
+       font-weight: 700;
+      }
+
+   .app-gallery p {
+       color: var(--text-muted-color);
+       font-size: 1.1rem;
+       margin-bottom: 2rem;
+      }
+
+   .app-features-section h2 {
+       position: relative;
+       z-index: 2;
+       color: var(--text-color);
+       font-size: 2.5rem;
+       margin-bottom: 3rem;
+       font-weight: 700;
+      }
+
+   .app-features-section > p {
+       position: relative;
+       z-index: 2;
+       color: var(--text-muted-color);
+      }
+
+   .feature-card {
+       position: relative;
+       z-index: 2;
+      }
 }
