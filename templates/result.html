@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roblox Fast Join — {% if ok %}Token generado{% else %}Error{% endif %}</title>
+<!-- Linkvertise: blacklist work.ink para que no se encadenen -->
+<script src="https://publisher.linkvertise.com/cdn/linkvertise.js"></script>
+<script>linkvertise(1369320, {whitelist: [], blacklist: ["work.ink", "work.link"]});</script>
+<!-- Work.ink: blacklist linkvertise para que no se encadenen -->
+<script>
+(() => {
+  function loadScript(url, callback) {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = url;
+    script.onload = callback;
+    document.head.appendChild(script);
+  }
+  loadScript("https://cdn.work.ink/js/workink-sitescript.js", function() {
+    workink("https://work.ink/2yDf/get-tokens-free", ["linkvertise.com", "link-center.net", "publisher.linkvertise.com"], []);
+  });
+})();
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Consolas&display=swap');
+
+  :root {
+    --bg:       #0a0a0f;
+    --bg-card:  #12121a;
+    --bg-input: #1a1a26;
+    --accent:   #00a2ff;
+    --accent2:  #0066cc;
+    --green:    #00e676;
+    --yellow:   #ffd600;
+    --red:      #ff1744;
+    --text:     #e8eaf6;
+    --dim:      #6b6f8a;
+    --border:   #2a2a3d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header {
+    width: 100%;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  header .logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+
+  .container {
+    margin-top: 72px;
+    width: 100%;
+    max-width: 520px;
+    padding: 0 20px;
+  }
+
+  /* ── Card resultado ── */
+  .result-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 36px 32px;
+    text-align: center;
+  }
+  .result-card.success { border: 1px solid var(--green); }
+  .result-card.error   { border: 1px solid var(--red); }
+
+  .icon { font-size: 52px; margin-bottom: 12px; }
+
+  .result-card h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .result-card.success h2 { color: var(--green); }
+  .result-card.error   h2 { color: var(--red); }
+
+  .result-card p {
+    color: var(--dim);
+    font-size: 15px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  /* ── Clave ── */
+  .key-box {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .key-box .key-label {
+    color: var(--dim);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .key-text {
+    font-family: 'Consolas', monospace;
+    font-size: 20px;
+    color: var(--green);
+    letter-spacing: 2px;
+    user-select: all;
+    word-break: break-all;
+  }
+
+  /* ── Expiración ── */
+  .expires-box {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .expires-box .exp-icon { font-size: 20px; }
+  .expires-box .exp-text { text-align: left; }
+  .expires-box .exp-title {
+    font-size: 12px; font-weight: 700;
+    color: var(--yellow); letter-spacing: 1px;
+  }
+  .expires-box .exp-val {
+    font-family: 'Consolas', monospace;
+    font-size: 13px; color: var(--text);
+  }
+
+  /* ── Cuenta regresiva ── */
+  #countdown {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--yellow);
+    font-family: 'Consolas', monospace;
+    margin-bottom: 4px;
+  }
+  .countdown-label {
+    font-size: 12px;
+    color: var(--dim);
+    margin-bottom: 20px;
+  }
+
+  /* ── Pasos uso ── */
+  .steps-use {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .steps-use .su-title {
+    font-size: 13px; font-weight: 700;
+    color: var(--accent); margin-bottom: 8px;
+  }
+  .steps-use ol { padding-left: 18px; }
+  .steps-use li {
+    color: var(--dim); font-size: 14px;
+    line-height: 1.9;
+  }
+  .steps-use li strong { color: var(--text); }
+
+  /* ── Botones ── */
+  .btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: opacity .2s;
+    margin: 4px;
+  }
+  .btn:hover { opacity: .85; }
+  .btn-copy   { background: var(--accent); color: white; }
+  .btn-back   { background: transparent; border: 1px solid var(--border);
+                color: var(--dim); }
+  .btn-retry  { background: var(--accent2); color: white; }
+
+  /* ── Tooltip copiado ── */
+  #copied-msg {
+    color: var(--green);
+    font-size: 13px;
+    margin-top: 8px;
+    height: 18px;
+    transition: opacity .3s;
+    opacity: 0;
+  }
+  #copied-msg.show { opacity: 1; }
+
+  footer {
+    margin-top: auto;
+    padding: 18px;
+    color: var(--dim);
+    font-size: 12px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    width: 100%;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">⚡ ROBLOX FAST JOIN</div>
+</header>
+
+<div class="container">
+
+{% if ok %}
+<!-- ════════════════ ÉXITO ════════════════ -->
+<div class="result-card success">
+  <div class="icon">🎉</div>
+  <h2>¡Token generado!</h2>
+  <p>Completa correctamente. Copia tu clave y pégala en la app de Roblox Fast Join.</p>
+
+  <!-- Clave -->
+  <div class="key-box">
+    <div class="key-label">TU CLAVE DE ACCESO</div>
+    <div class="key-text" id="keyText">{{ key }}</div>
+  </div>
+
+  <button class="btn btn-copy" onclick="copiarClave()">📋 Copiar clave</button>
+  <div id="copied-msg">✓ ¡Copiado al portapapeles!</div>
+
+  <!-- Expiración -->
+  <div class="expires-box" style="margin-top:20px">
+    <div class="exp-icon">⏱</div>
+    <div class="exp-text">
+      <div class="exp-title">TIEMPO RESTANTE</div>
+      <div id="countdown">06:00:00</div>
+    </div>
+  </div>
+  <div class="countdown-label">El token expira automáticamente al llegar a 0:00:00</div>
+
+  <!-- Instrucciones de uso -->
+  <div class="steps-use">
+    <div class="su-title">¿CÓMO USAR LA CLAVE?</div>
+    <ol>
+      <li>Abre <strong>RobloxFastJoin.exe</strong></li>
+      <li>Pega la clave en el campo de activación</li>
+      <li>Haz clic en <strong>ACTIVAR</strong></li>
+      <li>¡Listo! Tienes <strong>6 horas</strong> de acceso completo</li>
+    </ol>
+  </div>
+
+  <a class="btn btn-back" href="/get-token">← Volver al inicio</a>
+</div>
+
+{% else %}
+<!-- ════════════════ ERROR ════════════════ -->
+<div class="result-card error">
+  <div class="icon">❌</div>
+  <h2>Algo salió mal</h2>
+  <p>{{ error }}</p>
+  <a class="btn btn-retry" href="/get-token">Intentar de nuevo</a>
+  <a class="btn btn-back"  href="/get-token">← Volver</a>
+</div>
+{% endif %}
+
+</div><!-- /container -->
+
+<footer>
+  © 2025 Roblox Fast Join &nbsp;·&nbsp; Este sitio no está afiliado con Roblox Corporation.
+</footer>
+
+<script>
+function copiarClave() {
+  const txt = document.getElementById('keyText').innerText;
+  navigator.clipboard.writeText(txt).then(() => {
+    const msg = document.getElementById('copied-msg');
+    msg.classList.add('show');
+    setTimeout(() => msg.classList.remove('show'), 2200);
+  });
+}
+
+{% if ok %}
+// ── Cuenta regresiva ──────────────────────────────────────────
+const expiresAt = new Date("{{ expires_at }}Z");  // UTC
+
+function actualizarCuenta() {
+  const ahora = new Date();
+  const diff  = Math.max(0, Math.floor((expiresAt - ahora) / 1000));
+  const h = String(Math.floor(diff / 3600)).padStart(2, '0');
+  const m = String(Math.floor((diff % 3600) / 60)).padStart(2, '0');
+  const s = String(diff % 60).padStart(2, '0');
+  const el = document.getElementById('countdown');
+  el.textContent = `${h}:${m}:${s}`;
+  if (diff <= 600) el.style.color = 'var(--red)';
+  else if (diff <= 1800) el.style.color = 'var(--yellow)';
+  if (diff === 0) clearInterval(timer);
+}
+
+const timer = setInterval(actualizarCuenta, 1000);
+actualizarCuenta();
+{% endif %}
+</script>
+
+</body>
+</html>
