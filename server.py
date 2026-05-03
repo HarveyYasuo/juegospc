@@ -453,9 +453,9 @@ def verify():
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-
+init_db()
 if __name__ == "__main__":
-    init_db()
+    
     print("=" * 55)
     print("  Roblox Fast Join — Servidor de Licencias v1.0")
     print("=" * 55)
