@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diseños con Amor - Regala Momentos Especiales</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -50,26 +48,23 @@
         body {
             scroll-behavior: smooth;
         }
-
         .glass-panel {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
-
         .gradient-text {
             background: linear-gradient(to right, #db2777, #9d174d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
         .hero-pattern {
             background-color: #fdf2f8;
             background-image: radial-gradient(#fbcfe8 1px, transparent 1px);
             background-size: 20px 20px;
         }
-
+        
         /* Proporciones de plantillas */
         .template-preview {
             position: relative;
@@ -80,7 +75,6 @@
             justify-content: center;
             transition: all 0.3s ease;
         }
-
         .template-preview img {
             width: 100%;
             height: 100%;
@@ -91,35 +85,18 @@
             z-index: 1;
             opacity: 0.5;
         }
-
         .template-preview .content {
             z-index: 2;
             text-align: center;
             padding: 1rem;
             width: 100%;
         }
-
+        
         /* Aspect Ratios */
-        .ratio-tiktok {
-            aspect-ratio: 9 / 16;
-        }
-
-        /* 1080x1920 */
-        .ratio-instagram-square {
-            aspect-ratio: 1 / 1;
-        }
-
-        /* 1080x1080 */
-        .ratio-instagram-portrait {
-            aspect-ratio: 4 / 5;
-        }
-
-        /* 1080x1350 */
-        .ratio-whatsapp-status {
-            aspect-ratio: 9 / 16;
-        }
-
-        /* 1080x1920 */
+        .ratio-tiktok { aspect-ratio: 9 / 16; } /* 1080x1920 */
+        .ratio-instagram-square { aspect-ratio: 1 / 1; } /* 1080x1080 */
+        .ratio-instagram-portrait { aspect-ratio: 4 / 5; } /* 1080x1350 */
+        .ratio-whatsapp-status { aspect-ratio: 9 / 16; } /* 1080x1920 */
 
         /* Toast notification */
         #toast {
@@ -138,7 +115,6 @@
             opacity: 0;
             transition: opacity 0.5s, bottom 0.5s;
         }
-
         #toast.show {
             visibility: visible;
             opacity: 1;
@@ -146,7 +122,6 @@
         }
     </style>
 </head>
-
 <body class="font-sans text-gray-800 bg-gray-50 overflow-x-hidden">
 
     <nav class="fixed w-full z-40 glass-panel shadow-sm transition-all duration-300" id="navbar">
@@ -154,22 +129,16 @@
             <div class="flex justify-between h-20 items-center">
                 <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="scrollToSection('inicio')">
                     <i class="fa-solid fa-heart text-brand-600 text-2xl animate-pulse-slow"></i>
-                    <span class="font-serif font-bold text-2xl text-gray-900 tracking-tight">Diseños<span
-                            class="text-brand-600">Amor</span></span>
+                    <span class="font-serif font-bold text-2xl text-gray-900 tracking-tight">Diseños<span class="text-brand-600">Amor</span></span>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#inicio"
-                        class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Inicio</a>
-                    <a href="#plantillas"
-                        class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Plantillas</a>
-                    <a href="#crear" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Crear
-                        Pedido</a>
-                    <a href="#testimonios"
-                        class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Testimonios</a>
+                    <a href="#inicio" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Inicio</a>
+                    <a href="#plantillas" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Plantillas</a>
+                    <a href="#crear" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Crear Pedido</a>
+                    <a href="#testimonios" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Testimonios</a>
                 </div>
                 <div class="hidden md:block">
-                    <button onclick="scrollToSection('crear')"
-                        class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2 rounded-full font-semibold shadow-lg shadow-brand-500/30 transition-all transform hover:scale-105">
+                    <button onclick="scrollToSection('crear')" class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2 rounded-full font-semibold shadow-lg shadow-brand-500/30 transition-all transform hover:scale-105">
                         Empezar Ahora
                     </button>
                 </div>
@@ -184,44 +153,33 @@
         <!-- Dropdown móvil -->
         <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-gray-100">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
-                <a href="#inicio"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50">Inicio</a>
-                <a href="#plantillas"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50">Plantillas</a>
-                <a href="#crear"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50">Crear
-                    Pedido</a>
+                <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50">Inicio</a>
+                <a href="#plantillas" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50">Plantillas</a>
+                <a href="#crear" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50">Crear Pedido</a>
             </div>
         </div>
     </nav>
 
     <section id="inicio" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 hero-pattern overflow-hidden">
-        <div
-            class="absolute top-20 left-10 w-24 h-24 bg-brand-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float">
-        </div>
-        <div class="absolute top-40 right-20 w-32 h-32 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"
-            style="animation-delay: 2s;"></div>
-
+        <div class="absolute top-20 left-10 w-24 h-24 bg-brand-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
+        <div class="absolute top-40 right-20 w-32 h-32 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
+        
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto">
-                <span
-                    class="inline-block py-1 px-3 rounded-full bg-brand-100 text-brand-700 font-semibold text-sm mb-4 border border-brand-200">
+                <span class="inline-block py-1 px-3 rounded-full bg-brand-100 text-brand-700 font-semibold text-sm mb-4 border border-brand-200">
                     ✨ Sorprende a quien amas
                 </span>
                 <h1 class="text-5xl md:text-6xl font-serif font-bold text-gray-900 mb-6 leading-tight">
                     Expresa tus sentimientos con un <span class="gradient-text">diseño único</span>
                 </h1>
                 <p class="text-xl text-gray-600 mb-10 leading-relaxed">
-                    Creamos imágenes y videos personalizados para WhatsApp, Instagram y TikTok. El regalo digital
-                    perfecto para aniversarios, cumpleaños o simplemente para decir "Te quiero".
+                    Crea imágenes y fondos personalizados para WhatsApp, Instagram y TikTok. El regalo digital perfecto, generado al instante y totalmente gratis.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <button onclick="scrollToSection('crear')"
-                        class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl shadow-brand-500/40 transition-all transform hover:-translate-y-1">
+                    <button onclick="scrollToSection('crear')" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl shadow-brand-500/40 transition-all transform hover:-translate-y-1">
                         Crear mi diseño <i class="fa-solid fa-arrow-right ml-2"></i>
                     </button>
-                    <button onclick="scrollToSection('plantillas')"
-                        class="bg-white hover:bg-gray-50 text-gray-800 border-2 border-gray-200 px-8 py-4 rounded-full font-bold text-lg shadow-sm transition-all transform hover:-translate-y-1">
+                    <button onclick="scrollToSection('plantillas')" class="bg-white hover:bg-gray-50 text-gray-800 border-2 border-gray-200 px-8 py-4 rounded-full font-bold text-lg shadow-sm transition-all transform hover:-translate-y-1">
                         Ver Ejemplos
                     </button>
                 </div>
@@ -231,19 +189,15 @@
 
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm font-semibold text-gray-500 uppercase tracking-wider mb-8">Formatos
-                optimizados para tus redes favoritas</p>
+            <p class="text-center text-sm font-semibold text-gray-500 uppercase tracking-wider mb-8">Formatos optimizados para tus redes favoritas</p>
             <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70">
-                <div
-                    class="flex items-center gap-2 text-2xl font-bold text-gray-400 hover:text-[#25D366] transition-colors cursor-pointer">
+                <div class="flex items-center gap-2 text-2xl font-bold text-gray-400 hover:text-[#25D366] transition-colors cursor-pointer">
                     <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </div>
-                <div
-                    class="flex items-center gap-2 text-2xl font-bold text-gray-400 hover:text-[#E1306C] transition-colors cursor-pointer">
+                <div class="flex items-center gap-2 text-2xl font-bold text-gray-400 hover:text-[#E1306C] transition-colors cursor-pointer">
                     <i class="fa-brands fa-instagram"></i> Instagram
                 </div>
-                <div
-                    class="flex items-center gap-2 text-2xl font-bold text-gray-400 hover:text-black transition-colors cursor-pointer">
+                <div class="flex items-center gap-2 text-2xl font-bold text-gray-400 hover:text-black transition-colors cursor-pointer">
                     <i class="fa-brands fa-tiktok"></i> TikTok
                 </div>
             </div>
@@ -254,56 +208,42 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Elige el estilo perfecto</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Selecciona el formato que mejor se adapte a donde
-                    quieres compartirlo. Cada diseño se ajusta milimétricamente a la red social elegida.</p>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Selecciona el formato que mejor se adapte a donde quieres compartirlo. Cada diseño se ajusta milimétricamente a la red social elegida.</p>
             </div>
 
             <!-- Selector de plataforma -->
             <div class="flex justify-center mb-12">
                 <div class="inline-flex bg-white rounded-full p-1 shadow-md border border-gray-100">
-                    <button onclick="changeFormat('tiktok')" id="btn-fmt-tiktok"
-                        class="format-btn px-6 py-2 rounded-full font-semibold text-sm transition-all bg-gray-900 text-white">TikTok
-                        / Reels</button>
-                    <button onclick="changeFormat('ig-square')" id="btn-fmt-ig-square"
-                        class="format-btn px-6 py-2 rounded-full font-semibold text-sm transition-all text-gray-600 hover:text-gray-900">Post
-                        Instagram</button>
-                    <button onclick="changeFormat('wa-status')" id="btn-fmt-wa-status"
-                        class="format-btn px-6 py-2 rounded-full font-semibold text-sm transition-all text-gray-600 hover:text-gray-900">Estado
-                        WhatsApp</button>
+                    <button onclick="changeFormat('tiktok')" id="btn-fmt-tiktok" class="format-btn px-6 py-2 rounded-full font-semibold text-sm transition-all bg-gray-900 text-white">TikTok / Reels</button>
+                    <button onclick="changeFormat('ig-square')" id="btn-fmt-ig-square" class="format-btn px-6 py-2 rounded-full font-semibold text-sm transition-all text-gray-600 hover:text-gray-900">Post Instagram</button>
+                    <button onclick="changeFormat('wa-status')" id="btn-fmt-wa-status" class="format-btn px-6 py-2 rounded-full font-semibold text-sm transition-all text-gray-600 hover:text-gray-900">Estado WhatsApp</button>
                 </div>
             </div>
 
             <!-- Contenedor de visualización -->
             <div class="flex justify-center">
-                <div id="preview-container"
-                    class="w-full max-w-sm rounded-3xl shadow-2xl template-preview ratio-tiktok border-8 border-gray-900 bg-gradient-to-br from-brand-100 to-purple-100 relative overflow-hidden group">
-
+                <div id="preview-container" class="w-full max-w-sm rounded-3xl shadow-2xl template-preview ratio-tiktok border-8 border-gray-900 bg-gradient-to-br from-brand-100 to-purple-100 relative overflow-hidden group">
+                    
                     <!-- Imagen de fondo de ejemplo -->
-                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83164ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Fondo romántico" class="transition-transform duration-700 group-hover:scale-105">
-
+                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83164ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fondo romántico" class="transition-transform duration-700 group-hover:scale-105">
+                    
                     <!-- Capa oscura para contraste -->
                     <div class="absolute inset-0 bg-black/30"></div>
 
                     <!-- Contenido dinámico de la plantilla -->
                     <div class="content text-white flex flex-col items-center justify-center h-full">
-                        <div
-                            class="bg-white/20 backdrop-blur-md p-6 rounded-2xl border border-white/30 shadow-lg transform transition-transform group-hover:-translate-y-2">
+                        <div class="bg-white/20 backdrop-blur-md p-6 rounded-2xl border border-white/30 shadow-lg transform transition-transform group-hover:-translate-y-2">
                             <i class="fa-solid fa-heart text-4xl text-brand-400 mb-4 animate-pulse"></i>
-                            <h3 class="font-serif text-2xl font-bold mb-2 shadow-sm" id="preview-title">Feliz
-                                Aniversario</h3>
-                            <p class="text-sm opacity-90 shadow-sm" id="preview-text">3 años a tu lado y cada día te amo
-                                más. Eres mi persona favorita.</p>
-                            <div
-                                class="mt-4 pt-4 border-t border-white/20 text-xs font-semibold tracking-wider uppercase">
+                            <h3 class="font-serif text-2xl font-bold mb-2 shadow-sm" id="preview-title">Feliz Aniversario</h3>
+                            <p class="text-sm opacity-90 shadow-sm" id="preview-text">3 años a tu lado y cada día te amo más. Eres mi persona favorita.</p>
+                            <div class="mt-4 pt-4 border-t border-white/20 text-xs font-semibold tracking-wider uppercase">
                                 <span id="preview-names">Carlos & Ana</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Insignia de plataforma -->
-                    <div
-                        class="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-2">
+                    <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-2">
                         <i id="preview-icon" class="fa-brands fa-tiktok"></i> <span id="preview-badge">9:16</span>
                     </div>
                 </div>
@@ -315,17 +255,15 @@
         <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-16 items-start">
-
+                
                 <!-- Información izquierda -->
                 <div class="lg:w-1/3 sticky top-32">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6">Crea tu pedido mágico</h2>
-                    <p class="text-gray-600 mb-8 leading-relaxed">Completa el formulario con los detalles. Nuestro
-                        equipo de diseñadores creará una pieza única en menos de 24 horas.</p>
-
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6">Crea tu diseño al instante</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">Completa el formulario y mira cómo se genera tu diseño en tiempo real. Cuando esté listo, descárgalo gratis a tu dispositivo.</p>
+                    
                     <div class="space-y-6">
                         <div class="flex items-start gap-4">
-                            <div
-                                class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 flex-shrink-0 mt-1">
+                            <div class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 flex-shrink-0 mt-1">
                                 <span class="font-bold">1</span>
                             </div>
                             <div>
@@ -334,23 +272,21 @@
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
-                            <div
-                                class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 flex-shrink-0 mt-1">
+                            <div class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 flex-shrink-0 mt-1">
                                 <span class="font-bold">2</span>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-900">Sube tus fotos</h4>
-                                <p class="text-sm text-gray-500">Selecciona las mejores fotos o videos cortos.</p>
+                                <h4 class="font-bold text-gray-900">Sube tu foto favorita</h4>
+                                <p class="text-sm text-gray-500">Se usará como el fondo romántico de tu diseño.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
-                            <div
-                                class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 flex-shrink-0 mt-1">
+                            <div class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 flex-shrink-0 mt-1">
                                 <span class="font-bold">3</span>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-900">Recibe y comparte</h4>
-                                <p class="text-sm text-gray-500">Te enviamos el archivo listo para publicar.</p>
+                                <h4 class="font-bold text-gray-900">Descarga gratis</h4>
+                                <p class="text-sm text-gray-500">Genera y guarda tu imagen al instante, lista para publicar.</p>
                             </div>
                         </div>
                     </div>
@@ -358,8 +294,8 @@
 
                 <!-- Formulario interactivo derecha -->
                 <div class="lg:w-2/3 w-full bg-gray-50 p-8 md:p-10 rounded-3xl border border-gray-100 shadow-xl">
-                    <form id="orderForm" onsubmit="submitOrder(event)" class="space-y-8">
-
+                    <form id="orderForm" onsubmit="generateDesign(event)" class="space-y-8">
+                        
                         <!-- Paso 1: Ocasión y Formato -->
                         <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
                             <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
@@ -368,8 +304,7 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Ocasión</label>
-                                    <select required
-                                        class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                                    <select required class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
                                         <option value="">Selecciona una...</option>
                                         <option value="aniversario">Aniversario</option>
                                         <option value="declaracion">Declaración de Amor</option>
@@ -379,10 +314,8 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Formato
-                                        Principal</label>
-                                    <select required id="form-format" onchange="updateFormPreview()"
-                                        class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Formato Principal</label>
+                                    <select required id="form-format" onchange="updateFormPreview()" class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
                                         <option value="tiktok">TikTok / Reels (Vertical 9:16)</option>
                                         <option value="instagram">Instagram Post (Cuadrado 1:1)</option>
                                         <option value="whatsapp">Estado WhatsApp (Vertical 9:16)</option>
@@ -399,30 +332,21 @@
                             <div class="space-y-4">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">Tu Nombre (o
-                                            apodo)</label>
-                                        <input type="text" id="input-name1" oninput="updateLivePreview()"
-                                            placeholder="Ej. Juan" required
-                                            class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Tu Nombre (o apodo)</label>
+                                        <input type="text" id="input-name1" oninput="updateLivePreview()" placeholder="Ej. Juan" required class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2">Su Nombre</label>
-                                        <input type="text" id="input-name2" oninput="updateLivePreview()"
-                                            placeholder="Ej. María" required
-                                            class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+                                        <input type="text" id="input-name2" oninput="updateLivePreview()" placeholder="Ej. María" required class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Título Principal</label>
-                                    <input type="text" id="input-title" oninput="updateLivePreview()"
-                                        placeholder="Ej. Feliz 1er Mes Mi Amor" required
-                                        class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+                                    <input type="text" id="input-title" oninput="updateLivePreview()" placeholder="Ej. Feliz 1er Mes Mi Amor" required class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Mensaje Especial</label>
-                                    <textarea id="input-message" oninput="updateLivePreview()" rows="3"
-                                        placeholder="Escribe lo que sientes..." required
-                                        class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all resize-none"></textarea>
+                                    <textarea id="input-message" oninput="updateLivePreview()" rows="3" placeholder="Escribe lo que sientes..." required class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all resize-none"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -436,14 +360,12 @@
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Estilo de Diseño</label>
                                     <div class="grid grid-cols-2 gap-2">
-                                        <label
-                                            class="cursor-pointer border-2 border-brand-500 bg-brand-50 rounded-xl p-3 text-center transition-all hover:bg-brand-50">
+                                        <label class="cursor-pointer border-2 border-brand-500 bg-brand-50 rounded-xl p-3 text-center transition-all hover:bg-brand-50">
                                             <input type="radio" name="style" value="romantico" class="hidden" checked>
                                             <span class="block text-sm font-bold text-brand-700">Romántico</span>
                                             <span class="block text-xs text-gray-500 mt-1">Tonos rosas, suave</span>
                                         </label>
-                                        <label
-                                            class="cursor-pointer border-2 border-gray-200 rounded-xl p-3 text-center transition-all hover:border-gray-300">
+                                        <label class="cursor-pointer border-2 border-gray-200 rounded-xl p-3 text-center transition-all hover:border-gray-300">
                                             <input type="radio" name="style" value="moderno" class="hidden">
                                             <span class="block text-sm font-bold text-gray-700">Moderno</span>
                                             <span class="block text-xs text-gray-500 mt-1">Minimalista, oscuro</span>
@@ -451,20 +373,14 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Canción (Opcional para
-                                        videos)</label>
-                                    <input type="text" placeholder="Ej. Perfect - Ed Sheeran"
-                                        class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
-                                    <p class="text-xs text-gray-500 mt-2">La usaremos de fondo si eliges formato de
-                                        video.</p>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Canción (Opcional para videos)</label>
+                                    <input type="text" placeholder="Ej. Perfect - Ed Sheeran" class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+                                    <p class="text-xs text-gray-500 mt-2">La usaremos de fondo si eliges formato de video.</p>
                                 </div>
                             </div>
-
-                            <div
-                                class="mt-6 border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer relative">
-                                <input type="file" multiple accept="image/*,video/*"
-                                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                                    onchange="handleFileSelect(event)">
+                            
+                            <div class="mt-6 border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer relative">
+                                <input type="file" multiple accept="image/*,video/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onchange="handleFileSelect(event)">
                                 <i class="fa-solid fa-cloud-arrow-up text-4xl text-gray-400 mb-3"></i>
                                 <p class="text-gray-600 font-medium">Haz clic o arrastra tus fotos/videos aquí</p>
                                 <p class="text-xs text-gray-400 mt-2">Máximo 5 archivos (JPG, PNG, MP4)</p>
@@ -474,12 +390,11 @@
 
                         <!-- Botón Enviar -->
                         <div class="pt-4">
-                            <button type="submit"
-                                class="w-full bg-brand-600 hover:bg-brand-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-brand-500/30 transition-all transform hover:-translate-y-1 flex justify-center items-center gap-2">
-                                <i class="fa-solid fa-paper-plane"></i> Enviar Pedido y Pagar ($9.99 USD)
+                            <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-brand-500/30 transition-all transform hover:-translate-y-1 flex justify-center items-center gap-2">
+                                <i class="fa-solid fa-download"></i> Generar y Descargar Gratis
                             </button>
                             <p class="text-center text-xs text-gray-500 mt-4 flex items-center justify-center gap-1">
-                                <i class="fa-solid fa-lock"></i> Pago seguro. Entrega en 24 horas por WhatsApp o Email.
+                                <i class="fa-solid fa-bolt"></i> Generación instantánea y privada en tu dispositivo. No requiere registro.
                             </p>
                         </div>
                     </form>
@@ -491,26 +406,21 @@
     <section id="testimonios" class="py-20 bg-brand-50 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Miles de sonrisas entregadas
-                </h2>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Miles de sonrisas entregadas</h2>
                 <p class="text-gray-600">Lo que dicen quienes ya sorprendieron a su persona especial.</p>
             </div>
-
+            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Testimonio 1 -->
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-brand-100 relative">
                     <i class="fa-solid fa-quote-right absolute top-6 right-6 text-3xl text-brand-100"></i>
                     <div class="flex text-yellow-400 text-sm mb-4">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-gray-700 italic mb-6">"Le envié el video por nuestro aniversario por WhatsApp y lloró
-                        de la emoción. El diseño quedó súper elegante y la música sincronizaba perfecto."</p>
+                    <p class="text-gray-700 italic mb-6">"Le envié el video por nuestro aniversario por WhatsApp y lloró de la emoción. El diseño quedó súper elegante y la música sincronizaba perfecto."</p>
                     <div class="flex items-center gap-3">
-                        <div
-                            class="w-10 h-10 bg-gray-200 rounded-full flex justify-center items-center overflow-hidden">
-                            <img src="https://i.pravatar.cc/150?img=32" alt="Avatar" class="w-full h-full object-cover">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex justify-center items-center overflow-hidden">
+                             <img src="https://i.pravatar.cc/150?img=32" alt="Avatar" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <p class="font-bold text-gray-900 text-sm">Valentina R.</p>
@@ -523,15 +433,11 @@
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-brand-100 relative">
                     <i class="fa-solid fa-quote-right absolute top-6 right-6 text-3xl text-brand-100"></i>
                     <div class="flex text-yellow-400 text-sm mb-4">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-gray-700 italic mb-6">"Quería pedirle perdón a mi novia de una forma original. Subí
-                        la imagen a mis historias de Instagram y le encantó el detalle. ¡Volvimos!"</p>
+                    <p class="text-gray-700 italic mb-6">"Quería pedirle perdón a mi novia de una forma original. Subí la imagen a mis historias de Instagram y le encantó el detalle. ¡Volvimos!"</p>
                     <div class="flex items-center gap-3">
-                        <div
-                            class="w-10 h-10 bg-gray-200 rounded-full flex justify-center items-center overflow-hidden">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex justify-center items-center overflow-hidden">
                             <img src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="w-full h-full object-cover">
                         </div>
                         <div>
@@ -545,15 +451,11 @@
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-brand-100 relative">
                     <i class="fa-solid fa-quote-right absolute top-6 right-6 text-3xl text-brand-100"></i>
                     <div class="flex text-yellow-400 text-sm mb-4">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-gray-700 italic mb-6">"Pedí un diseño para el día del amigo y nos lo pusimos todos de
-                        foto de perfil. La calidad de la imagen es buenísima, súper rápido todo."</p>
+                    <p class="text-gray-700 italic mb-6">"Pedí un diseño para el día del amigo y nos lo pusimos todos de foto de perfil. La calidad de la imagen es buenísima, súper rápido todo."</p>
                     <div class="flex items-center gap-3">
-                        <div
-                            class="w-10 h-10 bg-gray-200 rounded-full flex justify-center items-center overflow-hidden">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex justify-center items-center overflow-hidden">
                             <img src="https://i.pravatar.cc/150?img=5" alt="Avatar" class="w-full h-full object-cover">
                         </div>
                         <div>
@@ -571,20 +473,15 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center gap-2 mb-6 md:mb-0">
                     <i class="fa-solid fa-heart text-brand-500 text-xl"></i>
-                    <span class="font-serif font-bold text-xl tracking-tight">Diseños<span
-                            class="text-brand-500">Amor</span></span>
+                    <span class="font-serif font-bold text-xl tracking-tight">Diseños<span class="text-brand-500">Amor</span></span>
                 </div>
                 <div class="flex gap-6 mb-6 md:mb-0">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i
-                            class="fa-brands fa-instagram text-xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i
-                            class="fa-brands fa-tiktok text-xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i
-                            class="fa-brands fa-whatsapp text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-tiktok text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-whatsapp text-xl"></i></a>
                 </div>
             </div>
-            <div
-                class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
                 <p>&copy; 2026 DiseñosAmor. Todos los derechos reservados.</p>
                 <div class="flex gap-4 mt-4 md:mt-0">
                     <a href="#" class="hover:text-white transition-colors">Términos</a>
@@ -596,7 +493,7 @@
     </footer>
 
     <!-- Toast Notification -->
-    <div id="toast">Pedido enviado correctamente. ¡Pronto nos pondremos en contacto!</div>
+    <div id="toast">¡Diseño generado y descargado con éxito!</div>
 
     <script>
         // Lógica del menú móvil
@@ -635,10 +532,10 @@
             const container = document.getElementById('preview-container');
             const icon = document.getElementById('preview-icon');
             const badge = document.getElementById('preview-badge');
-
+            
             // Reset clases de formato
             container.classList.remove('ratio-tiktok', 'ratio-instagram-square', 'ratio-whatsapp-status');
-
+            
             // Reset botones
             document.querySelectorAll('.format-btn').forEach(btn => {
                 btn.classList.remove('bg-gray-900', 'text-white');
@@ -669,13 +566,13 @@
         // Conectar el select del formulario con el visualizador
         function updateFormPreview() {
             const formatSelect = document.getElementById('form-format').value;
-            if (formatSelect === 'tiktok') changeFormat('tiktok');
-            if (formatSelect === 'instagram') changeFormat('ig-square');
-            if (formatSelect === 'whatsapp') changeFormat('wa-status');
-
+            if(formatSelect === 'tiktok') changeFormat('tiktok');
+            if(formatSelect === 'instagram') changeFormat('ig-square');
+            if(formatSelect === 'whatsapp') changeFormat('wa-status');
+            
             // Hacer scroll sutil al preview para que el usuario vea el cambio
-            if (window.innerWidth > 1024) {
-                // En desktop no hacemos scroll porque están lado a lado
+            if(window.innerWidth > 1024) {
+                 // En desktop no hacemos scroll porque están lado a lado
             }
         }
 
@@ -696,16 +593,31 @@
             const files = event.target.files;
             const list = document.getElementById('file-list');
             list.innerHTML = ''; // Limpiar anteriores
+            
+            // Lógica para establecer la primera imagen subida como fondo del preview
+            if(files.length > 0) {
+                const file = files[0];
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const previewImg = document.querySelector('.template-preview img');
+                        if(previewImg) {
+                            previewImg.src = e.target.result;
+                        }
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
 
             const maxFiles = Math.min(files.length, 5);
-
+            
             for (let i = 0; i < maxFiles; i++) {
                 const badge = document.createElement('span');
                 badge.className = 'bg-brand-100 text-brand-700 text-xs px-2 py-1 rounded border border-brand-200 flex items-center gap-1';
-                badge.innerHTML = `<i class="fa-solid fa-image"></i> ${files[i].name.substring(0, 10)}...`;
+                badge.innerHTML = `<i class="fa-solid fa-image"></i> ${files[i].name.substring(0,10)}...`;
                 list.appendChild(badge);
             }
-            if (files.length > 5) {
+            if(files.length > 5) {
                 const extra = document.createElement('span');
                 extra.className = 'text-xs text-red-500 font-bold mt-1 block w-full text-center';
                 extra.innerText = `Solo se procesarán los primeros 5 archivos.`;
@@ -713,41 +625,73 @@
             }
         }
 
-        // Manejo del formulario
-        function submitOrder(event) {
+        // Manejo del formulario (Generación Automática)
+        function generateDesign(event) {
             event.preventDefault();
+            
+            const btn = event.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            
+            // Estado de carga
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generando imagen...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75');
 
-            // Mostrar Toast
-            const toast = document.getElementById("toast");
-            toast.className = "show";
-            setTimeout(function () { toast.className = toast.className.replace("show", ""); }, 3000);
+            // Ocultar temporalmente elementos de la UI que no deben salir en la foto
+            const badge = document.querySelector('.template-preview > div.absolute.top-4');
+            if(badge) badge.style.display = 'none';
 
-            // Limpiar formulario simulando éxito
-            document.getElementById('orderForm').reset();
-            document.getElementById('file-list').innerHTML = '';
+            const previewContainer = document.getElementById('preview-container');
 
-            // Restaurar preview a defaults
-            document.getElementById('preview-names').innerText = 'Carlos & Ana';
-            document.getElementById('preview-title').innerText = 'Feliz Aniversario';
-            document.getElementById('preview-text').innerText = '3 años a tu lado y cada día te amo más. Eres mi persona favorita.';
+            // Usar html2canvas para renderizar el DOM como imagen
+            html2canvas(previewContainer, {
+                useCORS: true, // Permite cargar imágenes externas si las hay
+                scale: 3, // Multiplicador de resolución (mejor calidad para RRSS)
+                backgroundColor: null,
+                logging: false
+            }).then(canvas => {
+                // Restaurar UI
+                if(badge) badge.style.display = 'flex';
 
-            // Volver al formato tiktok por defecto en la vista
-            changeFormat('tiktok');
+                // Crear enlace de descarga automático
+                const link = document.createElement('a');
+                link.download = `Diseno-Amor-${new Date().getTime()}.png`;
+                link.href = canvas.toDataURL('image/png', 1.0); // Calidad máxima
+                link.click();
+
+                // Mostrar Toast de éxito
+                const toast = document.getElementById("toast");
+                toast.className = "show";
+                setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+                
+                // Restaurar botón
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                btn.classList.remove('opacity-75');
+                
+            }).catch(error => {
+                console.error("Error generando diseño:", error);
+                alert("Hubo un error al generar la imagen. Intenta con una foto más ligera.");
+                if(badge) badge.style.display = 'flex';
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                btn.classList.remove('opacity-75');
+            });
         }
 
         // Radio button styling interactivo
         const radios = document.querySelectorAll('input[type=radio][name="style"]');
         radios.forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 // Reset styles
                 const labels = document.querySelectorAll('input[type=radio][name="style"] + span');
                 document.querySelectorAll('input[type=radio][name="style"]').forEach(r => {
-                    r.parentElement.classList.remove('border-brand-500', 'bg-brand-50');
-                    r.parentElement.classList.add('border-gray-200');
-                    r.nextElementSibling.classList.remove('text-brand-700');
-                    r.nextElementSibling.classList.add('text-gray-700');
+                   r.parentElement.classList.remove('border-brand-500', 'bg-brand-50');
+                   r.parentElement.classList.add('border-gray-200');
+                   r.nextElementSibling.classList.remove('text-brand-700');
+                   r.nextElementSibling.classList.add('text-gray-700');
                 });
-
+                
                 // Set active style
                 if (this.checked) {
                     this.parentElement.classList.remove('border-gray-200');
@@ -759,5 +703,4 @@
         });
     </script>
 </body>
-
 </html>
