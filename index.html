@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GamesPC - Tu Biblioteca de Juegos AAA</title>
-    <meta name="description"
-        content="Descubre y descarga los mejores juegos AAA optimizados para PC. GamesPC es tu biblioteca definitiva de entretenimiento.">
+    <meta name="description" content="Descubre y descarga los mejores juegos AAA optimizados para PC.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
 </head>
-
 <body>
     <div id="canvas-container"></div>
-
     <main class="overlay">
-        <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-content">
                 <h1 class="hero-title">GAMES PC</h1>
                 <p class="hero-subtitle">Tu Biblioteca Definitiva de Juegos AAA Optimizados</p>
                 <div class="hero-badges">
-                    <span class="badge">🚀 Alto Rendimiento</span>
-                    <span class="badge">🛡️ 100% Seguro</span>
-                    <span class="badge">🎮 Catálogo Premium</span>
+                    <span class="badge">Alto Rendimiento</span>
+                    <span class="badge">100% Seguro</span>
+                    <span class="badge">Catálogo Premium</span>
                 </div>
-                <a href="https://play.google.com/store/apps/details?id=com.harvey.gamespc" target="_blank"
-                    class="cta-btn">
+                <a href="https://play.google.com/store/apps/details?id=com.harvey.gamespc" target="_blank" class="cta-btn">
                     <span class="btn-icon">📥</span>
                     DESCARGAR EN PLAY STORE
                 </a>
@@ -36,194 +38,156 @@
             </div>
         </section>
 
-        <!-- Featured AAA Games Grid -->
         <section class="games-section">
             <h2 class="section-title">Títulos AAA Destacados</h2>
             <div class="games-grid">
-                <!-- Game Card 1 -->
                 <div class="game-card glass">
                     <div class="game-image">
-                        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202106/1704/JzL1NLQvok7Pghe9W5PP2XNV.png"
-                            alt="God of War">
-                        <div class="game-overlay">
-                            <span class="game-badge">AAA</span>
-                        </div>
+                        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202106/1704/JzL1NLQvok7Pghe9W5PP2XNV.png" alt="God of War">
+                        <div class="game-overlay"><span class="game-badge">AAA</span></div>
                     </div>
                     <div class="game-info">
                         <h3>God of War</h3>
                         <p>Vive la aventura épica de Kratos y Atreus.</p>
-                        <div class="game-meta">
-                            <span>🔥 Acción</span>
-                            <span>⭐ 4.9/5</span>
-                        </div>
+                        <div class="game-meta"><span>🔥 Acción</span><span>⭐ 4.9/5</span></div>
                     </div>
                 </div>
-
-                <!-- Game Card 2 -->
                 <div class="game-card glass">
                     <div class="game-image">
-                        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202010/0222/niMUubpU9y1PxQiYGmCN8xdp.png"
-                            alt="Spider-Man Remastered">
-                        <div class="game-overlay">
-                            <span class="game-badge">AAA</span>
-                        </div>
+                        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202010/0222/niMUubpU9y1PxQiYGmCN8xdp.png" alt="Spider-Man">
+                        <div class="game-overlay"><span class="game-badge">AAA</span></div>
                     </div>
                     <div class="game-info">
                         <h3>Spider-Man</h3>
                         <p>Balancéate por Nueva York con gráficos increíbles.</p>
-                        <div class="game-meta">
-                            <span>🕷️ Aventura</span>
-                            <span>⭐ 4.8/5</span>
-                        </div>
+                        <div class="game-meta"><span>🕷️ Aventura</span><span>⭐ 4.8/5</span></div>
                     </div>
                 </div>
-
-                <!-- Game Card 3 -->
                 <div class="game-card glass">
                     <div class="game-image">
-                        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202109/2821/S5E2eXQ9iV04p1z5f8a8g7h6.png"
-                            alt="Horizon Zero Dawn">
-                        <div class="game-overlay">
-                            <span class="game-badge">AAA</span>
-                        </div>
+                        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202109/2821/S5E2eXQ9iV04p1z5f8a8g7h6.png" alt="Horizon Zero Dawn">
+                        <div class="game-overlay"><span class="game-badge">AAA</span></div>
                     </div>
                     <div class="game-info">
                         <h3>Horizon Zero Dawn</h3>
                         <p>Explora un mundo post-apocalíptico dominado por máquinas.</p>
-                        <div class="game-meta">
-                            <span>🏹 RPG</span>
-                            <span>⭐ 4.7/5</span>
-                        </div>
+                        <div class="game-meta"><span>🏹 RPG</span><span>⭐ 4.7/5</span></div>
                     </div>
                 </div>
-
-                <!-- Game Card 4 -->
                 <div class="game-card glass">
                     <div class="game-image">
-                        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202202/2816/mYn2ETBTFzwp1g5ZJ8a9h7k6.png"
-                            alt="Elden Ring">
-                        <div class="game-overlay">
-                            <span class="game-badge">GOTY</span>
-                        </div>
+                        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202202/2816/mYn2ETBTFzwp1g5ZJ8a9h7k6.png" alt="Elden Ring">
+                        <div class="game-overlay"><span class="game-badge">GOTY</span></div>
                     </div>
                     <div class="game-info">
                         <h3>Elden Ring</h3>
                         <p>El aclamado RPG de acción de FromSoftware.</p>
-                        <div class="game-meta">
-                            <span>⚔️ Souls-like</span>
-                            <span>⭐ 5.0/5</span>
-                        </div>
+                        <div class="game-meta"><span>⚔️ Souls-like</span><span>⭐ 5.0/5</span></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Legal Notice Section -->
+        <section class="info-section">
+            <h2 class="section-title">Características de la App</h2>
+            <div class="info-grid">
+                <div class="info-card glass"><h3>📱 Interfaz Intuitiva</h3><p>Diseñada para la mejor experiencia en Android.</p></div>
+                <div class="info-card glass"><h3>🔗 Enlaces Directos</h3><p>Acceso directo a URLs de descarga sin publicidad invasiva.</p></div>
+                <div class="info-card glass"><h3>📊 Información Detallada</h3><p>Cada juego incluye descripción, requisitos y tamaño.</p></div>
+            </div>
+        </section>
+<section class="site-nav">
+            <h2 class="section-title">Navegación del Sitio</h2>
+            <div class="nav-categories">
+                <div class="nav-category">
+                    <h3>📄 Páginas Principales</h3>
+                    <div class="nav-grid">
+                        <a href="about.html" class="nav-card"><span class="nav-card-icon">👥</span><div class="nav-card-info"><h4>Sobre Nosotros</h4><p>Conoce el proyecto</p></div></a>
+                        <a href="contact.html" class="nav-card"><span class="nav-card-icon">📧</span><div class="nav-card-info"><h4>Contacto</h4><p>Ponte en contacto</p></div></a>
+                        <a href="games.html" class="nav-card"><span class="nav-card-icon">🎮</span><div class="nav-card-info"><h4>Centro de IA</h4><p>Juegos, emuladores y más</p></div></a>
+                        <a href="add.html" class="nav-card"><span class="nav-card-icon">➕</span><div class="nav-card-info"><h4>Añadir Contenido</h4><p>Formulario de contenido</p></div></a>
+                    </div>
+                </div>
+                <div class="nav-category">
+                    <h3>🔧 Herramientas y Servicios</h3>
+                    <div class="nav-grid">
+                        <a href="verificarweb.html" class="nav-card"><span class="nav-card-icon">🔍</span><div class="nav-card-info"><h4>Verificar Web</h4><p>Analiza la seguridad de sitios web</p></div></a>
+                        <a href="amazonappstoreuniversalapkoficialfirmado.html" class="nav-card"><span class="nav-card-icon">📦</span><div class="nav-card-info"><h4>APK Universal</h4><p>Descarga oficial de la app</p></div></a>
+                        <a href="dedicaciones.html" class="nav-card"><span class="nav-card-icon">💝</span><div class="nav-card-info"><h4>Diseños con Amor</h4><p>Regala momentos especiales</p></div></a>
+                        <a href="galaxiadeamorsaray.html" class="nav-card"><span class="nav-card-icon">🌌</span><div class="nav-card-info"><h4>Galaxia de Amor</h4><p>Dedicación especial</p></div></a>
+                        <a href="multi-model-console.html" class="nav-card"><span class="nav-card-icon">🤖</span><div class="nav-card-info"><h4>Consola Multi-Modelo</h4><p>IA en múltiples modelos</p></div></a>
+                        <a href="result.html" class="nav-card"><span class="nav-card-icon">⚡</span><div class="nav-card-info"><h4>Fast Join Token</h4><p>Resultado Roblox</p></div></a>
+                    </div>
+                </div>
+                <div class="nav-category">
+                    <h3>⚖️ Legal y Cuenta</h3>
+                    <div class="nav-grid">
+                        <a href="privacy.html" class="nav-card"><span class="nav-card-icon">🔒</span><div class="nav-card-info"><h4>Privacidad</h4><p>Política de privacidad</p></div></a>
+                        <a href="terms.html" class="nav-card"><span class="nav-card-icon">📜</span><div class="nav-card-info"><h4>Términos</h4><p>Términos y condiciones</p></div></a>
+                        <a href="eliminarmicuenta.html" class="nav-card"><span class="nav-card-icon">🗑️</span><div class="nav-card-info"><h4>Eliminar Cuenta</h4><p>Solicitud de eliminación</p></div></a>
+                        <a href="perfil.html" class="nav-card"><span class="nav-card-icon">👤</span><div class="nav-card-info"><h4>Perfil</h4><p>Tu perfil de usuario</p></div></a>
+                    </div>
+                </div>
+                <div class="nav-category">
+                    <h3>📝 Artículos</h3>
+                    <div class="nav-grid">
+                        <a href="articles/articulo1.html" class="nav-card"><span class="nav-card-icon">📱</span><div class="nav-card-info"><h4>Emuladores Android</h4><p>Los 5 más populares para PC</p></div></a>
+                        <a href="articles/mejores-ia-android.html" class="nav-card"><span class="nav-card-icon">🤖</span><div class="nav-card-info"><h4>IA para Apps Android</h4><p>Mejores IAs en 2025</p></div></a>
+                        <a href="articles/mejores-ia-ios.html" class="nav-card"><span class="nav-card-icon">🍎</span><div class="nav-card-info"><h4>IA para Apps iOS</h4><p>Mejores IAs en 2025</p></div></a>
+                        <a href="articles/mejores-ia-aprendizaje.html" class="nav-card"><span class="nav-card-icon">📚</span><div class="nav-card-info"><h4>IA para Aprendizaje</h4><p>Mejores IAs educativas</p></div></a>
+                        <a href="articles/mejores-ia-productividad.html" class="nav-card"><span class="nav-card-icon">⚡</span><div class="nav-card-info"><h4>IA para Productividad</h4><p>Mejores IAs en 2025</p></div></a>
+                        <a href="articles/mejores-ia-trabajo.html" class="nav-card"><span class="nav-card-icon">💼</span><div class="nav-card-info"><h4>IA para Trabajo</h4><p>Mejores IAs laborales</p></div></a>
+                        <a href="articles/mejores-ia-musica.html" class="nav-card"><span class="nav-card-icon">🎵</span><div class="nav-card-info"><h4>IA para Música</h4><p>Creación musical con IA</p></div></a>
+                        <a href="articles/mejores-ia-video.html" class="nav-card"><span class="nav-card-icon">🎬</span><div class="nav-card-info"><h4>IA para Video</h4><p>Creación de video con IA</p></div></a>
+                        <a href="articles/mejores-ia-domotica.html" class="nav-card"><span class="nav-card-icon">🏠</span><div class="nav-card-info"><h4>IA para Domótica</h4><p>Hogar inteligente</p></div></a>
+                        <a href="articles/mejores-ia-ml.html" class="nav-card"><span class="nav-card-icon">🧠</span><div class="nav-card-info"><h4>Machine Learning</h4><p>Plataformas de ML</p></div></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="legal-section">
             <div class="legal-container">
-                <h2 class="section-title">⚠️ Aviso Legal Importante</h2>
-
+                <h2 class="section-title">⚠️ Aviso Legal</h2>
                 <div class="legal-grid">
                     <div class="legal-card warning-card glass">
                         <div class="legal-icon">📋</div>
                         <h3>Naturaleza de la Aplicación</h3>
-                        <p>GamesPC es una aplicación que <strong>únicamente almacena y proporciona URLs
-                                directas</strong> a archivos alojados en servicios de terceros como <strong>Mediafire,
-                                Gofile</strong>, y otros proveedores de almacenamiento.</p>
+                        <p>GamesPC es una aplicación que <strong>únicamente almacena y proporciona URLs directas</strong> a archivos alojados en servicios de terceros.</p>
                         <p class="highlight">No alojamos ningún archivo en nuestros servidores.</p>
                     </div>
-
                     <div class="legal-card danger-card glass">
                         <div class="legal-icon">⚠️</div>
                         <h3>Descargo de Responsabilidad</h3>
-                        <p><strong>NO nos hacemos responsables</strong> del contenido de los archivos descargados desde
-                            los enlaces proporcionados.</p>
-                        <p class="highlight">El usuario asume toda la responsabilidad al descargar y ejecutar cualquier
-                            archivo.</p>
+                        <p><strong>NO nos hacemos responsables</strong> del contenido de los archivos descargados desde los enlaces proporcionados.</p>
+                        <p class="highlight">El usuario asume toda la responsabilidad.</p>
                     </div>
-
                     <div class="legal-card critical-card glass">
                         <div class="legal-icon">💻</div>
                         <h3>Recomendación de Seguridad</h3>
-                        <p><strong>IMPORTANTE:</strong> Se recomienda encarecidamente crear un <strong>Dual Boot con
-                                otro Windows</strong> o usar una máquina virtual para probar los juegos descargados.</p>
+                        <p>Se recomienda crear un <strong>Dual Boot</strong> o usar una máquina virtual para probar los juegos descargados.</p>
                         <p class="highlight">Nunca ejecutes archivos desconocidos en tu sistema principal.</p>
                     </div>
-
-                    <div class="legal-card info-card glass">
-                        <div class="legal-icon">🔒</div>
-                        <h3>Uso Bajo tu Propio Riesgo</h3>
-                        <p>Al usar GamesPC, aceptas que:</p>
-                        <ul>
-                            <li>Descargas archivos bajo tu propio riesgo</li>
-                            <li>Verificarás los archivos con antivirus antes de ejecutarlos</li>
-                            <li>Tomarás las precauciones necesarias de seguridad</li>
-                            <li>Entiendes que los enlaces provienen de terceros</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features & Security Section -->
-        <section class="info-section">
-            <h2 class="section-title">Características de la App</h2>
-            <div class="info-grid">
-                <div class="info-card glass">
-                    <h3>📱 Interfaz Intuitiva</h3>
-                    <p>Diseñada para ofrecer la mejor experiencia de usuario en Android con navegación sencilla.</p>
-                </div>
-                <div class="info-card glass">
-                    <h3>🔗 Enlaces Directos</h3>
-                    <p>Acceso directo a URLs de descarga sin intermediarios ni publicidad invasiva.</p>
-                </div>
-                <div class="info-card glass">
-                    <h3>📊 Información Detallada</h3>
-                    <p>Cada juego incluye descripción, requisitos y tamaño del archivo antes de descargar.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Other Apps Section -->
-        <section class="secondary-apps">
-            <h2 class="section-title">Otras Aplicaciones</h2>
-            <div class="app-card glass small-card">
-                <h3>Verificar Web</h3>
-                <p>Herramienta esencial para verificación segura.</p>
-                <div class="btn-group">
-                    <a href="https://play.google.com/store/apps/details?id=com.harvey.verificarweb" target="_blank"
-                        class="btn btn-sm">Descargar</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="secondary-apps">
-            <h2 class="section-title">Otras Aplicaciones</h2>
-            <div class="app-card glass small-card">
-                <h3>Roblox Fast Join Server v3</h3>
-                <p>Programa para unirse con menor ping en Roblox.</p>
-                <div class="btn-group">
-                    <a href="https://github.com/HarveyYasuo/RobloxServerFastJoin" target="_blank"
-                        class="btn btn-sm">Descargar</a>
                 </div>
             </div>
         </section>
 
         <footer>
-            <p>&copy; 2025 Harvey Apps. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">Sobre Nosotros</a>
+                <a href="contact.html">Contacto</a>
+                <a href="privacy.html">Privacidad</a>
+                <a href="terms.html">Términos</a>
+                <a href="games.html">Juegos</a>
+                <a href="add.html">Añadir</a>
+                <a href="verificarweb.html">Verificar</a>
+                <a href="dedicaciones.html">Diseños</a>
+            </div>
+            <p>© 2025 Harvey Apps. Todos los derechos reservados.</p>
         </footer>
     </main>
-
-    <!-- Three.js Import Map for modern module loading -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-            }
-        }
-    </script>
     <script type="module" src="main.js"></script>
+    <script src="animations.js"></script>
+    <script src="script.js"></script>
 </body>
-
 </html>
